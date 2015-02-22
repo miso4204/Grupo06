@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and abstract="true" mandatory="true" name="TurismoMarketPlace">
+				<and mandatory="true" name="GestorContenidos">
+					<feature mandatory="true" name="OpinarSobreContenido"/>
+					<feature mandatory="true" name="CategorizarContenidos"/>
+					<and mandatory="true" name="CrearContenidos">
+						<feature name="Imagenes"/>
+						<feature name="Videos"/>
+						<feature mandatory="true" name="Texto"/>
+					</and>
+					<feature name="ContadorVisitas"/>
+				</and>
+				<and mandatory="true" name="ComprasEcommerce">
+					<feature name="PagosEfectivo"/>
+					<feature mandatory="true" name="Inventario"/>
+					<feature mandatory="true" name="PagosOnLine"/>
+					<feature mandatory="true" name="BuscarSitios"/>
+				</and>
+				<and mandatory="true" name="SesionUsuario">
+					<feature mandatory="true" name="IniciarSesion"/>
+					<feature mandatory="true" name="CerrarSesion"/>
+					<feature name="IniciarSesionRedesSociales"/>
+					<feature mandatory="true" name="RegistrarUsuario"/>
+					<feature mandatory="true" name="RecuperarContrasenia"/>
+				</and>
+				<and mandatory="true" name="Reportes">
+					<feature mandatory="true" name="HistoricoTransaccionesProveedor"/>
+					<feature name="HistoricoTransaccionesCliente"/>
+					<feature mandatory="true" name="HistoricoVentas"/>
+					<feature mandatory="true" name="MonitoreoRendimiento"/>
+				</and>
+				<and name="Mensajeria">
+					<feature mandatory="true" name="EnviarMensaje"/>
+					<feature mandatory="true" name="BuscarCliente"/>
+					<feature mandatory="true" name="BuscarAdmon"/>
+					<feature mandatory="true" name="BuscarProveedor"/>
+					<or name="AdjuntarArchivo">
+						<feature mandatory="true" name="Imagen"/>
+						<feature mandatory="true" name="Audio"/>
+						<feature mandatory="true" name="Video"/>
+					</or>
+				</and>
+				<and name="Subastas">
+					<feature mandatory="true" name="CrearSubasta"/>
+					<feature mandatory="true" name="Ofertar"/>
+					<feature mandatory="true" name="DeterminarGanador"/>
+					<feature name="ExtenderTiemposPujas"/>
+				</and>
+				<and name="GestorNoticias">
+					<feature mandatory="true" name="ProgramarComunicado"/>
+					<feature name="CrearGrupoObjetivo"/>
+					<feature mandatory="true" name="SubscripcionCanales"/>
+					<feature mandatory="true" name="ConsultarComunicado"/>
+				</and>
+				<and name="SoporteCliente">
+					<feature mandatory="true" name="ConsultarPreguntasFrecuentes"/>
+					<and mandatory="true" name="EnviarPQR">
+						<feature mandatory="true" name="EnviarPregunta"/>
+						<feature mandatory="true" name="EnviarQueja"/>
+						<feature mandatory="true" name="EnviarReclamo"/>
+					</and>
+					<feature name="IngresarChatAsesor"/>
+				</and>
+				<and mandatory="true" name="BusquedaOfertas">
+					<feature mandatory="true" name="BuscarOfertasTipo"/>
+					<feature mandatory="true" name="BuscarOfertasProveedor"/>
+					<feature name="BuscarOfertasDescripcion"/>
+					<feature mandatory="true" name="BuscarOfertasCiudad"/>
+				</and>
+				<and name="GestorEventos">
+					<feature mandatory="true" name="CrearEvento"/>
+					<feature mandatory="true" name="ConsultarCalendario"/>
+					<feature mandatory="true" name="BuscarEventosXTipo"/>
+					<feature name="NotificarNoticia"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>NotificarNoticia</var>
+					<var>GestorNoticias</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>IngresarChatAsesor</var>
+					<var>Mensajeria</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>HistoricoTransaccionesCliente</var>
+					<var>ComprasEcommerce</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>HistoricoTransaccionesCliente</var>
+					<var>ComprasEcommerce</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>HistoricoTransaccionesProveedor</var>
+					<var>ComprasEcommerce</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>HistoricoVentas</var>
+					<var>ComprasEcommerce</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
