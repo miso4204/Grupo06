@@ -12,8 +12,8 @@ public interface ILoginService {
 	 * Metodo basico de login.
 	 * 
 	 * @param usuario el username.
-	 * @param clave la contraseña del usuario.
-	 * @return true si las credenciales son invalidas, false en caso contrario.
+	 * @param clave la contraseï¿½a del usuario.
+	 * @return true si las credenciales son validas, false en caso contrario.
 	 */
 	boolean login(String usuario, String clave);
 }
