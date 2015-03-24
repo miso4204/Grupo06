@@ -1,5 +1,7 @@
 package grupo6.persistencia.entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +12,13 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
 	
+	/**
+	 * UID generado.
+	 */
+
+	private static final long serialVersionUID = -9166669156834599593L;
 	/** Id del cliente.**/
 	private Long id;
 	/**El  username **/
