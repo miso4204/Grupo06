@@ -1,0 +1,56 @@
+<resources>
+    <dimen name="activity_horizontal_margin">30dp</dimen>
+    <dimen name="activity_vertical_margin">30dp</dimen>
+
+    <!-- TEXT SIZE -->
+	<dimen name="edit_text_size">30sp</dimen>
+	<dimen name="button_text_size">30sp</dimen>
+	<dimen name="text_view_size_small">22sp</dimen>
+	<dimen name="text_view_size">26sp</dimen>
+	<dimen name="text_view_size_large">30sp</dimen>
+	<dimen name="text_view_size_xlarge">34sp</dimen>
+
+	<!-- PADDING BUTTON-->
+	<dimen name="padding_button_green">10dp</dimen>
+	
+	<!-- MARGIN -->
+	<dimen name="margin_image">35dp</dimen>
+	<dimen name="margin">20dp</dimen>
+	<dimen name="margin_small">16dp</dimen>
+	
+	<!-- MARGIN BUTTON-->
+	<dimen name="margin_left_button">16dp</dimen>
+	<dimen name="margin_bottom_button">10dp</dimen>
+	<dimen name="margin_top_button">10dp</dimen>
+	
+	<!-- MARGIN TEXT VIEW-->
+	<dimen name="margin_left_text_view">20dp</dimen>
+	<dimen name="margin_bottom_text_view">10dp</dimen>
+	<dimen name="margin_top_text_view">10dp</dimen>
+	
+	<!-- MARGIN LAYOUT RESERVAR-->
+	<dimen name="margin_bottom_layout_reservar">10dp</dimen>
+	<dimen name="margin_top_layout_reservar">10dp</dimen>
+	<dimen name="margin_left_layout_reservar">22dp</dimen>
+	<dimen name="margin_right_layout_reservar">22dp</dimen>
+	
+	<!-- WIDTH BUTTON-->
+	<dimen name="width_button">300dp</dimen>
+	<!-- HEIGHT BUTTON-->
+	<dimen name="height_button">60dp</dimen>
+	
+	<!-- WIDTH VIEW-->
+	<dimen name="width_list_view">400dp</dimen>
+	
+	<!-- SIZE IMAGE VIEW PERFIL-->
+	<dimen name="size_image_view_perfil">250dp</dimen>
+	
+	<!-- SIZE IMAGE VIEW EQUIPO-->
+	<dimen name="size_image_view_equipo">200dp</dimen>
+	
+	<!-- SIZE LINE TEXT VIEW ITEM LIST VIE-->
+	<dimen name="size_linea_text_view">1dp</dimen>
+	
+	<!-- HEIGHT IMAGE VIEW ICONO MENU-->
+	<dimen name="height_icono_menu">70dp</dimen>
+</resources>

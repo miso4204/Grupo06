@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">Ecoturismo</string>
+
+    <!-- LOGIN -->
+    <string name="login_hint_edit_text_correo">Correo</string>
+    <string name="login_hint_edit_text_clave">Contraseña</string>
+    <string name="login_button_inicio_sesion">Iniciar Sesión</string>
+
+    <!-- REGISTRO -->
+    <string name="registro_hint_edit_text_nombre">Nombre</string>
+    <string name="registro_hint_edit_text_correo">Correo</string>
+    <string name="registro_hint_edit_text_clave">Contraseña</string>
+    <string name="registro_button_registrar">Registrar</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
