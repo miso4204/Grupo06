@@ -7,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Fragmento que muestra el perfil del cliente
+ * @author Alejo
+ *
+ */
 public class PerfilFragment extends Fragment{
 
 	private View view; 

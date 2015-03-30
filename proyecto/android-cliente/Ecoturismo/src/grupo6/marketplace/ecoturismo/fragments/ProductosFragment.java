@@ -13,7 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
+/**
+ * Fragmento que muestra la lista de productos del marketplace de ecoturismo 
+ * @author Alejo
+ *
+ */
 public class ProductosFragment extends ListFragment{
 
 	private List<Producto> productos;

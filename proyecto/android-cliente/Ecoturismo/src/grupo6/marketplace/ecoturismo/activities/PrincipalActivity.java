@@ -15,7 +15,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.os.Bundle;
-
+/**
+ * Actividad que se encarga de cargar los fragmentos de la vista principal (categorias,carrito de compras, perfil, reportes) 
+ * @author Alejo
+ *
+ */
 public class PrincipalActivity extends ActionBarActivity {
  
     private InicialPagerAdapter principalPagerAdapter;

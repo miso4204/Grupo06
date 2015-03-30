@@ -10,7 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * Adaptador que se encarga de pintar cada una de las categorias del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 @SuppressLint("InflateParams")
 public class CategoriasAdapter extends ArrayAdapter<String>{
 	

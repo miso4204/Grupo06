@@ -10,6 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+/**
+ * Fragmento que muestra las categorias del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 
 public class CategoriasFragment extends ListFragment{
 

@@ -7,7 +7,11 @@ import java.util.Set;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
+/**
+ * Archivo local que almacena datos locales de la aplicación.
+ * @author Alejo
+ *
+ */
 public class EcoturismoLocalData {
 
 	private SharedPreferences sharedPreferences;

@@ -9,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+/**
+ * Fragmento que muestra la vista de login del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 public class LoginFragment extends Fragment{
 
 	private View view; 

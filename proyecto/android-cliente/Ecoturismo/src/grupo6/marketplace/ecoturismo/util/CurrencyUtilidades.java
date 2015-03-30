@@ -3,6 +3,11 @@ package grupo6.marketplace.ecoturismo.util;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+/**
+ * Se encarga de manejar el formato de moneda
+ * @author Alejo
+ *
+ */
 public class CurrencyUtilidades {
 
 	public static final String CODIGO_COLOMBIA = "CO";

@@ -8,7 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
+/**
+ * Actividad que se encarga de mostrar los productos disponibles 
+ * @author Alejo
+ *
+ */
 public class ProductosActivity extends ActionBarActivity {
 
 	@Override

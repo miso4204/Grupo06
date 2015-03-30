@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+/**
+ * Se encarga de mostrar AlertDialog al usuario
+ * @author Alejo
+ *
+ */
 public class AlertUtilidades {
 
 	public static void mostrarAlert(final Activity contexto, int icono,int titulo, int mensaje, int neutral) {

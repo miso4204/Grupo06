@@ -13,7 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-
+/**
+ * Actividad que se encarga de cargar los fragmentos de registro y de login
+ * @author Alejo
+ *
+ */
 public class InicialActivity extends ActionBarActivity {
  
     private InicialPagerAdapter inicialPagerAdapter;

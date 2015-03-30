@@ -4,6 +4,11 @@ import org.json.JSONObject;
 
 import grupo6.marketplace.ecoturismo.util.CurrencyUtilidades;
 
+/**
+ * Clase del modelo que representa un producto del marketplace de ecoturismo  
+ * @author Alejo
+ *
+ */
 public class Producto {
 
 	private static final String NOMBRE = "nombre";

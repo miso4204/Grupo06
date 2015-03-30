@@ -15,7 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-
+/**
+ * Fragmento que muestra el carrito de compras del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 public class CarritoComprasFragment extends Fragment{
 
 	private static EcoturismoLocalData ecoturismoLocalData;

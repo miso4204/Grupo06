@@ -17,6 +17,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Adaptador que se encarga de pintar cada uno de las productos del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 @SuppressLint("InflateParams")
 public class ProductosAdapter extends ArrayAdapter<Producto>{
 	

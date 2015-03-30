@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+/**
+ * Fragmento que muestra la vista de reportes del marketplace de ecoturismo
+ * @author Alejo
+ *
+ */
 public class ReportesFragment extends Fragment{
 
 	private View view; 
