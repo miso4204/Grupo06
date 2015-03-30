@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="titulos_fragmento_iniciales">
+    <string-array name="titulos_fragmentos_iniciales">
         <item>Inicio de Sesión</item>
         <item>Registro</item>
+    </string-array>
+    
+    <string-array name="titulos_fragmentos_principales">
+        <item>Categorías</item>
+        <item>Carrito Compras</item>
+        <item>Perfil</item>
+        <item>Reportes</item>
+    </string-array>
+    
+    <string-array name="categorias">
+        <item>Alojamiento</item>
+        <item>Restaurantes</item>
+        <item>Atracciones</item>
     </string-array>
 
 </resources>

@@ -5,45 +5,41 @@
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:gravity="center"
     android:orientation="vertical" >
-    <EditText
-        android:id="@+id/Registro_EditText_Nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:ems="10"
-        android:hint="@string/registro_hint_edit_text_nombre"
-        android:inputType="textPersonName" >
 
-        <requestFocus />
-    </EditText>
-    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin"
+        android:src="@drawable/login_logo"
+        android:contentDescription="@string/app_name" />
+
     <EditText
-        android:id="@+id/Registro_EditText_Correo"
+        android:id="@+id/Login_EditText_Correo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin"
         android:ems="10"
-        android:hint="@string/registro_hint_edit_text_correo"
+        android:hint="@string/login_hint_edit_text_correo"
         android:inputType="textEmailAddress" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/Registro_EditText_Clave"
+        android:id="@+id/Login_EditText_Clave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin"
         android:ems="10"
-        android:hint="@string/registro_hint_edit_text_clave"
+        android:hint="@string/login_hint_edit_text_clave"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/Registro_Button_Registrar"
+        android:id="@+id/Login_Button_Iniciar_Sesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_green"
-        android:text="@string/registro_button_registrar"
+        android:text="@string/login_button_inicio_sesion"
         android:textColor="@android:color/white" />
 
 </LinearLayout>

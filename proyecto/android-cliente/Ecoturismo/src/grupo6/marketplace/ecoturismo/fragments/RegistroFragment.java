@@ -17,7 +17,7 @@ public class RegistroFragment  extends Fragment{
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.registro_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_registro, container, false);
         cargarElementosGraficos();
         cargarListeners();
         return view;

@@ -62,7 +62,7 @@ public class InicialActivity extends ActionBarActivity {
  
         @Override
         public CharSequence getPageTitle(int position) {
-            return getResources().getStringArray(R.array.titulos_fragmento_iniciales)[position];
+            return getResources().getStringArray(R.array.titulos_fragmentos_iniciales)[position];
         }
     }
  

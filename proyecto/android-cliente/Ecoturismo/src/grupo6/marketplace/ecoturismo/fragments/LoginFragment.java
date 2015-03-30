@@ -17,7 +17,7 @@ public class LoginFragment extends Fragment{
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.login_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_login, container, false);
         cargarElementosGraficos();
         cargarListeners();
         return view;

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/Producto_ImageButton_Agregar_a_Carrito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/agregar_a_carrito" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/Producto_TextView_Fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/producto_fecha"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_view_size_small" />
+
+        <TextView
+            android:id="@+id/Producto_TextView_Ciudad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/producto_ciudad"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_view_size_large"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/Producto_TextView_Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/producto_nombre"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_view_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Producto_TextView_Precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/producto_precio"
+            android:textColor="@color/money"
+            android:textSize="@dimen/text_view_size_large"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
