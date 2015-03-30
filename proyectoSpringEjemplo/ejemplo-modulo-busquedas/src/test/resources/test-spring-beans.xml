@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Escanea clases con anotaciones de Spring (eg: @Service, @Repository etc)  y crea un bean por cada clase anotada -->
+	<context:component-scan base-package="grupo6.ejemplo" />
+
+	<!-- Crea el datasource hacia la BD en memoria -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+			destroy-method="close">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem:memory-db" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />		
+	</bean>
+
+	<!-- Hibernate Session Factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan">
+			<array>
+				<value>grupo6.ejemplo.persistencia.entidades</value>
+			</array>
+		</property>
+		<property name="hibernateProperties">			
+			<props>
+            	 <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>              
+		         <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+		         <prop key="hibernate.cache.use_second_level_cache">false</prop>
+		         <prop key="hibernate.cache.use_query_cache">false</prop>	
+		         <prop key="hibernate.hbm2ddl.auto">create-drop</prop>	         
+		         <prop key="hibernate.show_sql">false</prop>
+		         <prop key="hibernate.format_sql">true</prop>
+             </props>
+		</property>
+	</bean>
+
+	<!-- Hibernate Transaction Manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Activa la transacionalidad basada en anotación @Transactional -->
+	<tx:annotation-driven transaction-manager="transactionManager" />	
+	
+</beans>
