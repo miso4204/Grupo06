@@ -2,13 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:id="@+id/Carrito_Compras_TextView_Total"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Carrito de compras"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_margin="@dimen/margin"
+        android:gravity="center"
+        android:text="@string/carrrito_compras_total"
+        android:textColor="@color/money"
+        android:textSize="@dimen/text_view_size_large"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Carrito_Compras_Button_Comprar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_green"
+        android:text="@string/carrrito_compras_button_comprar"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/Carrito_Compras_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

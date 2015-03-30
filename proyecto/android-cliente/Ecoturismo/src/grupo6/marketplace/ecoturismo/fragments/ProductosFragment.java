@@ -18,34 +18,18 @@ public class ProductosFragment extends ListFragment{
 
 	private List<Producto> productos;
 	
+	private static final boolean REMOVER_CARRITO = false;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		cargarProductos();
-		ProductosAdapter productosAdapter = new ProductosAdapter(getActivity(),productos);
+		ProductosAdapter productosAdapter = new ProductosAdapter(getActivity(),productos,REMOVER_CARRITO);
 		setListAdapter(productosAdapter);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 	private void cargarProductos() {
 		productos = new ArrayList<Producto>();
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
 		productos.add(new Producto("Hotel - Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
 		productos.add(new Producto("Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
 		productos.add(new Producto("Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));

@@ -23,4 +23,11 @@
 	<string name="producto_precio">$ 150.000</string>
 	<string name="producto_agregar_a_carrito">+</string>
 	<string name="producto_descripcion_titulo">Descripción</string>
+	
+	<!-- CARRITO COMPRAS -->
+	<string name="carrrito_compras_total">Total:</string>
+	<string name="carrrito_compras_button_comprar">Comprar</string>
+	<string name="carrito_compras_producto_agregado">Producto agregado al carrito</string>
+	<string name="carrito_compras_producto_removido">Producto removido del carrito</string>
+	
 </resources>
