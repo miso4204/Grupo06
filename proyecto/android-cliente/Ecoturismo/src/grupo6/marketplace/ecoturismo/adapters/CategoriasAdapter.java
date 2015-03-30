@@ -1,6 +1,9 @@
 package grupo6.marketplace.ecoturismo.adapters;
 
+import java.util.List;
+
 import grupo6.marketplace.ecoturismo.R;
+import grupo6.marketplace.ecoturismo.modelo.Categoria;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,16 +19,16 @@ import android.widget.TextView;
  *
  */
 @SuppressLint("InflateParams")
-public class CategoriasAdapter extends ArrayAdapter<String>{
+public class CategoriasAdapter extends ArrayAdapter<Categoria>{
 	
 	private int [] imagenesCategorias = {R.drawable.alojamiento,
 		     R.drawable.restaurantes,
 		     R.drawable.atracciones
 		     };
-	private String[] categorias;
+	private List<Categoria> categorias;
  	private LayoutInflater layoutInflater;
 
-	public CategoriasAdapter(Context context,String [] categorias) {
+	public CategoriasAdapter(Context context,List<Categoria> categorias) {
 		super(context, 0, categorias);
 		this.categorias = categorias;
 		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -33,12 +36,12 @@ public class CategoriasAdapter extends ArrayAdapter<String>{
 
 	@Override
 	public int getCount() {
-		return categorias.length;
+		return categorias.size();
 	}
 
 	@Override
-	public String getItem(int position) {
-		return categorias[position];
+	public Categoria getItem(int position) {
+		return categorias.get(position);
 	}
 
 	@Override
@@ -61,9 +64,9 @@ public class CategoriasAdapter extends ArrayAdapter<String>{
         
 		ViewHolder holder = (ViewHolder) vista.getTag();
 		
-		String categoria = getItem(position);
+		Categoria categoria = getItem(position);
 		
-		holder.textViewCategoria.setText(categoria);
+		holder.textViewCategoria.setText(categoria.getNombreCategoria());
 		holder.imageViewCategoria.setImageResource(imagenesCategorias[position]);
 		
 		return vista;

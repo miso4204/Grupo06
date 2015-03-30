@@ -1,8 +1,12 @@
 package grupo6.marketplace.ecoturismo.fragments;
 
-import grupo6.marketplace.ecoturismo.R;
+import java.util.List;
+
 import grupo6.marketplace.ecoturismo.activities.ProductosActivity;
 import grupo6.marketplace.ecoturismo.adapters.CategoriasAdapter;
+import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
+import grupo6.marketplace.ecoturismo.modelo.Categoria;
+import grupo6.marketplace.ecoturismo.modelo.sql.tables.CategoriaTable;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -18,11 +22,17 @@ import android.widget.ListView;
 
 public class CategoriasFragment extends ListFragment{
 
+	private EcoturismoApplication ecoturismoApplication;
+	private List<Categoria> categorias;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		String [] categorias = getResources().getStringArray(R.array.categorias);
+		ecoturismoApplication = (EcoturismoApplication) getActivity().getApplication();
+		categorias = CategoriaTable.getCategorias(ecoturismoApplication.getEcoturismoSqlHelper());
+		
 		CategoriasAdapter categoriasAdapter = new CategoriasAdapter(getActivity(),categorias);
 		setListAdapter(categoriasAdapter);
+		
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

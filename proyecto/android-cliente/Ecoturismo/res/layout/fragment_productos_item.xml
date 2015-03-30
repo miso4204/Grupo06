@@ -12,7 +12,7 @@
         android:orientation="vertical" >
 
         <ImageButton
-            android:id="@+id/Producto_ImageButton_Agregar_a_Carrito"
+            android:id="@+id/Producto_ImageButton_Actualizar_Carrito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
