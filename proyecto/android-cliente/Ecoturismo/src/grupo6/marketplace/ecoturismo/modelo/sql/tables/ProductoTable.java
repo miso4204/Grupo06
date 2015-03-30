@@ -108,4 +108,22 @@ public class ProductoTable {
 	    p.setPrecio(cursor.getDouble(cursor.getColumnIndex(PRECIO_PRODUCTO)));
 	    return p;
 	}
+	
+	public static boolean hayProductosCargados(EcoturismoSqlHelper ecoturismoSqlHelper){
+		
+		boolean hayProductos = false;
+		
+		SQLiteDatabase database = ecoturismoSqlHelper.getWritableDatabase();
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM "+NOMBRE_TABLA, null);
+		
+		hayProductos = cursor.getCount() > 0;
+
+	    cursor.close();
+		
+		database.close();
+		
+		return hayProductos;
+	}
+	
 }

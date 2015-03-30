@@ -1,6 +1,7 @@
 package grupo6.marketplace.ecoturismo.adapters;
 
 import grupo6.marketplace.ecoturismo.R;
+import grupo6.marketplace.ecoturismo.fragments.CarritoComprasFragment;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
 import grupo6.marketplace.ecoturismo.modelo.sql.EcoturismoSqlHelper;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
@@ -23,8 +24,9 @@ public class CarritoComprasAdapter extends ArrayAdapter<Producto>{
 	private List<Producto> productos;
  	private LayoutInflater layoutInflater;
  	private EcoturismoSqlHelper ecoturismoSqlHelper;
+ 	private CarritoComprasFragment carritoComprasFragment;
  	
-	public CarritoComprasAdapter(Context context,List<Producto> productos,EcoturismoSqlHelper ecoturismoSqlHelper) {
+	public CarritoComprasAdapter(Context context,List<Producto> productos,EcoturismoSqlHelper ecoturismoSqlHelper,CarritoComprasFragment carritoComprasFragment) {
 		super(context, 0, productos);
 		if(productos != null){
 			this.productos = productos;
@@ -33,6 +35,7 @@ public class CarritoComprasAdapter extends ArrayAdapter<Producto>{
 		}
 		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.ecoturismoSqlHelper = ecoturismoSqlHelper;
+		this.carritoComprasFragment = carritoComprasFragment;
 	}
 
 	@Override
@@ -76,6 +79,7 @@ public class CarritoComprasAdapter extends ArrayAdapter<Producto>{
 			public void onClick(View v) {
 				CarritoComprasTable.removerDeCarrito(ecoturismoSqlHelper, producto);
 				remove(producto);
+				carritoComprasFragment.calcularTotalCarrito();
 			}
 		});
 		

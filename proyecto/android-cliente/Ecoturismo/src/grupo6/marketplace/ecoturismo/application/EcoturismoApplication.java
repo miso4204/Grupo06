@@ -10,7 +10,7 @@ import grupo6.marketplace.ecoturismo.modelo.sql.tables.CategoriaTable;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.ProductoTable;
 import android.app.Application;
 /**
- * Clase que se encarga de encapsular la Aplicación 
+ * Clase que se encarga de encapsular la Aplicaciï¿½n 
  * @author Alejo
  *
  */
@@ -35,19 +35,24 @@ public class EcoturismoApplication extends Application{
 	}
 	
 	private void cargarCategorias() {
-		List<Categoria> categorias =  new ArrayList<Categoria>();
-		categorias.add(new Categoria("Alojamiento"));
-		categorias.add(new Categoria("Restaurantes"));
-		categorias.add(new Categoria("Atracciones"));
-		CategoriaTable.addCategorias(getEcoturismoSqlHelper(), categorias );
+		if(!CategoriaTable.hayCategoriasCargadas(getEcoturismoSqlHelper())){
+			List<Categoria> categorias =  new ArrayList<Categoria>();
+			categorias.add(new Categoria("Alojamiento"));
+			categorias.add(new Categoria("Restaurantes"));
+			categorias.add(new Categoria("Atracciones"));
+			CategoriaTable.addCategorias(getEcoturismoSqlHelper(), categorias );	
+		}
 	}
 
 	private void cargarProductos() {
-		List<Producto> productos = new ArrayList<Producto>();
-		productos.add(new Producto("Alojamiento","Hotel Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-		productos.add(new Producto("Atracciones","Cabaña", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
-		productos.add(new Producto("Restaurantes","Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
-		ProductoTable.addProductos(getEcoturismoSqlHelper(), productos );
+		if(!ProductoTable.hayProductosCargados(getEcoturismoSqlHelper())){
+			List<Producto> productos = new ArrayList<Producto>();
+			productos.add(new Producto("Alojamiento","Hotel Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
+			productos.add(new Producto("Atracciones","Cabaï¿½a", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
+			productos.add(new Producto("Restaurantes","Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
+			ProductoTable.addProductos(getEcoturismoSqlHelper(), productos );	
+		}
+		
 	}
 	
 	

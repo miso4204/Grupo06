@@ -68,4 +68,20 @@ public class CategoriaTable {
 	    return c;
 	}
 	
+	public static boolean hayCategoriasCargadas(EcoturismoSqlHelper ecoturismoSqlHelper){
+		
+		boolean hayCategorias = false;
+		
+		SQLiteDatabase database = ecoturismoSqlHelper.getWritableDatabase();
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM "+NOMBRE_TABLA, null);
+		
+		hayCategorias = cursor.getCount() > 0;
+
+	    cursor.close();
+		
+		database.close();
+		
+		return hayCategorias;
+	}
 }
