@@ -3,6 +3,7 @@
 
     <string name="app_name">Ecoturismo</string>
     <string name="ok">OK</string>
+    <string name="ver_carrito">Ver Carrito</string>
 
     <!-- LOGIN -->
     <string name="login_hint_edit_text_correo">Correo</string>
