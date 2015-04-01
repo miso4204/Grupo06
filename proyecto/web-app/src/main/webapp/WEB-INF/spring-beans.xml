@@ -12,6 +12,8 @@
 	<context:component-scan base-package="grupo6" />
 	<!-- Escanea clases con anotaciones de Spring de frontend. Ej: @Controller -->
 	<mvc:annotation-driven />
+	<!-- Configuracion de recursos estaticos -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- Map simple view name such as "index" into /WEB-INF/index.jsp -->
 	<bean

@@ -1,5 +1,7 @@
 package grupo6.web.controller.rest;
 
+import grupo6.web.dto.PingDTO;
+
 import java.util.Date;
 
 import org.springframework.http.MediaType;
@@ -15,18 +17,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller 
 @RequestMapping("/services/test") 
-public class TestRestController {
+public class TestPingRestController {
 	
 	/**
-	 * Servicio REST de prueba que devuelve los la fecha atual.
+	 * Servicio REST de prueba que devuelve un mensaje ping en JSON.
 	 * 
-	 * @returnla fecha actual.
+	 * @return mensaje ping.
 	 */
-	@RequestMapping(value = "/fecha_actual", method = RequestMethod.GET, 
+	@RequestMapping(value = "/ping", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Date getFechaActual() {
+	public @ResponseBody PingDTO getFechaActual() {
 		
-		return new Date(); 
+		PingDTO ping = new PingDTO();
+		ping.setMensaje("Funciona!");
+		ping.setHora(new Date().toString());
+		return ping; 
 	}
 
 }
