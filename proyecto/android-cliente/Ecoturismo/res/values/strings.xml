@@ -12,6 +12,7 @@
 
     <!-- REGISTRO -->
     <string name="registro_hint_edit_text_nombre">Nombre</string>
+    <string name="registro_hint_edit_text_direccion">Dirección</string>
     <string name="registro_hint_edit_text_correo">Correo</string>
     <string name="registro_hint_edit_text_clave">Contraseña</string>
     <string name="registro_button_registrar">Registrar</string>

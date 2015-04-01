@@ -26,6 +26,16 @@
     </EditText>
 
     <EditText
+        android:id="@+id/Registro_EditText_Direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin"
+        android:ems="10"
+        android:hint="@string/registro_hint_edit_text_direccion"
+        android:inputType="textPostalAddress" >
+    </EditText>
+
+    <EditText
         android:id="@+id/Registro_EditText_Correo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
