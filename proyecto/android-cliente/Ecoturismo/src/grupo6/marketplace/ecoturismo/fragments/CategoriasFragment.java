@@ -2,6 +2,7 @@ package grupo6.marketplace.ecoturismo.fragments;
 
 import java.util.List;
 
+import grupo6.marketplace.ecoturismo.activities.PrincipalActivity;
 import grupo6.marketplace.ecoturismo.activities.ProductosActivity;
 import grupo6.marketplace.ecoturismo.adapters.CategoriasAdapter;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
@@ -44,6 +45,6 @@ public class CategoriasFragment extends ListFragment{
 
 	private void abrirProductosActivity() {
 		Intent i = new Intent(getActivity(),ProductosActivity.class);
-		getActivity().startActivity(i);
+		getActivity().startActivityForResult(i, PrincipalActivity.REQUEST_CODE_PRODUCTOS_ACTIVITY);
 	}
 }

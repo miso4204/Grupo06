@@ -13,7 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 /**
  * Actividad que se encarga de cargar los fragmentos de la vista principal (categorias,carrito de compras, perfil, reportes) 
@@ -22,10 +26,13 @@ import android.os.Bundle;
  */
 public class PrincipalActivity extends ActionBarActivity {
  
-    private InicialPagerAdapter principalPagerAdapter;
+	public static final int REQUEST_CODE_PRODUCTOS_ACTIVITY = 123;
+	
+    private static final int INDICE_CARRITO_COMPRAS = 1;
+	private InicialPagerAdapter principalPagerAdapter;
     private ViewPager viewPager;
     private List<Fragment> fragmentos;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +54,38 @@ public class PrincipalActivity extends ActionBarActivity {
         viewPager = (ViewPager) findViewById(R.id.Principal_ViewPager);
         viewPager.setAdapter(principalPagerAdapter);
 	}
- 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_carrito, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Ver_Carrito:
+			mostrarCarritoCompras();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    	if(requestCode == REQUEST_CODE_PRODUCTOS_ACTIVITY && resultCode == ProductosActivity.MOSTRAR_CARRITO){
+    		mostrarCarritoCompras();
+    	}
+    	
+    	super.onActivityResult(requestCode, resultCode, intent);
+    }
+    
+	private void mostrarCarritoCompras() {
+		viewPager.setCurrentItem(INDICE_CARRITO_COMPRAS);
+	}
+	
     class InicialPagerAdapter extends FragmentPagerAdapter {
  
         Context context;
