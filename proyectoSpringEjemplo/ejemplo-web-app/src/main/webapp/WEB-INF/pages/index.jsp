@@ -1,6 +1,8 @@
 <html>
 
 <head>
+
+<link rel="stylesheet" href="resources/css/test.css" type="text/css">
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -88,16 +90,16 @@
 	<form id="formularioCrear" action="" method="post">
 		Ciudad: <input type="text" name="ciudad" id="ciudad" > <br>
 		Descripción: <input type="text" name="descripcion" id="descripcion"> <br>
-		<input type="submit" name="crear" value="Crear">
+		<input class="styled-button-1" type="submit" name="crear" value="Crear">
 	</form>
 	 <br> <br>
 	<form id="formularioListar" action="" method="post">		
-		<input type="submit" name="listar" value="Listar todas">
+		<input class="styled-button-1" type="submit" name="listar" value="Listar todas">
 	</form>
 	 <br> <br>
 	<form id="formularioBuscar" action="" method="post">		
 		Ciudad: <input type="text" name="ciudadBuscar" id="ciudadBuscar" > <br>		
-		<input type="submit" name="crear" value="Buscar por ciudad">
+		<input class="styled-button-1" type="submit" name="crear" value="Buscar por ciudad">
 	</form>
 </body>
 </html>
