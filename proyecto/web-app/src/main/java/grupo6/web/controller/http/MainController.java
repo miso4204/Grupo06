@@ -16,9 +16,9 @@ public class MainController {
 	 * Muestra como index el template web-inf/pages/nonsecure/index.jsp
 	 * @return
 	 */
-	@RequestMapping
+	@RequestMapping(value = {"", "/", "login.html"})
 	public ModelAndView viewMainPage() {
-		ModelAndView modelAndView = new ModelAndView("nonsecure/index");
+		ModelAndView modelAndView = new ModelAndView("nonsecure/login");
 		return modelAndView;
 	}
 	

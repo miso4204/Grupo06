@@ -12,15 +12,7 @@
 	<context:component-scan base-package="grupo6" />
 	<!-- Escanea clases con anotaciones de Spring de frontend. Ej: @Controller -->
 	<mvc:annotation-driven />
-	<!-- Configuracion de recursos estaticos -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
-	<!-- Map simple view name such as "index" into /WEB-INF/index.jsp -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
 	
 	<!-- Crea el datasource hacia la BD en memoria -->
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
