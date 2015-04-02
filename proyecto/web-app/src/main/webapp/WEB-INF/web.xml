@@ -16,7 +16,7 @@
 
 	<servlet-mapping>
 		<servlet-name>springMVCServlet</servlet-name>
-		<url-pattern>/services</url-pattern>
+		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

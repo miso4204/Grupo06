@@ -29,7 +29,7 @@
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan">
 			<array>
-				<value>grupo6.ejemplo.persistencia.entidades</value>
+				<value>grupo6.persistencia.entidades</value>
 			</array>
 		</property>
 		<property name="hibernateProperties">			
