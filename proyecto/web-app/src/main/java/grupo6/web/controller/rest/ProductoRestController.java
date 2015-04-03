@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,6 +89,32 @@ public class ProductoRestController {
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = 
 				productoService.buscarProductosPorPrecio(precioInicial, precioFinal);
+		for (Producto producto: productos) {
+			productosDTO.add(crearProductoResponseDTO(producto));
+		}
+		return productosDTO;
+	}
+	
+	
+	/**
+	 * Servicio REST para buscar productos por fecha.
+	 * 
+	 * @return los productos del sistema filtrados por precio en formato JSON.
+	 */
+	@RequestMapping(value = "/buscar_por_fecha/{fechaInicial}/{fechaFinal}",
+			method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<ProductoResponseDTO> listarPorFecha(
+			@PathVariable("fechaInicial") 
+			@DateTimeFormat(pattern="yyyy-MM-dd")
+			Date fechaInicial,
+			@DateTimeFormat(pattern="yyyy-MM-dd")
+			@PathVariable("fechaFinal") 
+			Date fechaFinal) {
+		
+		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+		List<Producto> productos = 
+				productoService.buscarProductosPorFechaInicio(fechaInicial, fechaFinal);
 		for (Producto producto: productos) {
 			productosDTO.add(crearProductoResponseDTO(producto));
 		}
