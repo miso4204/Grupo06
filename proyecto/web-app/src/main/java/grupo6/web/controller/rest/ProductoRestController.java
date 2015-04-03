@@ -120,6 +120,27 @@ public class ProductoRestController {
 		}
 		return productosDTO;
 	}
+	
+	
+	/**
+	 * Servicio REST para buscar un producto por id.
+	 * 
+	 * @return el producto en formato JSON.
+	 */
+	@RequestMapping(value = "/buscar_por_id/{id}",
+			method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ProductoResponseDTO obtenerProductoPorId(
+			@PathVariable("id") 
+			Long id) {		
+		
+		ProductoResponseDTO productoDTO = null;
+		Producto producto = productoService.buscarProductoPorId(id);
+	    if (producto != null) {
+	    	productoDTO = crearProductoResponseDTO(producto);
+	    }
+		return productoDTO;
+	}
 
 	
 	/**
@@ -132,7 +153,7 @@ public class ProductoRestController {
 		List<RatingProducto> ratings = 
 				productoService.buscarRatingPorProductoId(producto.getId());
 		ProductoResponseDTO productoDTO = new ProductoResponseDTO();
-		producto.setId(producto.getId());
+		productoDTO.setId(producto.getId());
 		productoDTO.setNombre(producto.getNombre());
 		productoDTO.setCiudad(producto.getCiudad());
 		productoDTO.setFechaInicio(producto.getFechaInicio());
