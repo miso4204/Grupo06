@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Controlador REST de los servicios del producto.
+ * Controlador REST de los servicios del usuario.
  * @author jhon
  *
  */
@@ -43,7 +43,7 @@ public class UsuarioRestController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean login(@RequestBody String usuario, String password) {
+	public @ResponseBody boolean login(@RequestBody String usuario, @RequestBody String password) {
 		
 		try {
 			
