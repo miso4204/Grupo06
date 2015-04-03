@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
-
+ <script src="js/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#formularioCrear").submit(function(e) {
@@ -30,7 +30,7 @@
             var jsonPeticion = JSON.stringify({
                     "nombre": $('#name').val(), 
                     "lugar": $('#destinationName').val(),
-                    "cidad": $('#destinationLocation').val(),
+                    "ciudad": $('#destinationLocation').val(),
                     "precio": $('#price').val(),
                     "urlImagen": $('#urlImage').val()
                      });
@@ -55,6 +55,7 @@
                 }
             });
         });
+});
         </script>
 </head>
 
@@ -278,7 +279,7 @@
         </div>
     </footer>
 
-    <script src="js/jquery.js"></script>
+   
     <script src="js/bootstrap.js"></script>
     <script src="js/slimmenu.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
