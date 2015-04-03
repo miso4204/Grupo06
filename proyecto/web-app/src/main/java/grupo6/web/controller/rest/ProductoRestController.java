@@ -2,8 +2,12 @@ package grupo6.web.controller.rest;
 
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.persistencia.entidades.Producto;
+import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.web.dto.CalificacionDTO;
 import grupo6.web.dto.ProductoRequestDTO;
+import grupo6.web.dto.ProductoResponseDTO;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -58,9 +62,14 @@ public class ProductoRestController {
 	 */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Producto> listarProductos() {
+	public @ResponseBody List<ProductoResponseDTO> listarProductos() {
 		
-		return productoService.listarTodosProductos();
+		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+		List<Producto> productos = productoService.listarTodosProductos();
+		for (Producto producto: productos) {
+			productosDTO.add(crearProductoResponseDTO(producto));
+		}
+		return productosDTO;
 	}
 	
 	
@@ -72,11 +81,54 @@ public class ProductoRestController {
 	@RequestMapping(value = "/buscar_por_precio/{precioInicial}/{precioFinal}",
 			method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Producto> listarPorPrecio(
+	public @ResponseBody List<ProductoResponseDTO> listarPorPrecio(
 			@PathVariable("precioInicial") Double precioInicial,
 			@PathVariable("precioFinal") Double precioFinal) {
 		
-		return productoService.buscarProductosPorPrecio(precioInicial, precioFinal);
+		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+		List<Producto> productos = 
+				productoService.buscarProductosPorPrecio(precioInicial, precioFinal);
+		for (Producto producto: productos) {
+			productosDTO.add(crearProductoResponseDTO(producto));
+		}
+		return productosDTO;
 	}
 
+	
+	/**
+	 * Crea un objeto ProductoResponseDTO (JSON) a partir de un objeto Producto.
+	 * 
+	 * @param producto el producto a convertir.
+	 * @return la representacion DTO del producto.
+	 */
+	private ProductoResponseDTO crearProductoResponseDTO(Producto producto) {
+		List<RatingProducto> ratings = 
+				productoService.buscarRatingPorProductoId(producto.getId());
+		ProductoResponseDTO productoDTO = new ProductoResponseDTO();
+		producto.setId(producto.getId());
+		productoDTO.setNombre(producto.getNombre());
+		productoDTO.setCiudad(producto.getCiudad());
+		productoDTO.setFechaInicio(producto.getFechaInicio());
+		productoDTO.setLugar(producto.getLugar());
+		productoDTO.setPrecio(producto.getPrecio());
+		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
+		productoDTO.setUrlImagen(producto.getUrlImagen());
+		List<CalificacionDTO> calificaciones = new ArrayList<CalificacionDTO>();
+		for (RatingProducto rating : ratings) {
+			double calificacion = 
+					productoService.obtenerCalificacionDeServicio(rating.getId());
+			int votantes = 
+					productoService.obtenerNumeroVotantesDeServicio(rating.getId());
+			CalificacionDTO calificacionDTO = new CalificacionDTO();
+			calificacionDTO.setNombre(rating.getTipoServicio().name());
+//			calificacionDTO.setPuntuacion(calificacion);
+//			calificacionDTO.setCantidadVotantes(votantes);
+			calificacionDTO.setPuntuacion((double)(1 + (int)(Math.random()*5)));
+			calificacionDTO.setCantidadVotantes((1 + (int)(Math.random()*1000000)));
+			calificaciones.add(calificacionDTO);
+		}
+		productoDTO.setCalificaciones(calificaciones);
+		
+		return productoDTO;
+	}
 }

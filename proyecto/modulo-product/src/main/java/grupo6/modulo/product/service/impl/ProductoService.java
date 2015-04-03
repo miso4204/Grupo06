@@ -133,6 +133,19 @@ public class ProductoService implements IProductoService {
 	
 	/**
 	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.service.view.IProductoService#obtenerNumeroVotantesDeServicio(java.lang.Long)
+	 */
+	public int obtenerNumeroVotantesDeServicio(Long servicioId) {
+		
+		List<RatingProductoCalificacion> calificaciones = 
+				ratingProductoDAO.buscarCalificacionesDeServicio(servicioId);
+		
+		return calificaciones.size();
+	}
+
+	
+	/**
+	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.service.view.IProductoService#listarTodosProductos()
 	 */
 	@Transactional(readOnly = true)
@@ -148,12 +161,15 @@ public class ProductoService implements IProductoService {
 	 */
 	private void asignarRatingsDefault(Long productoId) {
 		
-		ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
+		Long generalId = ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.UBICACION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.ATENCION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.LIMPIEZA);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.CUARTOS);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
+		//test: quitar
+		RatingProducto ratingSimulado = ratingProductoDAO.buscarPorId(generalId);
+		calificarProducto(1L, ratingSimulado.getId(), ETipoCalificacionRating.MUYBUENO);
 	}
 
 	

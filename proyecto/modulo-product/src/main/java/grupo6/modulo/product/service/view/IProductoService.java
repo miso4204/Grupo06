@@ -76,6 +76,15 @@ public interface IProductoService {
 	 */
 	double obtenerCalificacionDeServicio(Long servicioId);
 	
+	/**
+	 * Retorna la cantidad de usuarios que han calificado un servicio de un
+	 * determinado producto.
+	 * @param servicioId el servicio o rating.
+	 * @return la cantidad de usuarios que han calificado un servicio de un
+	 * determinado producto.
+	 */
+	int obtenerNumeroVotantesDeServicio(Long servicioId);
+	
 
 	/**
 	 * Retorna todos los productos o paquetes del sistema.
