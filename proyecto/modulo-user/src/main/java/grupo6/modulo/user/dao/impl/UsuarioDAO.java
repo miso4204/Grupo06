@@ -39,7 +39,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 	 */
 	@Override
 	@Transactional
-	public boolean ingresar(String usuario, String password) {
+	public Usuario ingresar(String usuario, String password) {
 		
 		Criteria criteria = getCurrentSession().createCriteria(Usuario.class);		
 		criteria.add(Restrictions.eq("user", usuario)); 
@@ -47,10 +47,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 		Usuario user = (Usuario) criteria.uniqueResult();
 		
 		if (user != null) {
-			return true;
+			return user;
 		}
 		
-		return false;
+		return null;
 	}
 
 	/**
@@ -81,17 +81,33 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 
 	@Transactional
 	@Override
-	public boolean cambiarPassword(String usuario, String passAnterior, String passNuevo) {
+	public boolean cambiarPassword(String usuario, String passAnterior, String passNuevo, String passNuevoValidate) throws Exception {
 		
-		Usuario usuarioEncontrado = this.buscarUsuarioPorUsername(usuario);
-		
-		if (usuarioEncontrado != null && 
-				passAnterior.equals(usuarioEncontrado.getPassword())) {
-			
-			usuarioEncontrado.setPassword(passNuevo);
-			getCurrentSession().update(usuarioEncontrado);
+		if (passNuevo != null && !passNuevo.equals("")){
+			if (passNuevoValidate != null && passNuevoValidate.equals("")) {
+				if (passNuevo.equals(passNuevoValidate)) {
+					
+					Usuario usuarioEncontrado = this.buscarUsuarioPorUsername(usuario);
+					
+					if (usuarioEncontrado != null && 
+							passAnterior.equals(usuarioEncontrado.getPassword())) {
+						
+						usuarioEncontrado.setPassword(passNuevo);
+						getCurrentSession().update(usuarioEncontrado);
+					}else {
+						
+						throw new Exception("Su contraseña actual introducida no coincide con la almacenada en nuestro sistema");
+					}
+				}else {
+					throw new Exception("la validación de la nueva clave no coincide");
+				}
+			}else {
+				throw new Exception("la validación de la nueva clave no puede estar vacia");
+			}
+		}else {
+			throw new Exception("nueva clave no puede estar vacia");
 		}
-		
+
 		return false;
 	}
 

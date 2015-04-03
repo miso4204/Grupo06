@@ -34,7 +34,7 @@ public class UsuarioService implements IUsuarioService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public boolean ingresar(String usuario, String password) {
+	public Usuario ingresar(String usuario, String password) {
 		return usuarioDAO.ingresar(usuario, password);
 	}
 
@@ -46,8 +46,8 @@ public class UsuarioService implements IUsuarioService {
 
 	@Transactional
 	@Override
-	public boolean cambiarPassword(String usuario, String passAnterior, String passActual) {
-		return usuarioDAO.cambiarPassword(usuario, passAnterior, passActual);
+	public boolean cambiarPassword(String usuario, String passAnterior, String passActual, String passNuevoValidate) throws Exception {
+		return usuarioDAO.cambiarPassword(usuario, passAnterior, passActual,passNuevoValidate);
 	}
 
 	@Transactional(readOnly = true)

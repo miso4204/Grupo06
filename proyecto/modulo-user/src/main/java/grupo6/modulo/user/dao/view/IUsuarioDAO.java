@@ -34,7 +34,7 @@ public interface IUsuarioDAO {
 	 * @param password
 	 * @return true si existe un usuario con estas caracteristicas y false si no
 	 */
-	public boolean ingresar(String usuario, String password);
+	public Usuario ingresar(String usuario, String password);
 	
 	/**
 	 * Metodo que nos permite actualizar la informacion de un usuario en BD
@@ -47,9 +47,10 @@ public interface IUsuarioDAO {
 	 * Metodo que permite cambiar a un usuario su contrasennia
 	 * @param passAnterior
 	 * @param passActual
+	 * @param passActualValidate repetición del password para actualizar
 	 * @return true si el cambio de contrasennia fue exitoso y false si no
 	 */
-	public boolean cambiarPassword(String usuario, String passAnterior, String passActual);
+	public boolean cambiarPassword(String usuario, String passAnterior, String passActual, String passActualValidate) throws Exception;
 	
 	/**
 	 * Metodo que nos pemrite buscar un usuario por su nombre de usuario
