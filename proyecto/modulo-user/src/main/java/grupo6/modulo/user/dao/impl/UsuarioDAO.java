@@ -42,10 +42,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 	public Usuario ingresar(String usuario, String password) {
 		
 		Criteria criteria = getCurrentSession().createCriteria(Usuario.class);		
-		criteria.add(Restrictions.eq("user", usuario)); 
-		criteria.add(Restrictions.eq("pass", password));	
+		criteria.add(Restrictions.eq("usuario", usuario)); 
+		criteria.add(Restrictions.eq("password", password));	
 		Usuario user = (Usuario) criteria.uniqueResult();
-		
+				
 		if (user != null) {
 			return user;
 		}

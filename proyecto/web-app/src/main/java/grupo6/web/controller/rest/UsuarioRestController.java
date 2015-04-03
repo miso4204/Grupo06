@@ -2,6 +2,7 @@ package grupo6.web.controller.rest;
 
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.web.dto.LoginDTO;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,14 +44,11 @@ public class UsuarioRestController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean login(@RequestBody String usuario, @RequestBody String password) {
+	public @ResponseBody boolean login(@RequestBody LoginDTO userLogin) {
 		
 		try {
 			
-			System.out.println("--------------- USUARIO " + usuario);
-			System.out.println("----------------PASSWORD " + password);
-			
-			Usuario  user = usuarioService.ingresar(usuario, password);
+			Usuario  user = usuarioService.ingresar(userLogin.getUsuario(), userLogin.getPassword());
 			httpSession.setAttribute(USER_ID_SESSION, user.getId());  
 			httpSession.setAttribute(ROL_SESSION, user.getRol());
 			httpSession.setAttribute(USER_NAME_SESSION, user.getUsuario());
