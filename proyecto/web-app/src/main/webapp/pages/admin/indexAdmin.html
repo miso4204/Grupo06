@@ -32,9 +32,9 @@
                     "lugar": $('#destinationName').val(),
                     "ciudad": $('#destinationLocation').val(),
                     "precio": $('#price').val(),
-                    "urlImagen": $('#urlImage').val()
+                    "urlImagen": $('#urlImage').val(),
+                    "fechaInicio": $('#date').val()
                      });
-            alert("enviando json: " + jsonPeticion);
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
@@ -42,16 +42,22 @@
                 },
                 datatype:"json",
                 type: "POST",
-                url: "http://localhost:8081/web-app/services/producto/crear", 
+                url: "services/producto/crear", 
                 data: jsonPeticion,
                 contentType: false,
                 processData: false,
                 success: function(data)
                    {
-                       alert("Producto creado, respuesta servidor: " + data); 
+                    var out = "";
+                    
+                       out+='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your product has been created!.</div>'
+                       document.getElementById("errormessage").innerHTML = out;
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                    var out = "";
+                    
+                       out+='<div class="alert alert-error"><strong>Error!</strong> A problem has been occurred while submitting your data.</div>'
+                       document.getElementById("errormessage").innerHTML = out;
                 }
             });
         });
@@ -161,33 +167,31 @@
                                                         <label>Price</label>
                                                         <input class="form-control" placeholder="2000" type="text" name="price" id="price" />
                                                     </div>
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
+                                                        <label>Date</label>
+                                                        <input class="form-control" placeholder="2000" type="date" name="date" id="date" />
+                                                    </div>
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
                                                         <label>URL Image</label>
                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/>
                                                     </div>
                                                     <div class="form-group form-group-icon-left">
-                                                        <button class="btn btn-primary btn-lg" type="submit">Register</button>
+                                                        <button class="btn btn-primary btn-lg" type="submit" >Register</button>
                                                     </div>
+                                                   
                                                 </form>
                                             </div>
-                                <!--
+                                
                                 <div class="col-md-6">
-                                     <div class="form-group form-group-icon-left"><i class="fa fa-gear input-icon input-icon-bounce"></i>
-                                        <label>Icon Bounce</label>
-                                        <input class="form-control" placeholder="Write something" type="text" />
+                                    <br>
+                                    <br>
+                                     <div class="form-group form-group-icon-left">
+                                         <div id="errormessage"></div>
                                     </div>
-                                     <div class="form-group form-group-icon-left"><i class="fa fa-gear input-icon input-icon-bounce"></i>
-                                        <label>Icon Bounce</label>
-                                        <input class="form-control" placeholder="Write something" type="text" />
-                                    </div>
-                                     <div class="form-group form-group-icon-left"><i class="fa fa-gear input-icon input-icon-bounce"></i>
-                                        <label>Icon Bounce</label>
-                                        <input class="form-control" placeholder="Write something" type="text" />
-                                    </div>
+                                  
 
                                 </div>
-                            -->
-
+                           
                         </div>
                     </div>
                       </div>
