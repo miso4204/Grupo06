@@ -2,6 +2,7 @@ package grupo6.persistencia.entidades;
 
 import grupo6.modulo.payment.dao.enums.TiposPago;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,13 @@ import javax.persistence.TemporalType;
 @Entity
 @SequenceGenerator(name = "seq_factura", initialValue = 1, allocationSize = 100)
 @Table(name = "factura_compra")
-public class FacturaCompra {
+public class FacturaCompra implements Serializable {
 
+	
+	/**
+	 * generate
+	 */
+	private static final long serialVersionUID = -6096553714339129260L;
 	private long id;
 	private Usuario usuario;
 	private Date fechaPago;

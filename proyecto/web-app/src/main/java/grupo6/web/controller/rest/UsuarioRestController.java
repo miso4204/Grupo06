@@ -47,6 +47,9 @@ public class UsuarioRestController {
 		
 		try {
 			
+			System.out.println("--------------- USUARIO " + usuario);
+			System.out.println("----------------PASSWORD " + password);
+			
 			Usuario  user = usuarioService.ingresar(usuario, password);
 			httpSession.setAttribute(USER_ID_SESSION, user.getId());  
 			httpSession.setAttribute(ROL_SESSION, user.getRol());
@@ -62,6 +65,28 @@ public class UsuarioRestController {
 			return false;
 		}
 		return false;
+	}
+	
+	
+	/**
+	 * Servicio REST que permite hacer logout
+	 * 
+	 * @return el true si es valido el logout y false si no o si ocurre un error
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.POST, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean logout() {
+		
+		try {
+			
+			httpSession.invalidate(); 
+			return true;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
@@ -85,7 +110,7 @@ public class UsuarioRestController {
 	 * 
 	 * @return true si actualiza exitosamente y false si no
 	 */
-	@RequestMapping(value = "/crear", method = RequestMethod.POST, 
+	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean actualizarUsuario(@RequestBody Usuario user) {
