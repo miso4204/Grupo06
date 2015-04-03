@@ -20,6 +20,8 @@ public class ProductoResponseDTO implements Serializable  {
 	 */
 	private static final long serialVersionUID = -8658863654377821942L;
 
+	/** Id del producto en el sistema*/
+	private Long id;
 	/** Nombre del paquete producto. Ej: paquete semana santa. **/
 	private String nombre;
 	/** Lugar. ej: Finca xxx **/
@@ -35,6 +37,11 @@ public class ProductoResponseDTO implements Serializable  {
 	private Date ultimaCompra;
 	/** Calificaciones asociadas al producto.**/
 	private List<CalificacionDTO> calificaciones;
+	
+	public Long getId() {
+		return id;
+	}
+
 
 	public String getNombre() {
 		return nombre;
@@ -102,6 +109,11 @@ public class ProductoResponseDTO implements Serializable  {
 
 	public void setCalificaciones(List<CalificacionDTO> calificaciones) {
 		this.calificaciones = calificaciones;
+	}
+
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

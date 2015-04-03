@@ -105,6 +105,7 @@ public class ProductoRestController {
 		List<RatingProducto> ratings = 
 				productoService.buscarRatingPorProductoId(producto.getId());
 		ProductoResponseDTO productoDTO = new ProductoResponseDTO();
+		producto.setId(producto.getId());
 		productoDTO.setNombre(producto.getNombre());
 		productoDTO.setCiudad(producto.getCiudad());
 		productoDTO.setFechaInicio(producto.getFechaInicio());
