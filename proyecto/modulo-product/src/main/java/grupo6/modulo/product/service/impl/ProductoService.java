@@ -130,6 +130,15 @@ public class ProductoService implements IProductoService {
 		
 		return promedioCalificacion;
 	}
+	
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.service.view.IProductoService#listarTodosProductos()
+	 */
+	@Transactional(readOnly = true)
+	public List<Producto> listarTodosProductos() {
+		return productoDAO.listarTodos();
+	}
 
 
 	

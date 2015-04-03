@@ -75,6 +75,13 @@ public interface IProductoService {
 	 * @return la calificacion promedio dada por los usuarios a dicho servicio.
 	 */
 	double obtenerCalificacionDeServicio(Long servicioId);
+	
+
+	/**
+	 * Retorna todos los productos o paquetes del sistema.
+	 * @return todos los productos o paquetes del sistema.
+	 */
+	List<Producto> listarTodosProductos();
 
 
 }
