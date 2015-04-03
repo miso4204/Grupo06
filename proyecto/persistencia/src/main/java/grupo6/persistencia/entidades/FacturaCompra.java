@@ -1,10 +1,14 @@
 package grupo6.persistencia.entidades;
 
+import grupo6.modulo.payment.dao.enums.TiposPago;
+
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +32,7 @@ public class FacturaCompra {
 	private Date fechaPago;
 	private List<Producto> productosComprados;
 	private double totalPagado;
-	
+	private TiposPago tipoPago;
 	
 	//------------------------ GETTERS AND SETTERS ---------------------
 
@@ -83,6 +87,15 @@ public class FacturaCompra {
 
 	public void setTotalPagado(double totalPagado) {
 		this.totalPagado = totalPagado;
+	}
+
+	@Enumerated(EnumType.STRING)
+	public TiposPago getTipoPago() {
+		return tipoPago;
+	}
+
+	public void setTipoPago(TiposPago tipoPago) {
+		this.tipoPago = tipoPago;
 	}
 
 }
