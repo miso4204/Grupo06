@@ -189,6 +189,8 @@ public class ProductoServiceTest {
 		for (RatingProducto rating : ratings) {
 			Assert.assertEquals(3D, 
 					productoService.obtenerCalificacionDeServicio(rating.getId()), .2);
+			Assert.assertEquals(3, 
+					productoService.obtenerNumeroVotantesDeServicio(rating.getId()));
 		}	
 			
 	}
