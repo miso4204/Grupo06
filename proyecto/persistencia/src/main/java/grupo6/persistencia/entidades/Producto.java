@@ -62,6 +62,7 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_producto")
+	@Column(name="ID")
 	public Long getId() {
 		return id;
 	}
