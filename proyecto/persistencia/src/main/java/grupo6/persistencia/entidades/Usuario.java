@@ -9,10 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @SequenceGenerator(name = "seq_usuario", initialValue = 1, allocationSize = 100)
-@Table(name = "USUARIO")
+@Table(name = "usuario", uniqueConstraints = {@UniqueConstraint(columnNames={"usuario"})})
 public class Usuario implements Serializable {
 	
 	/**
@@ -24,6 +25,7 @@ public class Usuario implements Serializable {
 	private String password;
 	private String nombre;
 	private String direccion;
+	private String telefono;
 	
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
@@ -68,4 +70,14 @@ public class Usuario implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	@Column(name="telefono",nullable = false, length = 10)
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
+	
 }
