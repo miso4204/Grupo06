@@ -1,21 +1,16 @@
 package grupo6.persistencia.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Type;
 
 /**
  * Entidad que representa el producto o paquete turistico, el cual se vende en
@@ -56,7 +51,7 @@ public class Producto implements Serializable {
 	/** Direccion o coordenada usada por google maps. Opcional **/
 	private String direccionGoogleMaps;
 	/** Las fotos del producto.**/
-    private List<byte[]> fotos = new ArrayList<byte[]>();
+    private String urlImagen;
     /** El id dle proveedor quien creó producto.*/
     private Long proveedorId;
 
@@ -88,7 +83,6 @@ public class Producto implements Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
@@ -118,10 +112,9 @@ public class Producto implements Serializable {
 		return direccionGoogleMaps;
 	}
 		
-	@Lob   
-	@Type(type = "serializable")
-	public List<byte[]>  getFotos() {
-		return fotos;
+	@Column(length = 100)
+	public String  getUrlImagen() {
+		return urlImagen;
 	}
 		
 	public Long getProveedorId() {
@@ -172,8 +165,8 @@ public class Producto implements Serializable {
 		this.direccionGoogleMaps = direccionGoogleMaps;
 	}
 	
-	public void setFotos(List<byte[]> fotos) {
-		this.fotos = fotos;
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
 	}
 	
 	public void setProveedorId(Long proveedorId) {

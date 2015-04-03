@@ -82,4 +82,15 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 		return (List<Producto>)criteria.list();
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.dao.view.IProductoDAO#listarTodos()
+	 */
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
+	public List<Producto> listarTodos() {
+		return (List<Producto>)getCurrentSession()
+				.createQuery("from Producto").list();
+	}
+
 }

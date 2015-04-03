@@ -50,6 +50,12 @@ public interface IProductoDAO {
 	 * @return Lista de productos filtrados por fecha en que el pauete se hace efectivo.
 	 */
 	List<Producto> buscarPorFechaInicio(Date fechaInicial, Date fechaFinal);
+	
+	/**
+	 * Retorna todos los productos o paquetes del sistema.
+	 * @return todos los productos o paquetes del sistema.
+	 */
+	List<Producto> listarTodos();
 
 
 }

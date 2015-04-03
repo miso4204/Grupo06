@@ -52,6 +52,7 @@ public class ProductoServiceTest {
 		Assert.assertNotNull(pencontrado);
 		List<RatingProducto> ratings = productoService.buscarRatingPorProductoId(id);
 		Assert.assertFalse(ratings.isEmpty());
+		Assert.assertFalse(productoService.listarTodosProductos().isEmpty());
 				
 	}
 
