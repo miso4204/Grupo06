@@ -107,7 +107,7 @@ public class ProductoRestController {
 		ProductoResponseDTO productoDTO = new ProductoResponseDTO();
 		productoDTO.setNombre(producto.getNombre());
 		productoDTO.setCiudad(producto.getCiudad());
-		productoDTO.setFechaInicio(producto.getFechaFin());
+		productoDTO.setFechaInicio(producto.getFechaInicio());
 		productoDTO.setLugar(producto.getLugar());
 		productoDTO.setPrecio(producto.getPrecio());
 		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
