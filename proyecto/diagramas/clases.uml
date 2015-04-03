@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_IK71INmcEeS1zNfaESpeJQ" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_VNiIwNmcEeS1zNfaESpeJQ" name="Producto">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_hSXzoNmcEeS1zNfaESpeJQ" name="" type="_X__pUNmcEeS1zNfaESpeJQ" association="_hSZBwNmcEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hSXzodmcEeS1zNfaESpeJQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hSXzotmcEeS1zNfaESpeJQ" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_X__pUNmcEeS1zNfaESpeJQ" name="RatingProducto">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Nn_eQNmdEeS1zNfaESpeJQ" name="ratingProductoCalificacion" type="_bLNoINmcEeS1zNfaESpeJQ" association="_NoAFUNmdEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Nn_eQdmdEeS1zNfaESpeJQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Nn_eQtmdEeS1zNfaESpeJQ" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tRdmYNmdEeS1zNfaESpeJQ" name="tipoServicio" visibility="public" type="_5s8PoNmdEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2ITrQNmdEeS1zNfaESpeJQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2IUSUNmdEeS1zNfaESpeJQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_2IWHgNmdEeS1zNfaESpeJQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bLNoINmcEeS1zNfaESpeJQ" name="RatingProductoCalificacion">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XmM-YNmeEeS1zNfaESpeJQ" name="calificacion" visibility="public" type="_9sRzANmdEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YB9tUNmeEeS1zNfaESpeJQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YB-UYNmeEeS1zNfaESpeJQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_YB-7cNmeEeS1zNfaESpeJQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hSZBwNmcEeS1zNfaESpeJQ" name="" memberEnd="_hSZBwdmcEeS1zNfaESpeJQ _hSXzoNmcEeS1zNfaESpeJQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_hSZBwdmcEeS1zNfaESpeJQ" name="productoId" type="_VNiIwNmcEeS1zNfaESpeJQ" association="_hSZBwNmcEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hSZBwtmcEeS1zNfaESpeJQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hSZBw9mcEeS1zNfaESpeJQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_NoAFUNmdEeS1zNfaESpeJQ" name="" memberEnd="_NoAFUdmdEeS1zNfaESpeJQ _Nn_eQNmdEeS1zNfaESpeJQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_NoAFUdmdEeS1zNfaESpeJQ" name="ratingProductoId" type="_X__pUNmcEeS1zNfaESpeJQ" association="_NoAFUNmdEeS1zNfaESpeJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NoAFUtmdEeS1zNfaESpeJQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NoAFU9mdEeS1zNfaESpeJQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_5s8PoNmdEeS1zNfaESpeJQ" name="ETipoRating"/>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_9sRzANmdEeS1zNfaESpeJQ" name="ETipoCalificacionRating"/>
+</uml:Model>
