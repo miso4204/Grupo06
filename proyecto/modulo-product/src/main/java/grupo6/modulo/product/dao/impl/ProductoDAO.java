@@ -7,7 +7,6 @@ import grupo6.persistencia.entidades.Producto;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.summary.Product;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -43,9 +42,13 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.dao.view.IProductoDAO#buscarPorUbicacion(java.lang.String)
 	 */
-	public List<Product> buscarPorUbicacion(String ubicacion) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Producto> buscarPorUbicacion(String ubicacion) {
+		
+		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
+		criteria.add(Restrictions.ilike("lugar", ubicacion)); 
+				
+		return (List<Producto>)criteria.list();
 	}
 
 	/**
@@ -54,14 +57,14 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<Product> buscarPorPrecio(double precioInicial,
+	public List<Producto> buscarPorPrecio(double precioInicial,
 			double precioFinal) {
 		
-		Criteria criteria = getCurrentSession().createCriteria(Product.class);		
+		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
 		criteria.add(Restrictions.ge("precio", precioInicial)); 
-		criteria.add(Restrictions.lt("precio", precioFinal));
+		criteria.add(Restrictions.le("precio", precioFinal));
 		
-		return (List<Product>)criteria.list();
+		return (List<Producto>)criteria.list();
 	}
 
 	/**
@@ -70,13 +73,13 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<Product> buscarPorFechaInicio(Date fechaInicial, Date fechaFinal) {
+	public List<Producto> buscarPorFechaInicio(Date fechaInicial, Date fechaFinal) {
 		
-		Criteria criteria = getCurrentSession().createCriteria(Product.class);		
+		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
 		criteria.add(Restrictions.ge("fechaInicio", fechaInicial)); 
-		criteria.add(Restrictions.lt("fechaInicio", fechaFinal));
+		criteria.add(Restrictions.le("fechaInicio", fechaFinal));
 		
-		return (List<Product>)criteria.list();
+		return (List<Producto>)criteria.list();
 	}
 
 }

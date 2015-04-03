@@ -2,9 +2,9 @@ package grupo6.modulo.product.dao.impl;
 
 import grupo6.modulo.product.dao.view.IRatingProductoDAO;
 import grupo6.persistencia.dao.BaseDAO;
-import grupo6.persistencia.entidades.EEstadoRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
 import java.util.List;
 
@@ -21,17 +21,27 @@ public class RatingProductoDAO extends BaseDAO implements IRatingProductoDAO {
 
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#crear(java.lang.Long, grupo6.persistencia.entidades.ETipoRating)
+	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#crearRating(java.lang.Long, grupo6.persistencia.entidades.ETipoRating)
 	 */
 	@Transactional
-	public Long crear(Long productoId, ETipoRating tipoServucio) {
+	public Long crearRating(Long productoId, ETipoRating tipoServucio) {
 		
 		RatingProducto rating = new RatingProducto();
 		rating.setTipoServicio(tipoServucio);
 		rating.setProductoId(productoId);
-		rating.setEstado(EEstadoRating.SINCALIFICAR);
 		return (Long)getCurrentSession().save(rating);
 	}
+	
+
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#cerarCalificacion(grupo6.persistencia.entidades.RatingProductoCalificacion)
+	 */
+	@Transactional
+	public Long crearCalificacion(RatingProductoCalificacion calificacion) {
+		return (Long)getCurrentSession().save(calificacion);
+	}
+	
 	
 	/**
 	 * (non-Javadoc)
@@ -56,14 +66,23 @@ public class RatingProductoDAO extends BaseDAO implements IRatingProductoDAO {
 		return (List<RatingProducto>)criteria.list();
 	}
 
+	
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#actulizar(grupo6.persistencia.entidades.RatingProducto)
+	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#buscarCalificacionesDeServicio(java.lang.Long)
 	 */
-	public void actulizar(RatingProducto rating) {
-		getCurrentSession().update(rating);		
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<RatingProductoCalificacion> buscarCalificacionesDeServicio(
+			Long ratingProductoId) {
+		
+		Criteria criteria =
+				getCurrentSession().createCriteria(RatingProductoCalificacion.class);		
+		criteria.add(Restrictions.eq("ratingProductoId", ratingProductoId)); 		
+		
+		return (List<RatingProductoCalificacion>)criteria.list();
 	}
-	
+
 	
 
 }

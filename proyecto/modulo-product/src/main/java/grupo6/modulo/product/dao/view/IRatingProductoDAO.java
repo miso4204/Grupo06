@@ -2,6 +2,7 @@ package grupo6.modulo.product.dao.view;
 
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
 import java.util.List;
 
@@ -19,7 +20,14 @@ public interface IRatingProductoDAO {
 	 * @param tipoServicio tipo de rating.
 	 * @return el id del objeto creado.
 	 */
-	Long crear(Long productoId, ETipoRating tipoServicio);
+	Long crearRating(Long productoId, ETipoRating tipoServicio);
+	
+	/**
+	 * Crea una calificacion a un rating o servicio. 
+	 * @param calificacion la calificacion del servicio.
+	 * @return id del objeto creado.
+	 */
+	Long crearCalificacion(RatingProductoCalificacion calificacion);
 
 	/**
 	 * Buscar un rating por llame primaria.
@@ -28,18 +36,20 @@ public interface IRatingProductoDAO {
 	 */
 	RatingProducto buscarPorId(Long id);
 	
-	/**
-	 * Actualiza el objeto.
-	 * @param rating el objeto a actualizar.
-	  */
-	void actulizar(RatingProducto rating);
-
+	
 	/**
 	 * Lista de ratings filtrados por el producto asociado.
 	 * @param productoId id del producto a filtrar a filtrar.
 	 * @return Lista de ratings del producto.
 	 */
 	List<RatingProducto> buscarPorProductoId(Long productoId);
+	
+	/**
+	 * Lista de calificaciones de un determinado servicio calificado.
+	 * @param ratingProductoId id del servicio.
+	 * @return Lista de calificaciones de un servicio o rating.
+	 */
+	List<RatingProductoCalificacion> buscarCalificacionesDeServicio(Long ratingProductoId);
 
 	
 

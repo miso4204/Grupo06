@@ -7,11 +7,11 @@ import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.summary.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,7 +55,7 @@ public class ProductoService implements IProductoService {
 	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorUbicacion(java.lang.String)
 	 */
 	@Transactional(readOnly = true)
-	public List<Product> buscarProductosPorUbicacion(String ubicacion) {
+	public List<Producto> buscarProductosPorUbicacion(String ubicacion) {
 		return productoDAO.buscarPorUbicacion(ubicacion);
 	}
 
@@ -64,7 +64,7 @@ public class ProductoService implements IProductoService {
 	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorPrecio(double, double)
 	 */
 	@Transactional(readOnly = true)
-	public List<Product> buscarProductosPorPrecio(double precioInicial,
+	public List<Producto> buscarProductosPorPrecio(double precioInicial,
 			double precioFinal) {
 		return productoDAO.buscarPorPrecio(precioInicial, precioFinal);
 	}
@@ -74,22 +74,27 @@ public class ProductoService implements IProductoService {
 	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorFechaInicio(java.util.Date, java.util.Date)
 	 */
 	@Transactional(readOnly = true)
-	public List<Product> buscarProductosPorFechaInicio(Date fechaInicial,
+	public List<Producto> buscarProductosPorFechaInicio(Date fechaInicial,
 			Date fechaFinal) {
 		return productoDAO.buscarPorFechaInicio(fechaInicial, fechaFinal);
 	}
 	
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.service.view.IProductoService#calificarProducto(java.lang.Long, grupo6.persistencia.entidades.ETipoCalificacionRating)
+	 * @see grupo6.modulo.product.service.view.IProductoService#calificarProducto(java.lang.Long, java.lang.Long, grupo6.persistencia.entidades.ETipoCalificacionRating)
 	 */
-	public void calificarProducto(Long servicioId,
+	@Transactional
+	public void calificarProducto(Long clienteId, Long servicioId,
 			ETipoCalificacionRating calificacion) {
 
 		RatingProducto ratingServicio = ratingProductoDAO.buscarPorId(servicioId);
-		if (ratingServicio != null) {			
-			ratingServicio.calificar(calificacion);
-			ratingProductoDAO.actulizar(ratingServicio);
+		if (ratingServicio != null) {		
+			RatingProductoCalificacion calificacionServicio = 
+					new RatingProductoCalificacion();
+			calificacionServicio.setClienteId(clienteId);
+			calificacionServicio.setRatingProductoId(servicioId);
+			calificacionServicio.setCalificacion(calificacion);
+			ratingProductoDAO.crearCalificacion(calificacionServicio);
 		}
 		
 	}
@@ -98,8 +103,32 @@ public class ProductoService implements IProductoService {
 	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.service.view.IProductoService#buscarRatingPorProductoId(java.lang.Long)
 	 */
+	@Transactional(readOnly = true)
 	public List<RatingProducto> buscarRatingPorProductoId(Long productoId) {
 		return ratingProductoDAO.buscarPorProductoId(productoId);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.service.view.IProductoService#obtenerCalificacionDeServicio(java.lang.Long)
+	 */
+	@Transactional(readOnly = true)
+	public double obtenerCalificacionDeServicio(Long servicioId) {
+		
+		List<RatingProductoCalificacion> calificaciones = 
+				ratingProductoDAO.buscarCalificacionesDeServicio(servicioId);
+		int sumatoriaCalificaciones = 0;
+		double promedioCalificacion = 0;
+		if (!calificaciones.isEmpty()) {
+			for (RatingProductoCalificacion calificacion: calificaciones) {
+				sumatoriaCalificaciones =
+						sumatoriaCalificaciones + calificacion.getCalificacion().getPuntaje();
+				
+			}
+			promedioCalificacion = sumatoriaCalificaciones / calificaciones.size();
+		}
+		
+		return promedioCalificacion;
 	}
 
 
@@ -110,13 +139,14 @@ public class ProductoService implements IProductoService {
 	 */
 	private void asignarRatingsDefault(Long productoId) {
 		
-		ratingProductoDAO.crear(productoId, ETipoRating.GENERAL);
-		ratingProductoDAO.crear(productoId, ETipoRating.UBICACION);
-		ratingProductoDAO.crear(productoId, ETipoRating.ATENCION);
-		ratingProductoDAO.crear(productoId, ETipoRating.LIMPIEZA);
-		ratingProductoDAO.crear(productoId, ETipoRating.CUARTOS);
-		ratingProductoDAO.crear(productoId, ETipoRating.COMODIDAD);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.UBICACION);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.ATENCION);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.LIMPIEZA);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.CUARTOS);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
 	}
 
+	
 	
 }

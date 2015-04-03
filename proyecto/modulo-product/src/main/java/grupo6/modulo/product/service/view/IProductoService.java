@@ -7,8 +7,6 @@ import grupo6.persistencia.entidades.RatingProducto;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.summary.Product;
-
 /**
  * Servcios expuestos por el módulo de producto.
  */
@@ -33,15 +31,16 @@ public interface IProductoService {
 	 * @param ubicacion la ubicacion a filtrar.
 	 * @return Lista de productos filtrados por ubicacion.
 	 */
-	List<Product> buscarProductosPorUbicacion(String ubicacion);
+	List<Producto> buscarProductosPorUbicacion(String ubicacion);
 
+	
 	/**
 	 * Lista de productos filtrados por un rango de precios.
 	 * @param precioInicial el precio limite inferior.
 	 * @param precioFinal el precio limite superior.
 	 * @return Lista de productos filtrados por precio.
 	 */
-	List<Product> buscarProductosPorPrecio(double precioInicial, double precioFinal);
+	List<Producto> buscarProductosPorPrecio(double precioInicial, double precioFinal);
 
 	/**
 	 * Lista de productos filtrados por un rango de fechas para
@@ -50,15 +49,16 @@ public interface IProductoService {
 	 * @param fechaFinal la fecha limite superior.
 	 * @return Lista de productos filtrados por fecha en que el pauete se hace efectivo.
 	 */
-	List<Product> buscarProductosPorFechaInicio(Date fechaInicial, Date fechaFinal);
+	List<Producto> buscarProductosPorFechaInicio(Date fechaInicial, Date fechaFinal);
 	
 	/**
 	 * Califica el servicio de un producto.
 	 * 
+	 * @param clienteId el id del cliente quien califica.
 	 * @param servicioId el id del servicio a calificar.
 	 * @param calificacion la calificacion del servicio.
 	 */
-	void calificarProducto(Long servicioId, ETipoCalificacionRating calificacion);
+	void calificarProducto(Long clienteId, Long servicioId, ETipoCalificacionRating calificacion);
 	
 	
 	/**
@@ -67,6 +67,14 @@ public interface IProductoService {
 	 * @return Lista de ratings del producto.
 	 */
 	List<RatingProducto> buscarRatingPorProductoId(Long productoId);
+	
+	/**
+	 * Retorna la calificacion promedio de un servicio o rating asociado a un
+	 * producto.
+	 * @param servicioId el servicio o rating.
+	 * @return la calificacion promedio dada por los usuarios a dicho servicio.
+	 */
+	double obtenerCalificacionDeServicio(Long servicioId);
 
 
 }

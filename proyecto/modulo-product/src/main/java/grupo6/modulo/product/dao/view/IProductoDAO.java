@@ -5,8 +5,6 @@ import grupo6.persistencia.entidades.Producto;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.summary.Product;
-
 /**
  * Metodos de acceso a datos.
  * 
@@ -34,7 +32,7 @@ public interface IProductoDAO {
 	 * @param ubicacion la ubicacion a filtrar.
 	 * @return Lista de productos filtrados por ubicacion.
 	 */
-	List<Product> buscarPorUbicacion(String ubicacion);
+	List<Producto> buscarPorUbicacion(String ubicacion);
 
 	/**
 	 * Lista de productos filtrados por un rango de precios.
@@ -42,7 +40,7 @@ public interface IProductoDAO {
 	 * @param precioFinal el precio limite superior.
 	 * @return Lista de productos filtrados por precio.
 	 */
-	List<Product> buscarPorPrecio(double precioInicial, double precioFinal);
+	List<Producto> buscarPorPrecio(double precioInicial, double precioFinal);
 
 	/**
 	 * Lista de productos filtrados por un rango de fechas para
@@ -51,7 +49,7 @@ public interface IProductoDAO {
 	 * @param fechaFinal la fecha limite superior.
 	 * @return Lista de productos filtrados por fecha en que el pauete se hace efectivo.
 	 */
-	List<Product> buscarPorFechaInicio(Date fechaInicial, Date fechaFinal);
+	List<Producto> buscarPorFechaInicio(Date fechaInicial, Date fechaFinal);
 
 
 }
