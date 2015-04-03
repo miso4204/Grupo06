@@ -29,6 +29,7 @@ public class Usuario implements Serializable {
 	private String direccion;
 	private String telefono;
 	private List<FacturaCompra> facturas;
+	private String rol;
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
 	
@@ -81,11 +82,20 @@ public class Usuario implements Serializable {
 		this.telefono = telefono;
 	}
 	
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="usuario")
 	public List<FacturaCompra> getFacturas() {
 		return facturas;
 	}
 	public void setFacturas(List<FacturaCompra> facturas) {
 		this.facturas = facturas;
 	}
+	
+	@Column(name="rol",nullable = false, length = 50)
+	public String getRol() {
+		return rol;
+	}
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
 }

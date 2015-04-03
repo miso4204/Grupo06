@@ -13,7 +13,7 @@ import grupo6.persistencia.entidades.Usuario;
  * @author jhon
  *
  */
-@Service(value = "usuario")
+@Service(value = "usuarioService")
 public class UsuarioService implements IUsuarioService {
 
 	@Autowired
