@@ -22,7 +22,40 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#formularioCrear").submit(function(e) {
+           
+            e.preventDefault();     
+            var jsonPeticion = JSON.stringify({
+                    "nombre": $('#name').val(), 
+                    "lugar": $('#destinationName').val(),
+                    "cidad": $('#destinationLocation').val(),
+                    "precio": $('#price').val(),
+                    "urlImagen": $('#urlImage').val()
+                     });
+            alert("enviando json: " + jsonPeticion);
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "http://localhost:8081/web-app/services/producto/crear", 
+                data: jsonPeticion,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                       alert("Producto creado, respuesta servidor: " + data); 
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+        });
+        </script>
 </head>
 
 <body>
@@ -110,26 +143,26 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <form>
+                                                    <form id="formularioCrear" action="" method="post">
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
                                                         <label>Name</label>
-                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" />
+                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name"  />
                                                     </div>
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
                                                         <label>Destination name</label>
-                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" />
+                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" />
                                                     </div>
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
                                                         <label>Destination Location</label>
-                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" />
+                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" />
                                                     </div>
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
                                                         <label>Price</label>
-                                                        <input class="form-control" placeholder="2000" type="text" />
+                                                        <input class="form-control" placeholder="2000" type="text" name="price" id="price" />
                                                     </div>
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
                                                         <label>URL Image</label>
-                                                        <input class="form-control" placeholder="http://imagen.png" type="text" />
+                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/>
                                                     </div>
                                                     <div class="form-group form-group-icon-left">
                                                         <button class="btn btn-primary btn-lg" type="submit">Register</button>
