@@ -22,6 +22,65 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
 
+<script src="js/jquery.js"></script>
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://localhost:8081/web-app/services/producto/listar";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+   
+       
+
+                    out+='<div class="col-md-4">'+
+                                    '<div class="thumb">'+
+                                        '<a class="hover-img" href="destinationDetails.html">'+
+                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
+                                            '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
+                                                '<div class="text-small">'+
+                                                    <!--....................-->
+                                                    <!-- ESTRELLAS  -->
+                                                    <!--....................-->
+                                                    '<ul class="icon-group text-tiny text-color">'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star-half-empty"></i>'+
+                                                        '</li>'+
+                                                    '</ul>'+
+                                                    '<h5>'+arr[i].nombre+'</h5>'+
+                                                    '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
+                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</a>'+
+                                    '</div>'+
+                                '</div>'
+
+document.getElementById("ListaProductos").innerHTML = out;
+// alert("Producto creado, respuesta servidor: " +  arr[i].nombre); 
+
+         
+    }
+     
+}
+</script>
 
 </head>
 
@@ -205,244 +264,10 @@
                     <div class="container">
                         <div class="col-md-12">
                             <h3 class="mb20">Popular Destinations</h3>
-                            <div class="row row-wrap">
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="Viva Las Vegas" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <!--....................-->
-                                                    <!-- ESTRELLAS  -->
-                                                    <!--....................-->
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Las Vegas</h5>
-                                                    <p>54902 reviews</p>
-                                                    <p class="mb0">636 offers from $76</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="lack of blue depresses me" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Miami Hotels</h5>
-                                                    <p>65559 reviews</p>
-                                                    <p class="mb0">738 offers from $96</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/400x300.png" alt="Image Alternative text" title="the journey home" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Seattle Hotels</h5>
-                                                    <p>68311 reviews</p>
-                                                    <p class="mb0">953 offers from $89</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="Sydney Harbour" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Sydney Hotels</h5>
-                                                    <p>56859 reviews</p>
-                                                    <p class="mb0">898 offers from $70</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="Street" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Disney World Hotels</h5>
-                                                    <p>60751 reviews</p>
-                                                    <p class="mb0">678 offers from $79</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="waipio valley" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Sydney Hotels</h5>
-                                                    <p>73400 reviews</p>
-                                                    <p class="mb0">620 offers from $84</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="new york at an angle" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Boston</h5>
-                                                    <p>71705 reviews</p>
-                                                    <p class="mb0">946 offers from $89</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="Gaviota en el Top" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>New York City Hotels</h5>
-                                                    <p>62283 reviews</p>
-                                                    <p class="mb0">826 offers from $75</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="thumb">
-                                        <a class="hover-img" href="destinationDetails.html">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="196_365" />
-                                            <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                                <div class="text-small">
-                                                    <ul class="icon-group text-tiny text-color">
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li><i class="fa fa-star-half-empty"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <h5>Paris</h5>
-                                                    <p>59983 reviews</p>
-                                                    <p class="mb0">802 offers from $72</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="row row-wrap" id="ListaProductos">
+
+                                
+                                
                             </div>
                             
                             <div class="gap gap-small"></div>
@@ -522,7 +347,7 @@
                         </div>
                     </footer>
 
-                    <script src="js/jquery.js"></script>
+                    
                     <script src="js/bootstrap.js"></script>
                     <script src="js/slimmenu.js"></script>
                     <script src="js/bootstrap-datepicker.js"></script>
