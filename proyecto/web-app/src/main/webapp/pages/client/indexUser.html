@@ -127,7 +127,7 @@ $("#buscarPorFecha").submit(function(e) {
                 },
                 datatype:"json",
                 type: "GET",
-                url: "services/producto/buscar_por_fecha/" + $('#priceOne').val()+"/"+$('#priceTwo').val(), 
+                url: "services/producto/buscar_por_fecha/" + $('#dateOne').val()+"/"+$('#dateTwo').val(), 
                 contentType: false,
                 processData: false,
                 success: function(data)
