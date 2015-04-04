@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_IK71INmcEeS1zNfaESpeJQ" name="model">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_IK71INmcEeS1zNfaESpeJQ" name="model">
   <packagedElement xmi:type="uml:Class" xmi:id="_VNiIwNmcEeS1zNfaESpeJQ" name="Producto">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_hSXzoNmcEeS1zNfaESpeJQ" name="" type="_X__pUNmcEeS1zNfaESpeJQ" association="_hSZBwNmcEeS1zNfaESpeJQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hSXzodmcEeS1zNfaESpeJQ"/>
@@ -42,4 +42,113 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_5s8PoNmdEeS1zNfaESpeJQ" name="ETipoRating"/>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_9sRzANmdEeS1zNfaESpeJQ" name="ETipoCalificacionRating"/>
+  <packagedElement xmi:type="uml:Model" xmi:id="_MmmQoNp3EeSCJIhyeUt8qg" name="generated">
+    <packagedElement xmi:type="uml:Package" xmi:id="_Mo0eMNp3EeSCJIhyeUt8qg" name="grupo6">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Mo1FQNp3EeSCJIhyeUt8qg" name="persistencia">
+        <packagedElement xmi:type="uml:Package" xmi:id="_Mo2TYNp3EeSCJIhyeUt8qg" name="entidades">
+          <packagedElement xmi:type="uml:Class" xmi:id="_Mp9GoNp3EeSCJIhyeUt8qg" name="FacturaCompra"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_G6xg0Np4EeSCJIhyeUt8qg" name="Usuario" visibility="public">
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G63ncNp4EeSCJIhyeUt8qg" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" type="_MphBwNp3EeSCJIhyeUt8qg" isUnique="false">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_G641kNp4EeSCJIhyeUt8qg">
+                <body>&#xD;
+	 * generate&#xD;
+	 </body>
+              </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G66qwNp4EeSCJIhyeUt8qg" name="id" visibility="private" type="_MphBwNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G68f8Np4EeSCJIhyeUt8qg" name="usuario" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G6-VINp4EeSCJIhyeUt8qg" name="password" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G6_jQNp4EeSCJIhyeUt8qg" name="nombre" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G7BYcNp4EeSCJIhyeUt8qg" name="direccion" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G7DNoNp4EeSCJIhyeUt8qg" name="telefono" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G7FC0Np4EeSCJIhyeUt8qg" name="facturas" visibility="private" type="_Mp9GoNp3EeSCJIhyeUt8qg" isUnique="false">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G7GQ8Np4EeSCJIhyeUt8qg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G7G4ANp4EeSCJIhyeUt8qg" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_G7IGINp4EeSCJIhyeUt8qg" name="rol" visibility="private" type="_MpzVoNp3EeSCJIhyeUt8qg" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_e3mtYNp4EeSCJIhyeUt8qg" name="producto" type="_VNiIwNmcEeS1zNfaESpeJQ" aggregation="shared" association="_e3pJoNp4EeSCJIhyeUt8qg">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e3mtYdp4EeSCJIhyeUt8qg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e3mtYtp4EeSCJIhyeUt8qg" value="*"/>
+            </ownedAttribute>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_G60kINp4EeSCJIhyeUt8qg" name="Usuario implements Serializable" client="_G6xg0Np4EeSCJIhyeUt8qg" supplier="_MpLDgNp3EeSCJIhyeUt8qg" contract="_MpLDgNp3EeSCJIhyeUt8qg"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7JUQNp4EeSCJIhyeUt8qg" name="getId" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7KiYNp4EeSCJIhyeUt8qg" type="_MphBwNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7LJcNp4EeSCJIhyeUt8qg" name="setId" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7MXkNp4EeSCJIhyeUt8qg" name="id" type="_MphBwNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7NlsNp4EeSCJIhyeUt8qg" name="getUsuario" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7OMwNp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7Pa4Np4EeSCJIhyeUt8qg" name="setUsuario" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7QpANp4EeSCJIhyeUt8qg" name="usuario" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7R3INp4EeSCJIhyeUt8qg" name="getPassword" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7SeMNp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7TsUNp4EeSCJIhyeUt8qg" name="setPassword" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7U6cNp4EeSCJIhyeUt8qg" name="password" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7WIkNp4EeSCJIhyeUt8qg" name="getNombre" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7XWsNp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7Yk0Np4EeSCJIhyeUt8qg" name="setNombre" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7Zy8Np4EeSCJIhyeUt8qg" name="nombre" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7bBENp4EeSCJIhyeUt8qg" name="getDireccion" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7boINp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7c2QNp4EeSCJIhyeUt8qg" name="setDireccion" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7eEYNp4EeSCJIhyeUt8qg" name="direccion" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7fSgNp4EeSCJIhyeUt8qg" name="getTelefono" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7f5kNp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7hHsNp4EeSCJIhyeUt8qg" name="setTelefono" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7iV0Np4EeSCJIhyeUt8qg" name="telefono" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7jj8Np4EeSCJIhyeUt8qg" name="getFacturas" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7kyENp4EeSCJIhyeUt8qg" type="_Mp9GoNp3EeSCJIhyeUt8qg" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G7lZINp4EeSCJIhyeUt8qg"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G7mAMNp4EeSCJIhyeUt8qg" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7nOUNp4EeSCJIhyeUt8qg" name="setFacturas" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7occNp4EeSCJIhyeUt8qg" name="facturas" type="_Mp9GoNp3EeSCJIhyeUt8qg">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G7pDgNp4EeSCJIhyeUt8qg"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G7pqkNp4EeSCJIhyeUt8qg" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7qRoNp4EeSCJIhyeUt8qg" name="getRol" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7rfwNp4EeSCJIhyeUt8qg" type="_MpzVoNp3EeSCJIhyeUt8qg" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_G7st4Np4EeSCJIhyeUt8qg" name="setRol" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_G7t8ANp4EeSCJIhyeUt8qg" name="rol" type="_MpzVoNp3EeSCJIhyeUt8qg"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_e3pJoNp4EeSCJIhyeUt8qg" name="carritoCompras" memberEnd="_e3pJodp4EeSCJIhyeUt8qg _e3mtYNp4EeSCJIhyeUt8qg">
+            <ownedEnd xmi:type="uml:Property" xmi:id="_e3pJodp4EeSCJIhyeUt8qg" name="usuario" type="_G6xg0Np4EeSCJIhyeUt8qg" association="_e3pJoNp4EeSCJIhyeUt8qg">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e3pJotp4EeSCJIhyeUt8qg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e3pJo9p4EeSCJIhyeUt8qg" value="1"/>
+            </ownedEnd>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_MpB5kNp3EeSCJIhyeUt8qg" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_MpCgoNp3EeSCJIhyeUt8qg" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_MpDHsNp3EeSCJIhyeUt8qg" name="io">
+        <packagedElement xmi:type="uml:Interface" xmi:id="_MpLDgNp3EeSCJIhyeUt8qg" name="Serializable"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_MpyukNp3EeSCJIhyeUt8qg" name="lang">
+        <packagedElement xmi:type="uml:Class" xmi:id="_MpzVoNp3EeSCJIhyeUt8qg" name="String"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_Mpd-cNp3EeSCJIhyeUt8qg" name="datatype">
+    <packagedElement xmi:type="uml:Package" xmi:id="_MpfMkNp3EeSCJIhyeUt8qg" name="datatype">
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_MphBwNp3EeSCJIhyeUt8qg" name="Long"/>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>
