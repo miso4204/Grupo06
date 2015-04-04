@@ -1,9 +1,12 @@
 package grupo6.web.controller.rest;
 
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
-import grupo6.web.dto.CalificacionDTO;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
+import grupo6.web.dto.CalificacionResponseDTO;
+import grupo6.web.dto.CalificarRequestDTO;
 import grupo6.web.dto.ProductoRequestDTO;
 import grupo6.web.dto.ProductoResponseDTO;
 
@@ -13,13 +16,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Controlador REST de los servicios del producto.
@@ -68,7 +74,7 @@ public class ProductoRestController {
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = productoService.listarTodosProductos();
 		for (Producto producto: productos) {
-			productosDTO.add(crearProductoResponseDTO(producto));
+			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
 		return productosDTO;
 	}
@@ -90,7 +96,7 @@ public class ProductoRestController {
 		List<Producto> productos = 
 				productoService.buscarProductosPorPrecio(precioInicial, precioFinal);
 		for (Producto producto: productos) {
-			productosDTO.add(crearProductoResponseDTO(producto));
+			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
 		return productosDTO;
 	}
@@ -116,7 +122,7 @@ public class ProductoRestController {
 		List<Producto> productos = 
 				productoService.buscarProductosPorFechaInicio(fechaInicial, fechaFinal);
 		for (Producto producto: productos) {
-			productosDTO.add(crearProductoResponseDTO(producto));
+			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
 		return productosDTO;
 	}
@@ -131,15 +137,37 @@ public class ProductoRestController {
 			method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ProductoResponseDTO obtenerProductoPorId(
-			@PathVariable("id") 
-			Long id) {		
+			@PathVariable("id") Long id, 
+			@RequestHeader(value="clientId", required = false) Long clientId) {		
 		
 		ProductoResponseDTO productoDTO = null;
 		Producto producto = productoService.buscarProductoPorId(id);
 	    if (producto != null) {
-	    	productoDTO = crearProductoResponseDTO(producto);
+	    	productoDTO = crearProductoResponseDTO(producto, clientId);
 	    }
 		return productoDTO;
+	}
+	
+	
+	/**
+	 * Servicio REST para calificar un producto.
+	 * @param  request el request dto construido a partir
+	 * de un json y que contiene los datos básicos para 
+	 * la calificación. 
+	 */
+	@RequestMapping(value = "/calificar_producto",
+			method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void calificarProducto(
+			@RequestBody CalificarRequestDTO request,
+			@RequestHeader(value="clientId", required = true) Long clientId) {		
+		
+		ETipoCalificacionRating calificacion =
+					ETipoCalificacionRating.getTipoCalificacion(request.getPuntaje());
+		if (calificacion != null) {
+			productoService.calificarProducto(clientId, 
+					request.getServicioId(), calificacion);
+		}		
 	}
 
 	
@@ -147,9 +175,10 @@ public class ProductoRestController {
 	 * Crea un objeto ProductoResponseDTO (JSON) a partir de un objeto Producto.
 	 * 
 	 * @param producto el producto a convertir.
+	 * @param clienteId el id de un cliente para verificar si ya votó un servicio del producto.
 	 * @return la representacion DTO del producto.
 	 */
-	private ProductoResponseDTO crearProductoResponseDTO(Producto producto) {
+	private ProductoResponseDTO crearProductoResponseDTO(Producto producto, Long clienteId) {
 		List<RatingProducto> ratings = 
 				productoService.buscarRatingPorProductoId(producto.getId());
 		ProductoResponseDTO productoDTO = new ProductoResponseDTO();
@@ -161,18 +190,29 @@ public class ProductoRestController {
 		productoDTO.setPrecio(producto.getPrecio());
 		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
 		productoDTO.setUrlImagen(producto.getUrlImagen());
-		List<CalificacionDTO> calificaciones = new ArrayList<CalificacionDTO>();
+		List<CalificacionResponseDTO> calificaciones = new ArrayList<CalificacionResponseDTO>();
 		for (RatingProducto rating : ratings) {
 			double calificacion = 
 					productoService.obtenerCalificacionDeServicio(rating.getId());
 			int votantes = 
 					productoService.obtenerNumeroVotantesDeServicio(rating.getId());
-			CalificacionDTO calificacionDTO = new CalificacionDTO();
+			CalificacionResponseDTO calificacionDTO = new CalificacionResponseDTO();
+			calificacionDTO.setId(rating.getId());
 			calificacionDTO.setNombre(rating.getTipoServicio().name());
-//			calificacionDTO.setPuntuacion(calificacion);
-//			calificacionDTO.setCantidadVotantes(votantes);
-			calificacionDTO.setPuntuacion((double)(1 + (int)(Math.random()*5)));
-			calificacionDTO.setCantidadVotantes((1 + (int)(Math.random()*1000000)));
+			calificacionDTO.setPuntuacion(calificacion);
+			calificacionDTO.setCantidadVotantes(votantes);
+			if (clienteId != null) {
+				RatingProductoCalificacion calUsuario = 
+						productoService.buscarCalificacionDeUsuario(
+								rating.getId(), clienteId);
+				if (calUsuario != null) {
+					calificacionDTO.setVotada(true);
+					calificacionDTO.setCalificacionDada(
+							calUsuario.getCalificacion().getPuntaje());
+				}
+			}
+			
+					
 			calificaciones.add(calificacionDTO);
 		}
 		productoDTO.setCalificaciones(calificaciones);

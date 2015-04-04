@@ -72,7 +72,7 @@ public class RatingProductoDAO extends BaseDAO implements IRatingProductoDAO {
 	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#buscarCalificacionesDeServicio(java.lang.Long)
 	 */
 	@SuppressWarnings("unchecked")
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<RatingProductoCalificacion> buscarCalificacionesDeServicio(
 			Long ratingProductoId) {
 		
@@ -81,6 +81,30 @@ public class RatingProductoDAO extends BaseDAO implements IRatingProductoDAO {
 		criteria.add(Restrictions.eq("ratingProductoId", ratingProductoId)); 		
 		
 		return (List<RatingProductoCalificacion>)criteria.list();
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.dao.view.IRatingProductoDAO#buscarCalificacionDeUsuario(java.lang.Long, java.lang.Long)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(readOnly = true)
+	public RatingProductoCalificacion buscarCalificacionDeUsuario(
+			Long ratingProductoId, Long clienteId) {
+		
+		Criteria criteria =
+				getCurrentSession().createCriteria(RatingProductoCalificacion.class);		
+		criteria.add(Restrictions.eq("ratingProductoId", ratingProductoId)); 
+		criteria.add(Restrictions.eq("clienteId", clienteId)); 
+		
+		List<RatingProductoCalificacion> resultado =
+				(List<RatingProductoCalificacion>)criteria.list();
+		if (!resultado.isEmpty()) {
+			return resultado.get(0);
+		}
+		
+		return null;
 	}
 
 	

@@ -182,6 +182,7 @@ public class ProductoServiceTest {
 		List<RatingProducto> ratings = productoService.buscarRatingPorProductoId(id);
 		for (RatingProducto rating : ratings) {
 			productoService.calificarProducto(1L, rating.getId(), ETipoCalificacionRating.MALO);
+			productoService.calificarProducto(1L, rating.getId(), ETipoCalificacionRating.MALO);
 			productoService.calificarProducto(2L, rating.getId(), ETipoCalificacionRating.MALO);
 			productoService.calificarProducto(3L, rating.getId(), ETipoCalificacionRating.EXECELENTE);
 		}	
@@ -189,8 +190,8 @@ public class ProductoServiceTest {
 		for (RatingProducto rating : ratings) {
 			Assert.assertEquals(3D, 
 					productoService.obtenerCalificacionDeServicio(rating.getId()), .2);
-//			Assert.assertEquals(4, 
-//					productoService.obtenerNumeroVotantesDeServicio(rating.getId()));
+			Assert.assertEquals(3, 
+					productoService.obtenerNumeroVotantesDeServicio(rating.getId()));
 		}	
 			
 	}

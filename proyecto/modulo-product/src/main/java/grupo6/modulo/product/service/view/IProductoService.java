@@ -3,6 +3,7 @@ package grupo6.modulo.product.service.view;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
 import java.util.Date;
 import java.util.List;
@@ -91,6 +92,15 @@ public interface IProductoService {
 	 * @return todos los productos o paquetes del sistema.
 	 */
 	List<Producto> listarTodosProductos();
+	
+	
+	/**
+	 * Retorna la calificación dada por un usuario al servicio de un poducto.
+	 * @param ratingProductoId id del servicio.
+	 * @param clienteId el cliente a filtrar.
+	 * @return Lista de calificaciones de un servicio o rating.
+	 */
+	RatingProductoCalificacion buscarCalificacionDeUsuario(Long ratingProductoId, Long clienteId);
 
 
 }

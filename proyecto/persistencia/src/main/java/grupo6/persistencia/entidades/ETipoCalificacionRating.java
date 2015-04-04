@@ -34,4 +34,20 @@ public enum ETipoCalificacionRating {
 		return puntaje;
 	}
 	
+	
+	/**
+	 * Devuelve la calificación asignada a partir de un valor numérico.
+	 * @return el tipo de calificación, null en caso contrario. 
+	 */
+	public static ETipoCalificacionRating getTipoCalificacion(int puntaje) {
+		for (ETipoCalificacionRating calificacion : 
+					ETipoCalificacionRating.values()) {
+			if (calificacion.getPuntaje() == puntaje) {
+				return calificacion;
+			}			
+		}
+		
+		return null;
+	}
+	
 }

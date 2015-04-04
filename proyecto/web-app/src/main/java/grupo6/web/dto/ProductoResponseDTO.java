@@ -36,7 +36,7 @@ public class ProductoResponseDTO implements Serializable  {
 	private String urlImagen;
 	private Date ultimaCompra;
 	/** Calificaciones asociadas al producto.**/
-	private List<CalificacionDTO> calificaciones;
+	private List<CalificacionResponseDTO> calificaciones;
 	
 	public Long getId() {
 		return id;
@@ -74,7 +74,7 @@ public class ProductoResponseDTO implements Serializable  {
 		return urlImagen;
 	}
 	
-	public List<CalificacionDTO> getCalificaciones() {
+	public List<CalificacionResponseDTO> getCalificaciones() {
 		return calificaciones;
 	}
 
@@ -107,7 +107,7 @@ public class ProductoResponseDTO implements Serializable  {
 		this.ultimaCompra = ultimaCompra;
 	}
 
-	public void setCalificaciones(List<CalificacionDTO> calificaciones) {
+	public void setCalificaciones(List<CalificacionResponseDTO> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
 

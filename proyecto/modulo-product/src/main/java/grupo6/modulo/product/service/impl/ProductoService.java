@@ -88,13 +88,18 @@ public class ProductoService implements IProductoService {
 			ETipoCalificacionRating calificacion) {
 
 		RatingProducto ratingServicio = ratingProductoDAO.buscarPorId(servicioId);
-		if (ratingServicio != null) {		
-			RatingProductoCalificacion calificacionServicio = 
-					new RatingProductoCalificacion();
-			calificacionServicio.setClienteId(clienteId);
-			calificacionServicio.setRatingProductoId(servicioId);
-			calificacionServicio.setCalificacion(calificacion);
-			ratingProductoDAO.crearCalificacion(calificacionServicio);
+		if (ratingServicio != null) {	
+			
+			RatingProductoCalificacion calificacionServicio =
+					ratingProductoDAO.buscarCalificacionDeUsuario(ratingServicio.getId(), clienteId);
+			if (calificacionServicio == null) { // no lo ha calificado
+				calificacionServicio = 
+						new RatingProductoCalificacion();
+				calificacionServicio.setClienteId(clienteId);
+				calificacionServicio.setRatingProductoId(servicioId);
+				calificacionServicio.setCalificacion(calificacion);
+				ratingProductoDAO.crearCalificacion(calificacionServicio);	
+			}			
 		}
 		
 	}
@@ -135,6 +140,7 @@ public class ProductoService implements IProductoService {
 	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.service.view.IProductoService#obtenerNumeroVotantesDeServicio(java.lang.Long)
 	 */
+	@Transactional(readOnly = true)
 	public int obtenerNumeroVotantesDeServicio(Long servicioId) {
 		
 		List<RatingProductoCalificacion> calificaciones = 
@@ -153,6 +159,17 @@ public class ProductoService implements IProductoService {
 		return productoDAO.listarTodos();
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.service.view.IProductoService#buscarCalificacionDeUsuario(java.lang.Long, java.lang.Long)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public RatingProductoCalificacion buscarCalificacionDeUsuario(
+			Long ratingProductoId, Long clienteId) {
+		
+		return ratingProductoDAO.buscarCalificacionDeUsuario(ratingProductoId, clienteId);
+	}
 
 	
 	/**
@@ -161,17 +178,14 @@ public class ProductoService implements IProductoService {
 	 */
 	private void asignarRatingsDefault(Long productoId) {
 		
-		Long generalId = ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.UBICACION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.ATENCION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.LIMPIEZA);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.CUARTOS);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
-		//test: quitar
-		RatingProducto ratingSimulado = ratingProductoDAO.buscarPorId(generalId);
-		calificarProducto(1L, ratingSimulado.getId(), ETipoCalificacionRating.MUYBUENO);
 	}
 
+	
 	
 	
 }

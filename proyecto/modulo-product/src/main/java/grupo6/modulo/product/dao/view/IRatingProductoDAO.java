@@ -50,7 +50,13 @@ public interface IRatingProductoDAO {
 	 * @return Lista de calificaciones de un servicio o rating.
 	 */
 	List<RatingProductoCalificacion> buscarCalificacionesDeServicio(Long ratingProductoId);
-
 	
+	/**
+	 * Retorna la calificación dada por un usuario al servicio de un poducto.
+	 * @param ratingProductoId id del servicio.
+	 * @param clienteId el cliente a filtrar.
+	 * @return Lista de calificaciones de un servicio o rating.
+	 */
+	RatingProductoCalificacion buscarCalificacionDeUsuario(Long ratingProductoId, Long clienteId);	
 
 }
