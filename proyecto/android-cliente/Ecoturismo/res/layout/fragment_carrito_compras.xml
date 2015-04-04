@@ -22,8 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_green"
         android:text="@string/carrrito_compras_button_comprar"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:textColor="@android:color/white" />
 
     <ListView
         android:id="@+id/Carrito_Compras_ListView"

@@ -15,6 +15,12 @@ import org.springframework.stereotype.Repository;
 @Repository(value="paymentDAO")
 public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 
+	private void limpiarCarritoCompras(Usuario userCompra) {
+		//Limpiar el carrito de compras
+		userCompra.getCarritoCompras().clear();
+		getCurrentSession().update(userCompra);
+	}
+	
 	@Override
 	public FacturaCompra pagoPSE(Usuario userCompra, List<Producto> productos) {
 		
@@ -34,6 +40,8 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 			
 			factura.setTotalPagado(precioTota);
 			getCurrentSession().save(factura);
+			
+			limpiarCarritoCompras(userCompra);
 			
 			return factura;
 		} catch (Exception e) {
@@ -61,6 +69,8 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 			factura.setTotalPagado(precioTota);
 			getCurrentSession().save(factura);
 			
+			limpiarCarritoCompras(userCompra);
+			
 			return factura;
 		} catch (Exception e) {
 			
@@ -87,6 +97,8 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 			
 			factura.setTotalPagado(precioTota);
 			getCurrentSession().save(factura);
+			
+			limpiarCarritoCompras(userCompra);
 			
 			return factura;
 		} catch (Exception e) {

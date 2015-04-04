@@ -1,6 +1,7 @@
 package grupo6.persistencia.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -30,11 +33,13 @@ public class Usuario implements Serializable {
 	private String telefono;
 	private List<FacturaCompra> facturas;
 	private String rol;
+	private List<Producto> carritoCompras = new ArrayList<Producto>();
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_usuario")
+	@Column(name="UsuarioId")
 	public long getId() {
 		return id;
 	}
@@ -96,6 +101,17 @@ public class Usuario implements Serializable {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+	
+	@OneToMany
+	@JoinTable(name = "CarritoCompras", 
+			   joinColumns = @JoinColumn(name="UsuarioId", referencedColumnName="UsuarioId"), 
+			   inverseJoinColumns = @JoinColumn(name = "productoId", referencedColumnName="ID"))
+	public List<Producto> getCarritoCompras() {
+		return carritoCompras;
+	}
+	public void setCarritoCompras(List<Producto> carritoCompras) {
+		this.carritoCompras = carritoCompras;
 	}
 	
 }

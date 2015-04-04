@@ -48,7 +48,7 @@ public class EcoturismoApplication extends Application{
 		if(!ProductoTable.hayProductosCargados(getEcoturismoSqlHelper())){
 			List<Producto> productos = new ArrayList<Producto>();
 			productos.add(new Producto("Alojamiento","Hotel Campestre", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "San Gil", "25 Marzo 2015", 45000));
-			productos.add(new Producto("Atracciones","Caba�a", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
+			productos.add(new Producto("Atracciones","Cabana", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Barichara", "25 Marzo 2015", 185000));
 			productos.add(new Producto("Restaurantes","Restuarante Donde Juancho", "Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno", "Neiva", "25 Marzo 2015", 85000));
 			ProductoTable.addProductos(getEcoturismoSqlHelper(), productos );	
 		}

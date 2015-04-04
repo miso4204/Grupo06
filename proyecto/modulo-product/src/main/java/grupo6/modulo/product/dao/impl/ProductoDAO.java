@@ -34,7 +34,6 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	 */
 	@Transactional(readOnly = true)
 	public Producto buscarPorId(Long id) {
-
 		return (Producto) getCurrentSession().get(Producto.class, id);
 	}
 
