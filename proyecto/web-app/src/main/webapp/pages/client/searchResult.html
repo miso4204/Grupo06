@@ -23,6 +23,91 @@
     <script src="js/modernizr.js"></script>
  <script src="js/jquery.js"></script>
 
+<script>  
+    $(document).ready(function () {  
+        var servicio = GetParameterValues('servicio');  
+        var primerPrecio = GetParameterValues('precioUno');  
+        var segundoPrecio = GetParameterValues('precioDos');  
+        var primeraFecha= GetParameterValues('primeraFecha'); 
+        var segundaFecha= GetParameterValues('segundaFecha');  
+        function GetParameterValues(param) {  
+            var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+            for (var i = 0; i < url.length; i++) {  
+                var urlparam = url[i].split('=');  
+                if (urlparam[0] == param) {  
+                    return urlparam[1];  
+                }  
+            }  
+        }  
+        if(servicio==2){
+         $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/producto/buscar_por_precio/" + primerPrecio+"/"+segundoPrecio, 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                       alert("respuesta servidor: " + JSON.stringify(data)); 
+
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+     }else if (servicio==1) {
+
+         alert("SERVICIO 2 ACTIVADO "); 
+         $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/producto/buscar_por_precio/" + primerPrecio+"/"+segundoPrecio, 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                       alert("respuesta servidor: " + JSON.stringify(data)); 
+
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+    }
+    else if (servicio==3) {
+
+         alert("SERVICIO 3 ACTIVADO " ); 
+         $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/producto/buscar_por_fecha/" + primeraFecha+"/"+segundaFecha, 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                       alert("respuesta servidor: " + JSON.stringify(data)); 
+
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+    }; 
+
+    });  
+</script>
 </head>
 
 <body>

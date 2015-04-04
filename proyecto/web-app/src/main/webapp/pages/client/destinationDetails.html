@@ -21,7 +21,68 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
+<script src="js/jquery.js"></script>
 
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "services/producto/listar";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+   
+       
+
+                    out+='<div class="col-md-4">'+
+                                    '<div class="thumb">'+
+                                        '<a class="hover-img" href="destinationDetails.html">'+
+                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
+                                            '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
+                                                '<div class="text-small">'+
+                                                    <!--....................-->
+                                                    <!-- ESTRELLAS  -->
+                                                    <!--....................-->
+                                                    '<ul class="icon-group text-tiny text-color">'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star-half-empty"></i>'+
+                                                        '</li>'+
+                                                    '</ul>'+
+                                                    '<h5>'+arr[i].nombre+'</h5>'+
+                                                    '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
+                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</a>'+
+                                    '</div>'+
+                                '</div>'
+
+document.getElementById("ListaProductos").innerHTML = out;
+// alert("Producto creado, respuesta servidor: " +  arr[i].nombre); 
+
+         
+    }
+
+
+     
+}
+</script>
 
 </head>
 
@@ -307,7 +368,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            
+                             <button class="btn btn-primary btn-lg" type="submit">Add to cart</button>
                         </div>
                     </div>
 
