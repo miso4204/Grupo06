@@ -167,7 +167,7 @@
                 
 
     out+=' <li>'+
-                            '<a class="booking-item" href="#">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -250,12 +250,12 @@ document.getElementById("ListaProductos").innerHTML = out;
         else{
             urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
         }
-        
+
                 var roadMapData = arr[i].calificaciones;
                 var puntuacionGeneral = roadMapData[0].puntuacion; 
                 var cantidadReviews = roadMapData[0].cantidadVotantes; 
     out+=' <li>'+
-                            '<a class="booking-item" href="#">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -270,7 +270,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><span class="btn btn-primary" id="addCart">Add to Cart</span>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><span class="btn btn-primary" onclick="hide()" id="addCart">Add to Cart</span>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
