@@ -167,7 +167,7 @@
                 
 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -255,7 +255,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                 var puntuacionGeneral = roadMapData[0].puntuacion; 
                 var cantidadReviews = roadMapData[0].cantidadVotantes; 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -334,9 +334,9 @@ document.getElementById("ListaProductos").innerHTML = out;
                                 <ul class="top-user-area-list list list-horizontal list-border">
                                     <li class="top-user-area-avatar">
                                         <a href="user-profile.html">
-                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                         </li>
-                                        <li><a href="#">Sign Out</a>
+                                        <li><a href="pages/logout">Sign Out</a>
                                         </li>
 
                                         <li class="top-user-area-lang nav-drop">

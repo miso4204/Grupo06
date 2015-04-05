@@ -3,11 +3,14 @@ package grupo6.web.controller.rest;
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.Usuario;
 import grupo6.web.dto.LoginDTO;
+import grupo6.web.dto.UsuarioDTO;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UsuarioRestController {
 
 	@Autowired 
-	private IUsuarioService usuarioService;//Inyeccion servicios
+	private IUsuarioService usuarioService;//Inyeccion servicios	
 	
-	@Autowired
-	private HttpSession httpSession; // Usado para manejar la seesion del usuario
-
 	public static final String ROL_SESSION = "rol";
 	public static final String USER_NAME_SESSION = "userName";
 	public static final String USER_ID_SESSION = "userId";
@@ -40,52 +40,35 @@ public class UsuarioRestController {
 	 * 
 	 * @return el true si es valido y false si no o si ocurre un error
 	 */
-	@SuppressWarnings("unused")
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean login(@RequestBody LoginDTO userLogin) {
+	public @ResponseBody UsuarioDTO login(@RequestBody LoginDTO userLogin) {
 		
-		try {
-			
-			Usuario  user = usuarioService.ingresar(userLogin.getUsuario(), userLogin.getPassword());
-			httpSession.setAttribute(USER_ID_SESSION, user.getId());  
-			httpSession.setAttribute(ROL_SESSION, user.getRol());
-			httpSession.setAttribute(USER_NAME_SESSION, user.getUsuario());
-			
+		UsuarioDTO usuarioDTO = null;
+		try {			
+			Usuario  user = usuarioService.ingresar(userLogin.getUsuario(), userLogin.getPassword());						
 			if (user != null) {
-				return true;
+				usuarioDTO = new UsuarioDTO();
+				usuarioDTO.setId(user.getId());
+				usuarioDTO.setDireccion(user.getDireccion());
+				usuarioDTO.setNombre(user.getNombre());
+				usuarioDTO.setPassword(user.getPassword());
+				usuarioDTO.setRol(user.getRol());
+				usuarioDTO.setTelefono(user.getTelefono());
+				usuarioDTO.setUsuario(user.getUsuario());
 			}
 			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			return false;
+		} catch (Exception e) {			
+			e.printStackTrace();			
 		}
-		return false;
-	}
-	
-	
-	/**
-	 * Servicio REST que permite hacer logout
-	 * 
-	 * @return el true si es valido el logout y false si no o si ocurre un error
-	 */
-	@RequestMapping(value = "/logout", method = RequestMethod.POST, 
-						consumes = MediaType.APPLICATION_JSON_VALUE,
-						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean logout() {
 		
-		try {
-			
-			httpSession.invalidate(); 
-			return true;
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			return false;
-		}
+		return usuarioDTO;
 	}
+	
+	
+	
 	
 	/**
 	 * Servicio REST que crea un usuario.
@@ -133,7 +116,9 @@ public class UsuarioRestController {
 		String mensajeError = ""; // MOSTRAR EN UN MODAL
 		
 		try {
-			String userName = (String) httpSession.getAttribute(USER_NAME_SESSION);
+			//String userName = (String) httpSession.getAttribute(USER_NAME_SESSION);
+			// TODO recibir en peticion
+			String userName = null;
 			return usuarioService.cambiarPassword(userName, passActual, passNuevo, passNuevoValidate);
 		} catch (Exception e) {
 			mensajeError = e.getMessage();

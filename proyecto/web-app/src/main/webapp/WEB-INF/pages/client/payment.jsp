@@ -64,9 +64,9 @@
                                 <ul class="top-user-area-list list list-horizontal list-border">
                                     <li class="top-user-area-avatar">
                                         <a href="user-profile.html">
-                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                         </li>
-                                        <li><a href="#">Sign Out</a>
+                                        <li><a href="pages/logout">Sign Out</a>
                                         </li>
 
                                         <li class="top-user-area-lang nav-drop">

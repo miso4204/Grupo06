@@ -45,7 +45,7 @@ function myFunction(arr) {
 
                     out+='<div class="col-md-4">'+
                                     '<div class="thumb">'+
-                                        '<a class="hover-img" href="destinationDetails.html">'+
+                                        '<a class="hover-img" href="destinationDetails.jsp">'+
                                             '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
                                             '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
                                                 '<div class="text-small">'+
@@ -103,7 +103,7 @@ $("#buscarPorPrecio").submit(function(e) {
                    {
                        alert("respuesta servidor: " + JSON.stringify(data)); 
                        var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.html?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
+                       var form = $('<form action="pages/client/searchResult.jsp?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
   '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
   '</form>');
 $('body').append(form);
@@ -134,7 +134,7 @@ $("#buscarPorFecha").submit(function(e) {
                    {
                        alert("respuesta servidor: " + JSON.stringify(data)); 
                        var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.html?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
+                       var form = $('<form action="pages/client/searchResult.jsp?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
   '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
   '</form>');
 $('body').append(form);
@@ -190,9 +190,9 @@ form.submit();
                                 <ul class="top-user-area-list list list-horizontal list-border">
                                     <li class="top-user-area-avatar">
                                         <a href="user-profile.html">
-                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                         </li>
-                                        <li><a href="#">Sign Out</a>
+                                        <li><a href="pages/logout">Sign Out</a>
                                         </li>
 
                                         <li class="top-user-area-lang nav-drop">

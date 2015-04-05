@@ -1,0 +1,1 @@
+<% response.sendRedirect("pages/nonsecure/login.jsp"); %>

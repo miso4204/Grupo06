@@ -45,7 +45,7 @@ function myFunction(arr) {
 
                     out+='<div class="col-md-4">'+
                                     '<div class="thumb">'+
-                                        '<a class="hover-img" href="destinationDetails.html">'+
+                                        '<a class="hover-img" href="destinationDetails.jsp">'+
                                             '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
                                             '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
                                                 '<div class="text-small">'+
@@ -104,7 +104,7 @@ document.getElementById("ListaProductos").innerHTML = out;
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="index.jsp">
                             <img src="img/logoSm.png" alt="Image Alternative text" title="Image Title" />
                         </a>
                     </div>
@@ -121,9 +121,9 @@ document.getElementById("ListaProductos").innerHTML = out;
                             <ul class="top-user-area-list list list-horizontal list-border">
                                 <li class="top-user-area-avatar">
                                     <a href="user-profile.html">
-                                        <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                        <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                     </li>
-                                    <li><a href="#">Sign Out</a>
+                                    <li><a href="pages/logout">Sign Out</a>
                                     </li>
 
                                     <li class="top-user-area-lang nav-drop">

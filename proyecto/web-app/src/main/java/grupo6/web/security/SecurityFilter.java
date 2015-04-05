@@ -1,5 +1,7 @@
 package grupo6.web.security;
 
+import grupo6.web.dto.UsuarioDTO;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -21,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SecurityFilter implements Filter {
 
-	private static final String LOGIN_PAGE_URI = "pages/nonsecure/login.html";
+	private static final String LOGIN_PAGE_URI = "/pages/nonsecure/login.jsp";
 
 	/** recursos no restringidos */
 	private Set<String> nonRestrictedResources;
@@ -39,22 +41,22 @@ public class SecurityFilter implements Filter {
 	 */
 	public void init(FilterConfig filterConfig) throws ServletException {
 		nonRestrictedResources = new HashSet<String>();
-		nonRestrictedResources.add("/pages/nonsecure/login.html");
+		nonRestrictedResources.add("/pages/nonsecure/login.jsp");
 
 		restrictedResourcesCient = new HashSet<String>();
-		restrictedResourcesCient.add("/pages/client/destinationDetails.html");
-		restrictedResourcesCient.add("/pages/client/home_client.html");
-		restrictedResourcesCient.add("/pages/client/indexUser.html");
-		restrictedResourcesCient.add("/pages/client/payment.html");
-		restrictedResourcesCient.add("/pages/client/searchResult.html");
+		restrictedResourcesCient.add("/pages/client/destinationDetails.jsp");
+		restrictedResourcesCient.add("/pages/client/home_client.jsp");
+		restrictedResourcesCient.add("/pages/client/indexUser.jsp");
+		restrictedResourcesCient.add("/pages/client/payment.jsp");
+		restrictedResourcesCient.add("/pages/client/searchResult.jsp");
 
 		restrictedResourcesProvider = new HashSet<String>();
-		restrictedResourcesProvider.add("/pages/provider/home_provider.html");
-		restrictedResourcesProvider.add("/pages/provider/indexProvider.html");
+		restrictedResourcesProvider.add("/pages/provider/home_provider.jsp");
+		restrictedResourcesProvider.add("/pages/provider/indexProvider.jsp");
 
 		restrictedResourcesAdmin = new HashSet<String>();
-		restrictedResourcesAdmin.add("/pages/admin/home_admin.html");
-		restrictedResourcesAdmin.add("/pages/admin/indexAdmin.html");
+		restrictedResourcesAdmin.add("/pages/admin/home_admin.jsp");
+		restrictedResourcesAdmin.add("/pages/admin/indexAdmin.jsp");
 	}
 
 	/**
@@ -113,14 +115,17 @@ public class SecurityFilter implements Filter {
 	private boolean esUsuarioAutorizado(HttpServletRequest req, String uri,
 			String contextPath) {
 
-		String rol = (String) req.getSession().getAttribute("rol");
+		UsuarioDTO usuario = (UsuarioDTO) req.getSession().getAttribute("usuarioSesion");
+		if (usuario == null) {
+			return false;
+		}
 		Iterator<String> ite = null;
-		if ("ADMIN".equals(rol)) {
+		if ("ADMIN".equals(usuario.getRol())) {
 			ite = restrictedResourcesAdmin.iterator();
-		} else if ("CLIENT".equals(rol)) {
+		} else if ("CLIENT".equals(usuario.getRol())) {
 			ite = restrictedResourcesCient.iterator();
 		}
-		if ("PROVIDER".equals(rol)) {
+		else if ("PROVIDER".equals(usuario.getRol())) {
 			ite = restrictedResourcesProvider.iterator();
 		} else {
 			return false;

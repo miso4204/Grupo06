@@ -86,7 +86,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a class="logo" href="index.html">
+                            <a class="logo" href="index.jsp">
                                 <img src="img/logoSm.png" alt="Image Alternative text" title="Image Title" />
                             </a>
                         </div>
@@ -102,10 +102,10 @@
                             <div class="top-user-area clearfix">
                                 <ul class="top-user-area-list list list-horizontal list-border">
                                     <li class="top-user-area-avatar">
-                                        <a href="user-profile.html">
-                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                        <a href="user-profile.jsp">
+                                            <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                         </li>
-                                        <li><a href="#">Sign Out</a>
+                                        <li><a href="pages/logout">Sign Out</a>
                                         </li>
 
                                         <li class="top-user-area-lang nav-drop">
@@ -219,7 +219,7 @@
         <div class="container">
             <div class="row row-wrap">
                 <div class="col-md-3">
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="index.jsp">
                         <img src="img/logoSm.png" alt="Image Alternative text" title="Image Title" /> <h2>ECOTURISMO</h2>
                     </a>
                     <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
