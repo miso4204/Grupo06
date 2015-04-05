@@ -94,4 +94,11 @@ public class NavigationWebController {
 
 		return new ModelAndView("/provider/home_provider");
 	}
+	
+	@RequestMapping("/client/successPayment.jsp")
+	protected ModelAndView showSuccessPayment(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return new ModelAndView("/client/successPayment");
+	}
 }

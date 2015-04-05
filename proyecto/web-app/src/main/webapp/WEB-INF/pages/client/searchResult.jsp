@@ -292,6 +292,9 @@ document.getElementById("ListaProductos").innerHTML = out;
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="pages/client/payment.jsp">Carrito</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

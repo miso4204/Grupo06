@@ -233,6 +233,9 @@ form.submit();
                                     
                                 </ul>
                             </li>
+                            <li>
+                                <a href="pages/client/payment.jsp">Carrito</a>
+                            </li>
                             
                             
 
