@@ -97,7 +97,7 @@
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><span class="btn btn-primary" id="addCart">Add to Cart</span>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">Add to Cart</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
@@ -185,7 +185,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><span class="btn btn-primary" onclick="hide()" id="addCart">Add to Cart</span>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">Add to Cart</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
@@ -209,6 +209,7 @@ document.getElementById("ListaProductos").innerHTML = out;
 
     });  
 </script>
+
 </head>
 
 <body>

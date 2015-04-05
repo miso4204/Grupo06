@@ -79,14 +79,14 @@ $(document).ready(function () {
                     var puntuacionAtencion = roadMapData[2].puntuacion; 
                     var puntuacionLimpieza = roadMapData[3].puntuacion; 
                     var puntuacionCuartos = roadMapData[4].puntuacion; 
-                    //var puntuacionComoidad = roadMapData[5].puntuacion;
+                    var puntuacionComoidad = roadMapData[5].puntuacion;
 
                     document.getElementById("nombreProducto").innerHTML = arr.nombre +"<h5>"+arr.lugar+"</h5>";
                     document.getElementById("ciudadProducto").innerHTML = " "+arr.ciudad
-                    document.getElementById("precioProducto").innerHTML = arr.precio; 
+                    document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
-                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,5);    
+                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,puntuacionComoidad);    
                     
                                      
 
@@ -97,6 +97,39 @@ $(document).ready(function () {
                 });
   });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#addCart").submit(function(e) {
+            e.preventDefault();     
+            var jsonPeticion = JSON.stringify({
+                    "userName": '${usuarioSesion.usuario}', 
+                    "idProducto": $('#idProductoParaCarrito').val()
+                     });
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "PUT",
+                url: "services/carrito/agregar", 
+                data: jsonPeticion,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                   
+                    var out='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your product has been added!.</div>'
+                       document.getElementById("addCart").innerHTML = out;
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
+});
+        </script>
 </head>
 
 <body>
@@ -252,8 +285,47 @@ $(document).ready(function () {
                         </div>
                         <!--RATING-->
                         <div class="row">
-                            
                             <div class="col-md-8">
+                                <h4 class="lh1em">Traveler raiting</h4>
+                                <ul class="list booking-item-raiting-list">
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Exellent</div>
+                                        <div class="booking-item-raiting-list-bar">
+                                            <div style="width:91%;"></div>
+                                        </div>
+                                        <div class="booking-item-raiting-list-number">1223</div>
+                                    </li>
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Very Good</div>
+                                        <div class="booking-item-raiting-list-bar">
+                                            <div style="width:6%;"></div>
+                                        </div>
+                                        <div class="booking-item-raiting-list-number">61</div>
+                                    </li>
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Average</div>
+                                        <div class="booking-item-raiting-list-bar">
+                                            <div style="width:5%;"></div>
+                                        </div>
+                                        <div class="booking-item-raiting-list-number">40</div>
+                                    </li>
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Poor</div>
+                                        <div class="booking-item-raiting-list-bar">
+                                            <div style="width:3%;"></div>
+                                        </div>
+                                        <div class="booking-item-raiting-list-number">15</div>
+                                    </li>
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Terrible</div>
+                                        <div class="booking-item-raiting-list-bar">
+                                            <div style="width:1%;"></div>
+                                        </div>
+                                        <div class="booking-item-raiting-list-number">9</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
                                 <h4 class="lh1em">Summary</h4>
                                 <ul class="list booking-item-raiting-summary-list" id="idCaritasCalif">
                                     <li>
@@ -335,7 +407,9 @@ $(document).ready(function () {
                             </div>
                             
                         </div>
-                         <button class="btn btn-primary btn-lg" type="submit">Add to cart</button>
+                        <form id="addCart">
+                         <button class="btn btn-primary btn-lg" type="submit"  >Add to cart</button>
+                         </form>
                     </div>
 
                 </div>

@@ -24,6 +24,132 @@
 
 <script src="js/jquery.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#removeProduct").submit(function(e) {
+            alert("elimino del carrito con id ");
+            e.preventDefault();     
+            var jsonPeticion = JSON.stringify({
+                    "userName": '${usuarioSesion.usuario}', 
+                    "idProducto": $('#idProductoParaCarrito').val()
+                     });
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "PUT",
+                url: "services/carrito/remover", 
+                data: jsonPeticion,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                   alert("elimino del carrito");
+                    /*var out='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your product has been added!.</div>'
+                       document.getElementById("addCart").innerHTML = out;*/
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
+});
+        </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+       
+              
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'clienteId':  '${usuarioSesion.id}' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/carrito/listar/" + '${usuarioSesion.usuario}', 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+
+
+                    var out="";
+                    var urlIma="";
+                
+                    
+                    //SE TOMA EL JSON DE LOS PRODUCTOS DEL CARRITO A MOSTRAR   
+                   var arr=JSON.parse(JSON.stringify(data));
+
+                       for(i = 0; i < arr.length; i++) {
+                            //-------------------
+                            //Si el url es cualquier texto, se pone un default
+                            //-------------------
+
+                            if( arr[i].urlImagen.indexOf("http") > -1){
+                                urlIma=arr[i].urlImagen;
+                            }
+                            else{
+                                urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+                            }
+                           out+='<a class="booking-item-payment-img" href="#">'+
+                                        '<img src="'+urlIma+'" alt="Image Alternative text" title="hotel 1" />'+
+                                    '</a>'+
+                                    '<h5 class="booking-item-payment-title" id="nombrePro"><a href="#">'+arr[i].nombre+'</a></h5>'+
+                                   '<form id="removeProduct">'+
+                                   '<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr[i].id+'">'+ 
+                                        '<p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>'+
+                                        '<small class="booking-item-last-booked" id="precioPro">Price:'+arr[i].precio+' </small><br>'+
+                                        '<small class="booking-item-last-booked" id="ciudadPro">'+arr[i].ciudad+'</small>'+
+                                     '<div><button class="btn btn-primary btn-small" type="submit"  >Remove</button></div>'+
+                                    '</form>'
+                        document.getElementById("productosCarritos").innerHTML =out;
+                       }
+                    
+                    
+                                     
+
+                },
+                error: function(jqXHR, textStatus, errorMessage) {
+                 alert("Error: " + errorMessage);
+                     }
+                });  
+        });
+
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'clienteId':  '${usuarioSesion.id}' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/carrito/total/" + '${usuarioSesion.usuario}', 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+
+
+                    
+                    var totalCarrito=JSON.stringify(data);
+                    var out="Total: " +'<span>$ '+totalCarrito+'</span>' ;
+                    
+                   document.getElementById("totalCarrito").innerHTML =out;
+                                     
+
+                },
+                error: function(jqXHR, textStatus, errorMessage) {
+                 alert("Error: " + errorMessage);
+                     }
+                });  
+        
+        </script>
+
 </head>
 
 <body>
@@ -168,56 +294,26 @@
                             </form>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" >
+                            <h4>Shopping Cart:</h4>
                             <div class="booking-item-payment">
-                                <header class="clearfix">
+                                <header class="clearfix" id= "productosCarritos">
                                     <a class="booking-item-payment-img" href="#">
                                         <img src="img/800x600.png" alt="Image Alternative text" title="hotel 1" />
                                     </a>
-                                    <h5 class="booking-item-payment-title"><a href="#">InterContinental New York Barclay</a></h5>
-                                    <ul class="icon-group booking-item-rating-stars">
-                                        <li><i class="fa fa-star"></i>
-                                        </li>
-                                        <li><i class="fa fa-star"></i>
-                                        </li>
-                                        <li><i class="fa fa-star"></i>
-                                        </li>
-                                        <li><i class="fa fa-star"></i>
-                                        </li>
-                                        <li><i class="fa fa-star"></i>
-                                        </li>
-                                    </ul>
+                                    <h5 class="booking-item-payment-title" id="nombrePro"><a href="#">InterContinental New York Barclay</a></h5>
+                                    
+                                    <form id="removeProduct">
+
+                                        <p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>
+                                        <small class="booking-item-last-booked" id="precioPro">Price: </small><br>
+                                        <small class="booking-item-last-booked" id="ciudadPro">Ciudad</small>
+
+                                     <button class="btn btn-primary btn-small" type="submit"  >Remove</button>
+                                    </form>
                                 </header>
-                                <ul class="booking-item-payment-details">
-                                    <li>
-                                        <h5>Booking for 7 nights</h5>
-                                        <div class="booking-item-payment-date">
-                                            <p class="booking-item-payment-date-day">April, 26</p>
-                                            <p class="booking-item-payment-date-weekday">Saturday</p>
-                                        </div><i class="fa fa-arrow-right booking-item-payment-date-separator"></i>
-                                        <div class="booking-item-payment-date">
-                                            <p class="booking-item-payment-date-day">May, 3</p>
-                                            <p class="booking-item-payment-date-weekday">Saturday</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h5>Room</h5>
-                                        <p class="booking-item-payment-item-title">Club LVL Water View Dbl/Dbl Premier Room</p>
-                                        <ul class="booking-item-payment-price">
-                                            <li>
-                                                <p class="booking-item-payment-price-title">7 Nights</p>
-                                                <p class="booking-item-payment-price-amount">$150<small>/per day</small>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p class="booking-item-payment-price-title">Taxes</p>
-                                                <p class="booking-item-payment-price-amount">$15<small>/per day</small>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <p class="booking-item-payment-total">Total trip: <span>$1,155</span>
+                                
+                                <p class="booking-item-payment-total" id="totalCarrito">Total: <span>$1,155</span>
                                 </p>
                             </div>
                         </div>
