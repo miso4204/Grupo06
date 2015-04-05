@@ -12,11 +12,11 @@ public class ReporteVentasFechasDTO {
 
 	private Date fechaInicial;
 	private Date fechaFinal;
-	private int totalVentas;
+	private long totalVentas;
 	private double totalDineroEnVentas;
 
 	public ReporteVentasFechasDTO(Date fechaInicial, Date fechaFinal,
-			int totalVentas, double totalDineroEnVentas) {
+			long totalVentas, double totalDineroEnVentas) {
 		this.fechaInicial = fechaInicial;
 		this.fechaFinal = fechaFinal;
 		this.totalVentas = totalVentas;
@@ -39,7 +39,7 @@ public class ReporteVentasFechasDTO {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public int getTotalVentas() {
+	public long getTotalVentas() {
 		return totalVentas;
 	}
 

@@ -1,10 +1,10 @@
 package grupo6.web.dto.reportes;
 
-import grupo6.web.json.serializer.JsonDateDeserializer;
+import grupo6.web.json.serializer.JsonDateSerializer;
 
 import java.util.Date;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * Clase que representa un reporte de ventas entre fechas
@@ -16,18 +16,18 @@ public class ReporteVentasFechasDTO {
 
 	private Date fechaInicial;
 	private Date fechaFinal;
-	private int totalVentas;
+	private long totalVentas;
 	private double totalDineroEnVentas;
 
 	public ReporteVentasFechasDTO(Date fechaInicial, Date fechaFinal,
-			int totalVentas, double totalDineroEnVentas) {
+			long totalVentas, double totalDineroEnVentas) {
 		this.fechaInicial = fechaInicial;
 		this.fechaFinal = fechaFinal;
 		this.totalVentas = totalVentas;
 		this.totalDineroEnVentas = totalDineroEnVentas;
 	}
 
-	@JsonDeserialize(using = JsonDateDeserializer.class)
+	@JsonSerialize(using = JsonDateSerializer.class)
 	public Date getFechaInicial() {
 		return fechaInicial;
 	}
@@ -36,7 +36,7 @@ public class ReporteVentasFechasDTO {
 		this.fechaInicial = fechaInicial;
 	}
 
-	@JsonDeserialize(using = JsonDateDeserializer.class)
+	@JsonSerialize(using = JsonDateSerializer.class)
 	public Date getFechaFinal() {
 		return fechaFinal;
 	}
@@ -45,7 +45,7 @@ public class ReporteVentasFechasDTO {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public int getTotalVentas() {
+	public long getTotalVentas() {
 		return totalVentas;
 	}
 

@@ -1,15 +1,16 @@
 package grupo6.modulo.reports.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.FacturaCompra;
+import grupo6.persistencia.entidades.Producto;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Alejo
  *
  */
+@SuppressWarnings("unchecked")
 @Repository(value = "reporteVentasDAO")
 public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
+
+	private static final String FECHA_PAGO = "fechaPago";
 
 	/**
 	 * @see ReporteVentasDAO#getReporteVentasPorCiudad(String)
@@ -29,21 +33,29 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 	@Transactional(readOnly = true)
 	@Override
 	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad) {
-		Criteria criteriaTotalVentas = getCurrentSession().createCriteria(FacturaCompra.class);
-		criteriaTotalVentas.setProjection(Projections.rowCount());
-		Criteria productosCriteria = criteriaTotalVentas.createCriteria("productosComprados");
-		productosCriteria.add(Restrictions.eq("ciudad", ciudad));
-		
-		long totalVentas = (long) criteriaTotalVentas.list().get(0);
+		Criteria criteria = getCurrentSession().createCriteria(
+				FacturaCompra.class);
 
-		Criteria criteriaTotalDineroVentas = getCurrentSession().createCriteria(FacturaCompra.class);
-		criteriaTotalDineroVentas.setProjection(Projections.sum("precio"));
-		Criteria productosCriteriaDinero = criteriaTotalDineroVentas.createCriteria("productosComprados");
-		productosCriteriaDinero.add(Restrictions.eq("ciudad", ciudad));
-		
-		double totalDineroEnVentas = (double) criteriaTotalDineroVentas.list().get(0);
-		
-		return new ReporteVentasCiudadDTO(ciudad,totalVentas, totalDineroEnVentas);
+		long totalVentas = 0;
+		double totalDineroEnVentas = 0;
+
+		if (criteria.list() != null) {
+			List<FacturaCompra> facturas = criteria.list();
+			for (FacturaCompra f : facturas) {
+				if (f.getProductosComprados() != null) {
+					for (Producto p : f.getProductosComprados()) {
+						if (p.getCiudad().equalsIgnoreCase(ciudad)) {
+							totalDineroEnVentas += p.getPrecio();
+							totalVentas++;
+						}
+					}
+				}
+
+			}
+		}
+
+		return new ReporteVentasCiudadDTO(ciudad, totalVentas,
+				totalDineroEnVentas);
 	}
 
 	/**
@@ -54,25 +66,29 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 	public ReporteVentasFechasDTO getReporteVentasEntreFechas(
 			Date fechaInicial, Date fechaFinal) {
 
-		Criteria criteriaTotalVentas = getCurrentSession().createCriteria(FacturaCompra.class);
-		criteriaTotalVentas.setProjection(Projections.rowCount());
-		criteriaTotalVentas.add(Restrictions.ge("fechaPago", fechaInicial)); 
-		criteriaTotalVentas.add(Restrictions.le("fechaPago", fechaFinal));
-		criteriaTotalVentas.createCriteria("productosComprados");
-		
-		
-		int totalVentas = (int) criteriaTotalVentas.list().get(0);
+		Criteria criteria = getCurrentSession().createCriteria(FacturaCompra.class);
+		criteria.add(Restrictions.ge(FECHA_PAGO, fechaInicial));
+		criteria.add(Restrictions.le(FECHA_PAGO, fechaFinal));
 
-		Criteria criteriaTotalDineroVentas = getCurrentSession().createCriteria(FacturaCompra.class);
-		criteriaTotalDineroVentas.add(Restrictions.ge("fechaPago", fechaInicial)); 
-		criteriaTotalDineroVentas.add(Restrictions.le("fechaPago", fechaFinal));
-		criteriaTotalDineroVentas.setProjection(Projections.sum("precio"));
-		criteriaTotalDineroVentas.createCriteria("productosComprados");
-		
-		double totalDineroEnVentas = (double) criteriaTotalDineroVentas.list().get(0);
-		
-		return new ReporteVentasFechasDTO(fechaInicial, fechaFinal, totalVentas, totalDineroEnVentas);
-		
+		long totalVentas = 0;
+		double totalDineroEnVentas = 0;
+
+		if (criteria.list() != null) {
+			List<FacturaCompra> facturas = criteria.list();
+			for (FacturaCompra f : facturas) {
+				if (f.getProductosComprados() != null) {
+					for (Producto p : f.getProductosComprados()) {
+						totalDineroEnVentas += p.getPrecio();
+						totalVentas++;
+					}
+				}
+
+			}
+		}
+
+		return new ReporteVentasFechasDTO(fechaInicial, fechaFinal,
+				totalVentas, totalDineroEnVentas);
+
 	}
 
 }
