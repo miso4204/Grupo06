@@ -13,6 +13,11 @@
 	<!-- Escanea clases con anotaciones de Spring de frontend. Ej: @Controller -->
 	<mvc:annotation-driven />
 	
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<beans:property name="prefix" value="/WEB-INF/pages/" />
+			<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
 	
 	<!-- Crea el datasource hacia la BD en memoria -->
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"

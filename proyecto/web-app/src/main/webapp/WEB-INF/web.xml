@@ -28,9 +28,10 @@
 	<servlet-mapping>
 		<servlet-name>springMVCServlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>
+		<url-pattern>/pages/*</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/pages/nonsecure/login.html</welcome-file>
+		<welcome-file>/pages/nonsecure/login.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
