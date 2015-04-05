@@ -7,8 +7,11 @@ import grupo6.marketplace.ecoturismo.adapters.CarritoComprasAdapter;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
-import grupo6.marketplace.ecoturismo.util.AlertUtilidades;
 import grupo6.marketplace.ecoturismo.util.CurrencyUtilidades;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import android.widget.TextView;
  * @author Alejo
  *
  */
+@SuppressLint("InflateParams")
 public class CarritoComprasFragment extends Fragment{
 
 	private EcoturismoApplication ecoturismoApplication;
@@ -89,7 +93,16 @@ public class CarritoComprasFragment extends Fragment{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				Producto producto = carritoCompras.get(position);
-				AlertUtilidades.mostrarAlert(getActivity(), R.drawable.ic_launcher, R.string.producto_descripcion_titulo, producto.getDescripcion(), R.string.ok);
+				LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				View vista = inflater.inflate(R.layout.dialog_descripcion_producto,null);
+				TextView tituloTextView = (TextView) vista.findViewById(R.id.Detalle_Producto_TextView);
+				tituloTextView.setText(producto.getCiudad() + "-"+ producto.getNombre());
+
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setView(vista);
+
+				final Dialog dialog = builder.create();
+				dialog.show();
 			}
 		});
 	}

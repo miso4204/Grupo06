@@ -37,7 +37,7 @@ public class ProductosFragment extends ListFragment{
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Producto producto = productos.get(position);
-		AlertUtilidades.mostrarAlert(getActivity(), R.drawable.ic_launcher, R.string.producto_descripcion_titulo, producto.getDescripcion(), R.string.ok);
+		AlertUtilidades.mostrarAlert(getActivity(), R.drawable.ic_launcher, R.string.producto_descripcion_titulo, "IMAGEN CON CALIFICACIONES", R.string.ok);
 		super.onListItemClick(l, v, position, id);
 	}
 

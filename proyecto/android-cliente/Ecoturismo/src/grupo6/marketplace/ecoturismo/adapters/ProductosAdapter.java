@@ -72,7 +72,7 @@ public class ProductosAdapter extends ArrayAdapter<Producto>{
 		
 		holder.textViewProuctoNombre.setText(producto.getNombre());
 		holder.textViewProuctoCiudad.setText(producto.getCiudad());
-		holder.textViewProuctoFecha.setText(producto.getFecha());
+		holder.textViewProuctoFecha.setText(producto.getFechaInicio());
 		holder.textViewProuctoPrecio.setText(producto.getPrecioConFormato());
 		holder.imageButtonAgregarCarrito.setOnClickListener(new View.OnClickListener() {
 			

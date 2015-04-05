@@ -1,67 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:gravity="center" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/registro_logo" />
-
-    <EditText
-        android:id="@+id/Registro_EditText_Nombre"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:ems="10"
-        android:hint="@string/registro_hint_edit_text_nombre"
-        android:inputType="textPersonName" >
+        android:gravity="center"
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/registro_logo" />
 
-    <EditText
-        android:id="@+id/Registro_EditText_Direccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:ems="10"
-        android:hint="@string/registro_hint_edit_text_direccion"
-        android:inputType="textPostalAddress" >
-    </EditText>
+        <EditText
+            android:id="@+id/Registro_EditText_Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_nombre"
+            android:inputType="textPersonName" >
 
-    <EditText
-        android:id="@+id/Registro_EditText_Correo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:ems="10"
-        android:hint="@string/registro_hint_edit_text_correo"
-        android:inputType="textEmailAddress" >
+            <requestFocus />
+        </EditText>
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/Registro_EditText_Direccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_direccion"
+            android:inputType="textPostalAddress" >
+        </EditText>
 
-    <EditText
-        android:id="@+id/Registro_EditText_Clave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
-        android:ems="10"
-        android:hint="@string/registro_hint_edit_text_clave"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/Registro_EditText_Telefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_telefono"
+            android:inputType="phone" >
+        </EditText>
 
-    <Button
-        android:id="@+id/Registro_Button_Registrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_green"
-        android:text="@string/registro_button_registrar"
-        android:textColor="@android:color/white" />
+        <EditText
+            android:id="@+id/Registro_EditText_UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_nombre_usuario"
+            android:inputType="textEmailAddress" >
+        </EditText>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/Registro_EditText_Clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_clave"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/Registro_Button_Registrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_green"
+            android:text="@string/registro_button_registrar"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</ScrollView>

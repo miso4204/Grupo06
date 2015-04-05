@@ -2,50 +2,43 @@ package grupo6.marketplace.ecoturismo.modelo;
 
 import grupo6.marketplace.ecoturismo.util.CurrencyUtilidades;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
- * Clase del modelo que representa un producto del marketplace de ecoturismo  
+ * Entidad que representa el producto o paquete turistico, el cual se vende en
+ * el marketplace.
+ * 
  * @author Alejo
- *
+ * 
  */
-public class Producto {
+public class Producto implements Serializable {
 
-	private long id;
-	private String categoria;
+	private static final long serialVersionUID = -8658863654377821942L;
+
+	private Long id;
 	private String nombre;
-	private String descripcion;
+	private String lugar;
 	private String ciudad;
-	private String fecha;
-	private double precio;
-	
-	public Producto() {
-		
-	}
-	
-	public Producto(String categoria,String nombre, String descripcion, String ciudad,String fecha, double precio) {
-		this.categoria = categoria;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.ciudad = ciudad;
-		this.fecha = fecha;
-		this.precio = precio;
+	private Double precio;
+	private String fechaInicio;
+	private String urlImagen;
+	private List<CalificacionDTO> calificaciones;
+
+	public String getPrecioConFormato() {
+		return CurrencyUtilidades.formatoDinero(precio,
+				CurrencyUtilidades.LENGUAJE_ESPANOL,
+				CurrencyUtilidades.CODIGO_COLOMBIA);
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public String getCategoria() {
-		return categoria;
-	}
-	
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -54,12 +47,12 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getLugar() {
+		return lugar;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	public String getCiudad() {
@@ -70,26 +63,38 @@ public class Producto {
 		this.ciudad = ciudad;
 	}
 
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
-	
-	public String getPrecioConFormato() {
-		return CurrencyUtilidades.formatoDinero(precio, 
-												CurrencyUtilidades.LENGUAJE_ESPANOL, 
-												CurrencyUtilidades.CODIGO_COLOMBIA
-												);
-	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public String getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
+
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+
+	public List<CalificacionDTO> getCalificaciones() {
+		return calificaciones;
+	}
+
+	public void setCalificaciones(List<CalificacionDTO> calificaciones) {
+		this.calificaciones = calificaciones;
+	}
+
+	
+
 }

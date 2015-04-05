@@ -5,7 +5,7 @@ import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.fragments.CarritoComprasFragment;
-import grupo6.marketplace.ecoturismo.fragments.CategoriasFragment;
+import grupo6.marketplace.ecoturismo.fragments.BusquedasFragment;
 import grupo6.marketplace.ecoturismo.fragments.PerfilFragment;
 import grupo6.marketplace.ecoturismo.fragments.ReportesFragment;
 import android.support.v4.app.Fragment;
@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 /**
- * Actividad que se encarga de cargar los fragmentos de la vista principal (categorias,carrito de compras, perfil, reportes) 
+ * Actividad que se encarga de cargar los fragmentos de la vista principal (buseudas,carrito de compras, perfil, reportes) 
  * @author Alejo
  *
  */
@@ -43,7 +43,7 @@ public class PrincipalActivity extends ActionBarActivity {
 
 	private void cargarListaFragmentos() {
 		fragmentos = new ArrayList<Fragment>();
-        fragmentos.add(new CategoriasFragment());
+        fragmentos.add(new BusquedasFragment());
         fragmentos.add(new CarritoComprasFragment());
         fragmentos.add(new PerfilFragment());
         fragmentos.add(new ReportesFragment());

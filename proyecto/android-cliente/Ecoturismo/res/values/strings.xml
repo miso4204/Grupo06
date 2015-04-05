@@ -11,25 +11,34 @@
     <string name="login_button_inicio_sesion">Iniciar Sesión</string>
 
     <!-- REGISTRO -->
-    <string name="registro_hint_edit_text_nombre">Nombre</string>
+    <string name="registro_hint_edit_text_nombre">Nombres y Apellidos</string>
     <string name="registro_hint_edit_text_direccion">Dirección</string>
-    <string name="registro_hint_edit_text_correo">Correo</string>
+    <string name="registro_hint_edit_text_telefono">Teléfono</string>
+    <string name="registro_hint_edit_text_nombre_usuario">Usuario (ej. alejo56)</string>
     <string name="registro_hint_edit_text_clave">Contraseña</string>
     <string name="registro_button_registrar">Registrar</string>
-    
+
     <!-- PRODUCTOS -->
-	<string name="producto_nombre">Habitacion en Hotel de Prueba</string>
-	<string name="producto_descripcion">Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno</string>
-	<string name="producto_ciudad">BARICHARA</string>
-	<string name="producto_fecha">25 Marzo de 2015</string>
-	<string name="producto_precio">$ 150.000</string>
-	<string name="producto_agregar_a_carrito">+</string>
-	<string name="producto_descripcion_titulo">Descripción</string>
-	
-	<!-- CARRITO COMPRAS -->
-	<string name="carrrito_compras_total">Total:</string>
-	<string name="carrrito_compras_button_comprar">Comprar</string>
-	<string name="carrito_compras_producto_agregado">Producto agregado al carrito</string>
-	<string name="carrito_compras_producto_removido">Producto removido del carrito</string>
-	
+    <string name="producto_nombre">Habitacion en Hotel de Prueba</string>
+    <string name="producto_descripcion">Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno</string>
+    <string name="producto_ciudad">BARICHARA</string>
+    <string name="producto_fecha">25 Marzo de 2015</string>
+    <string name="producto_precio">$ 150.000</string>
+    <string name="producto_descripcion_titulo">Descripción</string>
+    
+    <!-- DETALLE -->
+    <string name="detalle_compartir_facebook">Compartir Facebook</string>
+    <string name="detalle_calificacion_valor">4.5</string>
+    
+    <!-- CARRITO COMPRAS -->
+    <string name="carrrito_compras_total">Total:</string>
+    <string name="carrrito_compras_button_comprar">Comprar</string>
+    <string name="carrito_compras_producto_agregado">Producto agregado al carrito</string>
+    <string name="carrito_compras_producto_removido">Producto removido del carrito</string>
+
+    <!-- BUSQUEDAS -->
+    <string name="busqueda_por_ubicacion">Ubicación</string>
+    <string name="busqueda_por_precio">Precio</string>
+    <string name="busqueda_por_fecha">Fecha</string>
+
 </resources>

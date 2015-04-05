@@ -13,44 +13,38 @@ import android.database.sqlite.SQLiteDatabase;
 public class ProductoTable {
 
 	public static final String NOMBRE_TABLA = "Producto";
-
 	public static final String ID_PRODUCTO = "idProducto";
-
-	public static final String NOMBRE_CATEGORIA = "nombreCategoria";
-
+	public static final String ID_PRODUCTO_SERVER = "idProductoServer";
 	public static final String NOMBRE_PRODUCTO = "nombreProducto";
-
-	public static final String DESCRIPCION_PRODUCTO = "descripcionProducto";
-
+	public static final String LUGAR_PRODUCTO = "lugarProducto";
 	public static final String CIUDAD_PRODUCTO = "ciudadProducto";
-
-	public static final String FECHA_PRODUCTO = "fechaProducto";
-
+	public static final String FECHA_INICIO_PRODUCTO = "fechaInicio";
+	public static final String URL_IMAGEN_PRODUCTO = "urlProducto";
 	public static final String PRECIO_PRODUCTO = "precioProducto";
+
 
 	public static final String CREATE_TABLE = "CREATE TABLE "
 			+ NOMBRE_TABLA
 			+ " ( "
 			+ ID_PRODUCTO
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ NOMBRE_CATEGORIA
-			+ " TEXT NOT NULL, "
+			+ ID_PRODUCTO_SERVER
+			+ " INTEGER NOT NULL, "
 			+ NOMBRE_PRODUCTO
 			+ " TEXT NOT NULL, "
-			+ DESCRIPCION_PRODUCTO
+			+ LUGAR_PRODUCTO
 			+ " TEXT NOT NULL, "
 			+ CIUDAD_PRODUCTO
 			+ " TEXT NOT NULL, "
-			+ FECHA_PRODUCTO
+			+ FECHA_INICIO_PRODUCTO
+			+ " TEXT NOT NULL, "
+			+ URL_IMAGEN_PRODUCTO
 			+ " TEXT NOT NULL, "
 			+ PRECIO_PRODUCTO
-			+ " REAL NOT NULL,FOREIGN KEY("
-			+ NOMBRE_CATEGORIA
-			+ ") REFERENCES Categoria("
-			+ NOMBRE_CATEGORIA
-			+ "));";
+			+ " REAL NOT NULL);";
 
 	public static void onCreate(SQLiteDatabase database) {
+		android.util.Log.d("Producto ",CREATE_TABLE);
 		database.execSQL(CREATE_TABLE);
 	}
 
@@ -62,11 +56,12 @@ public class ProductoTable {
 		SQLiteDatabase database = ecoturismoSqlHelper.getWritableDatabase();
 		for(Producto p: productos){
 			ContentValues values = new ContentValues();
-			values.put(NOMBRE_CATEGORIA,p.getCategoria());
+			values.put(ID_PRODUCTO_SERVER,p.getId());
 			values.put(NOMBRE_PRODUCTO,p.getNombre());
-			values.put(DESCRIPCION_PRODUCTO,p.getDescripcion());
+			values.put(LUGAR_PRODUCTO,p.getLugar());
 			values.put(CIUDAD_PRODUCTO,p.getCiudad());
-			values.put(FECHA_PRODUCTO,p.getFecha());
+			values.put(FECHA_INICIO_PRODUCTO,p.getFechaInicio());
+			values.put(URL_IMAGEN_PRODUCTO,p.getUrlImagen());
 			values.put(PRECIO_PRODUCTO,p.getPrecio());
 		    
 		    database.insert(NOMBRE_TABLA, null,values);
@@ -99,13 +94,14 @@ public class ProductoTable {
 	
 	public static Producto cursorToProducto(Cursor cursor) {
 	    Producto p = new Producto();
-	    p.setId(cursor.getLong(cursor.getColumnIndex(ID_PRODUCTO)));
-	    p.setCategoria(cursor.getString(cursor.getColumnIndex(NOMBRE_CATEGORIA)));
+	    p.setId(cursor.getLong(cursor.getColumnIndex(ID_PRODUCTO_SERVER)));
 	    p.setNombre(cursor.getString(cursor.getColumnIndex(NOMBRE_PRODUCTO)));
-	    p.setDescripcion(cursor.getString(cursor.getColumnIndex(DESCRIPCION_PRODUCTO)));
+	    p.setLugar(cursor.getString(cursor.getColumnIndex(LUGAR_PRODUCTO)));
 	    p.setCiudad(cursor.getString(cursor.getColumnIndex(CIUDAD_PRODUCTO)));
-	    p.setFecha(cursor.getString(cursor.getColumnIndex(FECHA_PRODUCTO)));
 	    p.setPrecio(cursor.getDouble(cursor.getColumnIndex(PRECIO_PRODUCTO)));
+	    p.setFechaInicio(cursor.getString(cursor.getColumnIndex(FECHA_INICIO_PRODUCTO)));
+	    p.setUrlImagen(cursor.getString(cursor.getColumnIndex(URL_IMAGEN_PRODUCTO)));
+		
 	    return p;
 	}
 	
