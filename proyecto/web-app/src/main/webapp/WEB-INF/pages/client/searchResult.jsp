@@ -73,7 +73,7 @@
             urlIma=arr[i].urlImagen;
         }
         else{
-            urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+           urlIma="img/Bariloche1.jpg";
         }
 
                 var roadMapData = arr[i].calificaciones;
@@ -163,7 +163,7 @@ document.getElementById("ListaProductos").innerHTML = out;
             urlIma=arr[i].urlImagen;
         }
         else{
-            urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+            urlIma="img/Bariloche1.jpg";
         }
 
                 var roadMapData = arr[i].calificaciones;

@@ -69,7 +69,7 @@ $(document).ready(function () {
                         urlIma=arr.urlImagen;
                     }
                     else{
-                        urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+                       urlIma="img/Bariloche1.jpg";
                     }
 
                     var roadMapData = arr.calificaciones;

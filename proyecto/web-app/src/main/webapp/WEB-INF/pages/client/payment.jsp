@@ -61,6 +61,42 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#payPSE").submit(function(e) {
+        
+            e.preventDefault();     
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/payment/pay_pse/'${usuarioSesion.usuario}'", 
+                data: jsonPeticion,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                   alert("elimino del carrito");
+                   var form = $('<form action="pages/client/indexUser.jsp" method="post">' +
+                    '<input type="hidden" name="respuestajson" value='' />' +
+                    '</form>');
+                    $('body').append(form);
+                    form.submit(); /*var o href="pages/client/indexUser.jsp"*/
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
+});
+        </script>
+
+       
+
+<script type="text/javascript">
+    $(document).ready(function() {
        
               
             $.ajax({
@@ -94,7 +130,7 @@
                                 urlIma=arr[i].urlImagen;
                             }
                             else{
-                                urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+                                urlIma="img/Bariloche1.jpg";
                             }
                            out+='<a class="booking-item-payment-img" href="#">'+
                                         '<img src="'+urlIma+'" alt="Image Alternative text" title="hotel 1" />'+
@@ -107,9 +143,9 @@
                                         '<small class="booking-item-last-booked" id="ciudadPro">'+arr[i].ciudad+'</small>'+
                                      '<div><button class="btn btn-primary btn-small" type="submit"  >Remove</button></div>'+
                                     '</form>'
-                        document.getElementById("productosCarritos").innerHTML =out;
+                        
                        }
-                    
+                    document.getElementById("productosCarritos").innerHTML =out;
                     
                                      
 
@@ -241,8 +277,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <img class="pp-img" src="img/paypal.png" alt="Image Alternative text" title="Image Title" />
-                        <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p><a class="btn btn-primary">Checkout via Paypal</a>   
+                        <img class="pp-img" src="http://portalacademico.ugca.edu.co/ugc/images/PSE.png" alt="Image Alternative text" title="Image Title" />
+                        <p>Important: You will be redirected to PSE's website to securely complete your payment.</p>
+                        <form id="payPSE">
+                         <button class="btn btn-primary" type="submit">Checkout via PSE</a>   
+
+                         </form>
                     </div>
 
                     <div class="col-md-4">
