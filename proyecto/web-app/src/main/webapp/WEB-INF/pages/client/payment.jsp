@@ -25,7 +25,9 @@
 <script src="js/jquery.js"></script>
 
 <script type="text/javascript">
+
     $(document).ready(function() {
+        function remover(){
         $("#removeProduct").submit(function(e) {
             alert("elimino del carrito con id ");
             e.preventDefault();     
@@ -56,7 +58,9 @@
                 }
             });
         });
+}
 });
+
         </script>
 
 <script type="text/javascript">
@@ -71,15 +75,44 @@
                 },
                 datatype:"json",
                 type: "POST",
-                url: "services/payment/pay_pse/'${usuarioSesion.usuario}'", 
-                data: jsonPeticion,
+                url: "services/payment/pay_pse/"+'${usuarioSesion.usuario}', 
+                data: false,
                 contentType: false,
                 processData: false,
                 success: function(data)
                    {
-                   alert("elimino del carrito");
-                   var form = $('<form action="pages/client/indexUser.jsp" method="post">' +
-                    '<input type="hidden" name="respuestajson" value='' />' +
+                  
+                   var form = $('<form action="pages/client/successPayment.jsp" method="post">' +
+                    '<input type="hidden" name="respuestajson" value="" />' +
+                    '</form>');
+                    $('body').append(form);
+                    form.submit(); /*var o href="pages/client/indexUser.jsp"*/
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
+$("#payCredit").submit(function(e) {
+        
+            e.preventDefault();     
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/payment/pay_credit/"+'${usuarioSesion.usuario}', 
+                data: false,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                  
+                   var form = $('<form action="pages/client/successPayment.jsp" method="post">' +
+                    '<input type="hidden" name="respuestajson" value="" />' +
                     '</form>');
                     $('body').append(form);
                     form.submit(); /*var o href="pages/client/indexUser.jsp"*/
@@ -136,12 +169,12 @@
                                         '<img src="'+urlIma+'" alt="Image Alternative text" title="hotel 1" />'+
                                     '</a>'+
                                     '<h5 class="booking-item-payment-title" id="nombrePro"><a href="#">'+arr[i].nombre+'</a></h5>'+
-                                   '<form id="removeProduct">'+
+                                   '<form id="removeProduct" onsubmit="remover()">'+
                                    '<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr[i].id+'">'+ 
                                         '<p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>'+
                                         '<small class="booking-item-last-booked" id="precioPro">Price:'+arr[i].precio+' </small><br>'+
                                         '<small class="booking-item-last-booked" id="ciudadPro">'+arr[i].ciudad+'</small>'+
-                                     '<div><button class="btn btn-primary btn-small" type="submit"  >Remove</button></div>'+
+                                     '<div><button class="btn btn-primary btn-small" type="submit onclick="remover()">Remove</button></div>'+
                                     '</form>'
                         
                        }
@@ -283,12 +316,12 @@
                         <img class="pp-img" src="http://portalacademico.ugca.edu.co/ugc/images/PSE.png" alt="Image Alternative text" title="Image Title" />
                         <p>Important: You will be redirected to PSE's website to securely complete your payment.</p>
                         <form id="payPSE">
-                         <button class="btn btn-primary" type="submit">Checkout via PSE</a>   
+                           <button class="btn btn-primary" type="submit">Checkout via PSE</a>   
 
-                         </form>
-                    </div>
+                           </form>
+                       </div>
 
-                    <div class="col-md-4">
+                       <div class="col-md-4">
                         <h4>Pay via Credit/Debit Card</h4>
                         <ul class="card-select">
                             <li>
@@ -329,12 +362,15 @@
                                     <input class="form-control" placeholder="mm/yy" type="text" />
                                 </div>
                             </div>
+                            </form>
                             <div class="checkbox checkbox-small">
                                 <label>
                                     <input class="i-check" type="checkbox" checked/>Add to My Cards</label>
                                 </div>
+                                <form id="payCredit">
                                 <input class="btn btn-primary" type="submit" value="Proceed Payment" />
-                            </form>
+                                </form>
+                            
                         </div>
 
                         <div class="col-md-4" >
@@ -346,14 +382,14 @@
                                     </a>
                                     <h5 class="booking-item-payment-title" id="nombrePro"><a href="#">InterContinental New York Barclay</a></h5>
                                     
-                                    <form id="removeProduct">
+                                    
 
                                         <p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>
                                         <small class="booking-item-last-booked" id="precioPro">Price: </small><br>
                                         <small class="booking-item-last-booked" id="ciudadPro">Ciudad</small>
-
-                                     <button class="btn btn-primary btn-small" type="submit"  >Remove</button>
-                                    </form>
+                                        <form id="removeProduct">
+                                        <button class="btn btn-primary btn-small" type="submit"  >Remove</button>
+                                        <form>
                                 </header>
                                 
                                 <p class="booking-item-payment-total" id="totalCarrito">Total: <span>$1,155</span>
@@ -361,8 +397,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gap"></div>
-                </div>            <!--...........................-->
+                </div>  
+                <div class="gap"></div>
+                          <!--...........................-->
                 <!-- FINAL LISTA DE DESTINOS  -->
                 <!--...........................-->
 
