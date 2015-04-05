@@ -191,11 +191,11 @@ $(document).ready(function () {
                             <h2 class="lh1em" id="nombreProducto">Universidad de los Andes (?)</h2>
                             <p class="lh1em text-small" ><i class="fa fa-map-marker"id="ciudadProducto"></i></p>
                             <ul class="list list-inline text-small">
-                                <li><a href="#"><i class="fa fa-envelope"></i> Destination E-mail</a>
+                                <li><a href="mailto:${usuarioSesion.email}?Subject=Hello%20again" target="_top" ><i class="fa fa-envelope"></i> Destination E-mail</a>
                                 </li>
-                                <li><a href="wwww.uniandes.edu.co"><i class="fa fa-home"></i> Destionation Website</a>
+                                <li><a href="${usuarioSesion.website}"><i class="fa fa-home"></i> Destionation Website</a>
                                 </li>
-                                <li><i class="fa fa-phone"></i> +(57) 3994999</li>
+                                <li><i class="fa fa-phone"></i> ${usuarioSesion.telefono}</li>
                             </ul>
                         </div>
                         <div class="col-md-3">

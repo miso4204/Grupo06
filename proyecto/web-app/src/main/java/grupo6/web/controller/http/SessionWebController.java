@@ -94,7 +94,7 @@ public class SessionWebController {
 					} else if ("CLIENT".equals(usuarioDTO.getRol())) {
 						model = new ModelAndView("/client/indexUser");
 					} else if ("PROVIDER".equals(usuarioDTO.getRol())) {
-						model = new ModelAndView("/provider/home_provider");
+						model = new ModelAndView("/provider/indexProvider");
 					} else {
 						model.addObject("mensajeError", "Roles inválidos");
 					}

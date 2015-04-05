@@ -178,6 +178,7 @@ public class ProductoService implements IProductoService {
 	 */
 	private void asignarRatingsDefault(Long productoId) {
 		
+		ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.UBICACION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.ATENCION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.LIMPIEZA);

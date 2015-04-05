@@ -9,10 +9,10 @@ package grupo6.web.dto.reportes;
 public class ReporteVentasCiudadDTO {
 
 	private String ciudad;
-	private int totalVentas;
+	private long totalVentas;
 	private double totalDineroEnVentas;
 
-	public ReporteVentasCiudadDTO(String ciudad, int totalVentas,
+	public ReporteVentasCiudadDTO(String ciudad, long totalVentas,
 			double totalDineroEnVentas) {
 		this.ciudad = ciudad;
 		this.totalVentas = totalVentas;
@@ -27,7 +27,7 @@ public class ReporteVentasCiudadDTO {
 		this.ciudad = ciudad;
 	}
 
-	public int getTotalVentas() {
+	public long getTotalVentas() {
 		return totalVentas;
 	}
 

@@ -2,6 +2,7 @@ package grupo6.web.dto;
 
 /**
  * DTO para ser convertido en JSON y que representa los datos basicos de un Usuario.
+ * Estos objetos se guardarán en sesión como identificador dle usuario actual.
  * 
  * @author caespinosam
  *
@@ -15,6 +16,8 @@ public class UsuarioDTO {
 	private String direccion;
 	private String telefono;
 	private String rol;
+	private String email;
+	private String website;
 	
 	
 	public long getId() {
@@ -59,8 +62,17 @@ public class UsuarioDTO {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	
-	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}	
 	
 }

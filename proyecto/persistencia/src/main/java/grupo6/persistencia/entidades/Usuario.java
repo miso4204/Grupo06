@@ -33,6 +33,8 @@ public class Usuario implements Serializable {
 	private String telefono;
 	private List<FacturaCompra> facturas = new ArrayList<FacturaCompra>();
 	private String rol;
+	private String email;
+	private String website; // util para el proveedor
 	private List<Producto> carritoCompras = new ArrayList<Producto>();
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
@@ -116,5 +118,22 @@ public class Usuario implements Serializable {
 	public void setCarritoCompras(List<Producto> carritoCompras) {
 		this.carritoCompras = carritoCompras;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}	
+	
 	
 }

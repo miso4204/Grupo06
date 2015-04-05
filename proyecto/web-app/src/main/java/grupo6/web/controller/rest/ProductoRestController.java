@@ -59,6 +59,7 @@ public class ProductoRestController {
 		producto.setUrlImagen(productoDTO.getUrlImagen());
 		producto.setFechaInicio(productoDTO.getFechaInicio());
 		producto.setFechaCreacion(new Date());
+		producto.setProveedorId(productoDTO.getProveedorId());
 		return productoService.crearProducto(producto); 
 	}
 	

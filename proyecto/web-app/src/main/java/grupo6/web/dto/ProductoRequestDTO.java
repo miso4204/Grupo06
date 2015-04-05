@@ -32,6 +32,8 @@ public class ProductoRequestDTO implements Serializable {
 	private Date fechaInicio;
 	/** Las fotos del producto. **/
 	private String urlImagen;
+	/** Id del proveedor que crea el producto.*/
+	private Long proveedorId;
 
 	public String getNombre() {
 		return nombre;
@@ -81,5 +83,15 @@ public class ProductoRequestDTO implements Serializable {
 	public void setUrlImagen(String urlImagen) {
 		this.urlImagen = urlImagen;
 	}
+
+	public Long getProveedorId() {
+		return proveedorId;
+	}
+
+	public void setProveedorId(Long proveedorId) {
+		this.proveedorId = proveedorId;
+	}
+	
+	
 
 }

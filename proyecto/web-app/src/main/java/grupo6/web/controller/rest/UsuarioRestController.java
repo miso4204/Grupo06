@@ -58,6 +58,8 @@ public class UsuarioRestController {
 				usuarioDTO.setRol(user.getRol());
 				usuarioDTO.setTelefono(user.getTelefono());
 				usuarioDTO.setUsuario(user.getUsuario());
+				usuarioDTO.setEmail(user.getEmail());
+				usuarioDTO.setWebsite(user.getWebsite());
 			}
 			
 		} catch (Exception e) {			
