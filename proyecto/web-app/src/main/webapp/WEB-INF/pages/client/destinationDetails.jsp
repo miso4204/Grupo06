@@ -22,68 +22,80 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
 <script src="js/jquery.js"></script>
+<script src="js/estructuraCalificacion.js"></script>
 
-<script>
-var xmlhttp = new XMLHttpRequest();
-var url = "services/producto/listar";
-
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-        myFunction(myArr);
-    }
-}
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function myFunction(arr) {
-    var out = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-   
-       
-
-                    out+='<div class="col-md-4">'+
-                                    '<div class="thumb">'+
-                                        '<a class="hover-img" href="destinationDetails.jsp">'+
-                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
-                                            '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
-                                                '<div class="text-small">'+
-                                                    <!--....................-->
-                                                    <!-- ESTRELLAS  -->
-                                                    <!--....................-->
-                                                    '<ul class="icon-group text-tiny text-color">'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star-half-empty"></i>'+
-                                                        '</li>'+
-                                                    '</ul>'+
-                                                    '<h5>'+arr[i].nombre+'</h5>'+
-                                                    '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
-                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
-                                                '</div>'+
-                                            '</div>'+
-                                        '</a>'+
-                                    '</div>'+
-                                '</div>'
-
-document.getElementById("ListaProductos").innerHTML = out;
-// alert("Producto creado, respuesta servidor: " +  arr[i].nombre); 
-
-         
-    }
+<script>  
+$(document).ready(function () {  
+    var userId = GetParameterValues('id');    
 
 
-     
-}
-</script>
+    function GetParameterValues(param) {  
+        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+        for (var i = 0; i < url.length; i++) {  
+            var urlparam = url[i].split('=');  
+            if (urlparam[0] == param) {  
+                return urlparam[1];  
+            }  
+        }  
+    } 
+        
 
+        $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/producto/buscar_por_id/" + userId, 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+
+
+                    var urlIma="";
+                    var calificaciones="";
+                    //SE TOMA EL JSON DEL PRODUCTO A MOSTRAR   
+                    var arr=JSON.parse(JSON.stringify(data));
+                    
+
+                    //-------------------
+                    //Si el url es cualquier texto, se pone un default
+                    //-------------------
+
+                    if( arr.urlImagen.indexOf("http") > -1){
+                        urlIma=arr.urlImagen;
+                    }
+                    else{
+                        urlIma="http://viajes.tinglesa.com.uy/imagenes/img_contenido/fotos/b/es/turismo-en-bariloche.jpg";
+                    }
+
+                    var roadMapData = arr.calificaciones;
+                    var puntuacionGeneral = roadMapData[0].puntuacion; 
+                    var cantidadReviews = roadMapData[0].cantidadVotantes; 
+                    var puntuacionUbicacion = roadMapData[1].puntuacion; 
+                    var puntuacionAtencion = roadMapData[2].puntuacion; 
+                    var puntuacionLimpieza = roadMapData[3].puntuacion; 
+                    var puntuacionCuartos = roadMapData[4].puntuacion; 
+                    var puntuacionComoidad = roadMapData[5].puntuacion;
+
+                    document.getElementById("nombreProducto").innerHTML = arr.nombre +"<h5>"+arr.lugar+"</h5>";
+                    document.getElementById("ciudadProducto").innerHTML = " "+arr.ciudad
+                    document.getElementById("precioProducto").innerHTML = arr.precio; 
+                    document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
+                    document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
+                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,puntuacionComoidad);    
+                    
+                                     
+
+                },
+                error: function(jqXHR, textStatus, errorMessage) {
+                 alert("Error: " + errorMessage);
+                     }
+                });
+  });
+    </script>
 </head>
 
 <body>

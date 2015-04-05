@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
  <script src="js/jquery.js"></script>
+ <script src="js/estructuraCalificacion.js"></script>
 
 <script>  
     $(document).ready(function () {  
@@ -40,93 +41,7 @@
                 }  
             }  
         } 
-        /*
-        *Función para armar las estrellas de colores
-        */ 
-        function estructuraCalificacion(a) {
-                    var estructuraCalificacion="";
-                //Estructura estrellas.
-                if (a==0){
-                    estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                           ' </ul>'
-                }
-                else if (a==1) { 
-                estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                           ' </ul>'}
-                else if (a==2) { 
-                estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                           ' </ul>'}
-                else if (a==3) { 
-                estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                           ' </ul>'}
-                else if (a==4) { 
-                estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-empty"></i>'+
-                                                '</li>'+
-                                           ' </ul>'}
-                else if (a==5) { 
-                estructuraCalificacion += '<ul class="icon-group booking-item-rating-stars">'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star-"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                                '<li><i class="fa fa-star"></i>'+
-                                                '</li>'+
-                                           ' </ul>'};
-                return estructuraCalificacion;
-            }       
+        
         if(servicio==2){
          $.ajax({
                 headers: { 
@@ -167,7 +82,7 @@
                 
 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -176,7 +91,7 @@
                                         '</div>'+
                                     '</div>'+
                                     '<div class="col-md-6">'+
-                                    '<div class="booking-item-rating">'+estructuraCalificacion(puntuacionGeneral)+''+
+                                    '<div class="booking-item-rating">'+estructuraCalificacionBasica(puntuacionGeneral)+''+
                                             '<span class="booking-item-rating-number"><b >'+puntuacionGeneral+'</b> of 5</span><small>('+cantidadReviews+' reviews)</small>'+
                                         '</div>'+
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
@@ -255,7 +170,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                 var puntuacionGeneral = roadMapData[0].puntuacion; 
                 var cantidadReviews = roadMapData[0].cantidadVotantes; 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -264,7 +179,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '</div>'+
                                     '</div>'+
                                     '<div class="col-md-6">'+
-                                    '<div class="booking-item-rating">'+estructuraCalificacion(puntuacionGeneral)+''+
+                                    '<div class="booking-item-rating">'+estructuraCalificacionBasica(puntuacionGeneral)+''+
                                             '<span class="booking-item-rating-number"><b >'+puntuacionGeneral+'</b> of 5</span><small>('+cantidadReviews+' reviews)</small>'+
                                         '</div>'+
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
