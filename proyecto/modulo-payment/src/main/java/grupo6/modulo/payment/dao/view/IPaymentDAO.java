@@ -2,7 +2,6 @@ package grupo6.modulo.payment.dao.view;
 
 
 import grupo6.persistencia.entidades.FacturaCompra;
-import grupo6.persistencia.entidades.Usuario;
 
 /**
  * Insterface que define los metodos necesarios para
@@ -17,19 +16,19 @@ public interface IPaymentDAO {
 	 * Metodo que permite hacer le pago por PSE
 	 * @return factura de la factura generada
 	 */
-	public FacturaCompra pagoPSE(Usuario userCompra);
+	public FacturaCompra pagoPSE(String userName);
 	
 	
 	/**
 	 * Metodo que permite hacer le pago por PSE
 	 * @return factura de la factura generada
 	 */
-	public FacturaCompra pagoCreditCard(Usuario userCompra);
+	public FacturaCompra pagoCreditCard(String userName);
 	
 	/**
 	 * Metodo que permite realizar el pago 
 	 * mediante efectivo en un punto de pago
 	 * @return
 	 */
-	public FacturaCompra cashOnDelivery(Usuario userCompra);
+	public FacturaCompra cashOnDelivery(String userName);
 }

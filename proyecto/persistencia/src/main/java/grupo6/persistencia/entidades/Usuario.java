@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private String direccion;
 	private String telefono;
-	private List<FacturaCompra> facturas;
+	private List<FacturaCompra> facturas = new ArrayList<FacturaCompra>();
 	private String rol;
 	private List<Producto> carritoCompras = new ArrayList<Producto>();
 	
@@ -87,7 +87,10 @@ public class Usuario implements Serializable {
 		this.telefono = telefono;
 	}
 	
-	@OneToMany(mappedBy="usuario")
+	@OneToMany
+	@JoinTable(name = "facturas", 
+			   joinColumns = @JoinColumn(name="UsuarioId", referencedColumnName="UsuarioId"), 
+			   inverseJoinColumns = @JoinColumn(name = "facturaId", referencedColumnName="ID"))
 	public List<FacturaCompra> getFacturas() {
 		return facturas;
 	}

@@ -1,35 +1,36 @@
 package grupo6.modulo.payment.service.impl;
 
-import grupo6.modulo.payment.dao.impl.PaymentDAO;
+import grupo6.modulo.payment.dao.view.IPaymentDAO;
 import grupo6.modulo.payment.service.view.IPaymentService;
 import grupo6.persistencia.entidades.FacturaCompra;
-import grupo6.persistencia.entidades.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "Payment")
 public class PaymentService implements IPaymentService {
 
 	@Autowired
-	private PaymentDAO paymentDAO;// Inyeccion de dependencias
-	
-	
+	private IPaymentDAO paymentDAO;// Inyeccion de dependencias
 	
 	
 	@Override
-	public FacturaCompra pagoPSE(Usuario userCompra) {
-		return paymentDAO.pagoPSE(userCompra);
+	@Transactional
+	public FacturaCompra pagoPSE(String userName) {
+		return paymentDAO.pagoPSE(userName);
 	}
 
 	@Override
-	public FacturaCompra pagoCreditCard(Usuario userCompra) {
-		return paymentDAO.pagoCreditCard(userCompra);
+	@Transactional
+	public FacturaCompra pagoCreditCard(String userName) {
+		return paymentDAO.pagoCreditCard(userName);
 	}
 
 	@Override
-	public FacturaCompra cashOnDelivery(Usuario userCompra) {
-		return paymentDAO.cashOnDelivery(userCompra);
+	@Transactional
+	public FacturaCompra cashOnDelivery(String userName) {
+		return paymentDAO.cashOnDelivery(userName);
 	}
 
 

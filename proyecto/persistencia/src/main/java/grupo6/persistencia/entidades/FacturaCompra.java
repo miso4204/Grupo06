@@ -10,14 +10,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,7 +32,6 @@ public class FacturaCompra implements Serializable {
 	 */
 	private static final long serialVersionUID = -6096553714339129260L;
 	private long id;
-	private Usuario usuario;
 	private Date fechaPago;
 	private List<Producto> productosComprados;
 	private double totalPagado;
@@ -51,16 +48,6 @@ public class FacturaCompra implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="USUARIO_ID")
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	@Temporal(TemporalType.DATE)
