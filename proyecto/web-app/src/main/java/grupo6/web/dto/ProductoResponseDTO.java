@@ -37,6 +37,8 @@ public class ProductoResponseDTO implements Serializable  {
 	private Date ultimaCompra;
 	/** Calificaciones asociadas al producto.**/
 	private List<CalificacionResponseDTO> calificaciones;
+	/** Proveedor dle producto.*/
+	private UsuarioDTO proveedor;
 	
 	public Long getId() {
 		return id;
@@ -114,6 +116,17 @@ public class ProductoResponseDTO implements Serializable  {
 	
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public UsuarioDTO getProveedor() {
+		
+		return proveedor;
+	}
+
+
+	public void setProveedor(UsuarioDTO proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 	

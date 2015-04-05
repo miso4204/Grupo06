@@ -1,14 +1,17 @@
 package grupo6.web.controller.rest;
 
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
+import grupo6.persistencia.entidades.Usuario;
 import grupo6.web.dto.CalificacionResponseDTO;
 import grupo6.web.dto.CalificarRequestDTO;
 import grupo6.web.dto.ProductoRequestDTO;
 import grupo6.web.dto.ProductoResponseDTO;
+import grupo6.web.dto.UsuarioDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +42,9 @@ public class ProductoRestController {
 	/** Srvicios de producto.*/
 	@Autowired 
 	private IProductoService productoService;
+	/** Servicios de usuarios.*/
+	@Autowired 
+	private IUsuarioService usuarioService;	
 	
 	/**
 	 * Servicio REST que crea un producto.
@@ -199,8 +205,10 @@ public class ProductoRestController {
 			CalificacionResponseDTO calificacionDTO = new CalificacionResponseDTO();
 			calificacionDTO.setId(rating.getId());
 			calificacionDTO.setNombre(rating.getTipoServicio().name());
-			calificacionDTO.setPuntuacion(calificacion);
-			calificacionDTO.setCantidadVotantes(votantes);
+			//calificacionDTO.setPuntuacion(calificacion);
+			//calificacionDTO.setCantidadVotantes(votantes);
+			calificacionDTO.setPuntuacion((double)(1 + (int)(Math.random()*5)));
+			calificacionDTO.setCantidadVotantes((1 + (int)(Math.random()*1000000)));
 			if (clienteId != null) {
 				RatingProductoCalificacion calUsuario = 
 						productoService.buscarCalificacionDeUsuario(
@@ -211,6 +219,11 @@ public class ProductoRestController {
 							calUsuario.getCalificacion().getPuntaje());
 				}
 			}
+			if (producto.getProveedorId() != null) {
+				Usuario proveedor = 
+						usuarioService.buscarPorId(producto.getProveedorId());
+				productoDTO.setProveedor(crearUsuarioDTO(proveedor));
+			}
 			
 					
 			calificaciones.add(calificacionDTO);
@@ -218,5 +231,24 @@ public class ProductoRestController {
 		productoDTO.setCalificaciones(calificaciones);
 		
 		return productoDTO;
+	}
+	
+	
+	/**
+	 * Crea un objeto UsuarioDTO (JSON) a partir de un objeto Usuario.
+	 * 
+	 * @param usuario el usuario a convertir..
+	 
+	 * @return la representacion DTO del usuario.
+	 */
+	private UsuarioDTO crearUsuarioDTO(Usuario usuario) {
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+		usuarioDTO.setId(usuario.getId());
+		usuarioDTO.setDireccion(usuario.getDireccion());
+		usuarioDTO.setEmail(usuario.getEmail());
+		usuarioDTO.setNombre(usuario.getNombre());
+		usuarioDTO.setTelefono(usuario.getTelefono());
+		usuarioDTO.setWebsite(usuario.getWebsite());
+		return usuarioDTO;
 	}
 }
