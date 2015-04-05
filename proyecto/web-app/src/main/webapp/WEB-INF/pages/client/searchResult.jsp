@@ -82,7 +82,7 @@
                 
 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+
@@ -170,7 +170,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                 var puntuacionGeneral = roadMapData[0].puntuacion; 
                 var cantidadReviews = roadMapData[0].cantidadVotantes; 
     out+=' <li>'+
-                            '<a class="booking-item" href="pages/client/destinationDetails.html?id='+arr[i].id+'">'+
+                            '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
                                 '<div class="row">'+
                                     '<div class="col-md-3">'+
                                         '<div class="booking-item-img-wrap">'+

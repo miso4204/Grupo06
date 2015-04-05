@@ -78,14 +78,14 @@ $(document).ready(function () {
                     var puntuacionAtencion = roadMapData[2].puntuacion; 
                     var puntuacionLimpieza = roadMapData[3].puntuacion; 
                     var puntuacionCuartos = roadMapData[4].puntuacion; 
-                    var puntuacionComoidad = roadMapData[5].puntuacion;
+                    //var puntuacionComoidad = roadMapData[5].puntuacion;
 
                     document.getElementById("nombreProducto").innerHTML = arr.nombre +"<h5>"+arr.lugar+"</h5>";
                     document.getElementById("ciudadProducto").innerHTML = " "+arr.ciudad
                     document.getElementById("precioProducto").innerHTML = arr.precio; 
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
-                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,puntuacionComoidad);    
+                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,5);    
                     
                                      
 
@@ -187,8 +187,8 @@ $(document).ready(function () {
                 <header class="booking-item-header">
                     <div class="row">
                         <div class="col-md-9">
-                            <h2 class="lh1em">Universidad de los Andes (?)</h2>
-                            <p class="lh1em text-small"><i class="fa fa-map-marker"></i> Bogotá, Colombia.</p>
+                            <h2 class="lh1em" id="nombreProducto">Universidad de los Andes (?)</h2>
+                            <p class="lh1em text-small" ><i class="fa fa-map-marker"id="ciudadProducto"></i></p>
                             <ul class="list list-inline text-small">
                                 <li><a href="#"><i class="fa fa-envelope"></i> Destination E-mail</a>
                                 </li>
@@ -198,7 +198,7 @@ $(document).ready(function () {
                             </ul>
                         </div>
                         <div class="col-md-3">
-                            <p class="booking-item-header-price"><small>price from</small>  <span class="text-lg">$350</span>/night</p>
+                            <p class="booking-item-header-price"><small>price from</small>  <span class="text-lg" id="precioProducto">$350</span>/night</p>
                         </div>
                     </div>
                 </header>
@@ -213,22 +213,13 @@ $(document).ready(function () {
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab-1">
-                                    <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
-                                        <img src="http://upload.wikimedia.org/wikipedia/commons/a/af/Universidad_de_los_Andes_(3326108271).jpg" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF living room" />
+                                    <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" id ="imagenURL">
                                         <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY RIO INTERNACIONAL rooftop pool" />
                                         <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" />
                                         <img src="img/800x600.png" alt="Image Alternative text" title="The pool" />
                                         <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF suite2" />
                                         <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY LIBERDADE" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel 1" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF suite" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel PORTO BAY RIO INTERNACIONAL de luxe" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel THE CLIFF BAY spa suite" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel 2" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO luxury suite" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel EDEN MAR suite" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO lobby" />
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
+                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="google-map-tab">
@@ -238,7 +229,7 @@ $(document).ready(function () {
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="booking-item-meta">
+                        <div class="booking-item-meta" id="estructuraCalificacion">
                             <h2 class="lh1em mt40">Exeptional!</h2>
                             <h3>97% <small >of guests recommend</small></h3>
                             <div class="booking-item-rating">
@@ -260,64 +251,10 @@ $(document).ready(function () {
                         </div>
                         <!--RATING-->
                         <div class="row">
+                            
                             <div class="col-md-8">
-                                <h4 class="lh1em">Traveler raiting</h4>
-                                <ul class="list booking-item-raiting-list">
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Exellent</div>
-                                        <div class="booking-item-raiting-list-bar">
-                                            <div style="width:91%;"></div>
-                                        </div>
-                                        <div class="booking-item-raiting-list-number">1223</div>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Very Good</div>
-                                        <div class="booking-item-raiting-list-bar">
-                                            <div style="width:6%;"></div>
-                                        </div>
-                                        <div class="booking-item-raiting-list-number">61</div>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Average</div>
-                                        <div class="booking-item-raiting-list-bar">
-                                            <div style="width:5%;"></div>
-                                        </div>
-                                        <div class="booking-item-raiting-list-number">40</div>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Poor</div>
-                                        <div class="booking-item-raiting-list-bar">
-                                            <div style="width:3%;"></div>
-                                        </div>
-                                        <div class="booking-item-raiting-list-number">15</div>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Terrible</div>
-                                        <div class="booking-item-raiting-list-bar">
-                                            <div style="width:1%;"></div>
-                                        </div>
-                                        <div class="booking-item-raiting-list-number">9</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
                                 <h4 class="lh1em">Summary</h4>
-                                <ul class="list booking-item-raiting-summary-list">
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Sleep</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <ul class="list booking-item-raiting-summary-list" id="idCaritasCalif">
                                     <li>
                                         <div class="booking-item-raiting-list-title">Location</div>
                                         <ul class="icon-group booking-item-rating-stars">
@@ -329,7 +266,7 @@ $(document).ready(function () {
                                             </li>
                                             <li><i class="fa fa-smile-o"></i>
                                             </li>
-                                            <li><i class="fa fa-smile-o text-gray"></i>
+                                            <li><i class="fa fa-smile-o"></i>
                                             </li>
                                         </ul>
                                     </li>
@@ -344,7 +281,7 @@ $(document).ready(function () {
                                             </li>
                                             <li><i class="fa fa-smile-o"></i>
                                             </li>
-                                            <li><i class="fa fa-smile-o"></i>
+                                            <li><i class="fa fa-smile-o text-gray"></i>
                                             </li>
                                         </ul>
                                     </li>
@@ -378,10 +315,26 @@ $(document).ready(function () {
                                             </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <div class="booking-item-raiting-list-title">Comfort</div>
+                                        <ul class="icon-group booking-item-rating-stars">
+                                            <li><i class="fa fa-smile-o"></i>
+                                            </li>
+                                            <li><i class="fa fa-smile-o"></i>
+                                            </li>
+                                            <li><i class="fa fa-smile-o"></i>
+                                            </li>
+                                            <li><i class="fa fa-smile-o"></i>
+                                            </li>
+                                            <li><i class="fa fa-smile-o"></i>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
-                             <button class="btn btn-primary btn-lg" type="submit">Add to cart</button>
+                            
                         </div>
+                         <button class="btn btn-primary btn-lg" type="submit">Add to cart</button>
                     </div>
 
                 </div>
