@@ -159,13 +159,12 @@ public class ProductoRestController {
 			method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void calificarProducto(
-			@RequestBody CalificarRequestDTO request,
-			@RequestHeader(value="clientId", required = true) Long clientId) {		
+			@RequestBody CalificarRequestDTO request) {		
 		
 		ETipoCalificacionRating calificacion =
 					ETipoCalificacionRating.getTipoCalificacion(request.getPuntaje());
 		if (calificacion != null) {
-			productoService.calificarProducto(clientId, 
+			productoService.calificarProducto(request.getClienteId(), 
 					request.getServicioId(), calificacion);
 		}		
 	}

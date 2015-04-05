@@ -43,7 +43,8 @@ $(document).ready(function () {
         $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'clienteId':  '${usuarioSesion.id}' 
                 },
                 datatype:"json",
                 type: "GET",

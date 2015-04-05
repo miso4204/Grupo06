@@ -9,6 +9,7 @@ package grupo6.web.dto;
  */
 public class CalificarRequestDTO {
 	
+	private Long clienteId;
 	private Long servicioId;
 	private Integer puntaje; // 1-5
 
@@ -29,5 +30,15 @@ public class CalificarRequestDTO {
 	public void setPuntaje(Integer puntaje) {
 		this.puntaje = puntaje;
 	}
+
+	public Long getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
+	}
+	
+	
 
 }

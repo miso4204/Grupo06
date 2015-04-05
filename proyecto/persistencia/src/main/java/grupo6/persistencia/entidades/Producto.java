@@ -112,7 +112,7 @@ public class Producto implements Serializable {
 		return direccionGoogleMaps;
 	}
 		
-	@Column(length = 100)
+	@Column(length = 500)
 	public String  getUrlImagen() {
 		return urlImagen;
 	}
