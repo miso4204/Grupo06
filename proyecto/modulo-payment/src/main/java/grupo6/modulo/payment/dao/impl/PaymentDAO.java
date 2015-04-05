@@ -1,7 +1,6 @@
 package grupo6.modulo.payment.dao.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TiposPago;
 import grupo6.modulo.payment.dao.view.IPaymentDAO;
@@ -22,19 +21,19 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 	}
 	
 	@Override
-	public FacturaCompra pagoPSE(Usuario userCompra, List<Producto> productos) {
+	public FacturaCompra pagoPSE(Usuario userCompra) {
 		
 		FacturaCompra factura = new FacturaCompra();
 		
 		try {
 			
 			factura.setFechaPago(new Date());
-			factura.setProductosComprados(productos);
+			factura.setProductosComprados(userCompra.getCarritoCompras());
 			factura.setTipoPago(TiposPago.PSE);
 			factura.setUsuario(userCompra);
 			
 			double precioTota = 0;
-			for (Producto producto : productos) {
+			for (Producto producto : userCompra.getCarritoCompras()) {
 				precioTota += producto.getPrecio();
 			}
 			
@@ -51,18 +50,18 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 	}
 
 	@Override
-	public FacturaCompra pagoCreditCard(Usuario userCompra, List<Producto> productos) {
+	public FacturaCompra pagoCreditCard(Usuario userCompra) {
 		FacturaCompra factura = new FacturaCompra();
 		
 		try {
 			
 			factura.setFechaPago(new Date());
-			factura.setProductosComprados(productos);
+			factura.setProductosComprados(userCompra.getCarritoCompras());
 			factura.setTipoPago(TiposPago.CREDIT_CARD);
 			factura.setUsuario(userCompra);
 			
 			double precioTota = 0;
-			for (Producto producto : productos) {
+			for (Producto producto : userCompra.getCarritoCompras()) {
 				precioTota += producto.getPrecio();
 			}
 			
@@ -79,19 +78,19 @@ public class PaymentDAO extends BaseDAO implements IPaymentDAO {
 	}
 
 	@Override
-	public FacturaCompra cashOnDelivery(Usuario userCompra, List<Producto> productos) {
+	public FacturaCompra cashOnDelivery(Usuario userCompra) {
 
 		FacturaCompra factura = new FacturaCompra();
 
 		try {
 			
 			factura.setFechaPago(new Date());
-			factura.setProductosComprados(productos);
+			factura.setProductosComprados(userCompra.getCarritoCompras());
 			factura.setTipoPago(TiposPago.CASH_ON_DELIVERY);
 			factura.setUsuario(userCompra);
 			
 			double precioTota = 0;
-			for (Producto producto : productos) {
+			for (Producto producto : userCompra.getCarritoCompras()) {
 				precioTota += producto.getPrecio();
 			}
 			

@@ -1,19 +1,15 @@
 package grupo6.web.controller.rest;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import grupo6.modulo.payment.service.view.IPaymentService;
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.FacturaCompra;
-import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,11 +42,11 @@ public class PaymentRestController {
 	@RequestMapping(value = "/pay_pse", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody FacturaCompra pagoPSE(@RequestBody List<Producto> productos) {
+	public @ResponseBody FacturaCompra pagoPSE() {
 		
 		long idUsuarioSession = (long) httpSession.getAttribute(UsuarioRestController.USER_ID_SESSION);
 		Usuario userCompra = usuarioService.buscarPorId(idUsuarioSession);
-		return paymentService.pagoPSE(userCompra, productos);
+		return paymentService.pagoPSE(userCompra);
 	}
 	
 	
@@ -63,11 +59,11 @@ public class PaymentRestController {
 	@RequestMapping(value = "/pay_credit", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody FacturaCompra pagoCreditCard(@RequestBody List<Producto> productos) {
+	public @ResponseBody FacturaCompra pagoCreditCard() {
 		
 		long idUsuarioSession = (long) httpSession.getAttribute(UsuarioRestController.USER_ID_SESSION);
 		Usuario userCompra = usuarioService.buscarPorId(idUsuarioSession);
-		return paymentService.pagoCreditCard(userCompra, productos);
+		return paymentService.pagoCreditCard(userCompra);
 	}
 	
 	/**
@@ -79,10 +75,10 @@ public class PaymentRestController {
 	@RequestMapping(value = "/pay_cash", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody FacturaCompra pagoManual(@RequestBody List<Producto> productos) {
+	public @ResponseBody FacturaCompra pagoManual() {
 		
 		long idUsuarioSession = (long) httpSession.getAttribute(UsuarioRestController.USER_ID_SESSION);
 		Usuario userCompra = usuarioService.buscarPorId(idUsuarioSession);
-		return paymentService.cashOnDelivery(userCompra, productos);
+		return paymentService.cashOnDelivery(userCompra);
 	}
 }
