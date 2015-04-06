@@ -28,7 +28,6 @@
 
     $(document).ready(function() {
         $(document).on("submit", "#removeProduct", function(e) {
-            alert("elimino del carrito con id ");
             e.preventDefault();     
             var jsonPeticion = JSON.stringify({
                     "userName": '${usuarioSesion.usuario}', 
@@ -47,9 +46,8 @@
                 processData: false,
                 success: function(data)
                    {
-                   alert("elimino del carrito");
-                    /*var out='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your product has been added!.</div>'
-                       document.getElementById("addCart").innerHTML = out;*/
+                      location.reload();
+                
                      
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
