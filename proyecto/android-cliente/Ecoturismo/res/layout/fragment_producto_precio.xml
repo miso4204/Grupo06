@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/Busqueda_Precio_EditText_PrecioInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin"
+        android:ems="9"
+        android:hint="@string/busqueda_precio_inicial"
+        android:inputType="numberDecimal" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/Busqueda_Precio_EditText_PrecioFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin"
+        android:ems="9"
+        android:hint="@string/busqueda_precio_final"
+        android:inputType="numberDecimal" >
+    </EditText>
+
+    <Button
+        android:id="@+id/Busqueda_Precio_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_green"
+        android:text="@string/busqueda_button"
+        android:textColor="@android:color/white" />
+
+    <ListView
+        android:id="@+id/Busqueda_Precio_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

@@ -73,9 +73,18 @@
             android:id="@+id/Login_Button_Cambiar_Clave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/margin"
             android:background="@drawable/button_green"
             android:text="@string/perfil_button_cambiar_clave"
+            android:textColor="@android:color/white" />
+        
+        <Button
+            android:id="@+id/Perfil_Button_Logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:background="@drawable/button_green"
+            android:text="@string/perfil_button_cerrar_sesion"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

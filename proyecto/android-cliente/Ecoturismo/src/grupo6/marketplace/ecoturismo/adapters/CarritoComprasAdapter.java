@@ -1,7 +1,7 @@
 package grupo6.marketplace.ecoturismo.adapters;
 
 import grupo6.marketplace.ecoturismo.R;
-import grupo6.marketplace.ecoturismo.fragments.CarritoComprasFragment;
+import grupo6.marketplace.ecoturismo.fragments.carrito.CarritoComprasFragment;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
 import grupo6.marketplace.ecoturismo.modelo.sql.EcoturismoSqlHelper;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;

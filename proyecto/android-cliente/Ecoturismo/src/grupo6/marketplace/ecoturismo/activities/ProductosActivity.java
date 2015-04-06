@@ -1,7 +1,10 @@
 package grupo6.marketplace.ecoturismo.activities;
 
 import grupo6.marketplace.ecoturismo.R;
-import grupo6.marketplace.ecoturismo.fragments.ProductosFragment;
+import grupo6.marketplace.ecoturismo.fragments.busquedas.BusquedasFragment;
+import grupo6.marketplace.ecoturismo.fragments.busquedas.ProductosPorCiudadFragment;
+import grupo6.marketplace.ecoturismo.fragments.busquedas.ProductosPorFechaFragment;
+import grupo6.marketplace.ecoturismo.fragments.busquedas.ProductosPorPrecioFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -30,7 +33,21 @@ public class ProductosActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_productos);
-		reemplazarFragmento(new ProductosFragment());
+		cargarFragmentoInicial(getIntent().getExtras().getInt(BusquedasFragment.TIPO_BUSQUEDA));
+	}
+
+	private void cargarFragmentoInicial(int tipoBusqueda) {
+		switch (tipoBusqueda) {
+		case BusquedasFragment.UBICACION:
+			reemplazarFragmento(new ProductosPorCiudadFragment());
+			break;
+		case BusquedasFragment.PRECIO:
+			reemplazarFragmento(new ProductosPorPrecioFragment());
+			break;
+		case BusquedasFragment.FECHA:
+			reemplazarFragmento(new ProductosPorFechaFragment());
+			break;
+		}
 	}
 
 	@Override

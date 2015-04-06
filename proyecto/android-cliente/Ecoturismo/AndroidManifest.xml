@@ -35,7 +35,23 @@
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name="grupo6.marketplace.ecoturismo.activities.ProductosActivity"
+            android:name=".activities.ProductosActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.PrincipalActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ReportesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.PrincipalActivity" />
+        </activity>
+        <activity
+            android:name="grupo6.marketplace.ecoturismo.activities.PagosActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
             <meta-data

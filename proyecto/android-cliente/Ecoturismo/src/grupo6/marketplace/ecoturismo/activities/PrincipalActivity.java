@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
-import grupo6.marketplace.ecoturismo.fragments.CarritoComprasFragment;
-import grupo6.marketplace.ecoturismo.fragments.BusquedasFragment;
-import grupo6.marketplace.ecoturismo.fragments.PerfilFragment;
-import grupo6.marketplace.ecoturismo.fragments.ReportesFragment;
+import grupo6.marketplace.ecoturismo.fragments.busquedas.BusquedasFragment;
+import grupo6.marketplace.ecoturismo.fragments.carrito.CarritoComprasFragment;
+import grupo6.marketplace.ecoturismo.fragments.proveedor.CrearProductoFragment;
+import grupo6.marketplace.ecoturismo.fragments.reportes.ReportesFragment;
+import grupo6.marketplace.ecoturismo.fragments.usuario.PerfilFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -28,7 +29,6 @@ public class PrincipalActivity extends ActionBarActivity {
  
 	public static final int REQUEST_CODE_PRODUCTOS_ACTIVITY = 123;
 	
-    private static final int INDICE_CARRITO_COMPRAS = 1;
 	private InicialPagerAdapter principalPagerAdapter;
     private ViewPager viewPager;
     private List<Fragment> fragmentos;
@@ -43,7 +43,8 @@ public class PrincipalActivity extends ActionBarActivity {
 
 	private void cargarListaFragmentos() {
 		fragmentos = new ArrayList<Fragment>();
-        fragmentos.add(new BusquedasFragment());
+		fragmentos.add(new CrearProductoFragment());
+		fragmentos.add(new BusquedasFragment());
         fragmentos.add(new CarritoComprasFragment());
         fragmentos.add(new PerfilFragment());
         fragmentos.add(new ReportesFragment());
@@ -83,10 +84,22 @@ public class PrincipalActivity extends ActionBarActivity {
     }
     
 	private void mostrarCarritoCompras() {
-		viewPager.setCurrentItem(INDICE_CARRITO_COMPRAS);
+		int indiceCarrito = buscarIndiceCarrito();
+		viewPager.setCurrentItem(indiceCarrito);
 	}
 	
-    class InicialPagerAdapter extends FragmentPagerAdapter {
+    private int buscarIndiceCarrito() {
+    	int pos = 0;
+		for(int i = 0;i<fragmentos.size();i++){
+			if(fragmentos.get(i) instanceof CarritoComprasFragment){
+				pos = i;
+				i = fragmentos.size();
+			}
+		}
+		return pos;
+	}
+
+	class InicialPagerAdapter extends FragmentPagerAdapter {
  
         Context context;
  

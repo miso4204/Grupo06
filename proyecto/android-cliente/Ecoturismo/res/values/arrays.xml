@@ -5,18 +5,22 @@
         <item>Inicio de Sesión</item>
         <item>Registro</item>
     </string-array>
-    
     <string-array name="titulos_fragmentos_principales">
-        <item>Busqueda</item>
+        <item>Crear Producto</item>
+        <item>Búsqueda</item>
         <item>Carrito Compras</item>
         <item>Perfil</item>
-        <item>Reportes</item>
+        <item>Reportes Ventas</item>
     </string-array>
-    
     <string-array name="categorias">
         <item>Alojamiento</item>
         <item>Restaurantes</item>
         <item>Atracciones</item>
+    </string-array>
+    <string-array name="pagos">
+        <item>Efectivo</item>
+        <item>PSE</item>
+        <item>Tarjeta Crédito</item>
     </string-array>
 
 </resources>

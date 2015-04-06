@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
-import grupo6.marketplace.ecoturismo.fragments.LoginFragment;
-import grupo6.marketplace.ecoturismo.fragments.RegistroFragment;
+import grupo6.marketplace.ecoturismo.fragments.usuario.LoginFragment;
+import grupo6.marketplace.ecoturismo.fragments.usuario.RegistroFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

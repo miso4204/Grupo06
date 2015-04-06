@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/Crear_Producto_EditText_Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/crear_producto_nombre"
+            android:inputType="text" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/Crear_Producto_EditText_Lugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/crear_producto_lugar"
+            android:inputType="text" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/Crear_Producto_EditText_Ciudad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/crear_producto_ciudad"
+            android:inputType="text" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/Crear_Producto_EditText_Precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/crear_producto_precio"
+            android:inputType="numberDecimal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/Crear_Producto_EditText_Fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin"
+                android:ems="10"
+                android:enabled="false"
+                android:hint="@string/crear_producto_fecha_inicio"
+                android:inputType="date" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/Crear_Producto_Button_FechaInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green"
+                android:contentDescription="@string/app_name"
+                android:src="@android:drawable/ic_menu_month" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/Crear_Producto_EditText_Url_Imagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/crear_producto_url_imagen"
+            android:inputType="textUri" >
+        </EditText>
+
+        <Button
+            android:id="@+id/Crear_Producto_Button_Crear_Producto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_green"
+            android:text="@string/crear_producto_button"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</ScrollView>

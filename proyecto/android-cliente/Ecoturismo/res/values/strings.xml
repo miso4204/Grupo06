@@ -25,11 +25,12 @@
     <string name="producto_fecha">25 Marzo de 2015</string>
     <string name="producto_precio">$ 150.000</string>
     <string name="producto_descripcion_titulo">Descripción</string>
-    
+
     <!-- DETALLE -->
     <string name="detalle_compartir_facebook">Compartir Facebook</string>
     <string name="detalle_calificacion_valor">4.5</string>
-    
+    <string name="detalle_button_calificar">Calificar</string>
+
     <!-- CARRITO COMPRAS -->
     <string name="carrrito_compras_total">Total:</string>
     <string name="carrrito_compras_button_comprar">Comprar</string>
@@ -40,9 +41,43 @@
     <string name="busqueda_por_ubicacion">Ubicación</string>
     <string name="busqueda_por_precio">Precio</string>
     <string name="busqueda_por_fecha">Fecha</string>
+    <string name="busqueda_button">Buscar</string>
+
+    <!-- BUSQUEDAS POR UBICACION -->
+    <string name="busqueda_ubicacion_por_ciudad">Ciudad</string>
+
+    <!-- BUSQUEDAS ENTRE FECHAS -->
+    <string name="busqueda_fecha_inicial">Fecha Inicio</string>
+    <string name="busqueda_fecha_final">Fecha Final</string>
+
+    <!-- BUSQUEDAS ENTRE PRECIO -->
+    <string name="busqueda_precio_inicial">Precio Inicial</string>
+    <string name="busqueda_precio_final">Precio Final</string>
 
     <!-- PERFIL -->
     <string name="perfil_button_editar_datos">Editar Datos</string>
     <string name="perfil_button_cambiar_clave">Cambiar Contraseña</string>
+    <string name="perfil_button_cerrar_sesion">Cerrar Sesión</string>
+
+    <!-- REPORTES VENTAS -->
+    <string name="reporte_ventas_por_ciudad">Ventas por Ciudad</string>
+    <string name="reporte_ventas_entre_fechas">Ventas entre Fechas</string>
+
+    <!-- CREAR PRODUCTO -->
+    <string name="crear_producto_nombre">Nombre</string>
+    <string name="crear_producto_lugar">Lugar</string>
+    <string name="crear_producto_ciudad">Ciudad</string>
+    <string name="crear_producto_precio">Precio</string>
+    <string name="crear_producto_fecha_inicio">Fecha Inicio</string>
+    <string name="crear_producto_url_imagen">URL imagen</string>
+    <string name="crear_producto_button">Crear Producto</string>
+
+    <!-- REPORTES -->
+    <string name="reporte_button">Ver Reporte</string>
+
+    <!-- PAGOS -->
+    <string name="pago_por_pse">Pagar con PSE</string>
+    <string name="pago_por_tarjeta_credito">Pagar con Tarjeta Crédito</string>
+    <string name="pago_por_efectivo">Pagar en Efectivo</string>
     
 </resources>

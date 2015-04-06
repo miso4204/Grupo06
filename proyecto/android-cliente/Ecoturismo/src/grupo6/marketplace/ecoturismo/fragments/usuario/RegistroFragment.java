@@ -1,4 +1,4 @@
-package grupo6.marketplace.ecoturismo.fragments;
+package grupo6.marketplace.ecoturismo.fragments.usuario;
 
 import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.activities.PrincipalActivity;
@@ -10,29 +10,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 /**
- * Fragmento que muestra la vista de login del marketplace de ecoturismo
+ * Fragmento que muestra la vista de registro del marketplace de ecoturismo
  * @author Alejo
  *
  */
-public class LoginFragment extends Fragment{
+public class RegistroFragment  extends Fragment{
 
 	private View view; 
-	private Button buttonLogin;
+	private Button buttonRegistrar;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_login, container, false);
+        view = inflater.inflate(R.layout.fragment_registro, container, false);
         cargarElementosGraficos();
         cargarListeners();
         return view;
     }
 
 	private void cargarElementosGraficos() {
-		buttonLogin = (Button) view.findViewById(R.id.Login_Button_Iniciar_Sesion);
+		buttonRegistrar = (Button) view.findViewById(R.id.Registro_Button_Registrar);
 	}
 
 	private void cargarListeners() {
-		buttonLogin.setOnClickListener(new View.OnClickListener() {
+		buttonRegistrar.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
