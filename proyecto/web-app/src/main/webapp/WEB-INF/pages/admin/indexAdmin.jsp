@@ -63,6 +63,120 @@
         });
 });
         </script>
+
+        <script type="text/javascript">
+    $(document).ready(function() {
+$("#buscarPorCiudad").submit(function(e) {
+               
+            e.preventDefault();                
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/reportes/ventas/" + $('#ciudadSearch').val(), 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                    
+                       
+                     var out = "";
+                     var urlIma="";
+                     var calificaciones="";
+
+                     var arr=JSON.parse(JSON.stringify(data));
+
+
+                var ciudad = arr.ciudad;
+                var totalVentas = arr.totalVentas; 
+                var totalDineroEnVentas = arr.totalDineroEnVentas; 
+                alert(ciudad+"-"+totalVentas+"-"+totalDineroEnVentas);
+   out+='<thead>'+
+                            '<tr>'+
+                                '<th>Type</th>'+
+                                '<th>Location</th>'+
+                                '<th> Total Sales </th>'+
+                                '<th>Total Cash Sales</th>'+
+                            '</tr>'+
+                        '</thead>'+
+                        '<tbody>'+
+                            '<tr>'+
+                                '<td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>'+
+                                '</td>'+
+                                '<td class="booking-history-title">'+ciudad+'</td>'+
+                                '<td>'+totalVentas+'</td>'+
+                                '<td>'+totalDineroEnVentas+'</td>'+
+                            '</tr>'+
+                        '</tbody>'
+                        document.getElementById("tablaReporte").innerHTML = out;
+
+         
+    
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+            
+
+        });
+
+$("#buscarPorFecha").submit(function(e) {
+               
+            e.preventDefault();                
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/reportes/ventas/" + $('#dateOne').val()+"/"+$('#dateTwo').val(), 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                     
+                     var out = "";
+                     var urlIma="";
+                     var calificaciones="";
+
+                     var arr=JSON.parse(JSON.stringify(data));
+
+
+
+                var totalVentas = arr.totalVentas; 
+                var totalDineroEnVentas = arr.totalDineroEnVentas; 
+                  out+='<thead>'+
+                            '<tr>'+
+                                '<th>Type</th>'+
+                                '<th> Total Sales </th>'+
+                                '<th>Total Cash Sales</th>'+
+                            '</tr>'+
+                        '</thead>'+
+                        '<tbody>'+
+                            '<tr>'+
+                                '<td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>'+
+                                '</td>'+
+                                '<td>'+totalVentas+'</td>'+
+                                '<td>'+totalDineroEnVentas+'</td>'+
+                            '</tr>'+
+                        '</tbody>'
+                        document.getElementById("tablaReporte").innerHTML = out;
+    
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+            
+
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -140,7 +254,7 @@
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a>
                                     </li>
-                                    <li><a href="#tab-2" data-toggle="tab">Functionality XYZ</a>
+                                    <li><a href="#tab-2" data-toggle="tab">Reportes</a>
                                     </li>
                                     <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>
@@ -195,9 +309,94 @@
                         </div>
                     </div>
                       </div>
+                      <!-- REPOORTES ----------------------------------- -->
+                      <!-- REPOORTES ----------------------------------- -->
+
                     <div class="tab-pane fade" id="tab-2">
-                        <p class="mt10">PROXIMAMENTE....</p>
-                        </div>
+                        
+                                        <h2>Search for Reports</h2>
+                                        
+                                            <div class="tabbable">
+                                                <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
+                                                    <li class="active"><a href="#flight-search-1" data-toggle="tab">By date</a>
+                                                    </li>
+                                                    <li><a href="#flight-search-2" data-toggle="tab">By location</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade in active" id="flight-search-1">
+                                                        <div class="row">
+                                                            
+                                                            <div class="col-md-6">
+                                                                <div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Initial Date</label>
+                                                                                <input class="form-control" name="start" type="text" id="dateOne" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Final Date</label>
+                                                                                <input class="form-control" name="end" type="text" id="dateTwo"/>
+                                                                            </div>
+                                                                        </div>
+                                                                         <div class="col-md-4"> 
+                                                                            <label>Search</label>
+                                                                            <form id="buscarPorFecha" action=""  method="post">
+                                                                                 <button class="btn btn-primary btn-lg" type="submit">Search</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="flight-search-2">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                                            <label>From</label>
+                                                                            <input class="typeahead form-control" id="ciudadSearch"placeholder="City, country" type="text" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-4"> 
+                                                                            <label>Search</label>
+                                                                            <form id="buscarPorCiudad" action=""  method="post">
+                                                                                 <button class="btn btn-primary btn-lg" type="submit">Search</button>
+                                                                            </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                        <table class="table table-bordered table-striped table-booking-history" id="tablaReporte">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Location</th>
+                                <th> Total Sales </th>
+                                <th>Total Cash Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>
+                                </td>
+                                <td class="booking-history-title">Central Park Trip</td>
+                                <td>New york City</td>
+                                <td>4/12/2014</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                                            </div>
                         <div class="tab-pane fade" id="tab-3">
                             <p class="mt10">PROXIMAMENTE...</p>
                         </div>
