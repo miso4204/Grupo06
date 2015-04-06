@@ -1,6 +1,5 @@
 package grupo6.marketplace.ecoturismo.modelo.sql;
 
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.CalificacionTable;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.ProductoTable;
 import android.content.Context;
@@ -19,14 +18,12 @@ public class EcoturismoSqlHelper extends SQLiteOpenHelper {
 	  @Override
 	  public void onCreate(SQLiteDatabase database) {
 	    ProductoTable.onCreate(database);
-	    CalificacionTable.onCreate(database);
 	    CarritoComprasTable.onCreate(database);
 	  }
 
 	  @Override
 	  public void onUpgrade(SQLiteDatabase database, int oldVersion,int newVersion) {
 		  ProductoTable.onUpgrade(database, oldVersion, newVersion);
-		  CalificacionTable.onUpgrade(database, oldVersion, newVersion);
 		  CarritoComprasTable.onUpgrade(database, oldVersion, newVersion);
 	  }
 }

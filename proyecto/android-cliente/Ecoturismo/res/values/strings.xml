@@ -41,4 +41,8 @@
     <string name="busqueda_por_precio">Precio</string>
     <string name="busqueda_por_fecha">Fecha</string>
 
+    <!-- PERFIL -->
+    <string name="perfil_button_editar_datos">Editar Datos</string>
+    <string name="perfil_button_cambiar_clave">Cambiar Contraseña</string>
+    
 </resources>

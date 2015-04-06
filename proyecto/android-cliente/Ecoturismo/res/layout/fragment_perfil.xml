@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Perfil"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/Perfil_ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/perfil" />
+
+        <EditText
+            android:id="@+id/Perfil_EditText_Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_nombre"
+            android:inputType="textPersonName" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/Perfil_EditText_Direccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_direccion"
+            android:inputType="textPostalAddress" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/Perfil_EditText_Telefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_telefono"
+            android:inputType="phone" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/Perfil_EditText_UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:ems="10"
+            android:hint="@string/registro_hint_edit_text_nombre_usuario"
+            android:inputType="textEmailAddress" >
+        </EditText>
+
+        <Button
+            android:id="@+id/Perfil_Button_Editar_Datos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
+            android:background="@drawable/button_green"
+            android:text="@string/perfil_button_editar_datos"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Login_Button_Cambiar_Clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:background="@drawable/button_green"
+            android:text="@string/perfil_button_cambiar_clave"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</ScrollView>

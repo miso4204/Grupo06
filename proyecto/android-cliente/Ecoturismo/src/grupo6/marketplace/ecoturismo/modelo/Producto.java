@@ -27,7 +27,7 @@ public class Producto implements Serializable {
 
 	public String getPrecioConFormato() {
 		return CurrencyUtilidades.formatoDinero(precio,
-				CurrencyUtilidades.LENGUAJE_ESPANOL,
+				CurrencyUtilidades.LENGUAJE_INGLES,
 				CurrencyUtilidades.CODIGO_COLOMBIA);
 	}
 

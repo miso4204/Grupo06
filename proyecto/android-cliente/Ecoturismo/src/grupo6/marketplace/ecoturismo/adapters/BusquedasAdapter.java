@@ -19,9 +19,9 @@ import android.widget.TextView;
 public class BusquedasAdapter extends ArrayAdapter<Integer>{
 	
 	private int [] imagenesBusquedas = {
-			 R.drawable.alojamiento,
-		     R.drawable.restaurantes,
-		     R.drawable.atracciones
+			 R.drawable.ubicacion,
+		     R.drawable.precio,
+		     R.drawable.fechas
 		     };
 	private static Integer [] busquedas = { R.string.busqueda_por_ubicacion,
 									R.string.busqueda_por_precio,
