@@ -27,13 +27,12 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-        function remover(){
-        $("#removeProduct").submit(function(e) {
+        $(document).on("submit", "#removeProduct", function(e) {
             alert("elimino del carrito con id ");
             e.preventDefault();     
             var jsonPeticion = JSON.stringify({
                     "userName": '${usuarioSesion.usuario}', 
-                    "idProducto": $('#idProductoParaCarrito').val()
+                    "idProducto": $( this ).find('input[id="idProductoParaCarrito"]').val()
                      });
             $.ajax({
                 headers: { 
@@ -58,7 +57,7 @@
                 }
             });
         });
-}
+
 });
 
         </script>
@@ -169,7 +168,7 @@ $("#payCredit").submit(function(e) {
                                         '<img src="'+urlIma+'" alt="Image Alternative text" title="hotel 1" />'+
                                     '</a>'+
                                     '<h5 class="booking-item-payment-title" id="nombrePro"><a href="#">'+arr[i].nombre+'</a></h5>'+
-                                   '<form id="removeProduct" onsubmit="remover()">'+
+                                   '<form id="removeProduct">'+
                                    '<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr[i].id+'">'+ 
                                         '<p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>'+
                                         '<small class="booking-item-last-booked" id="precioPro">Price:'+arr[i].precio+' </small><br>'+
@@ -377,19 +376,7 @@ $("#payCredit").submit(function(e) {
                             <h4>Shopping Cart:</h4>
                             <div class="booking-item-payment">
                                 <header class="clearfix" id= "productosCarritos">
-                                    <a class="booking-item-payment-img" href="#">
-                                        <img src="img/800x600.png" alt="Image Alternative text" title="hotel 1" />
-                                    </a>
-                                    <h5 class="booking-item-payment-title" id="nombrePro"><a href="#">InterContinental New York Barclay</a></h5>
-                                    
-                                    
-
-                                        <p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>
-                                        <small class="booking-item-last-booked" id="precioPro">Price: </small><br>
-                                        <small class="booking-item-last-booked" id="ciudadPro">Ciudad</small>
-                                        <form id="removeProduct">
-                                        <button class="btn btn-primary btn-small" type="submit"  >Remove</button>
-                                        <form>
+                                   
                                 </header>
                                 
                                 <p class="booking-item-payment-total" id="totalCarrito">Total: <span>$1,155</span>
