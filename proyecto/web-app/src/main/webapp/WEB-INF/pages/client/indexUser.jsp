@@ -101,7 +101,7 @@ $("#buscarPorPrecio").submit(function(e) {
                 processData: false,
                 success: function(data)
                    {
-                       alert("respuesta servidor: " + JSON.stringify(data)); 
+                     
                        var respuesta_servicio = JSON.stringify(data)
                        var form = $('<form action="pages/client/searchResult.jsp?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
   '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
@@ -132,7 +132,7 @@ $("#buscarPorFecha").submit(function(e) {
                 processData: false,
                 success: function(data)
                    {
-                       alert("respuesta servidor: " + JSON.stringify(data)); 
+                       
                        var respuesta_servicio = JSON.stringify(data)
                        var form = $('<form action="pages/client/searchResult.jsp?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
   '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
