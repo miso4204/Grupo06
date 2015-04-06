@@ -1,5 +1,7 @@
 package grupo6.marketplace.ecoturismo.modelo;
 
+import grupo6.marketplace.ecoturismo.modelo.enums.RolType;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,10 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private String direccion;
 	private String telefono;
-	private List<FacturaCompra> facturas;
-	private String rol;
+	private RolType rol;
+	private String email;
+	private String website;
+	private List<FacturaCompra> facturas = new ArrayList<FacturaCompra>();
 	private List<Producto> carritoCompras = new ArrayList<Producto>();
 
 	public long getId() {
@@ -65,20 +69,36 @@ public class Usuario implements Serializable {
 		this.telefono = telefono;
 	}
 
+	public RolType getRol() {
+		return rol;
+	}
+
+	public void setRol(RolType rol) {
+		this.rol = rol;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
 	public List<FacturaCompra> getFacturas() {
 		return facturas;
 	}
 
 	public void setFacturas(List<FacturaCompra> facturas) {
 		this.facturas = facturas;
-	}
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
 	}
 
 	public List<Producto> getCarritoCompras() {

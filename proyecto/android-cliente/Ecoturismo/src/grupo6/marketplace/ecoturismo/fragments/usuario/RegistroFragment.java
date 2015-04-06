@@ -36,7 +36,7 @@ public class RegistroFragment  extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				abrirActividadPrincipal();
+				//TODO: abrirActividadPrincipal();
 			}
 		});
 	}

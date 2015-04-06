@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
+import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
 import grupo6.marketplace.ecoturismo.fragments.busquedas.BusquedasFragment;
 import grupo6.marketplace.ecoturismo.fragments.carrito.CarritoComprasFragment;
 import grupo6.marketplace.ecoturismo.fragments.proveedor.CrearProductoFragment;
 import grupo6.marketplace.ecoturismo.fragments.reportes.ReportesFragment;
 import grupo6.marketplace.ecoturismo.fragments.usuario.PerfilFragment;
+import grupo6.marketplace.ecoturismo.modelo.enums.RolType;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -29,6 +31,7 @@ public class PrincipalActivity extends ActionBarActivity {
  
 	public static final int REQUEST_CODE_PRODUCTOS_ACTIVITY = 123;
 	
+	private EcoturismoApplication ecoturismoApplication;
 	private InicialPagerAdapter principalPagerAdapter;
     private ViewPager viewPager;
     private List<Fragment> fragmentos;
@@ -37,17 +40,43 @@ public class PrincipalActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        cargarDatosLocales();
         cargarListaFragmentos();
         cargarNavigationTabs();
     }
 
+	private void cargarDatosLocales() {
+		ecoturismoApplication = (EcoturismoApplication) getApplication();
+	}
+
 	private void cargarListaFragmentos() {
+		RolType rol = ecoturismoApplication.getRol();
+		
 		fragmentos = new ArrayList<Fragment>();
+		
+		if(rol == RolType.CLIENT){
+			cargarFragmentosCliente();	
+		}else if(rol == RolType.ADMIN){
+			cargarFragmentosAdmin();	
+		}else if(rol == RolType.PROVIDER){
+			cargarFragmentosProvider();	
+		}
+	}
+
+	private void cargarFragmentosProvider() {
 		fragmentos.add(new CrearProductoFragment());
+        fragmentos.add(new PerfilFragment());
+	}
+
+	private void cargarFragmentosAdmin() {
+        fragmentos.add(new ReportesFragment());
+        fragmentos.add(new PerfilFragment());
+	}
+
+	private void cargarFragmentosCliente() {
 		fragmentos.add(new BusquedasFragment());
         fragmentos.add(new CarritoComprasFragment());
         fragmentos.add(new PerfilFragment());
-        fragmentos.add(new ReportesFragment());
 	}
 
 	private void cargarNavigationTabs() {
@@ -58,8 +87,12 @@ public class PrincipalActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_carrito, menu);
+    	RolType rol = ecoturismoApplication.getRol();
+		
+		if(rol == RolType.CLIENT){
+			MenuInflater inflater = getMenuInflater();
+	        inflater.inflate(R.menu.menu_carrito, menu);
+		}
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -121,7 +154,16 @@ public class PrincipalActivity extends ActionBarActivity {
  
         @Override
         public CharSequence getPageTitle(int position) {
-        	return getResources().getStringArray(R.array.titulos_fragmentos_principales)[position];
+        	RolType rol = ecoturismoApplication.getRol();
+    		
+    		if(rol == RolType.CLIENT){
+    			return getResources().getStringArray(R.array.titulos_fragmentos_cliente)[position];	
+    		}else if(rol == RolType.ADMIN){
+    			return getResources().getStringArray(R.array.titulos_fragmentos_admin)[position];
+    		}else if(rol == RolType.PROVIDER){
+    			return getResources().getStringArray(R.array.titulos_fragmentos_provider)[position];
+    		}
+    		return getResources().getStringArray(R.array.titulos_fragmentos_cliente)[position];	
         }
     }
 }

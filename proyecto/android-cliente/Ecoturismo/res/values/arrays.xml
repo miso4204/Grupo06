@@ -5,12 +5,18 @@
         <item>Inicio de Sesión</item>
         <item>Registro</item>
     </string-array>
-    <string-array name="titulos_fragmentos_principales">
-        <item>Crear Producto</item>
+    <string-array name="titulos_fragmentos_cliente">
         <item>Búsqueda</item>
         <item>Carrito Compras</item>
         <item>Perfil</item>
+    </string-array>
+    <string-array name="titulos_fragmentos_admin">
         <item>Reportes Ventas</item>
+        <item>Perfil</item>
+    </string-array>
+    <string-array name="titulos_fragmentos_provider">
+        <item>Crear Producto</item>
+        <item>Perfil</item>
     </string-array>
     <string-array name="categorias">
         <item>Alojamiento</item>

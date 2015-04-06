@@ -5,6 +5,7 @@ import java.util.List;
 
 import grupo6.marketplace.ecoturismo.modelo.CalificacionDTO;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
+import grupo6.marketplace.ecoturismo.modelo.enums.RolType;
 import grupo6.marketplace.ecoturismo.modelo.sql.EcoturismoSqlHelper;
 import grupo6.marketplace.ecoturismo.modelo.sql.tables.ProductoTable;
 import android.app.Application;
@@ -17,6 +18,7 @@ import android.app.Application;
 public class EcoturismoApplication extends Application{
 
 	private EcoturismoSqlHelper ecoturismoSqlHelper;
+	private RolType rol;
 	
 	public EcoturismoSqlHelper getEcoturismoSqlHelper() {
 		if(ecoturismoSqlHelper == null){
@@ -78,4 +80,11 @@ public class EcoturismoApplication extends Application{
 		
 	}
 	
+	public void setRol(RolType rol) {
+		this.rol = rol;
+	}
+	
+	public RolType getRol() {
+		return rol;
+	}
 }
