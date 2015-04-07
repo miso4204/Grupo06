@@ -112,9 +112,9 @@ public class RegistroFragment  extends Fragment{
 	}
 	
 	public static class Rol {
-		public static final String CLIENT = "CLIENT";
-		public static final String ADMIN = "ADMIN";
-		public static final String PROVIDER = "PROVIDER";
+		public static final String CLIENT = "Cliente";
+		public static final String PROVIDER = "Proveedor";
+		public static final String ADMIN = "Administrador";
 	}
 
 }
