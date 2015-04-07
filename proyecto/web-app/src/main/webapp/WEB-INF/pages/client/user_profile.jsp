@@ -23,66 +23,6 @@
     <script src="js/modernizr.js"></script>
 
 <script src="js/jquery.js"></script>
-<script>
-var xmlhttp = new XMLHttpRequest();
-var url = "services/producto/listar";
-
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-        myFunction(myArr);
-    }
-}
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function myFunction(arr) {
-    var out = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-   
-       
-
-                    out+='<div class="col-md-4">'+
-                                    '<div class="thumb">'+
-                                        '<a class="hover-img" href="destinationDetails.jsp">'+
-                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
-                                            '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
-                                                '<div class="text-small">'+
-                                                    <!--....................-->
-                                                    <!-- ESTRELLAS  -->
-                                                    <!--....................-->
-                                                    '<ul class="icon-group text-tiny text-color">'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star-half-empty"></i>'+
-                                                        '</li>'+
-                                                    '</ul>'+
-                                                    '<h5>'+arr[i].nombre+'</h5>'+
-                                                    '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
-                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
-                                                '</div>'+
-                                            '</div>'+
-                                        '</a>'+
-                                    '</div>'+
-                                '</div>'
-
-document.getElementById("ListaProductos").innerHTML = out;
-// alert("Producto creado, respuesta servidor: " +  arr[i].nombre); 
-
-         
-    }
-
-
-     
-}
-</script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -246,26 +186,26 @@ $("#cambiarPass").submit(function(e) {
                                 <h4>Personal Infomation</h4>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
                                     <label>User Name</label>
-                                    <input class="form-control" value="John" type="text" disabled/>
+                                    <input class="form-control" value="${usuarioSesion.usuario}" type="text" disabled/>
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
                                     <label>Full Name</label>
-                                    <input class="form-control" value="Doe" type="text" disabled/>
+                                    <input class="form-control" value="${usuarioSesion.nombre}" type="text" disabled/>
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon"></i>
                                     <label>E-mail</label>
-                                    <input class="form-control" value="johndoe@gmail.com" type="text" disabled/>
+                                    <input class="form-control" value="${usuarioSesion.email}" type="text" disabled/>
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon"></i>
                                     <label>Phone Number</label>
-                                    <input class="form-control" value="+1 202 555 0113" type="text" disabled/>
+                                    <input class="form-control" value="${usuarioSesion.telefono}" type="text" disabled/>
                                 </div>
                                 <div class="gap gap-small"></div>
                                 <h4>Location</h4>
                                 
                                 <div class="form-group">
                                     <label>Street Address</label>
-                                    <input class="form-control" value="46 Gray's Inn Rd, London, WC1X 8LP" type="text" />
+                                    <input class="form-control" value="${usuarioSesion.direccion}" type="text" />
                                 </div>
                                 <hr>
                                 <input type="submit" class="btn btn-primary" value="Save Changes">
