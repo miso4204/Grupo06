@@ -1,6 +1,7 @@
 package grupo6.marketplace.ecoturismo.activities;
 
 import grupo6.marketplace.ecoturismo.fragments.carrito.CarritoComprasFragment;
+import grupo6.marketplace.ecoturismo.fragments.pagos.PagoEfectivoFragment;
 import grupo6.marketplace.ecoturismo.fragments.pagos.PagoPseFragment;
 import grupo6.marketplace.ecoturismo.fragments.pagos.PagoTarjetaCreditoFragment;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import grupo6.marketplace.ecoturismo.R;
 
 public class PagosActivity extends ActionBarActivity {
 
+	public static final int MOSTRAR_EXITO = 987;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,6 +24,9 @@ public class PagosActivity extends ActionBarActivity {
 
 	private void cargarReporte(int tipoReporte) {
 		switch (tipoReporte) {
+		case CarritoComprasFragment.EFECTIVO:
+			reemplazarFragmento(new PagoEfectivoFragment());
+			break;
 		case CarritoComprasFragment.PSE:
 			reemplazarFragmento(new PagoPseFragment());
 			break;
@@ -41,6 +47,11 @@ public class PagosActivity extends ActionBarActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void pagoExitoso() {
+		setResult(MOSTRAR_EXITO , getIntent());
+    	finish();
 	}
 
 }

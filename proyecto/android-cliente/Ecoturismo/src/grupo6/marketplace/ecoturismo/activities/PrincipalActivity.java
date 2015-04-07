@@ -11,6 +11,7 @@ import grupo6.marketplace.ecoturismo.fragments.proveedor.CrearProductoFragment;
 import grupo6.marketplace.ecoturismo.fragments.reportes.ReportesFragment;
 import grupo6.marketplace.ecoturismo.fragments.usuario.PerfilFragment;
 import grupo6.marketplace.ecoturismo.modelo.enums.RolType;
+import grupo6.marketplace.ecoturismo.util.AlertUtilidades;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -30,6 +31,7 @@ import android.os.Bundle;
 public class PrincipalActivity extends ActionBarActivity {
  
 	public static final int REQUEST_CODE_PRODUCTOS_ACTIVITY = 123;
+	public static final int REQUEST_CODE_PAGOS_ACTIVITY = 2345;
 	
 	private EcoturismoApplication ecoturismoApplication;
 	private InicialPagerAdapter principalPagerAdapter;
@@ -111,6 +113,9 @@ public class PrincipalActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	if(requestCode == REQUEST_CODE_PRODUCTOS_ACTIVITY && resultCode == ProductosActivity.MOSTRAR_CARRITO){
     		mostrarCarritoCompras();
+    	}
+    	if(requestCode == REQUEST_CODE_PAGOS_ACTIVITY && resultCode == PagosActivity.MOSTRAR_EXITO){
+    		AlertUtilidades.mostrarAlert(this, R.drawable.ic_launcher, R.string.app_name, R.string.pagos_exito, R.string.ok);
     	}
     	
     	super.onActivityResult(requestCode, resultCode, intent);

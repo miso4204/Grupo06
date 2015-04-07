@@ -1,12 +1,11 @@
 package grupo6.marketplace.ecoturismo.fragments.busquedas;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.adapters.ProductosAdapter;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.ProductoTable;
 import grupo6.marketplace.ecoturismo.util.AlertUtilidades;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +23,6 @@ import android.widget.ListView;
 public class ProductosPorCiudadFragment extends Fragment{
 
 	private EcoturismoApplication ecoturismoApplication;
-	private List<Producto> productos;
 	
 	private View view;
 	private Button buttonBuscar;
@@ -42,8 +40,7 @@ public class ProductosPorCiudadFragment extends Fragment{
 
 	private void cargarDatosLocales() {
 		ecoturismoApplication = (EcoturismoApplication) getActivity().getApplication();
-		productos = ProductoTable.getProductos(ecoturismoApplication.getEcoturismoSqlHelper());
-		productosAdapter = new ProductosAdapter(getActivity(),productos,ecoturismoApplication.getEcoturismoSqlHelper());
+		productosAdapter = new ProductosAdapter(getActivity(),new ArrayList<Producto>(),ecoturismoApplication);
 	}
 	
 	private void cargarElementosGraficos() {

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
+import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
+import grupo6.marketplace.ecoturismo.asyntask.carrito.AgregarAlCarritoAsyncTask;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
-import grupo6.marketplace.ecoturismo.modelo.sql.EcoturismoSqlHelper;
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,19 +25,21 @@ import android.widget.TextView;
 @SuppressLint("InflateParams")
 public class ProductosAdapter extends ArrayAdapter<Producto>{
 	
+	private EcoturismoApplication ecoturismoApplication;
 	private List<Producto> productos;
  	private LayoutInflater layoutInflater;
- 	private EcoturismoSqlHelper ecoturismoSqlHelper;
+ 	private Activity activity;
  	
-	public ProductosAdapter(Context context,List<Producto> productos,EcoturismoSqlHelper ecoturismoSqlHelper) {
-		super(context, 0, productos);
+	public ProductosAdapter(Activity activity,List<Producto> productos,EcoturismoApplication ecoturismoApplication) {
+		super(activity, 0, productos);
 		if(productos != null){
 			this.productos = productos;
 		}else{
 			this.productos = new ArrayList<Producto>();
 		}
-		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		this.ecoturismoSqlHelper = ecoturismoSqlHelper;
+		this.ecoturismoApplication = ecoturismoApplication;
+		this.activity = activity;
+		layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -78,7 +81,9 @@ public class ProductosAdapter extends ArrayAdapter<Producto>{
 			
 			@Override
 			public void onClick(View v) {
-				CarritoComprasTable.agregarACarrito(ecoturismoSqlHelper, producto);
+				String userName = ecoturismoApplication.getUsuario().getUsuario();
+				Long idProducto = producto.getId();
+				new AgregarAlCarritoAsyncTask(activity).execute(userName,idProducto);
 			}
 		});
 		

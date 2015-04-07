@@ -69,6 +69,12 @@
             android:hint="@string/registro_hint_edit_text_clave"
             android:inputType="textPassword" />
 
+        <Spinner
+            android:id="@+id/Registro_Rol_Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin" />
+
         <Button
             android:id="@+id/Registro_Button_Registrar"
             android:layout_width="match_parent"

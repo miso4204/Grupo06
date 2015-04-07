@@ -4,8 +4,13 @@
     <string name="app_name">Ecoturismo</string>
     <string name="ok">OK</string>
     <string name="ver_carrito">Ver Carrito</string>
+    <string name="progress_buscando">Buscando&#8230;</string>
     <string name="error_conexion">Problemas de conexión</string>
-
+    <string name="creando_progress">Creando&#8230;</string>
+    <string name="agregando_progress">Agregando&#8230;</string>
+    <string name="removiendo_progress">Removiendo&#8230;</string>
+    <string name="cargando_progress">Cargando&#8230;</string>
+    
     <!-- LOGIN -->
     <string name="login_hint_edit_text_usuario">Usuario</string>
     <string name="login_hint_edit_text_clave">Contraseña</string>
@@ -20,7 +25,9 @@
     <string name="registro_hint_edit_text_nombre_usuario">Usuario (ej. alejo56)</string>
     <string name="registro_hint_edit_text_clave">Contraseña</string>
     <string name="registro_button_registrar">Registrar</string>
-
+    <string name="registro_error">Ocurrio un problema en el registro</string>
+    <string name="registro_selecciona_un_rol">Selecciona un rol&#8230;</string>
+    
     <!-- PRODUCTOS -->
     <string name="producto_nombre">Habitacion en Hotel de Prueba</string>
     <string name="producto_descripcion">Hotel cerca del Parque del Chicamocha. 4 personas. 2 dias. 2 noches. Incluye desayuno</string>
@@ -28,6 +35,12 @@
     <string name="producto_fecha">25 Marzo de 2015</string>
     <string name="producto_precio">$ 150.000</string>
     <string name="producto_descripcion_titulo">Descripción</string>
+    <string name="producto_creado">El producto fue creado exitósamente</string>
+    <string name="producto_agregado">El producto fue agregado exitósamente</string>
+    <string name="producto_removido">El producto fue removido exitósamente</string>
+    <string name="producto_ya_en_carrito">El producto ya fue agregado previamente</string>
+    <string name="producto_no_encontrado_carrito">El producto no fue encontrado</string>
+	<string name="no_se_encontraron_productos">No se encontraron productos</string>
 
     <!-- DETALLE -->
     <string name="detalle_compartir_facebook">Compartir Facebook</string>
@@ -39,6 +52,7 @@
     <string name="carrrito_compras_button_comprar">Comprar</string>
     <string name="carrito_compras_producto_agregado">Producto agregado al carrito</string>
     <string name="carrito_compras_producto_removido">Producto removido del carrito</string>
+    <string name="carrito_compras_vacio">Tu carrito esta vacio</string>
 
     <!-- BUSQUEDAS -->
     <string name="busqueda_por_ubicacion">Ubicación</string>
@@ -82,5 +96,8 @@
     <string name="pago_por_pse">Pagar con PSE</string>
     <string name="pago_por_tarjeta_credito">Pagar con Tarjeta Crédito</string>
     <string name="pago_por_efectivo">Pagar en Efectivo</string>
+    <string name="pagando">Pagando&#8230;</string>
+    <string name="pagos_carrito_vacio">No tienes productos en tu carrito</string>
+    <string name="pagos_exito">El pago fue exitoso</string>
     
 </resources>

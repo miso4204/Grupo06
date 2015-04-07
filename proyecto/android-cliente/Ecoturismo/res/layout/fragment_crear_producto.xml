@@ -63,7 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin"
                 android:ems="10"
-                android:enabled="false"
                 android:hint="@string/crear_producto_fecha_inicio"
                 android:inputType="date" >
             </EditText>

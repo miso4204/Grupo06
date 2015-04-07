@@ -1,16 +1,17 @@
 package grupo6.marketplace.ecoturismo.adapters;
 
 import grupo6.marketplace.ecoturismo.R;
+import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
+import grupo6.marketplace.ecoturismo.asyntask.carrito.RemoverDelCarritoAsyncTask;
 import grupo6.marketplace.ecoturismo.fragments.carrito.CarritoComprasFragment;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
-import grupo6.marketplace.ecoturismo.modelo.sql.EcoturismoSqlHelper;
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +24,20 @@ public class CarritoComprasAdapter extends ArrayAdapter<Producto>{
 	
 	private List<Producto> productos;
  	private LayoutInflater layoutInflater;
- 	private EcoturismoSqlHelper ecoturismoSqlHelper;
  	private CarritoComprasFragment carritoComprasFragment;
+ 	private EcoturismoApplication ecoturismoApplication;
  	
-	public CarritoComprasAdapter(Context context,List<Producto> productos,EcoturismoSqlHelper ecoturismoSqlHelper,CarritoComprasFragment carritoComprasFragment) {
+	public CarritoComprasAdapter(FragmentActivity context,List<Producto> productos,CarritoComprasFragment carritoComprasFragment,EcoturismoApplication ecoturismoApplication) {
 		super(context, 0, productos);
 		if(productos != null){
 			this.productos = productos;
 		}else{
 			this.productos = new ArrayList<Producto>();
 		}
-		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		this.ecoturismoSqlHelper = ecoturismoSqlHelper;
 		this.carritoComprasFragment = carritoComprasFragment;
+		this.ecoturismoApplication = ecoturismoApplication;
+		layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
 	}
 
 	@Override
@@ -77,9 +79,8 @@ public class CarritoComprasAdapter extends ArrayAdapter<Producto>{
 			
 			@Override
 			public void onClick(View v) {
-				CarritoComprasTable.removerDeCarrito(ecoturismoSqlHelper, producto);
-				remove(producto);
-				carritoComprasFragment.calcularTotalCarrito();
+				String userName = ecoturismoApplication.getUsuario().getUsuario();
+				new RemoverDelCarritoAsyncTask(carritoComprasFragment).execute(userName,producto);
 			}
 		});
 		

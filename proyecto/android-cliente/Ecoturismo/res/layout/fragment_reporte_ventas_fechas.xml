@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin"
             android:ems="9"
-            android:enabled="false"
             android:hint="@string/busqueda_fecha_inicial"
             android:inputType="date" >
         </EditText>
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin"
             android:ems="9"
-            android:enabled="false"
             android:hint="@string/busqueda_fecha_final"
             android:inputType="date" >
         </EditText>

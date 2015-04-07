@@ -3,29 +3,34 @@ package grupo6.marketplace.ecoturismo.fragments.busquedas;
 import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.adapters.ProductosAdapter;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
+import grupo6.marketplace.ecoturismo.asyntask.busqueda.BusquedaPorFechasAsyncTask;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.ProductoTable;
 import grupo6.marketplace.ecoturismo.util.AlertUtilidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class ProductosPorFechaFragment extends Fragment{
 
 	private EcoturismoApplication ecoturismoApplication;
-	private List<Producto> productos;
 	
 	private View view;
 	private Button buttonBuscar;
 	private ListView listViewProductos; 
+	private EditText editTextFechaInicial;
+	private EditText editTextFechaFinal;
+	
 	private ProductosAdapter productosAdapter;
 	
 	@Override
@@ -39,11 +44,12 @@ public class ProductosPorFechaFragment extends Fragment{
 
 	private void cargarDatosLocales() {
 		ecoturismoApplication = (EcoturismoApplication) getActivity().getApplication();
-		productos = ProductoTable.getProductos(ecoturismoApplication.getEcoturismoSqlHelper());
-		productosAdapter = new ProductosAdapter(getActivity(),productos,ecoturismoApplication.getEcoturismoSqlHelper());
+		productosAdapter = new ProductosAdapter(getActivity(),new ArrayList<Producto>(),ecoturismoApplication);
 	}
 	
 	private void cargarElementosGraficos() {
+		editTextFechaInicial = (EditText) view.findViewById(R.id.Busqueda_Fecha_EditText_FechaInicio);
+		editTextFechaFinal = (EditText) view.findViewById(R.id.Busqueda_Fecha_EditText_FechaFinal);
 		buttonBuscar = (Button) view.findViewById(R.id.Busqueda_Fecha_Button);
 		listViewProductos = (ListView) view.findViewById(R.id.Busqueda_Fecha_ListView);
 	}
@@ -54,7 +60,12 @@ public class ProductosPorFechaFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				listViewProductos.setAdapter(productosAdapter);
+				String inicio = editTextFechaInicial.getText().toString();
+				String fin = editTextFechaFinal.getText().toString();
+				
+				if(!TextUtils.isEmpty(inicio) && !TextUtils.isEmpty(fin)){
+					new BusquedaPorFechasAsyncTask(ProductosPorFechaFragment.this).execute(inicio,fin);
+				}
 			}
 		});
 		
@@ -66,6 +77,18 @@ public class ProductosPorFechaFragment extends Fragment{
 				AlertUtilidades.mostrarAlertProducto(getActivity(),producto);
 			}
 		});
+		
+	}
+
+	public void mostrarProducto(List<Producto> productos) {
+		productosAdapter.clear();
+		productosAdapter.addAll(productos);
+		listViewProductos.setAdapter(productosAdapter);
+	}
+
+	public void limpiarLista() {
+		productosAdapter.clear();
+		listViewProductos.setAdapter(productosAdapter);
 		
 	}
 }

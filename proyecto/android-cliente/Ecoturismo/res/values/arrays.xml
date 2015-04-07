@@ -28,5 +28,10 @@
         <item>PSE</item>
         <item>Tarjeta Crédito</item>
     </string-array>
+    <string-array name="roles">
+        <item>Cliente</item>
+        <item>Proveedor</item>
+        <item>Administrador</item>
+    </string-array>
 
 </resources>

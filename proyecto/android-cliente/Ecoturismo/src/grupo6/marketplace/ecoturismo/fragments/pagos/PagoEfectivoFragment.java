@@ -12,16 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class PagoPseFragment extends Fragment {
-
+public class PagoEfectivoFragment extends Fragment {
+	
 	private EcoturismoApplication ecoturismoApplication;
 	private View view;
 	private Button buttonPagar;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.fragment_pago_pse,container, false);
+		view = inflater.inflate(R.layout.fragment_pago_efectivo,container, false);
 		cargarDatosLocales();
 		cargarElementosGraficos();
 		cargarListeners();
@@ -33,7 +33,7 @@ public class PagoPseFragment extends Fragment {
 	}
 
 	private void cargarElementosGraficos() {
-		buttonPagar = (Button) view.findViewById(R.id.Pago_Pse_Button);
+		buttonPagar = (Button) view.findViewById(R.id.Pago_Efectivo_Button);
 		
 	}
 
@@ -43,7 +43,7 @@ public class PagoPseFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				String userName = ecoturismoApplication.getUsuario().getUsuario();
-				new PagarAsyncTask((PagosActivity)getActivity()).execute(userName,TiposPago.PSE);
+				new PagarAsyncTask((PagosActivity)getActivity()).execute(userName,TiposPago.CASH_ON_DELIVERY);
 			}
 		});
 		

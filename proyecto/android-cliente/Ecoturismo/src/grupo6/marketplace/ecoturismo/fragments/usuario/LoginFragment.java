@@ -4,7 +4,7 @@ import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.activities.PrincipalActivity;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
 import grupo6.marketplace.ecoturismo.asyntask.usuario.LoginAsyncTask;
-import grupo6.marketplace.ecoturismo.modelo.enums.RolType;
+import grupo6.marketplace.ecoturismo.modelo.Usuario;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -61,8 +61,8 @@ public class LoginFragment extends Fragment{
 		});
 	}
 
-	public void abrirActividadPrincipal(RolType rolType) {
-		ecoturismoApplication.setRol(rolType);
+	public void abrirActividadPrincipal(Usuario usuario) {
+		ecoturismoApplication.setUsuario(usuario);
 		Intent i = new Intent(getActivity(),PrincipalActivity.class);
 		getActivity().startActivity(i);
 		getActivity().finish();

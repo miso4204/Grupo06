@@ -78,7 +78,7 @@ public class LoginAsyncTask extends AsyncTask<String, Void, Usuario> {
 		switch (respuesta) {
 		case Login.Respuesta.EXITO:
 			if(usuario != null){
-				loginFragment.abrirActividadPrincipal(usuario.getRol());
+				loginFragment.abrirActividadPrincipal(usuario);
 			}else{
 				Toast.makeText(loginFragment.getActivity(), R.string.login_error_credenciales, Toast.LENGTH_SHORT).show();
 			}

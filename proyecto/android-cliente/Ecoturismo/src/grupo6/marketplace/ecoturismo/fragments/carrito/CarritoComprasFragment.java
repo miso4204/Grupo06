@@ -4,10 +4,11 @@ import java.util.List;
 
 import grupo6.marketplace.ecoturismo.R;
 import grupo6.marketplace.ecoturismo.activities.PagosActivity;
+import grupo6.marketplace.ecoturismo.activities.PrincipalActivity;
 import grupo6.marketplace.ecoturismo.adapters.CarritoComprasAdapter;
 import grupo6.marketplace.ecoturismo.application.EcoturismoApplication;
+import grupo6.marketplace.ecoturismo.asyntask.carrito.CargarCarritoComprasAsyncTask;
 import grupo6.marketplace.ecoturismo.modelo.Producto;
-import grupo6.marketplace.ecoturismo.modelo.sql.tables.CarritoComprasTable;
 import grupo6.marketplace.ecoturismo.util.AlertUtilidades;
 import grupo6.marketplace.ecoturismo.util.CurrencyUtilidades;
 import android.annotation.SuppressLint;
@@ -39,7 +40,6 @@ public class CarritoComprasFragment extends Fragment {
 	public static final int TARJETA_CREDITO = 2;
 
 	private EcoturismoApplication ecoturismoApplication;
-	private List<Producto> carritoCompras;
 	private double totalCarrito;
 
 	private View view;
@@ -62,7 +62,7 @@ public class CarritoComprasFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		cargarCarritoCompras();
+		getCarritoCompras();
 	}
 
 	private void cargarDatosLocales() {
@@ -79,20 +79,24 @@ public class CarritoComprasFragment extends Fragment {
 				.findViewById(R.id.Carrito_Compras_Button_Comprar);
 	}
 
-	private void cargarCarritoCompras() {
-		carritoCompras = CarritoComprasTable
-				.getCarritoCompras(ecoturismoApplication
-						.getEcoturismoSqlHelper());
+	private void getCarritoCompras() {
+		String userName = ecoturismoApplication.getUsuario().getUsuario();
+		new CargarCarritoComprasAsyncTask(CarritoComprasFragment.this).execute(userName);
+	}
+	
+	public void cargarCarritoCompras(List<Producto> productos) {
 		carritoComprasAdapter = new CarritoComprasAdapter(getActivity(),
-				carritoCompras, ecoturismoApplication.getEcoturismoSqlHelper(),
-				CarritoComprasFragment.this);
+				                productos, 
+				                CarritoComprasFragment.this,
+				                ecoturismoApplication);
 		listViewCarritoCompras.setAdapter(carritoComprasAdapter);
 		calcularTotalCarrito();
 	}
 
 	public void calcularTotalCarrito() {
 		totalCarrito = 0;
-		for (Producto p : carritoCompras) {
+		for(int i = 0;i<carritoComprasAdapter.getCount();i++){
+			Producto p = carritoComprasAdapter.getItem(i);
 			totalCarrito = totalCarrito + p.getPrecio();
 		}
 		textViewTotalCarrito.setText(getString(R.string.carrrito_compras_total)
@@ -109,9 +113,8 @@ public class CarritoComprasFragment extends Fragment {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						Producto producto = carritoCompras.get(position);
-						AlertUtilidades.mostrarAlertProducto(getActivity(),
-								producto);
+						Producto producto = carritoComprasAdapter.getItem(position);
+						AlertUtilidades.mostrarAlertProducto(getActivity(),producto);
 					}
 				});
 
@@ -139,7 +142,7 @@ public class CarritoComprasFragment extends Fragment {
 	protected void mostrarPagosActivity(int pago) {
 		switch (pago) {
 		case EFECTIVO:
-			// TODO: Pagar inmediatamente
+			abrirPagosActivity(pago);
 			break;
 		case PSE:
 			abrirPagosActivity(pago);
@@ -154,7 +157,13 @@ public class CarritoComprasFragment extends Fragment {
 	private void abrirPagosActivity(int pago) {
 		Intent i = new Intent(getActivity(), PagosActivity.class);
 		i.putExtra(TIPO_PAGO, pago);
-		getActivity().startActivity(i);
+		getActivity().startActivityForResult(i, PrincipalActivity.REQUEST_CODE_PAGOS_ACTIVITY);
 
+	}
+
+	public void remove(Producto producto) {
+		carritoComprasAdapter.remove(producto);
+		carritoComprasAdapter.notifyDataSetChanged();
+		calcularTotalCarrito();
 	}
 }
