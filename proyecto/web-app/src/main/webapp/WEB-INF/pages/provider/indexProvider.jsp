@@ -3,7 +3,7 @@
 
 <head>
     <title>Traveler - Index</title>
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
@@ -134,7 +134,7 @@
             <!--...........................-->
             <div class="container">
                 <div class="col-md-12">
-                    <h3 class="mb20">ADMINISTRATION</h3>
+                    <h3 class="mb20">PROVIDER</h3>
                     <div class="row row-wrap">
                         <div class="col-md-12">
                             <div class="tabbable">
@@ -154,27 +154,27 @@
                                                     <form id="formularioCrear" action="" method="post">
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
                                                         <label>Name</label>
-                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name"  />
+                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
                                                     </div>
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
                                                         <label>Destination name</label>
-                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" />
+                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" required/>
                                                     </div>
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
                                                         <label>Destination Location</label>
-                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" />
+                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
                                                     </div>
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
                                                         <label>Price</label>
-                                                        <input class="form-control" placeholder="2000" type="text" name="price" id="price" />
+                                                        <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
                                                     </div>
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
                                                         <label>Date</label>
-                                                        <input class="form-control" placeholder="2000" type="date" name="date" id="date" />
+                                                        <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
                                                     </div>
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
                                                         <label>URL Image</label>
-                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/>
+                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
                                                     </div>
                                                     <div class="form-group form-group-icon-left">
                                                         <button class="btn btn-primary btn-lg" type="submit" >Register</button>

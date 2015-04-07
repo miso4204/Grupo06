@@ -131,8 +131,43 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>desarrollo</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>ambiente</name>
+					<value>desarrollo</value>
+				</property>
+			</activation>
+			<properties>
+				<rest.host>http://localhost:8081/web-app/</rest.host>
+			</properties>
+		</profile>
+		<!--  mvn clean install -Dambiente=produccion -->
+		<profile>
+			<id>produccion</id>
+			<activation>
+				<property>
+					<name>ambiente</name>
+					<value>produccion</value>
+				</property>
+			</activation>
+			<properties>
+				<rest.host>http://dessoft.herokuapp.com/</rest.host>
+			</properties>
+		</profile>
+	</profiles>
+	
 	<properties>
 		<jackson.version>1.9.10</jackson.version>
 	</properties>

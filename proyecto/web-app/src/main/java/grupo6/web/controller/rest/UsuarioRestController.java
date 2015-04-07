@@ -2,15 +2,12 @@ package grupo6.web.controller.rest;
 
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.web.dto.ChangePassDTO;
 import grupo6.web.dto.LoginDTO;
 import grupo6.web.dto.UsuarioDTO;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,24 +104,19 @@ public class UsuarioRestController {
 	 * @param Pasword anterior a actualizar. actualizado a partir de un JSON.
 	 * 
 	 * @return true si actualiza exitosamente y false si no
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/change_pass", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean cambiarContrasennia(@RequestBody String passActual, @RequestBody String passNuevo, 
-			@RequestBody String passNuevoValidate) {
+	public @ResponseBody boolean cambiarContrasennia(@RequestBody ChangePassDTO changePass) throws Exception {
 		
 		@SuppressWarnings("unused")
 		String mensajeError = ""; // MOSTRAR EN UN MODAL
 		
-		try {
-			//String userName = (String) httpSession.getAttribute(USER_NAME_SESSION);
-			// TODO recibir en peticion
-			String userName = null;
-			return usuarioService.cambiarPassword(userName, passActual, passNuevo, passNuevoValidate);
-		} catch (Exception e) {
-			mensajeError = e.getMessage();
-			return false;
-		}
+				
+			return usuarioService.cambiarPassword(changePass.getUserName(),
+					changePass.getPassActual(), changePass.getPassNuevo(), changePass.getPassNuevoValidate());
+		
 	}
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
-  <base href="/web-app/" >
+  <base href="${pageContext.request.contextPath}/" >
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,13 +82,13 @@ $("#formularioCrearProvider").submit(function(e) {
                     var out = "";
                     
                        out+='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your user has been created!.</div>'
-                       document.getElementById("errormessage").innerHTML = out;
+                       document.getElementById("errormessage2").innerHTML = out;
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
                     var out = "";
                     
                        out+='<div class="alert alert-error"><strong>Error!</strong> A problem has been occurred while submitting your data.</div>'
-                       document.getElementById("errormessage").innerHTML = out;
+                       document.getElementById("errormessage2").innerHTML = out;
                 }
             });
         });
@@ -174,39 +174,39 @@ $("#formularioCrearProvider").submit(function(e) {
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">User</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" id="normalUser" placeholder="User">
+                                            <input type="text" class="form-control" name="email" id="normalUser" placeholder="User" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Password</label>
                                         <div class="col-md-9">
-                                            <input type="password" class="form-control" name="passwd" id="normalPass" placeholder="Password">
+                                            <input type="password" class="form-control" name="passwd" id="normalPass" placeholder="Password" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="firstname" class="col-md-3 control-label">Full Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="firstname" id="normalFN" placeholder="Full Name">
+                                            <input type="text" class="form-control" name="firstname" id="normalFN" placeholder="Full Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="lastname" class="col-md-3 control-label">Street Address</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="lastname" id="normalSA" placeholder="Street Address">
+                                            <input type="text" class="form-control" name="lastname" id="normalSA" placeholder="Street Address" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Phone number</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="passwd" id="normalPN" placeholder="Phone number">
+                                            <input type="number" class="form-control" name="passwd" id="normalPN" placeholder="Phone number" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="icode" class="col-md-3 control-label">E-mail</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="icode" id="normalEmail" placeholder="email@gmail.com">
+                                            <input type="text" class="form-control" name="icode" id="normalEmail" placeholder="email@gmail.com" required>
                                         </div>
                                     </div>
                                     
@@ -225,45 +225,45 @@ $("#formularioCrearProvider").submit(function(e) {
                                  <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">User</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" id="proUser" placeholder="User">
+                                            <input type="text" class="form-control" name="email" id="proUser" placeholder="User" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Password</label>
                                         <div class="col-md-9">
-                                            <input type="password" class="form-control" name="passwd" id="proPass" placeholder="Password">
+                                            <input type="password" class="form-control" name="passwd" id="proPass" placeholder="Password" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="firstname" class="col-md-3 control-label">Full Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="firstname" id="proFN" placeholder="Full Name">
+                                            <input type="text" class="form-control" name="firstname" id="proFN" placeholder="Full Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="lastname" class="col-md-3 control-label">Street Address</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="lastname" id="proSA" placeholder="Street Address">
+                                            <input type="text" class="form-control" name="lastname" id="proSA" placeholder="Street Address" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Phone number</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="passwd" id="proPN" placeholder="Phone number">
+                                            <input type="number" class="form-control" name="passwd" id="proPN" placeholder="Phone number" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="icode" class="col-md-3 control-label">E-mail</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="icode" id="proEmail" placeholder="email@gmail.com">
+                                            <input type="text" class="form-control" name="icode" id="proEmail" placeholder="email@gmail.com" required>
                                         </div>
                                     </div>
                                 <div class="form-group">
                                         <label for="icode" class="col-md-3 control-label">Web Site</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="icode" id="provWS" placeholder="http://www.hoooola.com">
+                                            <input type="text" class="form-control" name="icode" id="provWS" placeholder="http://www.hoooola.com" required>
                                         </div>
                                     </div>
 
@@ -271,7 +271,7 @@ $("#formularioCrearProvider").submit(function(e) {
                                     <!-- Button -->                                        
                                     <div class="col-md-offset-3 col-md-9">
                                         <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                                         <div id="errormessage"></div> 
+                                         <div id="errormessage2"></div> 
                                     </div>
                                 </div>      
                             </form>

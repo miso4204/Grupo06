@@ -4,7 +4,7 @@
 <head>
     <title>Traveler - Index</title>
 
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
     <meta name="description" content="Traveler - Premium template for travel companies">
@@ -193,24 +193,11 @@ $(document).ready(function () {
             <div class="container">
                 <div class="nav">
                     <ul class="slimmenu" id="slimmenu">                       
-                        <li><a href="hotels.html">Products</a>
-                            <ul>
-                                <li><a href="hotel-details.html">Details</a>
-                                    <ul>
-                                        <li><a href="hotel-details.html">Layout 1</a>
-                                        </li>
-                                        <li><a href="hotel-details-2.html">Layout 2</a>
-                                        </li>
-                                        <li><a href="hotel-details-3.html">Layout 3</a>
-                                        </li>
-                                        <li><a href="hotel-details-4.html">Layout 4</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <li>
+                                <a href="pages/client/indexUser.jsp">Search</a>
                         </li>
                         <li>
-                                <a href="pages/client/payment.jsp">Carrito</a>
+                                <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
                     </ul>
                 </div>

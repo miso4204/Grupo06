@@ -4,7 +4,7 @@
 <head>
     <title>Traveler - Index</title>
 
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
     <meta name="description" content="Traveler - Premium template for travel companies">
@@ -32,7 +32,7 @@ $("#cambiarPass").submit(function(e) {
             
             e.preventDefault();     
             var jsonPeticion = JSON.stringify({
-                    "userName": '${usuarioSesion.nombre}', 
+                    "userName": '${usuarioSesion.usuario}', 
                     "passActual": $('#currentPass').val(),
                     "passNuevo": $('#newPass').val(),
                     "passNuevoValidate": $('#newAgainPass').val()
@@ -132,25 +132,11 @@ $("#cambiarPass").submit(function(e) {
                 <div class="container">
                     <div class="nav">
                         <ul class="slimmenu" id="slimmenu">                       
-                            <li><a href="hotels.html">Products</a>
-                                <ul>
-                                    <li><a href="hotel-details.html">Details</a>
-                                        <ul>
-                                            <li><a href="hotel-details.html">Layout 1</a>
-                                            </li>
-                                            <li><a href="hotel-details-2.html">Layout 2</a>
-                                            </li>
-                                            <li><a href="hotel-details-3.html">Layout 3</a>
-                                            </li>
-                                            <li><a href="hotel-details-4.html">Layout 4</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    
-                                </ul>
+                            <li>
+                                <a href="pages/client/indexUser.jsp">Search</a>
                             </li>
                             <li>
-                                <a href="pages/client/payment.jsp">Carrito</a>
+                                <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
                             
                             
@@ -216,15 +202,15 @@ $("#cambiarPass").submit(function(e) {
                             <form id="cambiarPass" action=""  method="post">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
                                     <label>Current Password</label>
-                                    <input class="form-control" id="currentPass" type="password" />
+                                    <input class="form-control" id="currentPass" type="password" required/>
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
                                     <label>New Password</label>
-                                    <input class="form-control" id="newPass" type="password" />
+                                    <input class="form-control" id="newPass" type="password" required/>
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
                                     <label>New Password Again</label>
-                                    <input class="form-control" id="newAgainPass" type="password" />
+                                    <input class="form-control" id="newAgainPass" type="password" required />
                                 </div>
                                 <hr />
                                 <button class="btn btn-primary" type="submit"  id="errormessage"value="Change Password">Change Password</button>

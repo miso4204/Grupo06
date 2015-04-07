@@ -84,7 +84,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 	public boolean cambiarPassword(String usuario, String passAnterior, String passNuevo, String passNuevoValidate) throws Exception {
 		
 		if (passNuevo != null && !passNuevo.equals("")){
-			if (passNuevoValidate != null && passNuevoValidate.equals("")) {
+			if (passNuevoValidate != null && !passNuevoValidate.equals("")) {
 				if (passNuevo.equals(passNuevoValidate)) {
 					
 					Usuario usuarioEncontrado = this.buscarUsuarioPorUsername(usuario);
@@ -129,7 +129,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 	public Usuario buscarUsuarioPorUsername (String username) {
 		
 		Criteria criteria = getCurrentSession().createCriteria(Usuario.class);		
-		criteria.add(Restrictions.eq("user", username)); 	
+		criteria.add(Restrictions.eq("usuario", username)); 	
 		Usuario usuarioEncontrado = (Usuario) criteria.uniqueResult();
 		
 		return usuarioEncontrado;

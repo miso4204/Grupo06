@@ -4,7 +4,7 @@
 <head>
     <title>Traveler - Index</title>
 
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
     <meta name="description" content="Traveler - Premium template for travel companies">
@@ -97,7 +97,7 @@
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">Add to Cart</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
@@ -117,27 +117,27 @@ document.getElementById("ListaProductos").innerHTML = out;
                 }
             });
      }else if (servicio==1) {
-
+    	 alert("Opcional, no implementado aún "); 
         
-         $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
-                },
-                datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_precio/" + primerPrecio+"/"+segundoPrecio, 
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                       alert("respuesta servidor: " + JSON.stringify(data)); 
+//          $.ajax({
+//                 headers: { 
+//                     'Accept': 'application/json',
+//                     'Content-Type': 'application/json' 
+//                 },
+//                 datatype:"json",
+//                 type: "GET",
+//                 url: "services/producto/buscar_por_precio/" + primerPrecio+"/"+segundoPrecio, 
+//                 contentType: false,
+//                 processData: false,
+//                 success: function(data)
+//                    {
+//                        alert("respuesta servidor: " + JSON.stringify(data)); 
 
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
-                }
-            });
+//                    },
+//                 error: function(jqXHR, textStatus, errorMessage) {
+//                        alert("Error: " + errorMessage);
+//                 }
+//             });
 
 
     }
@@ -276,24 +276,11 @@ document.getElementById("ListaProductos").innerHTML = out;
                 <div class="container">
                     <div class="nav">
                         <ul class="slimmenu" id="slimmenu">                       
-                            <li><a href="hotels.html">Products</a>
-                                <ul>
-                                    <li><a href="hotel-details.html">Details</a>
-                                        <ul>
-                                            <li><a href="hotel-details.html">Layout 1</a>
-                                            </li>
-                                            <li><a href="hotel-details-2.html">Layout 2</a>
-                                            </li>
-                                            <li><a href="hotel-details-3.html">Layout 3</a>
-                                            </li>
-                                            <li><a href="hotel-details-4.html">Layout 4</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="pages/client/indexUser.jsp">Search</a>
                             </li>
                             <li>
-                                <a href="pages/client/payment.jsp">Carrito</a>
+                                <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
                         </ul>
                     </div>
@@ -328,44 +315,7 @@ document.getElementById("ListaProductos").innerHTML = out;
             <!--...........................-->
                     <ul class="booking-list" id="ListaProductos">
                         
-                        <li>
-                            <a class="booking-item" href="#">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="booking-item-img-wrap">
-                                            <img src="img/800x600.png" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
-                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>29</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="booking-item-rating">
-                                            <ul class="icon-group booking-item-rating-stars">
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star-half-empty"></i>
-                                                </li>
-                                            </ul><span class="booking-item-rating-number"><b >4.4</b> of 5</span><small>(406 reviews)</small>
-                                        </div>
-                                        <h5 class="booking-item-title">Bryant Park Hotel</h5>
-                                        <p class="booking-item-address"><i class="fa fa-map-marker"></i> New York, NY (Chelsea)</p><small class="booking-item-last-booked">Latest booking: 1 hour ago</small>
-                                    </div>
-                                    <div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$207</span><span>/night</span><span class="btn btn-primary">Book Now</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        
-                    
-                        
-                        
-                        
+                                               
                         
                         
                         
@@ -375,34 +325,9 @@ document.getElementById("ListaProductos").innerHTML = out;
                         
                         
                     </ul>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p><small>521 hotels found in New York. &nbsp;&nbsp;Showing 1 â€“ 15</small>
-                            </p>
-                            <ul class="pagination">
-                                <li class="active"><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li><a href="#">6</a>
-                                </li>
-                                <li><a href="#">7</a>
-                                </li>
-                                <li class="dots">...</li>
-                                <li><a href="#">43</a>
-                                </li>
-                                <li class="next"><a href="#">Next Page</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="row">                       
                         <div class="col-md-6 text-right">
-                            <p>Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+                            <p>Not what you're looking for? <a class="popup-text" href="pages/client/indexAdmin.jsp" data-effect="mfp-zoom-out">Try your search again</a>
                             </p>
                         </div>
                     </div>

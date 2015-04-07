@@ -3,7 +3,7 @@
 
 <head>
     <title>Traveler - Index</title>
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
@@ -252,67 +252,67 @@ $("#buscarPorFecha").submit(function(e) {
                         <div class="col-md-12">
                             <div class="tabbable">
                                 <ul class="nav nav-tabs" id="myTab">
-                                    <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a>
-                                    </li>
-                                    <li><a href="#tab-2" data-toggle="tab">Reportes</a>
+<!--                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a> -->
+<!--                                     </li> -->
+                                    <li class="active"><a href="#tab-2" data-toggle="tab">Reportes</a>
                                     </li>
                                     <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane fade in active" id="tab-1">
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <form id="formularioCrear" action="" method="post">
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
-                                                        <label>Name</label>
-                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name"  />
-                                                    </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
-                                                        <label>Destination name</label>
-                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" />
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
-                                                        <label>Destination Location</label>
-                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" />
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
-                                                        <label>Price</label>
-                                                        <input class="form-control" placeholder="2000" type="text" name="price" id="price" />
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
-                                                        <label>Date</label>
-                                                        <input class="form-control" placeholder="2000" type="date" name="date" id="date" />
-                                                    </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
-                                                        <label>URL Image</label>
-                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left">
-                                                        <button class="btn btn-primary btn-lg" type="submit" >Register</button>
-                                                    </div>
+<!--                                     <div class="tab-pane fade in active" id="tab-1"> -->
+<!--                                         <div class="col-md-8"> -->
+<!--                                             <div class="row"> -->
+<!--                                                 <div class="col-md-6"> -->
+<!--                                                     <form id="formularioCrear" action="" method="post"> -->
+<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>Name</label> -->
+<!--                                                         <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name"  /> -->
+<!--                                                     </div> -->
+<!--                                                      <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>Destination name</label> -->
+<!--                                                         <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" /> -->
+<!--                                                     </div> -->
+<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>Destination Location</label> -->
+<!--                                                         <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" /> -->
+<!--                                                     </div> -->
+<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>Price</label> -->
+<!--                                                         <input class="form-control" placeholder="2000" type="text" name="price" id="price" /> -->
+<!--                                                     </div> -->
+<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>Date</label> -->
+<!--                                                         <input class="form-control" placeholder="2000" type="date" name="date" id="date" /> -->
+<!--                                                     </div> -->
+<!--                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i> -->
+<!--                                                         <label>URL Image</label> -->
+<!--                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/> -->
+<!--                                                     </div> -->
+<!--                                                     <div class="form-group form-group-icon-left"> -->
+<!--                                                         <button class="btn btn-primary btn-lg" type="submit" >Register</button> -->
+<!--                                                     </div> -->
                                                    
-                                                </form>
-                                            </div>
+<!--                                                 </form> -->
+<!--                                             </div> -->
                                 
-                                <div class="col-md-6">
-                                    <br>
-                                    <br>
-                                     <div class="form-group form-group-icon-left">
-                                         <div id="errormessage"></div>
-                                    </div>
+<!--                                 <div class="col-md-6"> -->
+<!--                                     <br> -->
+<!--                                     <br> -->
+<!--                                      <div class="form-group form-group-icon-left"> -->
+<!--                                          <div id="errormessage"></div> -->
+<!--                                     </div> -->
                                   
 
-                                </div>
+<!--                                 </div> -->
                            
-                        </div>
-                    </div>
-                      </div>
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                       </div> -->
                       <!-- REPOORTES ----------------------------------- -->
                       <!-- REPOORTES ----------------------------------- -->
 
-                    <div class="tab-pane fade" id="tab-2">
+                    <div class="tab-pane fade in active" id="tab-2">
                         
                                         <h2>Search for Reports</h2>
                                         
@@ -378,23 +378,7 @@ $("#buscarPorFecha").submit(function(e) {
                                             </div>
                                     
                         <table class="table table-bordered table-striped table-booking-history" id="tablaReporte">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Location</th>
-                                <th> Total Sales </th>
-                                <th>Total Cash Sales</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>
-                                </td>
-                                <td class="booking-history-title">Central Park Trip</td>
-                                <td>New york City</td>
-                                <td>4/12/2014</td>
-                            </tr>
-                        </tbody>
+                       
                     </table>
                                             </div>
                         <div class="tab-pane fade" id="tab-3">

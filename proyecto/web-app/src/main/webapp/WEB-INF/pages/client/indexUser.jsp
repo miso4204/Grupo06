@@ -4,7 +4,7 @@
 <head>
     <title>Traveler - Index</title>
 
-	<base href="/web-app/" >
+	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest" />
     <meta name="description" content="Traveler - Premium template for travel companies">
@@ -216,25 +216,28 @@ form.submit();
                 <div class="container">
                     <div class="nav">
                         <ul class="slimmenu" id="slimmenu">                       
-                            <li><a href="hotels.html">Products</a>
-                                <ul>
-                                    <li><a href="hotel-details.html">Details</a>
-                                        <ul>
-                                            <li><a href="hotel-details.html">Layout 1</a>
-                                            </li>
-                                            <li><a href="hotel-details-2.html">Layout 2</a>
-                                            </li>
-                                            <li><a href="hotel-details-3.html">Layout 3</a>
-                                            </li>
-                                            <li><a href="hotel-details-4.html">Layout 4</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+<!--                             <li><a href="hotels.html">Products</a> -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="hotel-details.html">Details</a> -->
+<!--                                         <ul> -->
+<!--                                             <li><a href="hotel-details.html">Layout 1</a> -->
+<!--                                             </li> -->
+<!--                                             <li><a href="hotel-details-2.html">Layout 2</a> -->
+<!--                                             </li> -->
+<!--                                             <li><a href="hotel-details-3.html">Layout 3</a> -->
+<!--                                             </li> -->
+<!--                                             <li><a href="hotel-details-4.html">Layout 4</a> -->
+<!--                                             </li> -->
+<!--                                         </ul> -->
+<!--                                     </li> -->
                                     
-                                </ul>
+<!--                                 </ul> -->
+<!--                             </li> -->
+							<li>
+                                <a href="pages/client/indexUser.jsp">Search</a>
                             </li>
                             <li>
-                                <a href="pages/client/payment.jsp">Carrito</a>
+                                <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
                             
                             
@@ -257,33 +260,33 @@ form.submit();
                                         <h1>Find Your Perfect Trip</h1>
                                         <div class="tabbable">
                                             <ul class="nav nav-tabs" id="myTab">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
-                                                </li>
-                                                <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-money"></i> <span >Price</span></a>
+<!--                                                 <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a> -->
+<!--                                                 </li> -->
+                                                <li class="active"><a href="#tab-2" data-toggle="tab"><i class="fa fa-money"></i> <span >Price</span></a>
                                                 </li>
                                                 <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a>                                            </ul>
                                                     <div class="tab-content">
-                                                        <div class="tab-pane fade in active" id="tab-1">
-                                                            <h2>Search and Save by location</h2>
-                                                            <form id="buscarPorCiudad" action="" method="post" >
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                                    <label>Where are you going?</label>
-                                                                    <input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" id="ciudad"/>
-                                                                </div>
+<!--                                                         <div class="tab-pane fade in active" id="tab-1"> -->
+<!--                                                             <h2>Search and Save by location</h2> -->
+<!--                                                             <form id="buscarPorCiudad" action="" method="post" > -->
+<!--                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i> -->
+<!--                                                                     <label>Where are you going?</label> -->
+<!--                                                                     <input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" id="ciudad"/> -->
+<!--                                                                 </div> -->
                                                                 
-                                                                <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="tab-2">
+<!--                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for location</button> -->
+<!--                                                             </form> -->
+<!--                                                         </div> -->
+                                                        <div class="tab-pane fade in active" id="tab-2">
                                                             <h2>Search and Save by price</h2>
                                                             <form id="buscarPorPrecio" action="" method="post">
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
                                                                     <label>Where are you going?</label>
-                                                                    <input class="typeahead form-control" placeholder="100$" type="text" id="priceOne" />
+                                                                    <input class="typeahead form-control" placeholder="100$" type="number" id="priceOne" min="0" required />
                                                                 </div>
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
                                                                    <label>to..</label>
-                                                                    <input class="typeahead form-control" placeholder="300$" type="text" id="priceTwo"/>
+                                                                    <input class="typeahead form-control" placeholder="300$" type="number" id="priceTwo" min="0" required/>
                                                                 </div>
                                                                 
                                                                 <button class="btn btn-primary btn-lg" type="submit" id="mandarPrecios">Search for location</button>

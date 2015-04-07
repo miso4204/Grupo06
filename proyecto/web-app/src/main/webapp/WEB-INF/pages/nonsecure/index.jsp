@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <base href="/web-app/" >
+ <base href="${pageContext.request.contextPath}/" >
 <link rel="stylesheet" href="css/test.css" type="text/css">
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
