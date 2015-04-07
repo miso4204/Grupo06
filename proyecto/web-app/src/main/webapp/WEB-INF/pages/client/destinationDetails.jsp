@@ -166,7 +166,7 @@ $(document).ready(function () {
                         <div class="top-user-area clearfix">
                             <ul class="top-user-area-list list list-horizontal list-border">
                                 <li class="top-user-area-avatar">
-                                    <a href="user-profile.html">
+                                    <a href="pages/client/user_profile.jsp">
                                         <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                     </li>
                                     <li><a href="pages/logout">Sign Out</a>

@@ -101,4 +101,11 @@ public class NavigationWebController {
 
 		return new ModelAndView("/client/successPayment");
 	}
+	
+	@RequestMapping("/client/user_profile.jsp")
+	protected ModelAndView showUserProfile(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return new ModelAndView("/client/user_profile");
+	}
 }

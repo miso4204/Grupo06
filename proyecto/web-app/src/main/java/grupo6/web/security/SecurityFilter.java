@@ -50,6 +50,7 @@ public class SecurityFilter implements Filter {
 		restrictedResourcesCient.add("/pages/client/payment.jsp");
 		restrictedResourcesCient.add("/pages/client/successPayment.jsp");
 		restrictedResourcesCient.add("/pages/client/searchResult.jsp");
+		restrictedResourcesCient.add("/pages/client/user_profile.jsp");
 
 		restrictedResourcesProvider = new HashSet<String>();
 		restrictedResourcesProvider.add("/pages/provider/home_provider.jsp");

@@ -86,66 +86,42 @@ document.getElementById("ListaProductos").innerHTML = out;
 
 <script type="text/javascript">
     $(document).ready(function() {
-$("#buscarPorPrecio").submit(function(e) {
-               
-            e.preventDefault();                
+
+
+$("#cambiarPass").submit(function(e) {
+            
+            e.preventDefault();     
+            var jsonPeticion = JSON.stringify({
+                    "userName": '${usuarioSesion.nombre}', 
+                    "passActual": $('#currentPass').val(),
+                    "passNuevo": $('#newPass').val(),
+                    "passNuevoValidate": $('#newAgainPass').val()
+                     });
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
                     'Content-Type': 'application/json' 
                 },
                 datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_precio/" + $('#priceOne').val()+"/"+$('#priceTwo').val(), 
+                type: "POST",
+                url: "services/usuario/change_pass", 
+                data: jsonPeticion,
                 contentType: false,
                 processData: false,
                 success: function(data)
                    {
-                     
-                       var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.jsp?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
-  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
-  '</form>');
-$('body').append(form);
-form.submit();
+                    var out = "";
+                    
+                       out+='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your user has been created!.</div>'
+                       document.getElementById("errormessage").innerHTML = out;
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                    var out = "";
+                    
+                       out+='<div class="alert alert-error"><strong>Error!</strong> A problem has been occurred while submitting your data.</div>'
+                       document.getElementById("errormessage").innerHTML = out;
                 }
             });
-            
-
-        });
-
-$("#buscarPorFecha").submit(function(e) {
-               
-            e.preventDefault();                
-            $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
-                },
-                datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_fecha/" + $('#dateOne').val()+"/"+$('#dateTwo').val(), 
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                       
-                       var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.jsp?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
-  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
-  '</form>');
-$('body').append(form);
-form.submit();
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
-                }
-            });
-            
-
         });
     });
 </script>
@@ -245,113 +221,87 @@ form.submit();
             </header>
 
             <!-- TOP AREA -->
-            <div class="top-area show-onload">
-                <div class="bg-holder full">
-                    <div class="bg-mask"></div>
-                    <div class="bg-parallax" style="background-image:url(img/409520.jpg);"></div>
-                    <div class="bg-content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="search-tabs search-tabs-bg mt50">
-                                        <h1>Find Your Perfect Trip</h1>
-                                        <div class="tabbable">
-                                            <ul class="nav nav-tabs" id="myTab">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
-                                                </li>
-                                                <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-money"></i> <span >Price</span></a>
-                                                </li>
-                                                <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a>                                            </ul>
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane fade in active" id="tab-1">
-                                                            <h2>Search and Save by location</h2>
-                                                            <form id="buscarPorCiudad" action="" method="post" >
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                                    <label>Where are you going?</label>
-                                                                    <input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" id="ciudad"/>
-                                                                </div>
-                                                                
-                                                                <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="tab-2">
-                                                            <h2>Search and Save by price</h2>
-                                                            <form id="buscarPorPrecio" action="" method="post">
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
-                                                                    <label>Where are you going?</label>
-                                                                    <input class="typeahead form-control" placeholder="100$" type="text" id="priceOne" />
-                                                                </div>
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
-                                                                   <label>to..</label>
-                                                                    <input class="typeahead form-control" placeholder="300$" type="text" id="priceTwo"/>
-                                                                </div>
-                                                                
-                                                                <button class="btn btn-primary btn-lg" type="submit" id="mandarPrecios">Search for location</button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="tab-3">
-                                                            <h2>Search and Save by Date</h2>
-                                                            <form id="buscarPorFecha" action=""  method="post">
-                                                                <div class="form-group form-group-lg form-group-icon-left">
-                                                                    <label>When do you want to travel?</label>
-                                                                </div>
-                                                                <div class="input-daterange" data-date-format="yyyy-m-d">
-                                                                    <div class="row">
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                                                <label>Check-in</label>
-                                                                                <input class="form-control" name="start" type="text" id="dateOne"/>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                                                <label>Check-out</label>
-                                                                                <input class="form-control" name="end" type="text" id="dateTwo"/>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
-                                                            </form>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+ <div class="gap"></div>
+                    <div class="container">
+                    <div class="row">
+                <div class="col-md-3">
+                    <aside class="user-profile-sidebar">
+                        <div class="user-profile-avatar text-center">
+                            <img src="img/user_image.png" alt="Image Alternative text" title="AMaze" />
+                            <h5>${usuarioSesion.nombre}</h5>
+                            <p>Member Since April 2015</p>
                         </div>
+                        <ul class="list user-profile-nav">
+                            <li><a href="pages/client/payment.jsp"><i class="fa fa-user"></i>My cart</a>
+                            </li>
+                            <li><a href="pages/client/user_profile.jsp"><i class="fa fa-cog"></i>Settings</a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <form action="">
+                                <h4>Personal Infomation</h4>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
+                                    <label>User Name</label>
+                                    <input class="form-control" value="John" type="text" disabled/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
+                                    <label>Full Name</label>
+                                    <input class="form-control" value="Doe" type="text" disabled/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon"></i>
+                                    <label>E-mail</label>
+                                    <input class="form-control" value="johndoe@gmail.com" type="text" disabled/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon"></i>
+                                    <label>Phone Number</label>
+                                    <input class="form-control" value="+1 202 555 0113" type="text" disabled/>
+                                </div>
+                                <div class="gap gap-small"></div>
+                                <h4>Location</h4>
+                                
+                                <div class="form-group">
+                                    <label>Street Address</label>
+                                    <input class="form-control" value="46 Gray's Inn Rd, London, WC1X 8LP" type="text" />
+                                </div>
+                                <hr>
+                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                            </form>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1">
+                            <h4>Change Password</h4>
+                            <form id="cambiarPass" action=""  method="post">
+                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
+                                    <label>Current Password</label>
+                                    <input class="form-control" id="currentPass" type="password" />
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
+                                    <label>New Password</label>
+                                    <input class="form-control" id="newPass" type="password" />
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
+                                    <label>New Password Again</label>
+                                    <input class="form-control" id="newAgainPass" type="password" />
+                                </div>
+                                <hr />
+                                <button class="btn btn-primary" type="submit"  id="errormessage"value="Change Password">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>        
+
+
                     </div>
                     <!-- END TOP AREA  -->
 
 
                     <div class="gap"></div>
-                    <!--...........................-->
-                    <!-- INICIO LISTA DE DESTINOS  -->
-                    <!--...........................-->
-                    <div class="container">
-                        <div class="col-md-12">
-                            <h3 class="mb20">Popular Destinations</h3>
-                            <div class="row row-wrap" id="ListaProductos">
-
-                                
-                                
-                            </div>
-                            
-                            <div class="gap gap-small"></div>
-                        </div>
-                        <div class="gap gap-small"></div>
-                    </div>
-                    <!--...........................-->
-                    <!-- FINAL LISTA DE DESTINOS  -->
-                    <!--...........................-->
+                    
 
 
                     <footer id="main-footer">
