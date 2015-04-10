@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller 
 @RequestMapping("/reportes")
-public class ReportesRestController {
+public class ReportesRestController extends BaseRestController {
 
 	/** Servicios de reportes de ventas.*/
 	@Autowired 

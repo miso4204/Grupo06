@@ -29,6 +29,10 @@ public class UsuarioService implements IUsuarioService {
 	@Transactional
 	@Override
 	public long crearUsuario(Usuario user) {
+		if (buscarUsuarioPorUsername(user.getUsuario()) != null) {
+			throw new IllegalArgumentException("Username ya existe");
+		}
+		
 		return usuarioDAO.crearUsuario(user);
 	}
 

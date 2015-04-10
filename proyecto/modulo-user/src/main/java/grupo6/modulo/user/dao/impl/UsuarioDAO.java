@@ -72,10 +72,9 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 			getCurrentSession().update(usuarioEncontrado);
 			
 			return true;
-		} else {
+		} else {		
 			
-			System.out.println("El usuario no existe en la bd username = " + user.getUsuario());
-			return false;
+			throw new IllegalArgumentException("Username no existe");			
 		}
 	}
 
@@ -94,21 +93,20 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 						
 						usuarioEncontrado.setPassword(passNuevo);
 						getCurrentSession().update(usuarioEncontrado);
-					}else {
-						
-						throw new Exception("Su contraseña actual introducida no coincide con la almacenada en nuestro sistema");
+						return true;
+					}else {						
+						throw new IllegalArgumentException("Su contraseña actual introducida no coincide con la almacenada en nuestro sistema");
 					}
 				}else {
-					throw new Exception("la validación de la nueva clave no coincide");
+					throw new IllegalArgumentException("La validación de la nueva clave no coincide");
 				}
 			}else {
-				throw new Exception("la validación de la nueva clave no puede estar vacia");
+				throw new IllegalArgumentException("La validación de la nueva clave no puede estar vacia");
 			}
 		}else {
-			throw new Exception("nueva clave no puede estar vacia");
+			throw new IllegalArgumentException("Nueva clave no puede estar vacia");
 		}
 
-		return false;
 	}
 
 	/**

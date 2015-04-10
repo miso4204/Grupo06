@@ -4,10 +4,12 @@ import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.Usuario;
 import grupo6.web.dto.ChangePassDTO;
 import grupo6.web.dto.LoginDTO;
+import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller 
 @RequestMapping("/usuario")
-public class UsuarioRestController {
+public class UsuarioRestController extends BaseRestController {
 
 	@Autowired 
 	private IUsuarioService usuarioService;//Inyeccion servicios	
@@ -42,27 +44,24 @@ public class UsuarioRestController {
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UsuarioDTO login(@RequestBody LoginDTO userLogin) {
-		
+
 		UsuarioDTO usuarioDTO = null;
-		try {			
-			Usuario  user = usuarioService.ingresar(userLogin.getUsuario(), userLogin.getPassword());						
-			if (user != null) {
-				usuarioDTO = new UsuarioDTO();
-				usuarioDTO.setId(user.getId());
-				usuarioDTO.setDireccion(user.getDireccion());
-				usuarioDTO.setNombre(user.getNombre());
-				usuarioDTO.setPassword(user.getPassword());
-				usuarioDTO.setRol(user.getRol());
-				usuarioDTO.setTelefono(user.getTelefono());
-				usuarioDTO.setUsuario(user.getUsuario());
-				usuarioDTO.setEmail(user.getEmail());
-				usuarioDTO.setWebsite(user.getWebsite());
-			}
-			
-		} catch (Exception e) {			
-			e.printStackTrace();			
+
+		Usuario user = usuarioService.ingresar(userLogin.getUsuario(),
+				userLogin.getPassword());
+		if (user != null) {
+			usuarioDTO = new UsuarioDTO();
+			usuarioDTO.setId(user.getId());
+			usuarioDTO.setDireccion(user.getDireccion());
+			usuarioDTO.setNombre(user.getNombre());
+			usuarioDTO.setPassword(user.getPassword());
+			usuarioDTO.setRol(user.getRol());
+			usuarioDTO.setTelefono(user.getTelefono());
+			usuarioDTO.setUsuario(user.getUsuario());
+			usuarioDTO.setEmail(user.getEmail());
+			usuarioDTO.setWebsite(user.getWebsite());
 		}
-		
+
 		return usuarioDTO;
 	}
 	
@@ -78,9 +77,11 @@ public class UsuarioRestController {
 	@RequestMapping(value = "/crear", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody long crearUsuario(@RequestBody Usuario user) {
+	public @ResponseBody ResponseEntity<ResponseDTO> crearUsuario(@RequestBody Usuario user) {		
 		
-		return usuarioService.crearUsuario(user);
+		long id = usuarioService.crearUsuario(user);
+		return devolverRespuestaExitosa("Usuario creado exitosamente", id);	
+		
 	}
 	
 	
@@ -93,9 +94,16 @@ public class UsuarioRestController {
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean actualizarUsuario(@RequestBody Usuario user) {
-		
-		return usuarioService.actualizarUsuario(user);
+	public @ResponseBody ResponseEntity<ResponseDTO> actualizarUsuario(@RequestBody Usuario user) {
+	
+		   boolean b =  usuarioService.actualizarUsuario(user);	
+		   if (b) {
+			   return devolverRespuestaExitosa("Usuario actualizado", b);
+		   }
+		   else {
+			   throw new IllegalArgumentException("Usuario no actualizado");
+		   }
+		  
 	}
 	
 	

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller 
 @RequestMapping("/test") 
-public class TestPingRestController {
+public class TestPingRestController extends BaseRestController {
 	
 	/**
 	 * Servicio REST de prueba que devuelve un mensaje ping en JSON.

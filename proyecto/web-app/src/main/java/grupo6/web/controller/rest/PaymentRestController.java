@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller 
 @RequestMapping("/payment")
-public class PaymentRestController {
+public class PaymentRestController extends BaseRestController {
 
 	@Autowired 
 	private IPaymentService paymentService;//Inyeccion servicios

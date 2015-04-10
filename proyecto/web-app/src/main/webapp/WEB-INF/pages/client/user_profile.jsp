@@ -50,10 +50,18 @@ $("#cambiarPass").submit(function(e) {
                 processData: false,
                 success: function(data)
                    {
-                    var out = "";
-                    
-                       out+='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your user has been created!.</div>'
-                       document.getElementById("errormessage").innerHTML = out;
+                	
+                	 var out = "";
+                  	if (data.codigoRespuesta == 'OK') {
+                  		                       
+                  	  out+='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your password has been updated!.</div>'
+                          document.getElementById("errormessage").innerHTML = out;
+                  	}
+                  	else {
+                  		 out+='<div class="alert alert-error"><strong>Error!</strong> ' + data.mensaje + '</div>'
+                               document.getElementById("errormessage").innerHTML = out;
+                  	}                   
+                     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
                     var out = "";

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/carrito")
-public class CarritoComprasRestController {
+public class CarritoComprasRestController extends BaseRestController {
 
 	/** Servicios del carrito de compras. */
 	@Autowired

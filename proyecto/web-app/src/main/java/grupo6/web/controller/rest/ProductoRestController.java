@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller 
 @RequestMapping("/producto")
-public class ProductoRestController {
+public class ProductoRestController extends BaseRestController {
 	
 	/** Srvicios de producto.*/
 	@Autowired 
