@@ -47,7 +47,7 @@ $(document).ready(function () {
                 headers: { 
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'clienteId':  '${usuarioSesion.id}' 
+                    'clientId':  '${usuarioSesion.id}' 
                 },
                 datatype:"json",
                 type: "GET",
