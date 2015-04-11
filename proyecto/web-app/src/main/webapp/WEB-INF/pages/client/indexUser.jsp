@@ -287,16 +287,27 @@ form.submit();
 
             <!-- TOP AREA -->
             <div class="top-area show-onload">
-                <div class="bg-holder full">
-                    <div class="bg-mask"></div>
-                    <div class="bg-parallax" style="background-image:url(img/409520.jpg);"></div>
-                    <div class="bg-content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="search-tabs search-tabs-bg mt50">
-                                        <h1>Find Your Perfect Trip</h1>
-                                        <div class="tabbable">
+            <div class="bg-holder full">
+                <div class="bg-front full-height bg-front-mob-rel">
+                    <div class="container full-height">
+                        <div class="rel full-height">
+                            <div class="tagline visible-lg" id="tagline"><span>It's time to</span>
+                                <ul>
+                                    <li>live</li>
+                                    <li>have fun</li>
+                                    <li>relax</li>
+                                    <li>meet</li>
+                                    <li>being lost</li>
+                                    <li>run away</li>
+                                    <li>go</li>
+                                    <li>explore</li>
+                                    <li>find new friends</li>
+                                    <li class="active">discover</li>
+                                    <li>play</li>
+                                </ul>
+                            </div>
+                            <div class="search-tabs search-tabs-bg search-tabs-bottom mb50">
+                                <div class="tabbable">
                                             <ul class="nav nav-tabs" id="myTab">
                                                 <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
                                                 </li>
@@ -318,15 +329,21 @@ form.submit();
                                                         <div class="tab-pane fade " id="tab-2">
                                                             <h2>Search and Save by price</h2>
                                                             <form id="buscarPorPrecio" action="" method="post">
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
-                                                                    <label>Where are you going?</label>
+                                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                                   <label>Where are you going?</label>
+                                                                </div>
+                                                                <div class="row">
+                                                                <div class="col-md-3"><i class="fa fa-money input-icon">Initial</i>
+                                                                    
                                                                     <input class="typeahead form-control" placeholder="100$" type="number" id="priceOne" min="0" required />
                                                                 </div>
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>
-                                                                   <label>to..</label>
+                                                                <div class="col-md-3"><i class="fa fa-money input-icon">Final</i>
+                                                                   
                                                                     <input class="typeahead form-control" placeholder="300$" type="number" id="priceTwo" min="0" required/>
                                                                 </div>
-                                                                
+
+                                                                </div>
+                                                                <br>
                                                                 <button class="btn btn-primary btn-lg" type="submit" id="mandarPrecios">Search for location</button>
                                                             </form>
                                                         </div>
@@ -363,13 +380,33 @@ form.submit();
 
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="owl-carousel owl-slider owl-carousel-area visible-lg" id="owl-carousel-slider" data-nav="false">
+                    <div class="bg-holder full">
+                        <div class="bg-mask"></div>
+                        <div class="bg-img" style="background-image:url(img/390474.jpg);"></div>
+                    </div>
+                    <div class="bg-holder full">
+                        <div class="bg-mask"></div>
+                        <div class="bg-img" style="background-image:url(img/430527.jpg);"></div>
+                    </div>
+                    <div class="bg-holder full">
+                        <div class="bg-mask"></div>
+                        <div class="bg-img" style="background-image:url(img/422815.jpg);"></div>
+                    </div>
+                    <div class="bg-holder full">
+                        <div class="bg-mask"></div>
+                        <div class="bg-img" style="background-image:url(img/409520.jpg);"></div>
+                    </div>
+                    
+                </div>
+                <div class="bg-img hidden-lg" style="background-image:url(img/458495.jpg);"></div>
+                <div class="bg-mask hidden-lg"></div>
+            </div>
+        </div>
                     <!-- END TOP AREA  -->
 
 
