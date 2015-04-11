@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Traveler - Index</title>
+    <title>Ecoturismo</title>
 
 	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">

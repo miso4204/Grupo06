@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Traveler - Index</title>
+    <title>Ecoturismo</title>
 
 	<base href="${pageContext.request.contextPath}/" >
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -19,10 +19,13 @@
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/mystyles.css">
+    <link rel="stylesheet" href="css/mystyles.css"> 
+
+
     <script src="js/modernizr.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/estructuraCalificacion.js"></script>
+ 
 
 <script>  
 $(document).ready(function () {  
@@ -130,6 +133,45 @@ $(document).ready(function () {
         });
 });
         </script>
+
+        <script>
+function calificar() {
+
+    var calificacion = document.getElementsByClassName("selected");
+  
+     var jsonPeticion = JSON.stringify({
+                    "clienteId": '${usuarioSesion.id}', 
+                    "servicioId": $('#idProductoParaCarrito').val(),
+                    "puntaje": calificacion.length
+                     });
+     $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/producto/calificar_producto", 
+                data: jsonPeticion,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                   
+                    var out='<div class="alert alert-success" role="alert"><strong>Success!</strong> Your product has been rated!.</div>'
+                       document.getElementById("rateProduct").innerHTML = out;
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     var out='<div class="alert alert-error" role="alert"><strong>Error!</strong> Your product has not been rated!.</div>'
+                       document.getElementById("rateProduct").innerHTML = out;
+                }
+            });
+    
+}
+</script>
+
+        
 </head>
 
 <body>
@@ -274,6 +316,35 @@ $(document).ready(function () {
                             </div>
                         </div>
                         <!--RATING-->
+                        <div id ="rateProduct" class="row">
+                            <form id="calificar" action="" method="post" >
+                            <div class="col-md-8">
+                                <h4 class="lh1em">Rate</h4>
+                                <ul   class="list booking-item-raiting-summary-list stats-list-select">
+                                            <li onclick="calificar()">
+                                                <div class="booking-item-raiting-list-title">Sleep</div>
+                                                <ul class="icon-group booking-item-rating-stars">
+                                                    <li><i  class="fa fa-star"></i>
+                                                    </li>
+                                                    <li><i  class="fa fa-star"></i>
+                                                    </li>
+                                                    <li><i  class="fa fa-star"></i>
+                                                    </li>
+                                                    <li><i  class="fa fa-star"></i>
+                                                    </li>
+                                                    <li><i  class="fa fa-star"></i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                            </div>
+                        </form>
+                            
+                            
+                            
+                        </div>
+
+                        <!--
                         <div class="row">
                             <div class="col-md-8">
                                 <h4 class="lh1em">Traveler raiting</h4>
@@ -315,88 +386,9 @@ $(document).ready(function () {
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-4">
-                                <h4 class="lh1em">Summary</h4>
-                                <ul class="list booking-item-raiting-summary-list" id="idCaritasCalif">
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Location</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Service</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o text-gray"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Clearness</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Rooms</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <div class="booking-item-raiting-list-title">Comfort</div>
-                                        <ul class="icon-group booking-item-rating-stars">
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                            <li><i class="fa fa-smile-o"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
                             
-                        </div>
+                            
+                        </div>-->
                         <form id="addCart">
                          <button class="btn btn-primary btn-lg" type="submit"  >Add to cart</button>
                          </form>
