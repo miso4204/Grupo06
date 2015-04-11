@@ -81,7 +81,7 @@ public class Usuario implements Serializable {
 		this.direccion = direccion;
 	}
 	
-	@Column(name="telefono",nullable = false, length = 10)
+	@Column(name="telefono",nullable = false, length = 50)
 	public String getTelefono() {
 		return telefono;
 	}

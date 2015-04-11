@@ -185,8 +185,8 @@ public class ProductoService implements IProductoService {
 		ratingProductoDAO.crearRating(productoId, ETipoRating.CUARTOS);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
 		//test: quitar
-		RatingProducto ratingSimulado = ratingProductoDAO.buscarPorId(generalId);
-		calificarProducto(1L, ratingSimulado.getId(), ETipoCalificacionRating.MUYBUENO);
+//		RatingProducto ratingSimulado = ratingProductoDAO.buscarPorId(generalId);
+//		calificarProducto(1L, ratingSimulado.getId(), ETipoCalificacionRating.MUYBUENO);
 	}
 
 	

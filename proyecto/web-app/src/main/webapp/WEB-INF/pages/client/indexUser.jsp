@@ -86,6 +86,44 @@ document.getElementById("ListaProductos").innerHTML = out;
 
 <script type="text/javascript">
     $(document).ready(function() {
+    	
+    	
+   $("#buscarPorCiudad").submit(function(e) {
+            
+            e.preventDefault();                
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/producto/buscar_por_lugar/" + $('#ciudad').val(), 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                	if (data.codigoRespuesta == 'OK') {
+                       var respuesta_servicio = JSON.stringify(data.respuesta)
+                       var form = $('<form action="pages/client/searchResult.jsp?servicio=1&lugar='+encodeURIComponent($("#ciudad").val()) +'" method="post">' +
+						  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
+						  '</form>');
+						$('body').append(form);
+						form.submit();
+                	}
+                	else {
+                		alert("Error: " + data.mensaje);
+                	}
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+            
+
+        });  	
+    	
+    	
 $("#buscarPorPrecio").submit(function(e) {
                
             e.preventDefault();                
@@ -260,24 +298,24 @@ form.submit();
                                         <h1>Find Your Perfect Trip</h1>
                                         <div class="tabbable">
                                             <ul class="nav nav-tabs" id="myTab">
-<!--                                                 <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a> -->
-<!--                                                 </li> -->
-                                                <li class="active"><a href="#tab-2" data-toggle="tab"><i class="fa fa-money"></i> <span >Price</span></a>
+                                                <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
+                                                </li>
+                                                <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-money"></i> <span >Price</span></a>
                                                 </li>
                                                 <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a>                                            </ul>
                                                     <div class="tab-content">
-<!--                                                         <div class="tab-pane fade in active" id="tab-1"> -->
-<!--                                                             <h2>Search and Save by location</h2> -->
-<!--                                                             <form id="buscarPorCiudad" action="" method="post" > -->
-<!--                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i> -->
-<!--                                                                     <label>Where are you going?</label> -->
-<!--                                                                     <input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" id="ciudad"/> -->
-<!--                                                                 </div> -->
+                                                        <div class="tab-pane fade in active" id="tab-1">
+                                                            <h2>Search and Save by location</h2>
+                                                            <form id="buscarPorCiudad" action="" method="post" >
+                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                                    <label>Where are you going?</label>
+                                                                    <input class="typeahead form-control" placeholder="City, Airport or Point of Interest" type="text" id="ciudad" required/>
+                                                                </div>
                                                                 
-<!--                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for location</button> -->
-<!--                                                             </form> -->
-<!--                                                         </div> -->
-                                                        <div class="tab-pane fade in active" id="tab-2">
+                                                                <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="tab-pane fade " id="tab-2">
                                                             <h2>Search and Save by price</h2>
                                                             <form id="buscarPorPrecio" action="" method="post">
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-money input-icon"></i>

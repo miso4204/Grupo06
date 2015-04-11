@@ -16,7 +16,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#formularioCrearUsuarioNormal").submit(function(e) {
-           alert(" entro a crear usuario normal")
+           
             e.preventDefault();     
             var jsonPeticion = JSON.stringify({
                     "usuario": $('#normalUser').val(), 
@@ -120,7 +120,7 @@ $("#formularioCrearProvider").submit(function(e) {
                 <div style="padding-top:30px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <h2>${mensajeError}</h2>
+                    <h3>${mensajeError}</h3>
                     <form id="loginform" class="form-horizontal" role="form" action="pages/login" method="post">
 
                         <div style="margin-bottom: 25px" class="input-group">
@@ -212,14 +212,14 @@ $("#formularioCrearProvider").submit(function(e) {
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Phone number</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="passwd" id="normalPN" placeholder="Phone number" required>
+                                            <input type="text" class="form-control" name="passwd" id="normalPN" placeholder="Phone number" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="icode" class="col-md-3 control-label">E-mail</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="icode" id="normalEmail" placeholder="email@gmail.com" required>
+                                            <input type="email" class="form-control" name="icode" id="normalEmail" placeholder="email@gmail.com" required>
                                         </div>
                                     </div>
                                     
@@ -238,7 +238,7 @@ $("#formularioCrearProvider").submit(function(e) {
                                  <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">User</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" id="proUser" placeholder="User" required>
+                                            <input type="email" class="form-control" name="email" id="proUser" placeholder="User" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -263,7 +263,7 @@ $("#formularioCrearProvider").submit(function(e) {
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Phone number</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="passwd" id="proPN" placeholder="Phone number" required>
+                                            <input type="text" class="form-control" name="passwd" id="proPN" placeholder="Phone number" required>
                                         </div>
                                     </div>
 

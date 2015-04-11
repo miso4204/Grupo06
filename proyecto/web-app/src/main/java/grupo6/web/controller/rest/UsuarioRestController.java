@@ -94,8 +94,17 @@ public class UsuarioRestController extends BaseRestController {
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<ResponseDTO> actualizarUsuario(@RequestBody Usuario user) {
+	public @ResponseBody ResponseEntity<ResponseDTO> actualizarUsuario(@RequestBody UsuarioDTO userDTO) {
 	
+		   Usuario user =  usuarioService.buscarPorId(userDTO.getId());
+		   if (user == null) {
+			   throw new IllegalArgumentException("Usuario no existe");
+		   }
+		   user.setNombre(userDTO.getNombre());
+		   user.setDireccion(userDTO.getDireccion());
+		   user.setTelefono(userDTO.getTelefono());
+		   user.setEmail(userDTO.getEmail());
+		   user.setWebsite(userDTO.getWebsite());
 		   boolean b =  usuarioService.actualizarUsuario(user);	
 		   if (b) {
 			   return devolverRespuestaExitosa("Usuario actualizado", b);
@@ -117,14 +126,10 @@ public class UsuarioRestController extends BaseRestController {
 	@RequestMapping(value = "/change_pass", method = RequestMethod.POST, 
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean cambiarContrasennia(@RequestBody ChangePassDTO changePass) throws Exception {
+	public @ResponseBody ResponseEntity<ResponseDTO> cambiarContrasennia(@RequestBody ChangePassDTO changePass) throws Exception {
 		
-		@SuppressWarnings("unused")
-		String mensajeError = ""; // MOSTRAR EN UN MODAL
-		
-				
-			return usuarioService.cambiarPassword(changePass.getUserName(),
+		boolean b = usuarioService.cambiarPassword(changePass.getUserName(),
 					changePass.getPassActual(), changePass.getPassNuevo(), changePass.getPassNuevoValidate());
-		
+		return devolverRespuestaExitosa("Clave cambiada exitosamente", b);	
 	}
 }

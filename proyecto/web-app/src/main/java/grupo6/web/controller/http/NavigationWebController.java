@@ -95,6 +95,20 @@ public class NavigationWebController {
 		return new ModelAndView("/provider/home_provider");
 	}
 	
+	@RequestMapping("/provider/indexProvider.jsp")
+	protected ModelAndView showProviderIndex(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return new ModelAndView("/provider/indexProvider");
+	}
+	
+	@RequestMapping("/provider/provider_profile.jsp")
+	protected ModelAndView showProviderProfile(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return new ModelAndView("/provider/provider_profile");
+	}
+	
 	@RequestMapping("/client/successPayment.jsp")
 	protected ModelAndView showSuccessPayment(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

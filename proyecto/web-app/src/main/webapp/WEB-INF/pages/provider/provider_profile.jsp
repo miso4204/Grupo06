@@ -113,7 +113,7 @@ $("#cambiarPass").submit(function(e) {
                             <div class="top-user-area clearfix">
                                 <ul class="top-user-area-list list list-horizontal list-border">
                                     <li class="top-user-area-avatar">
-                                        <a href="pages/client/user_profile.jsp">
+                                        <a href="pages/provider/provider_profile.jsp">
                                             <img class="origin round" src="img/40x40.png" alt="Image Alternative text" title="AMaze" />Hi, ${usuarioSesion.nombre}</a>
                                         </li>
                                         <li><a href="pages/logout">Sign Out</a>
@@ -141,14 +141,9 @@ $("#cambiarPass").submit(function(e) {
                     <div class="nav">
                         <ul class="slimmenu" id="slimmenu">                       
                             <li>
-                                <a href="pages/client/indexUser.jsp">Search</a>
+                                <a href="pages/provider/indexProvider.jsp">Index</a>
                             </li>
-                            <li>
-                                <a href="pages/client/payment.jsp">My shopping cart</a>
-                            </li>
-                            
-                            
-
+                           
                         </ul>
                     </div>
                 </div>
@@ -164,13 +159,7 @@ $("#cambiarPass").submit(function(e) {
                             <img src="img/user_image.png" alt="Image Alternative text" title="AMaze" />
                             <h5>${usuarioSesion.nombre}</h5>
                             <p>Member Since April 2015</p>
-                        </div>
-                        <ul class="list user-profile-nav">
-                            <li><a href="pages/client/payment.jsp"><i class="fa fa-user"></i>My cart</a>
-                            </li>
-                            <li><a href="pages/client/user_profile.jsp"><i class="fa fa-cog"></i>Settings</a>
-                            </li>
-                        </ul>
+                        </div>                       
                     </aside>
                 </div>
                 <div class="col-md-9">
@@ -193,7 +182,11 @@ $("#cambiarPass").submit(function(e) {
                                 <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon"></i>
                                     <label>Phone Number</label>
                                     <input id="telefono" name="telefono" class="form-control" value="${usuarioSesion.telefono}" type="text" required/>
-                                </div>                               
+                                </div>   
+                                 <div class="form-group form-group-icon-left"><i class="fa fa-globe input-icon"></i>
+                                    <label>Web site</label>
+                                    <input id="website" name="website" class="form-control" value="${usuarioSesion.website}" type="text" required/>
+                                </div>                            
                                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                     <label>Street Address</label>
                                     <input id="direccion" name="direccion" class="form-control" value="${usuarioSesion.direccion}" type="text" required/>

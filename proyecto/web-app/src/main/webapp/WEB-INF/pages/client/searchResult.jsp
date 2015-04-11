@@ -30,7 +30,8 @@
         var primerPrecio = GetParameterValues('precioUno');  
         var segundoPrecio = GetParameterValues('precioDos');  
         var primeraFecha= GetParameterValues('primeraFecha'); 
-        var segundaFecha= GetParameterValues('segundaFecha');  
+        var segundaFecha= GetParameterValues('segundaFecha'); 
+        var lugar= GetParameterValues('lugar'); 
 
         function GetParameterValues(param) {  
             var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
@@ -117,27 +118,73 @@ document.getElementById("ListaProductos").innerHTML = out;
                 }
             });
      }else if (servicio==1) {
-    	 alert("Opcional, no implementado aún "); 
-        
-//          $.ajax({
-//                 headers: { 
-//                     'Accept': 'application/json',
-//                     'Content-Type': 'application/json' 
-//                 },
-//                 datatype:"json",
-//                 type: "GET",
-//                 url: "services/producto/buscar_por_precio/" + primerPrecio+"/"+segundoPrecio, 
-//                 contentType: false,
-//                 processData: false,
-//                 success: function(data)
-//                    {
-//                        alert("respuesta servidor: " + JSON.stringify(data)); 
+    	 $.ajax({
+             headers: { 
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json' 
+             },
+             datatype:"json",
+             type: "GET",
+             url: "services/producto/buscar_por_lugar/" + lugar, 
+             contentType: false,
+             processData: false,
+             success: function(data)
+                {
+            	 if (data.codigoRespuesta == 'OK') {
+                	 var out = "";
+                  //  alert("respuesta servidor: " + JSON.stringify(data)); 
+                    var arr=JSON.parse(JSON.stringify(data.respuesta));
+                    for(i = 0; i < arr.length; i++) {
+					     var urlIma="";
+					     if( arr[i].urlImagen.indexOf("http") > -1){
+					         urlIma=arr[i].urlImagen;
+					     }
+					     else{
+					         urlIma="img/Bariloche1.jpg";
+					     }
+					
+					             var roadMapData = arr[i].calificaciones;
+					             var puntuacionGeneral = roadMapData[0].puntuacion; 
+					             var cantidadReviews = roadMapData[0].cantidadVotantes; 
+							 out+=' <li>'+
+					                         '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
+					                             '<div class="row">'+
+					                                 '<div class="col-md-3">'+
+					                                     '<div class="booking-item-img-wrap">'+
+					                                         '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr[i].lugar+'" />'+
+					                                         '<div class="booking-item-img-num"><i class="fa fa-picture-o"></i>29</div>'+
+					                                     '</div>'+
+					                                 '</div>'+
+					                                 '<div class="col-md-6">'+
+					                                 '<div class="booking-item-rating">'+estructuraCalificacionBasica(puntuacionGeneral)+''+
+					                                         '<span class="booking-item-rating-number"><b >'+puntuacionGeneral+'</b> of 5</span><small>('+cantidadReviews+' reviews)</small>'+
+					                                     '</div>'+
+					                                     '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
+					                                     '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
+					                                 '</div>'+
+					                                 '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+					                                 '</div>'+
+					                             '</div>'+
+					                         '</a>'+
+					                     '</li>'
+					    
+					
+					             
+						document.getElementById("ListaProductos").innerHTML = out;
 
-//                    },
-//                 error: function(jqXHR, textStatus, errorMessage) {
-//                        alert("Error: " + errorMessage);
-//                 }
-//             });
+      
+					 }
+ 					document.getElementById("tamResultado").innerHTML = "<h4>"+arr.length + " Results</h4>";
+ 
+
+                } else {
+             		alert("Error: " + data.mensaje);
+             	}
+             	},
+             error: function(jqXHR, textStatus, errorMessage) {
+                    alert("Error: " + errorMessage);
+             }
+         });
 
 
     }
@@ -185,7 +232,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">Add to Cart</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+

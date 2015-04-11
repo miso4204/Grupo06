@@ -55,6 +55,7 @@ public class SecurityFilter implements Filter {
 		restrictedResourcesProvider = new HashSet<String>();
 		restrictedResourcesProvider.add("/pages/provider/home_provider.jsp");
 		restrictedResourcesProvider.add("/pages/provider/indexProvider.jsp");
+		restrictedResourcesProvider.add("/pages/provider/provider_profile.jsp");
 
 		restrictedResourcesAdmin = new HashSet<String>();
 		restrictedResourcesAdmin.add("/pages/admin/home_admin.jsp");

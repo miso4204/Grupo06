@@ -45,7 +45,10 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	public List<Producto> buscarPorUbicacion(String ubicacion) {
 		
 		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
-		criteria.add(Restrictions.ilike("lugar", ubicacion)); 
+		criteria.add(Restrictions.or(
+					Restrictions.ilike("lugar", ubicacion),
+					Restrictions.ilike("ciudad", ubicacion))				
+				); 
 				
 		return (List<Producto>)criteria.list();
 	}

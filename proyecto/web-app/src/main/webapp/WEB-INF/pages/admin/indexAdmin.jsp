@@ -254,7 +254,7 @@ $("#buscarPorFecha").submit(function(e) {
                                 <ul class="nav nav-tabs" id="myTab">
 <!--                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a> -->
 <!--                                     </li> -->
-                                    <li class="active"><a href="#tab-2" data-toggle="tab">Reportes</a>
+                                    <li class="active"><a href="#tab-2" data-toggle="tab">Sales reports</a>
                                     </li>
                                     <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>

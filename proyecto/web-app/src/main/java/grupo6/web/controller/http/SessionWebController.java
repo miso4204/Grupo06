@@ -1,5 +1,6 @@
 package grupo6.web.controller.http;
 
+import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
 
 import java.util.HashMap;
@@ -96,13 +97,13 @@ public class SessionWebController {
 					} else if ("PROVIDER".equals(usuarioDTO.getRol())) {
 						model = new ModelAndView("/provider/indexProvider");
 					} else {
-						model.addObject("mensajeError", "Roles inválidos");
+						model.addObject("mensajeError", "Invalid role");
 					}
 				} else {
-					model.addObject("mensajeError", "Credenciales inválidas");
+					model.addObject("mensajeError", "Invalid credentials");
 				}
 			} else {
-				model.addObject("mensajeError", "Error de comunicaciones: "
+				model.addObject("mensajeError", "Error: "
 						+ httResponse.getStatusLine().getReasonPhrase());
 			}
 
@@ -134,5 +135,92 @@ public class SessionWebController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return model;
+	}
+	
+	
+	/**
+	 * Cierra la sesión de un usuario.
+	 * 
+	 * @param request
+	 *            http request
+	 * @param response
+	 *            http response
+	 * @return la plantilla a mostrar después de cerrar sesión.
+	 * @throws Exception
+	 *             cuaqluier error.
+	 */
+	@RequestMapping("/update_profile")
+	protected ModelAndView executeUpdateProfile(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		final HttpParams httpParams = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
+		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+		HttpSession session = request.getSession();
+		UsuarioDTO usuarioDTO = (UsuarioDTO) session
+				.getAttribute("usuarioSesion");
+		ModelAndView model = new ModelAndView("/nonsecure/login");
+		if (usuarioDTO != null) {
+			if ("CLIENT".equals(usuarioDTO.getRol())) {
+				model = new ModelAndView("/client/user_profile");
+			} else if ("PROVIDER".equals(usuarioDTO.getRol())) {
+				model = new ModelAndView("/provider/provider_profile");
+			}
+			try {
+				HttpPost httpPost = new HttpPost(restHost
+						+ "services/usuario/actualizar");
+				httpPost.addHeader("accept", "application/json");
+				httpPost.addHeader("Content-type", "application/json");
+
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("id", String.valueOf(usuarioDTO.getId()));
+				params.put("nombre", request.getParameter("nombre"));
+				params.put("direccion", request.getParameter("direccion"));
+				params.put("telefono", request.getParameter("telefono"));
+				params.put("email", request.getParameter("email"));
+				params.put("website", request.getParameter("website"));
+				ObjectWriter ow = new ObjectMapper().writer()
+						.withDefaultPrettyPrinter();
+				String json = ow.writeValueAsString(params);
+				httpPost.setEntity(new StringEntity(json));
+
+				HttpResponse httResponse = httpClient.execute(httpPost);
+
+				if (httResponse.getStatusLine().getStatusCode() == 200) {
+					HttpEntity entity = httResponse.getEntity();
+					String jsonString = EntityUtils.toString(entity, "UTF-8");
+					ResponseDTO responseDTO = new ObjectMapper().readValue(
+							jsonString, ResponseDTO.class);
+					if (responseDTO.getCodigoRespuesta().equalsIgnoreCase("OK")) {
+						usuarioDTO.setNombre(request.getParameter("nombre"));
+						usuarioDTO.setDireccion(request
+								.getParameter("direccion"));
+						usuarioDTO
+								.setTelefono(request.getParameter("telefono"));
+						usuarioDTO.setEmail(request.getParameter("email"));
+						usuarioDTO.setWebsite(request.getParameter("website"));
+						session.setAttribute("usuarioSesion", usuarioDTO);
+
+						model.addObject("mensaje",
+								"Your profile has been updated!");						
+					} else {
+						model.addObject("mensaje",
+								"Error: " + responseDTO.getMensaje());
+					}
+				} else {
+					model.addObject("mensaje", "Error: "
+							+ httResponse.getStatusLine().getReasonPhrase());
+				}
+
+			} catch (Exception e) {
+				model.addObject("mensaje", e.getMessage());
+				e.printStackTrace();
+			} finally {
+				httpClient.getConnectionManager().shutdown();
+			}
+		}
+		
+		return model;
+
 	}
 }

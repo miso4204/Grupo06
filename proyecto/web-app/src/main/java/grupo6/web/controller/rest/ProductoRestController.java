@@ -11,6 +11,7 @@ import grupo6.web.dto.CalificacionResponseDTO;
 import grupo6.web.dto.CalificarRequestDTO;
 import grupo6.web.dto.ProductoRequestDTO;
 import grupo6.web.dto.ProductoResponseDTO;
+import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -136,6 +138,27 @@ public class ProductoRestController extends BaseRestController {
 	
 	
 	/**
+	 * Servicio REST para buscar productos por ubicación (lugar o ciudad).
+	 * 
+	 * @return los productos del sistema filtrados por lugar en formato JSON.
+	 */
+	@RequestMapping(value = "/buscar_por_lugar/{lugar}",
+			method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<ResponseDTO> listarPorLugar(
+			@PathVariable("lugar") String lugar) {
+		
+		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+		List<Producto> productos = 
+				productoService.buscarProductosPorUbicacion(lugar);
+		for (Producto producto: productos) {
+			productosDTO.add(crearProductoResponseDTO(producto, null));
+		}
+		return devolverRespuestaExitosa("", productosDTO);
+	}
+	
+	
+	/**
 	 * Servicio REST para buscar un producto por id.
 	 * 
 	 * @return el producto en formato JSON.
@@ -205,10 +228,10 @@ public class ProductoRestController extends BaseRestController {
 			CalificacionResponseDTO calificacionDTO = new CalificacionResponseDTO();
 			calificacionDTO.setId(rating.getId());
 			calificacionDTO.setNombre(rating.getTipoServicio().name());
-			//calificacionDTO.setPuntuacion(calificacion);
-			//calificacionDTO.setCantidadVotantes(votantes);
-			calificacionDTO.setPuntuacion((double)(1 + (int)(Math.random()*5)));
-			calificacionDTO.setCantidadVotantes((1 + (int)(Math.random()*1000000)));
+			calificacionDTO.setPuntuacion(calificacion);
+			calificacionDTO.setCantidadVotantes(votantes);
+//			calificacionDTO.setPuntuacion((double)(1 + (int)(Math.random()*5)));
+//			calificacionDTO.setCantidadVotantes((1 + (int)(Math.random()*1000000)));
 			if (clienteId != null) {
 				RatingProductoCalificacion calUsuario = 
 						productoService.buscarCalificacionDeUsuario(

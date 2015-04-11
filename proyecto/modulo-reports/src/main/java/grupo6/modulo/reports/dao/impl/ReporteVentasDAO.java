@@ -44,7 +44,8 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 			for (FacturaCompra f : facturas) {
 				if (f.getProductosComprados() != null) {
 					for (Producto p : f.getProductosComprados()) {
-						if (p.getCiudad().equalsIgnoreCase(ciudad)) {
+						if (p.getCiudad().equalsIgnoreCase(ciudad) 
+								|| p.getLugar().equalsIgnoreCase(ciudad)) {
 							totalDineroEnVentas += p.getPrecio();
 							totalVentas++;
 						}
