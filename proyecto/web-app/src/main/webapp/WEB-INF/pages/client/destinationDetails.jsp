@@ -76,6 +76,7 @@ $(document).ready(function () {
                     }
 
                     var roadMapData = arr.calificaciones;
+                    var votado = roadMapData[0].votada;
                     var puntuacionGeneral = roadMapData[0].puntuacion; 
                     var cantidadReviews = roadMapData[0].cantidadVotantes; 
                     var puntuacionUbicacion = roadMapData[1].puntuacion; 
@@ -89,8 +90,12 @@ $(document).ready(function () {
                     document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
-                    document.getElementById("idCaritasCalif").innerHTML = estructuraCalificacionCaritas(puntuacionUbicacion,puntuacionAtencion,puntuacionLimpieza,puntuacionCuartos,puntuacionComoidad);    
-                    
+                     
+
+                       
+                    if(votado==true){
+                    document.getElementById("rateProduct").style.visibility = "hidden";
+                }
                                      
 
                 },
