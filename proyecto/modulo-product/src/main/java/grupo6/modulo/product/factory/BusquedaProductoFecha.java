@@ -1,6 +1,5 @@
 package grupo6.modulo.product.factory;
 
-import grupo6.modulo.product.dao.view.IBusquedaProducto;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.Producto;
 
@@ -24,7 +23,7 @@ public class BusquedaProductoFecha  extends BaseDAO implements IBusquedaProducto
 
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.dao.view.IBusquedaProducto#buscar(java.lang.Object[])
+	 * @see grupo6.modulo.product.factory.IBusquedaProducto#buscar(java.lang.Object[])
 	 */
 	@SuppressWarnings("unchecked")
 	@Override	

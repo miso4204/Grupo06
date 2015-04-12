@@ -1,7 +1,5 @@
 package grupo6.modulo.product.factory;
 
-import grupo6.modulo.product.dao.view.IBusquedaProducto;
-
 import java.util.Map;
 
 /**

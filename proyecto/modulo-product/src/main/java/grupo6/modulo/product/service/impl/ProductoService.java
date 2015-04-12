@@ -1,10 +1,10 @@
 package grupo6.modulo.product.service.impl;
 
-import grupo6.modulo.product.dao.view.IBusquedaProducto;
 import grupo6.modulo.product.dao.view.IProductoDAO;
 import grupo6.modulo.product.dao.view.IRatingProductoDAO;
 import grupo6.modulo.product.factory.BusquedaProductosFactory;
 import grupo6.modulo.product.factory.ETipoBusqueda;
+import grupo6.modulo.product.factory.IBusquedaProducto;
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;

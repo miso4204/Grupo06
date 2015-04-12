@@ -1,15 +1,14 @@
 package grupo6.modulo.product.factory;
 
+import grupo6.persistencia.dao.BaseDAO;
+import grupo6.persistencia.entidades.Producto;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import grupo6.modulo.product.dao.view.IBusquedaProducto;
-import grupo6.persistencia.dao.BaseDAO;
-import grupo6.persistencia.entidades.Producto;
 
 /**
  * Implementacion de {@link IBusquedaProducto} que busca productos
@@ -23,7 +22,7 @@ public class BusquedaProductoUbicacion  extends BaseDAO implements IBusquedaProd
 
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.dao.view.IBusquedaProducto#buscar(java.lang.Object[])
+	 * @see grupo6.modulo.product.factory.IBusquedaProducto#buscar(java.lang.Object[])
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
