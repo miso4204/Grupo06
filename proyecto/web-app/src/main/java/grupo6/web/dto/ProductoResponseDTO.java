@@ -1,5 +1,6 @@
 package grupo6.web.dto;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.web.json.serializer.JsonDateDeserializer;
 
 import java.io.Serializable;
@@ -39,6 +40,8 @@ public class ProductoResponseDTO implements Serializable  {
 	private List<CalificacionResponseDTO> calificaciones;
 	/** Proveedor dle producto.*/
 	private UsuarioDTO proveedor;
+	/** Tipo de Moneda.*/
+	private TipoMoneda tipoMoneda;
 	
 	public Long getId() {
 		return id;
@@ -129,6 +132,12 @@ public class ProductoResponseDTO implements Serializable  {
 		this.proveedor = proveedor;
 	}
 	
-	
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
+	}
 
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
+	}
+	
 }

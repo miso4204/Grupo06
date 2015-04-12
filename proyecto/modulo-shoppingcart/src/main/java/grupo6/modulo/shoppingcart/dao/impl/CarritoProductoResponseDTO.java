@@ -1,5 +1,6 @@
 package grupo6.modulo.shoppingcart.dao.impl;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.persistencia.entidades.Producto;
 
 import java.io.Serializable;
@@ -43,6 +44,10 @@ public class CarritoProductoResponseDTO implements Serializable{
     private String urlImagen;
     /** El id dle proveedor quien creó producto.*/
     private Long proveedorId;
+    /** tipo moneda.*/
+    private TipoMoneda tipoMoneda;
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -122,6 +127,14 @@ public class CarritoProductoResponseDTO implements Serializable{
 		this.proveedorId = proveedorId;
 	}
 	
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
+	}
+	
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
+	}
+	
 	public static CarritoProductoResponseDTO productoToCarritoProductoDTO(Producto producto){
 		CarritoProductoResponseDTO carritoProducto = new CarritoProductoResponseDTO();
 		carritoProducto.setId(producto.getId());
@@ -137,7 +150,7 @@ public class CarritoProductoResponseDTO implements Serializable{
 		carritoProducto.setDireccionGoogleMaps(producto.getDireccionGoogleMaps());
 		carritoProducto.setUrlImagen(producto.getUrlImagen());
 		carritoProducto.setProveedorId(producto.getProveedorId());
-		
+		carritoProducto.setTipoMoneda(producto.getTipoMoneda());
 		return carritoProducto;
 	}
 	

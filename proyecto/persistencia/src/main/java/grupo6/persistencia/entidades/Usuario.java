@@ -1,5 +1,7 @@
 package grupo6.persistencia.entidades;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String website; // util para el proveedor
 	private List<Producto> carritoCompras = new ArrayList<Producto>();
+	private TipoMoneda tipoMoneda =  TipoMoneda.DOLAR;
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
 	
@@ -104,6 +107,16 @@ public class Usuario implements Serializable {
 	public String getRol() {
 		return rol;
 	}
+	
+	@Column(name="tipoMoneda",nullable = false, length = 50)
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
+	}
+	
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
+	}
+	
 	public void setRol(String rol) {
 		this.rol = rol;
 	}

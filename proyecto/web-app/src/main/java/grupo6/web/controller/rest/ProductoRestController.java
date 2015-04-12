@@ -69,6 +69,7 @@ public class ProductoRestController extends BaseRestController {
 		producto.setFechaInicio(productoDTO.getFechaInicio());
 		producto.setFechaCreacion(new Date());
 		producto.setProveedorId(productoDTO.getProveedorId());
+		producto.setTipoMoneda(productoDTO.getTipoMoneda());
 		return productoService.crearProducto(producto); 
 	}
 	
@@ -219,6 +220,7 @@ public class ProductoRestController extends BaseRestController {
 		productoDTO.setFechaInicio(producto.getFechaInicio());
 		productoDTO.setLugar(producto.getLugar());
 		productoDTO.setPrecio(producto.getPrecio());
+		productoDTO.setTipoMoneda(producto.getTipoMoneda());
 		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
 		productoDTO.setUrlImagen(producto.getUrlImagen());
 		List<CalificacionResponseDTO> calificaciones = new ArrayList<CalificacionResponseDTO>();

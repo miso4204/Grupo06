@@ -1,5 +1,7 @@
 package grupo6.persistencia.entidades;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -37,7 +39,7 @@ public class Producto implements Serializable {
 	/** Ciudad. Ej: Medellin **/
 	private String ciudad;
 	/** Precio del paquete en COP. **/
-	private Double precio;
+	private double precio;
 	/** Fecha inicio en que se debe tomar el paquete. **/
 	private Date fechaInicio;
 	/** Fecha fin del paquete. Opcional **/
@@ -54,7 +56,9 @@ public class Producto implements Serializable {
     private String urlImagen;
     /** El id dle proveedor quien creó producto.*/
     private Long proveedorId;
-
+    /** Tipo de moneda**/
+    private TipoMoneda tipoMoneda;
+    
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_producto")
 	@Column(name="ID")
@@ -78,7 +82,7 @@ public class Producto implements Serializable {
 	}
 
 	@Column(nullable = false)
-	public Double getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
@@ -117,6 +121,10 @@ public class Producto implements Serializable {
 		return urlImagen;
 	}
 		
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
+	}
+	
 	public Long getProveedorId() {
 		return proveedorId;
 	}
@@ -173,4 +181,8 @@ public class Producto implements Serializable {
 		this.proveedorId = proveedorId;
 	}
 
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
+	}
+	
 }
