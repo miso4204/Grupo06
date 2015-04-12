@@ -12,7 +12,7 @@
 	<context:component-scan base-package="grupo6.modulo" />
 	
 	<!-- Fabrica de buscadores de productos  -->
-	<bean id="busquedaProductosFactory" class="grupo6.modulo.product.util.BusquedaProductosFactory">
+	<bean id="busquedaProductosFactory" class="grupo6.modulo.product.factory.BusquedaProductosFactory">
 		<property name="buscadores">
 			<map>
 				<entry key="busquedaProductoFecha" value-ref="busquedaProductoFecha" />

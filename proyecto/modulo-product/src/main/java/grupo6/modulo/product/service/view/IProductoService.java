@@ -1,6 +1,6 @@
 package grupo6.modulo.product.service.view;
 
-import grupo6.modulo.product.util.ETipoBusqueda;
+import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;

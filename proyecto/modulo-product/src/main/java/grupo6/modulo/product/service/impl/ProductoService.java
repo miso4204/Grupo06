@@ -3,9 +3,9 @@ package grupo6.modulo.product.service.impl;
 import grupo6.modulo.product.dao.view.IBusquedaProducto;
 import grupo6.modulo.product.dao.view.IProductoDAO;
 import grupo6.modulo.product.dao.view.IRatingProductoDAO;
+import grupo6.modulo.product.factory.BusquedaProductosFactory;
+import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
-import grupo6.modulo.product.util.BusquedaProductosFactory;
-import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
@@ -147,7 +147,7 @@ public class ProductoService implements IProductoService {
 	
 	/**
 	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductos(grupo6.modulo.product.util.ETipoBusqueda, java.lang.Object[])
+	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductos(grupo6.modulo.product.factory.ETipoBusqueda, java.lang.Object[])
 	 */
 	@Override
 	public List<Producto> buscarProductos(ETipoBusqueda tipoBusqueda,

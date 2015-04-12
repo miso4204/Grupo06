@@ -1,7 +1,7 @@
 package grupo6.web.controller.rest;
 
+import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
-import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
