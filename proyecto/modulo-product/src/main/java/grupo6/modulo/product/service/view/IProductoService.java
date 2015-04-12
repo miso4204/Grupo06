@@ -1,11 +1,11 @@
 package grupo6.modulo.product.service.view;
 
+import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,30 +27,7 @@ public interface IProductoService {
 	 */
 	Producto buscarProductoPorId(Long id);
 
-	/**
-	 * Lista de productos filtrados por ubicacion.
-	 * @param ubicacion la ubicacion a filtrar.
-	 * @return Lista de productos filtrados por ubicacion.
-	 */
-	List<Producto> buscarProductosPorUbicacion(String ubicacion);
-
 	
-	/**
-	 * Lista de productos filtrados por un rango de precios.
-	 * @param precioInicial el precio limite inferior.
-	 * @param precioFinal el precio limite superior.
-	 * @return Lista de productos filtrados por precio.
-	 */
-	List<Producto> buscarProductosPorPrecio(double precioInicial, double precioFinal);
-
-	/**
-	 * Lista de productos filtrados por un rango de fechas para
-	 * la toma del paquete.
-	 * @param fechaInicial la fecha limite inferior.
-	 * @param fechaFinal la fecha limite superior.
-	 * @return Lista de productos filtrados por fecha en que el pauete se hace efectivo.
-	 */
-	List<Producto> buscarProductosPorFechaInicio(Date fechaInicial, Date fechaFinal);
 	
 	/**
 	 * Califica el servicio de un producto.
@@ -103,4 +80,12 @@ public interface IProductoService {
 	RatingProductoCalificacion buscarCalificacionDeUsuario(Long ratingProductoId, Long clienteId);
 
 
+	/**
+	 * Metodo generico de busqueda, el cual delega a la fabrica de buscadores 
+	 * la ejecucion de la busqueda.
+	 * @param tipoBusqueda el tipo de busqueda: por fecha, precio, etc.
+	 * @param parametros los parametros a usar en la busqueda: fechas, precios, etc.
+	 * @return lista de productos devueltos por el buscador usado.
+	 */
+	List<Producto> buscarProductos(ETipoBusqueda tipoBusqueda, Object... parametros);
 }

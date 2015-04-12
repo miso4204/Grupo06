@@ -2,6 +2,7 @@ package grupo6.modulo.product.service.test;
 
 import grupo6.modulo.product.service.impl.ProductoService;
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
@@ -81,7 +82,8 @@ public class ProductoServiceTest {
 		productoService.crearProducto(p2);		
 		
 		List<Producto> pencontrado = 
-				productoService.buscarProductosPorUbicacion("HOtEL xxX");
+				productoService.buscarProductos(ETipoBusqueda.POR_UBICACION,
+						"HOtEL xxX");
 		Assert.assertFalse(pencontrado.isEmpty());
 		Assert.assertEquals(2, pencontrado.size());
 			
@@ -113,11 +115,11 @@ public class ProductoServiceTest {
 		productoService.crearProducto(p2);		
 		
 		List<Producto> pencontrado = 
-				productoService.buscarProductosPorPrecio(1000000D, 2000000D);
+				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000000D, 2000000D);
 		Assert.assertFalse(pencontrado.isEmpty());
 		Assert.assertEquals(2, pencontrado.size());
 		pencontrado = 
-				productoService.buscarProductosPorPrecio(1000001D, 2000000D);
+				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000001D, 2000000D);
 		Assert.assertEquals(1, pencontrado.size());
 			
 	}
@@ -152,11 +154,11 @@ public class ProductoServiceTest {
 		productoService.crearProducto(p2);		
 		
 		List<Producto> pencontrado = 
-				productoService.buscarProductosPorFechaInicio(c.getTime(), c2.getTime());
+				productoService.buscarProductos(ETipoBusqueda.POR_FECHA, c.getTime(), c2.getTime());
 		Assert.assertFalse(pencontrado.isEmpty());
 		Assert.assertEquals(2, pencontrado.size());
 		pencontrado = 
-				productoService.buscarProductosPorFechaInicio(c2.getTime(), c2.getTime());
+				productoService.buscarProductos(ETipoBusqueda.POR_FECHA, c2.getTime(), c2.getTime());
 		Assert.assertEquals(1, pencontrado.size());
 			
 	}

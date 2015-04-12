@@ -10,7 +10,18 @@
 
 	<!-- Escanea clases con anotaciones de Spring (eg: @Service, @Repository etc)  y crea un bean por cada clase anotada -->
 	<context:component-scan base-package="grupo6.modulo" />
-
+	
+	<!-- Fabrica de buscadores de productos  -->
+	<bean id="busquedaProductosFactory" class="grupo6.modulo.product.util.BusquedaProductosFactory">
+		<property name="buscadores">
+			<map>
+				<entry key="busquedaProductoFecha" value-ref="busquedaProductoFecha" />
+				<entry key="busquedaProductoPrecio" value-ref="busquedaProductoPrecio" />
+				<entry key="busquedaProductoUbicacion" value-ref="busquedaProductoUbicacion" />
+			</map>
+		</property>
+	</bean>
+	
 	<!-- Crea el datasource hacia la BD en memoria -->
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 			destroy-method="close">

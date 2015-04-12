@@ -1,15 +1,17 @@
 package grupo6.modulo.product.service.impl;
 
+import grupo6.modulo.product.dao.view.IBusquedaProducto;
 import grupo6.modulo.product.dao.view.IProductoDAO;
 import grupo6.modulo.product.dao.view.IRatingProductoDAO;
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.modulo.product.util.BusquedaProductosFactory;
+import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,35 +52,7 @@ public class ProductoService implements IProductoService {
 		return productoDAO.buscarPorId(id);
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorUbicacion(java.lang.String)
-	 */
-	@Transactional(readOnly = true)
-	public List<Producto> buscarProductosPorUbicacion(String ubicacion) {
-		return productoDAO.buscarPorUbicacion(ubicacion);
-	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorPrecio(double, double)
-	 */
-	@Transactional(readOnly = true)
-	public List<Producto> buscarProductosPorPrecio(double precioInicial,
-			double precioFinal) {
-		return productoDAO.buscarPorPrecio(precioInicial, precioFinal);
-	}
-
-	/**
-	 * (non-Javadoc)
-	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductosPorFechaInicio(java.util.Date, java.util.Date)
-	 */
-	@Transactional(readOnly = true)
-	public List<Producto> buscarProductosPorFechaInicio(Date fechaInicial,
-			Date fechaFinal) {
-		return productoDAO.buscarPorFechaInicio(fechaInicial, fechaFinal);
-	}
-	
 	/**
 	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.service.view.IProductoService#calificarProducto(java.lang.Long, java.lang.Long, grupo6.persistencia.entidades.ETipoCalificacionRating)
@@ -170,6 +144,20 @@ public class ProductoService implements IProductoService {
 		
 		return ratingProductoDAO.buscarCalificacionDeUsuario(ratingProductoId, clienteId);
 	}
+	
+	/**
+	 * (non-Javadoc)
+	 * @see grupo6.modulo.product.service.view.IProductoService#buscarProductos(grupo6.modulo.product.util.ETipoBusqueda, java.lang.Object[])
+	 */
+	@Override
+	public List<Producto> buscarProductos(ETipoBusqueda tipoBusqueda,
+			Object... parametros) {
+		
+		IBusquedaProducto buscador = 
+				BusquedaProductosFactory.crearBuscador(tipoBusqueda);
+		return buscador.buscar(parametros);		
+	}
+
 
 	
 	/**
@@ -178,15 +166,12 @@ public class ProductoService implements IProductoService {
 	 */
 	private void asignarRatingsDefault(Long productoId) {
 		
-		Long generalId = ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
+		ratingProductoDAO.crearRating(productoId, ETipoRating.GENERAL);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.UBICACION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.ATENCION);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.LIMPIEZA);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.CUARTOS);
 		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
-		//test: quitar
-//		RatingProducto ratingSimulado = ratingProductoDAO.buscarPorId(generalId);
-//		calificarProducto(1L, ratingSimulado.getId(), ETipoCalificacionRating.MUYBUENO);
 	}
 
 	

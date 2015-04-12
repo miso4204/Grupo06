@@ -13,6 +13,17 @@
 	<!-- Escanea clases con anotaciones de Spring de frontend. Ej: @Controller -->
 	<mvc:annotation-driven />
 	
+	<!-- Fabrica de buscadores de productos  -->
+	<bean id="busquedaProductosFactory" class="grupo6.modulo.product.util.BusquedaProductosFactory">
+		<property name="buscadores">
+			<map>
+				<entry key="busquedaProductoFecha" value-ref="busquedaProductoFecha" />
+				<entry key="busquedaProductoPrecio" value-ref="busquedaProductoPrecio" />
+				<entry key="busquedaProductoUbicacion" value-ref="busquedaProductoUbicacion" />
+			</map>
+		</property>
+	</bean>
+	
 	<bean id="propertyConfigurer" 
   			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
    		 <property name="location" value="classpath:web.properties" />

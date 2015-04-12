@@ -1,6 +1,7 @@
 package grupo6.web.controller.rest;
 
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.modulo.product.util.ETipoBusqueda;
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
@@ -102,8 +103,9 @@ public class ProductoRestController extends BaseRestController {
 			@PathVariable("precioFinal") Double precioFinal) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
-		List<Producto> productos = 
-				productoService.buscarProductosPorPrecio(precioInicial, precioFinal);
+		List<Producto> productos =  productoService.buscarProductos(
+						ETipoBusqueda.POR_PRECIO, 
+						precioInicial, precioFinal);
 		for (Producto producto: productos) {
 			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
@@ -129,7 +131,7 @@ public class ProductoRestController extends BaseRestController {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = 
-				productoService.buscarProductosPorFechaInicio(fechaInicial, fechaFinal);
+				productoService.buscarProductos(ETipoBusqueda.POR_FECHA, fechaInicial, fechaFinal);
 		for (Producto producto: productos) {
 			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
@@ -150,7 +152,7 @@ public class ProductoRestController extends BaseRestController {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = 
-				productoService.buscarProductosPorUbicacion(lugar);
+				productoService.buscarProductos(ETipoBusqueda.POR_UBICACION, lugar);
 		for (Producto producto: productos) {
 			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}
