@@ -91,6 +91,36 @@
                 }
             });
         });
+        
+$("#cash").submit(function(e) {
+            
+            e.preventDefault();     
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/payment/pay_cash/"+'${usuarioSesion.usuario}', 
+                data: false,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                  
+                   var form = $('<form action="pages/client/successPayment.jsp" method="post">' +
+                    '<input type="hidden" name="respuestajson" value="" />' +
+                    '</form>');
+                    $('body').append(form);
+                    form.submit(); /*var o href="pages/client/indexUser.jsp"*/
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
 $("#payCredit").submit(function(e) {
         
             e.preventDefault();     
@@ -304,6 +334,7 @@ $("#payCredit").submit(function(e) {
 
                            </form>
                        </div>
+                       
 
                        <div class="col-md-4">
                         <h4>Pay via Credit/Debit Card</h4>
@@ -356,6 +387,14 @@ $("#payCredit").submit(function(e) {
                                 </form>
                             
                         </div>
+
+						<h4>Pay with cash</h4>
+						<img class="pp-img" src="https://dl.dropboxusercontent.com/u/62595112/cash_on_delivery.png" alt="Cash on delivery" title="Cash on delivery" />
+                        <p>Important: You will be redirected to Cash on delivery website to securely complete your payment.</p>
+                        <form id="cash">
+                           <button class="btn btn-primary" type="submit">Checkout via cash on delivery</a>   
+                           </form>
+                       </div>
 
                         <div class="col-md-4" >
                             <h4>Shopping Cart:</h4>
