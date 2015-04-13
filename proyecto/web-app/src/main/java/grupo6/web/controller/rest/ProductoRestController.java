@@ -1,5 +1,6 @@
 package grupo6.web.controller.rest;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.modulo.user.service.impl.IUsuarioService;
@@ -80,7 +81,7 @@ public class ProductoRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ProductoResponseDTO> listarProductos() {
+	public @ResponseBody List<ProductoResponseDTO> listarProductos(@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = productoService.listarTodosProductos();

@@ -108,7 +108,7 @@ public class Usuario implements Serializable {
 		return rol;
 	}
 	
-	@Column(name="tipoMoneda",nullable = false, length = 50)
+	@Column(name="tipoMoneda",nullable = true, length = 50)
 	public TipoMoneda getTipoMoneda() {
 		return tipoMoneda;
 	}
