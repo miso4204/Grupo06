@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and mandatory="true" name="Ecoturismo">
+				<and abstract="true" mandatory="true" name="User">
+					<and mandatory="true" name="Session">
+						<feature mandatory="true" name="LogIn"/>
+						<feature mandatory="true" name="LogOut"/>
+					</and>
+					<and mandatory="true" name="UpdateProfile">
+						<feature name="ChangePassword"/>
+						<feature name="ChangeAdress"/>
+					</and>
+					<feature mandatory="true" name="CreateAccount"/>
+				</and>
+				<feature mandatory="true" name="ShoppingCart"/>
+				<and mandatory="true" name="Pay">
+					<feature mandatory="true" name="CreditCard"/>
+					<feature mandatory="true" name="PSE"/>
+					<feature name="CashOnDelivery"/>
+				</and>
+				<and mandatory="true" name="Reports">
+					<and name="Rating">
+						<feature mandatory="true" name="Location"/>
+						<feature name="Package"/>
+					</and>
+					<and name="Sales">
+						<feature name="ReportByLocation"/>
+						<feature name="ReportByPeriod"/>
+					</and>
+				</and>
+				<and name="SpecialOffers_5">
+					<feature name="CreatePromo"/>
+					<feature name="UpdatePromo"/>
+				</and>
+				<alt name="SocialNetwork">
+					<feature mandatory="true" name="Facebook"/>
+					<feature mandatory="true" name="Twitter"/>
+				</alt>
+				<and name="AdminMoneda">
+					<feature mandatory="true" name="Dolar"/>
+					<feature name="Euro"/>
+					<feature name="Colombian"/>
+				</and>
+				<and mandatory="true" name="Product">
+					<and mandatory="true" name="Search">
+						<feature name="ByLocation"/>
+						<feature mandatory="true" name="ByPrice"/>
+						<feature mandatory="true" name="ByDate"/>
+					</and>
+				</and>
+				<and mandatory="true" name="QualityAtributes">
+					<feature mandatory="true" name="Configurability"/>
+					<feature name="Scalability"/>
+					<feature mandatory="true" name="Functionality"/>
+					<feature name="Performance_5"/>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
