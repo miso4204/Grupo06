@@ -81,7 +81,7 @@ public class ProductoRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ProductoResponseDTO> listarProductos(@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+	public @ResponseBody List<ProductoResponseDTO> listarProductos() {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = productoService.listarTodosProductos();
