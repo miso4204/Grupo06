@@ -3,19 +3,15 @@ package grupo6.web.aspectos;
 import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
-import grupo6.persistencia.dao.BaseDAO;
 import grupo6.web.dto.ProductoResponseDTO;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Aspect
-@Repository(value = "TasaCambioAspectDAO")
-public class TasaCambioAspect extends BaseDAO{
+public class TasaCambioAspect{
 
 	private static final double USD_TO_COP = 2518.89169;
 	private static final double USD_TO_EUR = 0.944643869;
@@ -26,14 +22,13 @@ public class TasaCambioAspect extends BaseDAO{
 	private static final double COP_TO_EUR = 0.000375023616;
 	private static final double COP_TO_USD = 0.000397;
 	
-	@Pointcut("execution(* grupo6.web.controller.rest.ProductoRestController.listarProductos(Long))")  
+	@Pointcut("execution(* grupo6.web.controller.rest.ProductoRestController.listarProductos())")  
     public void convertirMoneda(){}  
       
-	@Transactional
     @Around("convertirMoneda()")  
     public List<ProductoResponseDTO> adviceTasaCambio(ProceedingJoinPoint proceedingJoinPoint) throws Throwable   
     {  
-    	TipoMoneda tipoMonedaUsuario = (TipoMoneda) proceedingJoinPoint.getArgs()[0];
+    	TipoMoneda tipoMonedaUsuario = TipoMoneda.EURO;
     	
     	@SuppressWarnings("unchecked")
 		List<ProductoResponseDTO> productos = (List<ProductoResponseDTO>) proceedingJoinPoint.proceed();  
