@@ -27,6 +27,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
+   	$('#save').click(function() { var tipoMoneda = $("input:radio[name ='tipoMoneda']:checked").val();   });    	
+    	
 
 $("#cambiarPass").submit(function(e) {
             
@@ -72,6 +74,16 @@ $("#cambiarPass").submit(function(e) {
             });
         });
     });
+    
+
+    // Funcion para setear el tipo de moneda del cliente
+    $(function() {
+        var $radios = $('input:radio[name=tipoMoneda]');
+        if($radios.is(':checked') === false) {
+            $radios.filter('[value=${usuarioSesion.tipoMoneda}]').prop('checked', true);
+        }
+    });    
+    
 </script>
 
 </head>
@@ -198,8 +210,16 @@ $("#cambiarPass").submit(function(e) {
                                     <label>Street Address</label>
                                     <input id="direccion" name="direccion" class="form-control" value="${usuarioSesion.direccion}" type="text" required/>
                                 </div>
+                                
+                                <label>Select your prefered kind money</label>
+                               
+								<label class="radio-inline"> <input type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
+								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
+								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
+								
+
                                 <hr>
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                <input type="submit" class="btn btn-primary" id="save" value="Save Changes">
                                 <h3>${mensaje}</h3>
                             </form>
                         </div>

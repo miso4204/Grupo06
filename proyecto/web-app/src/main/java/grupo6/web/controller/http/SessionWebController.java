@@ -1,5 +1,6 @@
 package grupo6.web.controller.http;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
 
@@ -92,6 +93,7 @@ public class SessionWebController {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("usuarioSesion", usuarioDTO);
 					
+					
 					if ("ADMIN".equals(usuarioDTO.getRol())) {
 						model = new ModelAndView("/admin/indexAdmin");
 					} else if ("CLIENT".equals(usuarioDTO.getRol())) {
@@ -181,6 +183,7 @@ public class SessionWebController {
 				params.put("telefono", request.getParameter("telefono"));
 				params.put("email", request.getParameter("email"));
 				params.put("website", request.getParameter("website"));
+				params.put("tipoMoneda", request.getParameter("tipoMoneda"));
 				ObjectWriter ow = new ObjectMapper().writer()
 						.withDefaultPrettyPrinter();
 				String json = ow.writeValueAsString(params);
@@ -201,8 +204,10 @@ public class SessionWebController {
 								.setTelefono(request.getParameter("telefono"));
 						usuarioDTO.setEmail(request.getParameter("email"));
 						usuarioDTO.setWebsite(request.getParameter("website"));
-						session.setAttribute("usuarioSesion", usuarioDTO);
+						usuarioDTO.setTipoMoneda(TipoMoneda.valueOf(request.getParameter("tipoMoneda")));
 
+						session.setAttribute("usuarioSesion", usuarioDTO);
+						
 						model.addObject("mensaje",
 								"Your profile has been updated!");						
 					} else {

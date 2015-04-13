@@ -1,5 +1,7 @@
 package grupo6.web.dto;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
+
 /**
  * DTO para ser convertido en JSON y que representa los datos basicos de un Usuario.
  * Estos objetos se guardarán en sesión como identificador dle usuario actual.
@@ -18,6 +20,7 @@ public class UsuarioDTO {
 	private String rol;
 	private String email;
 	private String website;
+	private TipoMoneda tipoMoneda;
 	
 	
 	public long getId() {
@@ -73,6 +76,12 @@ public class UsuarioDTO {
 	}
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+	public TipoMoneda getTipoMoneda() {
+		return tipoMoneda;
+	}
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+		this.tipoMoneda = tipoMoneda;
 	}	
 	
 }

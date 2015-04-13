@@ -60,6 +60,7 @@ public class UsuarioRestController extends BaseRestController {
 			usuarioDTO.setUsuario(user.getUsuario());
 			usuarioDTO.setEmail(user.getEmail());
 			usuarioDTO.setWebsite(user.getWebsite());
+			usuarioDTO.setTipoMoneda(user.getTipoMoneda());
 		}
 
 		return usuarioDTO;
@@ -95,7 +96,7 @@ public class UsuarioRestController extends BaseRestController {
 						consumes = MediaType.APPLICATION_JSON_VALUE,
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<ResponseDTO> actualizarUsuario(@RequestBody UsuarioDTO userDTO) {
-	
+		
 		   Usuario user =  usuarioService.buscarPorId(userDTO.getId());
 		   if (user == null) {
 			   throw new IllegalArgumentException("Usuario no existe");
@@ -105,6 +106,7 @@ public class UsuarioRestController extends BaseRestController {
 		   user.setTelefono(userDTO.getTelefono());
 		   user.setEmail(userDTO.getEmail());
 		   user.setWebsite(userDTO.getWebsite());
+		   user.setTipoMoneda(userDTO.getTipoMoneda());
 		   boolean b =  usuarioService.actualizarUsuario(user);	
 		   if (b) {
 			   return devolverRespuestaExitosa("Usuario actualizado", b);
