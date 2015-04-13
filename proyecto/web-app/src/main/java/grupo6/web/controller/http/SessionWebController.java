@@ -83,8 +83,10 @@ public class SessionWebController {
 
 			if (httResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httResponse.getEntity();
-				String jsonString = EntityUtils.toString(entity, "UTF-8");
-				if (StringUtils.isNotBlank(jsonString)) {
+				String jsonString = EntityUtils.toString(entity, "UTF-8");				
+				if (StringUtils.isNotBlank(jsonString) && 
+						!jsonString.contains("ILLEGAL_ARGUMENT")
+						&& !jsonString.contains("ERROR_UNKNOWN") ) {
 					UsuarioDTO usuarioDTO = new ObjectMapper().readValue(
 							jsonString, UsuarioDTO.class);
 					HttpSession session = request.getSession(true);
@@ -100,8 +102,8 @@ public class SessionWebController {
 						model.addObject("mensajeError", "Invalid role");
 					}
 				} else {
-					model.addObject("mensajeError", "Invalid credentials");
-				}
+					model.addObject("mensajeError", jsonString);
+				}				
 			} else {
 				model.addObject("mensajeError", "Error: "
 						+ httResponse.getStatusLine().getReasonPhrase());
