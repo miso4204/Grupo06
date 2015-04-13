@@ -175,6 +175,8 @@
                                                         <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
                                                     </div>
                                                     
+                                                    
+                                                    <label>Select your prefered kind money</label>  
                                                     <div class="radio">
 													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
 													</div>
