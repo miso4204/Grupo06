@@ -1,5 +1,6 @@
 package grupo6.modulo.user.dao.impl;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.user.dao.view.IUsuarioDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.Usuario;
@@ -31,6 +32,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 	@Transactional
 	public long crearUsuario(Usuario user) {
 		
+		user.setTipoMoneda(TipoMoneda.DOLAR); // Asignamos por defecto el tipo de moneda como DOLAR para que luego se cambie
 		return (long) getCurrentSession().save(user);
 	}
 
