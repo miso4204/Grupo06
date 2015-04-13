@@ -34,6 +34,7 @@
                     "precio": $('#price').val(),
                     "urlImagen": $('#urlImage').val(),
                     "fechaInicio": $('#date').val(),
+                    "tipoMoneda": $('#tipoMoneda:checked').val(),
                     "proveedorId": '${usuarioSesion.id}'
                      });
             $.ajax({
@@ -168,6 +169,17 @@
                                                         <label>Price</label>
                                                         <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
                                                     </div>
+                                                    
+                                                    <div class="radio">
+													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
+													</div>
+													<div class="radio">
+													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+													</div>
+													<div class="radio">
+													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
+													</div>
+                                                    
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
                                                         <label>Date</label>
                                                         <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
