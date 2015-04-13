@@ -27,7 +27,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-   	$('#save').click(function() { var tipoMoneda = $("input:radio[name ='tipoMoneda']:checked").val();   });    	
+    	
+// Funcion que se ejecuta al precionar el boton con id save para alamcenar el tipoMoneda seleccionado
+$('#save').click(function() { var tipoMoneda = $("input:radio[name ='tipoMoneda']:checked").val();   });    	
     	
 
 $("#cambiarPass").submit(function(e) {
@@ -211,8 +213,7 @@ $("#cambiarPass").submit(function(e) {
                                     <input id="direccion" name="direccion" class="form-control" value="${usuarioSesion.direccion}" type="text" required/>
                                 </div>
                                 
-                                <label>Select your prefered kind money</label>
-                               
+                                <label>Select your prefered kind money</label>                      
 								<label class="radio-inline"> <input type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
 								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
 								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
