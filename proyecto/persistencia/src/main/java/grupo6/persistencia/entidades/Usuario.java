@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -108,7 +110,8 @@ public class Usuario implements Serializable {
 		return rol;
 	}
 	
-	@Column(name="tipoMoneda",nullable = true, length = 50)
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipoMoneda",nullable = false, length = 50)
 	public TipoMoneda getTipoMoneda() {
 		return tipoMoneda;
 	}
