@@ -3,10 +3,16 @@ package grupo6.persistencia.entidades;
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,6 +62,10 @@ public class Producto implements Serializable {
     private String urlImagen;
     /** El id dle proveedor quien creó producto.*/
     private Long proveedorId;
+    /** Texto descriptivo del paquete.*/
+    private String descripcionPaquete;
+    /** Las actividades asociadas al paquete turistico.*/
+    private List<String> actividades = new ArrayList<String>();
     /** Tipo de moneda**/
     private TipoMoneda tipoMoneda;
     
@@ -120,7 +130,18 @@ public class Producto implements Serializable {
 	public String  getUrlImagen() {
 		return urlImagen;
 	}
-		
+	
+	@Column(length = 1000)
+	public String getDescripcionPaquete() {
+		return descripcionPaquete;
+	}
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	public List<String> getActividades() {
+		return actividades;
+	}
+
+	@Enumerated(EnumType.STRING)
 	public TipoMoneda getTipoMoneda() {
 		return tipoMoneda;
 	}
@@ -180,6 +201,15 @@ public class Producto implements Serializable {
 	public void setProveedorId(Long proveedorId) {
 		this.proveedorId = proveedorId;
 	}
+	
+	public void setDescripcionPaquete(String descripcionPaquete) {
+		this.descripcionPaquete = descripcionPaquete;
+	}
+	
+	public void setActividades(List<String> actividades) {
+		this.actividades = actividades;
+	}
+	
 
 	public void setTipoMoneda(TipoMoneda tipoMoneda) {
 		this.tipoMoneda = tipoMoneda;

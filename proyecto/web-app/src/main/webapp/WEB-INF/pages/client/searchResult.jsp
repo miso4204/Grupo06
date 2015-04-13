@@ -47,7 +47,8 @@
          $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json' ,
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}' 
                 },
                 datatype:"json",
                 type: "GET",
@@ -97,6 +98,7 @@
                                         '</div>'+
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
+                                        '<small class="booking-item-last-booked">'+arr[i].actividades+'</small>'+
                                     '</div>'+
                                     '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
@@ -121,7 +123,8 @@ document.getElementById("ListaProductos").innerHTML = out;
     	 $.ajax({
              headers: { 
                  'Accept': 'application/json',
-                 'Content-Type': 'application/json' 
+                 'Content-Type': 'application/json',
+                 'tipoMoneda':  '${usuarioSesion.tipoMoneda}' 
              },
              datatype:"json",
              type: "GET",
@@ -192,7 +195,8 @@ document.getElementById("ListaProductos").innerHTML = out;
          $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}' 
                 },
                 datatype:"json",
                 type: "GET",

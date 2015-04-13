@@ -46,7 +46,7 @@ public class BaseRestController {
 		ResponseDTO r = new ResponseDTO();
 		r.setCodigoRespuesta(ResponseDTO.CODIGO_RESPUESTA_ERROR_GENERICO);
 		r.setMensaje(ex.getMessage());	
-		return new ResponseEntity<ResponseDTO>(r, HttpStatus.OK); 
+		return new ResponseEntity<ResponseDTO>(r, HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
 	
 	

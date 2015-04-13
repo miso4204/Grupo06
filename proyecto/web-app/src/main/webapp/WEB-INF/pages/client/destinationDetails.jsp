@@ -47,7 +47,8 @@ $(document).ready(function () {
                 headers: { 
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'clientId':  '${usuarioSesion.id}' 
+                    'clientId':  '${usuarioSesion.id}',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "GET",
@@ -91,14 +92,12 @@ $(document).ready(function () {
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
                      
-                    alert(currentUrl);
                  
-
-
                    document.getElementById("fbreference").innerHTML = '<div class="fb-share-button" data-href="' + currentUrl + '" data-layout="button_count"></div>'
                     document.getElementById("twreference").innerHTML = '<a class="twitter-share-button" href="' + currentUrl + '">Tweet</a>'
-
-                   
+		
+                    document.getElementById("descriptionPackage").innerHTML =  '<h4 class="lh1em">Description: ' + arr.descripcion + '</h4>';
+                    document.getElementById("activitiesPackage").innerHTML =  '<h4 class="lh1em">Activities: ' + arr.actividades + '</h4>';
                        
                     if(votado==true){
                     document.getElementById("rateProduct").style.visibility = "hidden";
@@ -336,10 +335,11 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                         <div id ="rateProduct" class="row">
                             <form id="calificar" action="" method="post" >
                             <div class="col-md-8">
-                                <h4 class="lh1em">Rate</h4>
+                                <div id="descriptionPackage"  class="lh1em">Rate</div>
+                                <div id="activitiesPackage"  class="lh1em">Rate</div>
                                 <ul   class="list booking-item-raiting-summary-list stats-list-select">
                                             <li onclick="calificar()">
-                                                <div class="booking-item-raiting-list-title">Sleep</div>
+                                                <div class="booking-item-raiting-list-title">Your rating:</div>
                                                 <ul class="icon-group booking-item-rating-stars">
                                                     <li><i  class="fa fa-star"></i>
                                                     </li>

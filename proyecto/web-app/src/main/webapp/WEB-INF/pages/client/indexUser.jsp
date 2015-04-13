@@ -34,6 +34,7 @@ xmlhttp.onreadystatechange = function() {
     }
 }
 xmlhttp.open("GET", url, true);
+xmlhttp.setRequestHeader("tipoMoneda",'${usuarioSesion.tipoMoneda}');
 xmlhttp.send();
 
 function myFunction(arr) {
@@ -91,34 +92,11 @@ document.getElementById("ListaProductos").innerHTML = out;
    $("#buscarPorCiudad").submit(function(e) {
             
             e.preventDefault();                
-            $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
-                },
-                datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_lugar/" + $('#ciudad').val(), 
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                	if (data.codigoRespuesta == 'OK') {
-                       var respuesta_servicio = JSON.stringify(data.respuesta)
-                       var form = $('<form action="pages/client/searchResult.jsp?servicio=1&lugar='+encodeURIComponent($("#ciudad").val()) +'" method="post">' +
-						  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
-						  '</form>');
-						$('body').append(form);
-						form.submit();
-                	}
-                	else {
-                		alert("Error: " + data.mensaje);
-                	}
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
-                }
-            });
+            var form = $('<form action="pages/client/searchResult.jsp?servicio=1&lugar='+encodeURIComponent($("#ciudad").val()) +'" method="post">' +
+					 
+					  '</form>');
+					$('body').append(form);
+					form.submit();
             
 
         });  	
@@ -127,61 +105,22 @@ document.getElementById("ListaProductos").innerHTML = out;
 $("#buscarPorPrecio").submit(function(e) {
                
             e.preventDefault();                
-            $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
-                },
-                datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_precio/" + $('#priceOne').val()+"/"+$('#priceTwo').val(), 
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                     
-                       var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.jsp?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
-  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
-  '</form>');
-$('body').append(form);
-form.submit();
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
-                }
-            });
-            
+            var form = $('<form action="pages/client/searchResult.jsp?servicio=2&precioUno='+encodeURIComponent($("#priceOne").val()) +'&precioDos='+encodeURIComponent($("#priceTwo").val())+'" method="post">' +
+            		  
+            		  '</form>');
+            		$('body').append(form);
+            		form.submit();
 
         });
 
 $("#buscarPorFecha").submit(function(e) {
                
             e.preventDefault();                
-            $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
-                },
-                datatype:"json",
-                type: "GET",
-                url: "services/producto/buscar_por_fecha/" + $('#dateOne').val()+"/"+$('#dateTwo').val(), 
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                       
-                       var respuesta_servicio = JSON.stringify(data)
-                       var form = $('<form action="pages/client/searchResult.jsp?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
-  '<input type="hidden" name="respuestajson" value=' +respuesta_servicio+' />' +
-  '</form>');
-$('body').append(form);
-form.submit();
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
-                }
-            });
+            var form = $('<form action="pages/client/searchResult.jsp?servicio=3&primeraFecha='+encodeURIComponent($("#dateOne").val()) +'&segundaFecha='+encodeURIComponent($("#dateTwo").val())+'" method="post">' +
+            		  
+            		  '</form>');
+            		$('body').append(form);
+            		form.submit();
             
 
         });

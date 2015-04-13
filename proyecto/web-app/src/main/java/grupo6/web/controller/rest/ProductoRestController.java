@@ -17,9 +17,11 @@ import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -71,6 +73,11 @@ public class ProductoRestController extends BaseRestController {
 		producto.setFechaCreacion(new Date());
 		producto.setProveedorId(productoDTO.getProveedorId());
 		producto.setTipoMoneda(productoDTO.getTipoMoneda());
+		producto.setDescripcionPaquete(productoDTO.getDescripcion());
+		if (StringUtils.isNotBlank(productoDTO.getActividades())) {
+			producto.setActividades(Arrays.asList(productoDTO.getActividades()));
+		}
+		
 		return productoService.crearProducto(producto); 
 	}
 	
@@ -81,7 +88,7 @@ public class ProductoRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ProductoResponseDTO> listarProductos() {
+	public @ResponseBody List<ProductoResponseDTO> listarProductos(@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = productoService.listarTodosProductos();
@@ -102,7 +109,8 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<ProductoResponseDTO> listarPorPrecio(
 			@PathVariable("precioInicial") Double precioInicial,
-			@PathVariable("precioFinal") Double precioFinal) {
+			@PathVariable("precioFinal") Double precioFinal,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos =  productoService.buscarProductos(
@@ -129,7 +137,8 @@ public class ProductoRestController extends BaseRestController {
 			Date fechaInicial,
 			@DateTimeFormat(pattern="yyyy-MM-dd")
 			@PathVariable("fechaFinal") 
-			Date fechaFinal) {
+			Date fechaFinal,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = 
@@ -150,7 +159,8 @@ public class ProductoRestController extends BaseRestController {
 			method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<ResponseDTO> listarPorLugar(
-			@PathVariable("lugar") String lugar) {
+			@PathVariable("lugar") String lugar,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
 		List<Producto> productos = 
@@ -172,7 +182,8 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ProductoResponseDTO obtenerProductoPorId(
 			@PathVariable("id") Long id, 
-			@RequestHeader(value="clientId", required = false) Long clientId) {		
+			@RequestHeader(value="clientId", required = false) Long clientId,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {		
 		
 		ProductoResponseDTO productoDTO = null;
 		Producto producto = productoService.buscarProductoPorId(id);
@@ -222,6 +233,12 @@ public class ProductoRestController extends BaseRestController {
 		productoDTO.setLugar(producto.getLugar());
 		productoDTO.setPrecio(producto.getPrecio());
 		productoDTO.setTipoMoneda(producto.getTipoMoneda());
+		productoDTO.setDescripcion(producto.getDescripcionPaquete());
+		if (!producto.getActividades().isEmpty()) {
+			productoDTO.setActividades(
+					StringUtils.join(producto.getActividades(), ", "));
+		}
+		
 		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
 		productoDTO.setUrlImagen(producto.getUrlImagen());
 		List<CalificacionResponseDTO> calificaciones = new ArrayList<CalificacionResponseDTO>();

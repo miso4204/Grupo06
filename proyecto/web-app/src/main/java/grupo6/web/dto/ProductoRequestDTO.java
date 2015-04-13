@@ -37,6 +37,10 @@ public class ProductoRequestDTO implements Serializable {
 	private Long proveedorId;
 	/** Tipo moneda.*/
 	private TipoMoneda tipoMoneda;
+	/** Texto descriptivo del producto.*/
+	private String descripcion;
+	/** Texto descriptivo del producto.*/	
+	private String actividades;
 
 	public String getNombre() {
 		return nombre;
@@ -61,7 +65,17 @@ public class ProductoRequestDTO implements Serializable {
 
 	public String getUrlImagen() {
 		return urlImagen;
+	}	
+
+	public String getDescripcion() {
+		return descripcion;
 	}
+	
+
+	public String getActividades() {
+		return actividades;
+	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -94,12 +108,23 @@ public class ProductoRequestDTO implements Serializable {
 	public void setProveedorId(Long proveedorId) {
 		this.proveedorId = proveedorId;
 	}
-	 public TipoMoneda getTipoMoneda() {
-		return tipoMoneda;
-	}
 	
-	 public void setTipoMoneda(TipoMoneda tipoMoneda) {
-		this.tipoMoneda = tipoMoneda;
+	public TipoMoneda getTipoMoneda() {
+			return tipoMoneda;
+	}
+		
+	public void setTipoMoneda(TipoMoneda tipoMoneda) {
+			this.tipoMoneda = tipoMoneda;
 	}
 
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setActividades(String actividades) {
+		this.actividades = actividades;
+	}
+	
+	
+			
 }

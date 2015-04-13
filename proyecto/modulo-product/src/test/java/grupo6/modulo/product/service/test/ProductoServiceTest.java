@@ -7,6 +7,7 @@ import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -47,10 +48,13 @@ public class ProductoServiceTest {
 		p.setLugar("20 de Julio");
 		p.setNombre("Paquete semana santa");
 		p.setPrecio(200000D);
+		String[] actividades = {"a1", "a2"};
+		p.setActividades(Arrays.asList(actividades));
 		
 		Long id = productoService.crearProducto(p);
 		Producto pencontrado = productoService.buscarProductoPorId(id);
 		Assert.assertNotNull(pencontrado);
+		Assert.assertTrue(pencontrado.getActividades().size() == 2);
 		List<RatingProducto> ratings = productoService.buscarRatingPorProductoId(id);
 		Assert.assertFalse(ratings.isEmpty());
 		Assert.assertFalse(productoService.listarTodosProductos().isEmpty());

@@ -42,6 +42,10 @@ public class ProductoResponseDTO implements Serializable  {
 	private UsuarioDTO proveedor;
 	/** Tipo de Moneda.*/
 	private TipoMoneda tipoMoneda;
+	/** La descripcion del paquete.*/
+	private String descripcion;
+	/** Texto descriptivo del producto.*/	
+	private String actividades;
 	
 	public Long getId() {
 		return id;
@@ -81,6 +85,16 @@ public class ProductoResponseDTO implements Serializable  {
 	
 	public List<CalificacionResponseDTO> getCalificaciones() {
 		return calificaciones;
+	}
+	
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public String getActividades() {
+		return actividades;
 	}
 
 
@@ -140,4 +154,14 @@ public class ProductoResponseDTO implements Serializable  {
 		this.tipoMoneda = tipoMoneda;
 	}
 	
+	public void setActividades(String actividades) {
+		this.actividades = actividades;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	
+
 }

@@ -27,6 +27,9 @@
         $("#formularioCrear").submit(function(e) {
            
             e.preventDefault();     
+            var activities = $('input[name=activities]:checked').map(function() { 
+                return this.value; 
+            }).get().join(',');
             var jsonPeticion = JSON.stringify({
                     "nombre": $('#name').val(), 
                     "lugar": $('#destinationName').val(),
@@ -35,7 +38,9 @@
                     "urlImagen": $('#urlImage').val(),
                     "fechaInicio": $('#date').val(),
                     "tipoMoneda": $('#tipoMoneda:checked').val(),
-                    "proveedorId": '${usuarioSesion.id}'
+                    "proveedorId": '${usuarioSesion.id}',
+                    "descripcion":  $('#description').val(),
+                    "actividades":  activities
                      });
             $.ajax({
                 headers: { 
@@ -187,6 +192,27 @@
                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
                                                         <label>URL Image</label>
                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
+                                                    </div>
+                                                    <div class="form-group form-group-icon-left">
+                                                        <label>Activities</label>
+                                                        <input type="checkbox" name="activities" value="Accommodation">Accommodation<br>
+ 														<input type="checkbox" name="activities" value="Trekking" >Trekking<br>
+ 														<input type="checkbox" name="activities" value="Caves" >Caves<br>
+ 														<input type="checkbox" name="activities" value="Wildlife" >Wildlife<br>
+ 														<input type="checkbox" name="activities" value="Cycling" >Cycling<br>
+ 														<input type="checkbox" name="activities" value="Camping">Camping<br>
+ 														<input type="checkbox" name="activities" value="Climbing">Climbing<br>
+ 														<input type="checkbox" name="activities" value="Waterfalls">Waterfalls<br>
+ 														<input type="checkbox" name="activities" value="Ethnic Villages">Ethnic Villages<br>
+ 														<input type="checkbox" name="activities" value="Rivers">Rivers<br>
+ 														<input type="checkbox" name="activities" value="Air conditioning">Air conditioning<br>
+ 														<input type="checkbox" name="activities" value="Kitchen">Kitchen<br>
+ 														<input type="checkbox" name="activities" value="Swimming pool">Swimming pool<br>
+ 														<input type="checkbox" name="activities" value="Beach">Beach<br>
+                                                    </div>
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-comment-o input-icon input-icon-bounce"></i>
+                                                        <label>Description</label>
+                                                        <textarea  rows="4" cols="50" class="form-control" placeholder="http://imagen.png"  name="description" id="description" required> </textarea>
                                                     </div>
                                                     <div class="form-group form-group-icon-left">
                                                         <button class="btn btn-primary btn-lg" type="submit" >Register</button>
