@@ -27,11 +27,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-    	  $('#save').click(function() {
-    		  var tipoMoneda = $("input:radio[name ='tipoMoneda']:checked").val();
-    		 
-    		  alert(tipoMoneda);
-    		           });    	
+   	$('#save').click(function() { var tipoMoneda = $("input:radio[name ='tipoMoneda']:checked").val();   });    	
     	
 
 $("#cambiarPass").submit(function(e) {
@@ -216,11 +212,11 @@ $("#cambiarPass").submit(function(e) {
                                 </div>
                                 
                                 <label>Select your prefered kind money</label>
-                                <div class="btn-group" data-toggle="buttons">
-								    <label class="btn btn-default"> <input type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
-								    <label class="btn btn-default"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
-								    <label class="btn btn-default"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
-								</div>
+                               
+								<label class="radio-inline"> <input type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
+								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
+								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
+								
 
                                 <hr>
                                 <input type="submit" class="btn btn-primary" id="save" value="Save Changes">

@@ -91,6 +91,9 @@ public class SessionWebController {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("usuarioSesion", usuarioDTO);
 					
+					
+					System.out.println("____________ USUARIO EN SESSION =  " + usuarioDTO.getTipoMoneda());
+					
 					if ("ADMIN".equals(usuarioDTO.getRol())) {
 						model = new ModelAndView("/admin/indexAdmin");
 					} else if ("CLIENT".equals(usuarioDTO.getRol())) {
@@ -202,6 +205,8 @@ public class SessionWebController {
 						usuarioDTO.setEmail(request.getParameter("email"));
 						usuarioDTO.setWebsite(request.getParameter("website"));
 						usuarioDTO.setTipoMoneda(TipoMoneda.valueOf(request.getParameter("tipoMoneda")));
+						
+						System.out.println("_____________ Tipo moneda en update " + TipoMoneda.valueOf(request.getParameter("tipoMoneda")));
 						
 						session.setAttribute("usuarioSesion", usuarioDTO);
 						

@@ -49,7 +49,6 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 		Usuario user = (Usuario) criteria.uniqueResult();
 				
 		if (user != null) {
-			System.out.println("_______________ USER INGRESAR DAO " + user.getTipoMoneda());
 			return user;
 		}
 		
@@ -72,6 +71,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 			usuarioEncontrado.setDireccion(user.getDireccion());
 			usuarioEncontrado.setNombre(user.getNombre());
 			usuarioEncontrado.setTelefono(user.getTelefono());
+			usuarioEncontrado.setTipoMoneda(user.getTipoMoneda());
 			getCurrentSession().update(usuarioEncontrado);
 			
 			return true;
