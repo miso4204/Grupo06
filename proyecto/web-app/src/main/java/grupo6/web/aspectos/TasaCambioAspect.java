@@ -66,13 +66,19 @@ public class TasaCambioAspect{
 	
 	@AfterReturning(
 		pointcut = "execution(* grupo6.web.controller.rest.ProductoRestController.obtenerProductoPorId(..)) && args (id, clientId, tipoMonedaUsuario)",
-		returning= "productos")  
-    public List<ProductoResponseDTO> adviceTasaCambioId(JoinPoint joinPoint,  
+		returning= "producto")  
+    public ProductoResponseDTO adviceTasaCambioId(JoinPoint joinPoint,  
     							Long id, Long clientId,  TipoMoneda tipoMonedaUsuario, 
-    							List<ProductoResponseDTO> productos) throws Throwable   
+    							ProductoResponseDTO producto) throws Throwable   
     {  
+		if (producto != null) {
+			TipoMoneda tipoMonedaProducto = producto.getTipoMoneda();
+		
+			double valorFinal = getConversion(tipoMonedaProducto,tipoMonedaUsuario,producto.getPrecio());
+			producto.setPrecio(valorFinal);
+		}
     	    	
-        return aplicarConversion(productos, tipoMonedaUsuario);  
+        return producto;  
     }
 	
     
