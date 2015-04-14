@@ -1,9 +1,11 @@
 package grupo6.modulo.payment.strategy;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.payment.dao.enums.TiposPago;
 import grupo6.persistencia.entidades.FacturaCompra;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.utilidades.Currency;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +30,7 @@ public class PaymentCreditCardStrategy extends PaymentBaseStrategy implements IP
 	 */
 	@Override
 	@Transactional
-	public FacturaCompra pagar(String userName) {
+	public FacturaCompra pagar(String userName,TipoMoneda tipoMonedaUsuario) {
 		FacturaCompra factura = new FacturaCompra();
 
 		try {
@@ -45,7 +47,8 @@ public class PaymentCreditCardStrategy extends PaymentBaseStrategy implements IP
 
 				double precioTota = 0;
 				for (Producto producto : usuario.getCarritoCompras()) {
-					precioTota += producto.getPrecio();
+					double valor = Currency.getConversion(producto.getTipoMoneda(), tipoMonedaUsuario, producto.getPrecio());
+					precioTota += valor;
 				}
 
 				factura.setTotalPagado(precioTota);

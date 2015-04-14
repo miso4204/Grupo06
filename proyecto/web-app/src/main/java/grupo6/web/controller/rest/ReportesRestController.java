@@ -2,6 +2,7 @@ package grupo6.web.controller.rest;
 
 import java.util.Date;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.reports.service.view.IReporteVentasService;
 import grupo6.web.dto.reportes.ReporteVentasCiudadDTO;
 import grupo6.web.dto.reportes.ReporteVentasFechasDTO;
@@ -11,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,8 +37,9 @@ public class ReportesRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/ventas/{ciudad}", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ReporteVentasCiudadDTO getReporteVentaPorCiudad(@PathVariable("ciudad") String ciudad) {
-		return ReporteVentasCiudadDTO.getReporteVentas(reporteVentasService.getReporteVentasPorCiudad(ciudad));
+	public @ResponseBody ReporteVentasCiudadDTO getReporteVentaPorCiudad(@PathVariable("ciudad") String ciudad,
+			                         @RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		return ReporteVentasCiudadDTO.getReporteVentas(reporteVentasService.getReporteVentasPorCiudad(ciudad,tipoMoneda));
 	}
 	
 	/**
@@ -52,8 +55,9 @@ public class ReportesRestController extends BaseRestController {
 			Date fechaInicial,
 			@DateTimeFormat(pattern="yyyy-MM-dd")
 			@PathVariable("fechaFinal") 
-			Date fechaFinal) {
-		return ReporteVentasFechasDTO.getReporteVentas(reporteVentasService.getReporteVentasEntreFechas(fechaInicial, fechaFinal));
+			Date fechaFinal,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		return ReporteVentasFechasDTO.getReporteVentas(reporteVentasService.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda));
 	}
 	
 }

@@ -2,6 +2,7 @@ package grupo6.web.controller.rest;
 
 import java.util.List;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 import grupo6.modulo.shoppingcart.service.view.ICarritoComprasService;
 import grupo6.web.dto.shoppingcart.CarritoProductoRequestDTO;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -67,8 +69,9 @@ public class CarritoComprasRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/listar/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<CarritoProductoResponseDTO> consultarCarritoCompras(
-			@PathVariable("userName") String userName) {
-		return carritoComprasService.consultarCarritoCompras(userName);
+			@PathVariable("userName") String userName,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		return carritoComprasService.consultarCarritoCompras(userName,tipoMoneda);
 	}
 
 	/**
@@ -78,8 +81,9 @@ public class CarritoComprasRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/total/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Double totalCarritoCompras(
-			@PathVariable("userName") String userName) {
-		return carritoComprasService.getTotalCarritoCompras(userName);
+			@PathVariable("userName") String userName
+			,@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		return carritoComprasService.getTotalCarritoCompras(userName,tipoMoneda);
 	}
 	
 }

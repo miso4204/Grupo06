@@ -2,6 +2,7 @@ package grupo6.modulo.shoppingcart.service.view;
 
 import java.util.List;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 
 /**
@@ -34,12 +35,12 @@ public interface ICarritoComprasService {
 	 * 
 	 * @return la lista de productos que hacen parte del carrito de compras.
 	 */
-	List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName);
+	List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName,TipoMoneda tipoMoneda);
 
 	/**
 	 * Retorna el valor total del carrito de compras.
 	 * 
 	 * @return el valor total del carrito de compras.
 	 */
-	Double getTotalCarritoCompras(String userName);
+	Double getTotalCarritoCompras(String userName,TipoMoneda tipoMoneda);
 }

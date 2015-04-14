@@ -2,6 +2,7 @@ package grupo6.modulo.shoppingcart.service.impl;
 
 import java.util.List;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 import grupo6.modulo.shoppingcart.dao.view.ICarritoComprasDAO;
 import grupo6.modulo.shoppingcart.service.view.ICarritoComprasService;
@@ -44,16 +45,16 @@ public class CarritoComprasService implements ICarritoComprasService {
 	 * @see grupo6.modulo.shoppingcart.service.view.ICarritoComprasService#consultarCarritoCompras(String)
 	 */
 	@Override
-	public List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName) {
-		return carritoComprasDAO.consultarCarritoCompras(userName);
+	public List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName,TipoMoneda tipoMoneda) {
+		return carritoComprasDAO.consultarCarritoCompras(userName,tipoMoneda);
 	}
 
 	/**
 	 * @see grupo6.modulo.shoppingcart.service.view.ICarritoComprasService#getTotalCarritoCompras(String)
 	 */
 	@Override
-	public Double getTotalCarritoCompras(String userName) {
-		return carritoComprasDAO.getTotalCarritoCompras(userName);
+	public Double getTotalCarritoCompras(String userName,TipoMoneda tipoMoneda) {
+		return carritoComprasDAO.getTotalCarritoCompras(userName,tipoMoneda);
 	}
 
 }

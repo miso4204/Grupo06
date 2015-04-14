@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
@@ -26,8 +27,8 @@ public class ReporteVentasService implements IReporteVentasService{
 	 */
 	@Transactional(readOnly = true)
 	@Override
-	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad) {
-		return reportesVentasDAO.getReporteVentasPorCiudad(ciudad);
+	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad,TipoMoneda tipoMoneda) {
+		return reportesVentasDAO.getReporteVentasPorCiudad(ciudad,tipoMoneda);
 	}
 
 	/**
@@ -36,8 +37,8 @@ public class ReporteVentasService implements IReporteVentasService{
 	
 	@Transactional(readOnly = true)
 	@Override
-	public ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial, Date fechaFinal) {
-		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal);
+	public ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial, Date fechaFinal,TipoMoneda tipoMoneda) {
+		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda);
 	}
 
 }

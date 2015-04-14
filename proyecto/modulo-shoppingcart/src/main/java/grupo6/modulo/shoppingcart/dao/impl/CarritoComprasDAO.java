@@ -8,10 +8,12 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.view.ICarritoComprasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.utilidades.Currency;
 
 /**
  * Implementación de {@link ICarritoComprasDAO}
@@ -91,12 +93,14 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName) {
+	public List<CarritoProductoResponseDTO> consultarCarritoCompras(String userName,TipoMoneda tipoMonedaUsuario) {
 		List<CarritoProductoResponseDTO> carrito = new ArrayList<CarritoProductoResponseDTO>();
 		Usuario usuario = buscarUsuarioPorUserName(userName);
 		if (usuario != null && usuario.getCarritoCompras() != null) {
 			for(Producto p : usuario.getCarritoCompras()){
 				CarritoProductoResponseDTO c = CarritoProductoResponseDTO.productoToCarritoProductoDTO(p);
+				double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+				c.setPrecio(valor);
 				carrito.add(c);
 			}
 			return carrito;
@@ -111,13 +115,14 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Double getTotalCarritoCompras(String userName) {
+	public Double getTotalCarritoCompras(String userName,TipoMoneda tipoMonedaUsuario) {
 		Usuario usuario = buscarUsuarioPorUserName(userName);
 
 		if (usuario != null) {
 			double total = 0;
 			for (Producto p : usuario.getCarritoCompras()) {
-				total += p.getPrecio();
+				double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+				total += valor;
 			}
 			return total;
 		} else {

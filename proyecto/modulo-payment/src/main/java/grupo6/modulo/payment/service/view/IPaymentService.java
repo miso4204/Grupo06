@@ -1,5 +1,6 @@
 package grupo6.modulo.payment.service.view;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.persistencia.entidades.FacturaCompra;
 
 /**
@@ -15,20 +16,20 @@ public interface IPaymentService {
 	 * Metodo que permite hacer le pago por PSE
 	 * @return factura de la factura generada
 	 */
-	public FacturaCompra pagoPSE(String userName);
+	public FacturaCompra pagoPSE(String userName,TipoMoneda tipoMoneda);
 	
 	
 	/**
 	 * Metodo que permite hacer le pago por PSE
 	 * @return factura de la factura generada
 	 */
-	public FacturaCompra pagoCreditCard(String userName);
+	public FacturaCompra pagoCreditCard(String userName,TipoMoneda tipoMoneda);
 	
 	/**
 	 * Metodo que permite realizar el pago 
 	 * mediante efectivo en un punto de pago
 	 * @return
 	 */
-	public FacturaCompra cashOnDelivery(String userName);
+	public FacturaCompra cashOnDelivery(String userName,TipoMoneda tipoMoneda);
 	
 }

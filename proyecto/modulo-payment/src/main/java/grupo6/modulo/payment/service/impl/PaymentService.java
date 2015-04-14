@@ -1,5 +1,6 @@
 package grupo6.modulo.payment.service.impl;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.payment.service.view.IPaymentService;
 import grupo6.modulo.payment.strategy.IPaymentStrategy;
 import grupo6.persistencia.entidades.FacturaCompra;
@@ -25,8 +26,8 @@ public class PaymentService implements IPaymentService {
 	 */
 	@Override
 	@Transactional
-	public FacturaCompra pagoPSE(String userName) {
-		return paymentPSEStrategy.pagar(userName);
+	public FacturaCompra pagoPSE(String userName,TipoMoneda tipoMoneda) {
+		return paymentPSEStrategy.pagar(userName,tipoMoneda);
 	}
 
 	/**
@@ -35,8 +36,8 @@ public class PaymentService implements IPaymentService {
 	 */
 	@Override
 	@Transactional
-	public FacturaCompra pagoCreditCard(String userName) {
-		return paymentCreditCardStrategy.pagar(userName);
+	public FacturaCompra pagoCreditCard(String userName,TipoMoneda tipoMoneda) {
+		return paymentCreditCardStrategy.pagar(userName,tipoMoneda);
 	}
 
 	/**
@@ -45,8 +46,8 @@ public class PaymentService implements IPaymentService {
 	 */
 	@Override
 	@Transactional
-	public FacturaCompra cashOnDelivery(String userName) {
-		return paymentCashOnDeliveryStrategy.pagar(userName);
+	public FacturaCompra cashOnDelivery(String userName,TipoMoneda tipoMoneda) {
+		return paymentCashOnDeliveryStrategy.pagar(userName,tipoMoneda);
 	}
 
 

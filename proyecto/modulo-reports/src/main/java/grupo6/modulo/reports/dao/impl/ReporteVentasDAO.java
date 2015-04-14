@@ -3,12 +3,14 @@ package grupo6.modulo.reports.dao.impl;
 import java.util.Date;
 import java.util.List;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.FacturaCompra;
 import grupo6.persistencia.entidades.Producto;
+import grupo6.utilidades.Currency;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -32,10 +34,10 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 	 */
 	@Transactional(readOnly = true)
 	@Override
-	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad) {
+	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad,TipoMoneda tipoMonedaUsuario) {
 		Criteria criteria = getCurrentSession().createCriteria(
 				FacturaCompra.class);
-
+		
 		long totalVentas = 0;
 		double totalDineroEnVentas = 0;
 
@@ -46,7 +48,9 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 					for (Producto p : f.getProductosComprados()) {
 						if (p.getCiudad().equalsIgnoreCase(ciudad) 
 								|| p.getLugar().equalsIgnoreCase(ciudad)) {
-							totalDineroEnVentas += p.getPrecio();
+							
+							double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+							totalDineroEnVentas += valor;
 							totalVentas++;
 						}
 					}
@@ -65,7 +69,7 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 	@Transactional(readOnly = true)
 	@Override
 	public ReporteVentasFechasDTO getReporteVentasEntreFechas(
-			Date fechaInicial, Date fechaFinal) {
+			Date fechaInicial, Date fechaFinal,TipoMoneda tipoMonedaUsuario) {
 
 		Criteria criteria = getCurrentSession().createCriteria(FacturaCompra.class);
 		criteria.add(Restrictions.ge(FECHA_PAGO, fechaInicial));
@@ -79,7 +83,8 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 			for (FacturaCompra f : facturas) {
 				if (f.getProductosComprados() != null) {
 					for (Producto p : f.getProductosComprados()) {
-						totalDineroEnVentas += p.getPrecio();
+						double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+						totalDineroEnVentas += valor;
 						totalVentas++;
 					}
 				}

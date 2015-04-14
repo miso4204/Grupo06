@@ -1,5 +1,6 @@
 package grupo6.modulo.payment.strategy;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.persistencia.entidades.FacturaCompra;
 
 /**
@@ -17,6 +18,6 @@ public interface IPaymentStrategy {
 	 * @param userName el username del usuario
 	 * @return la factura de la compra. 
 	 */
-	public FacturaCompra pagar(String userName);
+	public FacturaCompra pagar(String userName,TipoMoneda tipoMoneda);
 
 }
