@@ -214,9 +214,9 @@ $("#cambiarPass").submit(function(e) {
                                 </div>
                                 
                                 <label>Select your prefered kind money</label>                      
-								<label class="radio-inline"> <input type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
-								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
-								<label class="radio-inline"><input type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
+								<label class="radio-inline radio-small"> <input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
+								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
+								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
 								
 
                                 <hr>

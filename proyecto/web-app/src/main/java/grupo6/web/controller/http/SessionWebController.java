@@ -209,14 +209,16 @@ public class SessionWebController {
 						session.setAttribute("usuarioSesion", usuarioDTO);
 						
 						model.addObject("mensaje",
-								"Your profile has been updated!");						
+								"<br><div id=\"errormessage\"><div class=\"alert alert-success\" role=\"alert\"><strong>Success!</strong> Your profile has been updated!.</div></div>");						
 					} else {
 						model.addObject("mensaje",
-								"Error: " + responseDTO.getMensaje());
+								"<br><div id=\"errormessage\"><div class=\"alert alert-error\"><strong>Error!</strong> "+responseDTO.getMensaje()+"</div></div>"
+								 );
 					}
 				} else {
-					model.addObject("mensaje", "Error: "
-							+ httResponse.getStatusLine().getReasonPhrase());
+					model.addObject("mensaje", 
+							"<br><div id=\"errormessage\"><div class=\"alert alert-error\"><strong>Error!</strong> "+httResponse.getStatusLine().getReasonPhrase()+"</div></div>"
+							);
 				}
 
 			} catch (Exception e) {
