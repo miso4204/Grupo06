@@ -97,4 +97,10 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 
 	}
 
+	@Override
+	public ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

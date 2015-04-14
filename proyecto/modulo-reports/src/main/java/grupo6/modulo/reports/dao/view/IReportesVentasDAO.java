@@ -30,4 +30,11 @@ public interface IReportesVentasDAO {
 	 */
 	ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial,Date fechaFinal,TipoMoneda tipoMoneda);
 	
+	/**
+	 * Retorna un reporte de rating por producto
+	 * @param ciudad
+	 * @return un reporte de rating por producto
+	 */
+	ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto);
+	
 }
