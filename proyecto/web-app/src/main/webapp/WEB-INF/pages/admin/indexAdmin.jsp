@@ -72,7 +72,8 @@ $("#buscarPorCiudad").submit(function(e) {
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "GET",
@@ -130,7 +131,8 @@ $("#buscarPorFecha").submit(function(e) {
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "GET",

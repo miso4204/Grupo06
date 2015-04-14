@@ -68,7 +68,8 @@
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "POST",
@@ -98,7 +99,8 @@ $("#cash").submit(function(e) {
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json' ,
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "POST",
@@ -127,7 +129,8 @@ $("#payCredit").submit(function(e) {
             $.ajax({
                 headers: { 
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "POST",
@@ -220,7 +223,8 @@ $("#payCredit").submit(function(e) {
                 headers: { 
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'clienteId':  '${usuarioSesion.id}' 
+                    'clienteId':  '${usuarioSesion.id}',
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
                 },
                 datatype:"json",
                 type: "GET",
