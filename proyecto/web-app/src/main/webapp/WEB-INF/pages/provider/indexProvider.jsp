@@ -155,9 +155,10 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab-1">
                                         <div class="col-md-8">
+                                            <form id="formularioCrear" action="" method="post">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <form id="formularioCrear" action="" method="post">
+                                                    
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
                                                         <label>Name</label>
                                                         <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
@@ -175,18 +176,6 @@
                                                         <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
                                                     </div>
                                                     
-                                                    
-                                                    <label>Select your prefered kind money</label>  
-                                                    <div class="radio">
-													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
-													</div>
-													<div class="radio">
-													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
-													</div>
-													<div class="radio">
-													  <label><input type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
-													</div>
-                                                    
                                                     <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
                                                         <label>Date</label>
                                                         <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
@@ -195,45 +184,95 @@
                                                         <label>URL Image</label>
                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
                                                     </div>
-                                                    <div class="form-group form-group-icon-left">
-                                                        <label>Activities</label>
-                                                        <input type="checkbox" name="activities" value="Accommodation">Accommodation<br>
- 														<input type="checkbox" name="activities" value="Trekking" >Trekking<br>
- 														<input type="checkbox" name="activities" value="Caves" >Caves<br>
- 														<input type="checkbox" name="activities" value="Wildlife" >Wildlife<br>
- 														<input type="checkbox" name="activities" value="Cycling" >Cycling<br>
- 														<input type="checkbox" name="activities" value="Camping">Camping<br>
- 														<input type="checkbox" name="activities" value="Climbing">Climbing<br>
- 														<input type="checkbox" name="activities" value="Waterfalls">Waterfalls<br>
- 														<input type="checkbox" name="activities" value="Ethnic Villages">Ethnic Villages<br>
- 														<input type="checkbox" name="activities" value="Rivers">Rivers<br>
- 														<input type="checkbox" name="activities" value="Air conditioning">Air conditioning<br>
- 														<input type="checkbox" name="activities" value="Kitchen">Kitchen<br>
- 														<input type="checkbox" name="activities" value="Swimming pool">Swimming pool<br>
- 														<input type="checkbox" name="activities" value="Beach">Beach<br>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-comment-o input-icon input-icon-bounce"></i>
-                                                        <label>Description</label>
-                                                        <textarea  rows="4" cols="50" class="form-control" placeholder="http://imagen.png"  name="description" id="description" required> </textarea>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left">
-                                                        <button class="btn btn-primary btn-lg" type="submit" >Register</button>
-                                                    </div>
+                                                    
+
+                                                    <label>Select your prefered kind money</label>  
+                                                    <div class="radio-inline radio-small">
+                                                      <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
+                                                  </div>
+                                                  <div class="radio-inline radio-small">
+                                                      <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+                                                  </div>
+                                                  <div class="radio-inline radio-small">
+                                                      <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
+                                                  </div>
+                                                    
                                                    
-                                                </form>
+                                               
                                             </div>
                                 
-                                <div class="col-md-6">
-                                    <br>
-                                    <br>
-                                     <div class="form-group form-group-icon-left">
-                                         <div id="errormessage"></div>
-                                    </div>
-                                  
+                                            <div class="col-md-6">
+                                                <label>Activities</label>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Accommodation">Accommodation<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Trekking" >Trekking<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Caves" >Caves<br>
 
-                                </div>
+                                                </div>
+                                                <div class="gap gap-mini"></div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Ethnic Villages">Ethnic Villages<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Wildlife" >Wildlife<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Cycling" >Cycling<br>
+                                                </div>
+                                                
+                                                <div class="gap gap-mini"></div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Air conditioning">Air conditioning<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Climbing">Climbing<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Rivers">Rivers<br>
+                                                </div>
+                                                
+
+                                                <div class="gap gap-mini"></div>
+                                                
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Waterfalls">Waterfalls<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Swimming pool">Swimming pool<br>
+                                                </div>
+                                               
+                                                
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Kitchen">Kitchen<br>
+                                                </div>
+                                                <div class="gap gap-mini"></div>
+                                                 <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Camping">Camping<br>
+                                                </div>
+                                                <div class="checkbox-inline checkbox-small">
+                                                    <input class="i-check" type="checkbox" name="activities" value="Beach">Beach<br>
+                                                </div>
+                                                <div class="gap gap-mini"></div>
+                                                <div class="form-group form-group-icon-left"><i class="fa fa-comment-o input-icon input-icon-bounce"></i>
+                                                    <label>Description</label>
+                                                    <textarea  rows="4" cols="50" class="form-control" placeholder="http://imagen.png"  name="description" id="description" required> </textarea>
+                                                </div>
+                                                <div class="form-group form-group-icon-left">
+                                                    <button class="btn btn-primary btn-lg" type="submit" >Register</button>
+                                                </div>
+                                                <div class="form-group form-group-icon-left">
+                                                   <div id="errormessage"></div>
+                                               </div>
+
+
+                                           </div>
                            
                         </div>
+                         </form>
                     </div>
                       </div>
                     <div class="tab-pane fade" id="tab-2">
