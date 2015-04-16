@@ -330,87 +330,114 @@ $("#payCredit").submit(function(e) {
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <img class="pp-img" src="http://portalacademico.ugca.edu.co/ugc/images/PSE.png" alt="Image Alternative text" title="Image Title" />
-                        <p>Important: You will be redirected to PSE's website to securely complete your payment.</p>
-                        <form id="payPSE">
-                           <button class="btn btn-primary" type="submit">Checkout via PSE</a>   
+                    <div class="col-md-6">
+                        <h4>Accordion</h4>
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-1" >Pay via PSE</a></h4>
+                                </div>
+                                <div class="panel-collapse collapse in" id="collapse-1">
+                                    <div class="panel-body">   <img class="pp-img" src="http://portalacademico.ugca.edu.co/ugc/images/PSE.png" alt="Image Alternative text" title="Image Title" />
+                                        <p>Important: You will be redirected to PSE's website to securely complete your payment.</p>
+                                        <form id="payPSE">
+                                           <button class="btn btn-primary" type="submit">Checkout via PSE</a>   
 
-                           </form>
-                       </div>
-                       
+                                           </form></div>
+                                       </div>
+                                   </div>
+                                   <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-2" >Pay via Credit/Debit Card</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-2">
+                                        <div class="panel-body"> <ul class="card-select">
+                                            <li>
+                                                <img class="card-select-img" src="img/payment/visa-curved-64px.png" alt="Image Alternative text" title="Image Title" />
+                                                <div class="card-select-data">
+                                                    <p class="card-select-number">xxxx xxxx xxxx 1456</p>
+                                                    <input class="form-control card-select-cvc" type="text" placeholder="CVC" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img class="card-select-img" src="img/payment/maestro-curved-64px.png" alt="Image Alternative text" title="Image Title" />
+                                                <div class="card-select-data">
+                                                    <p class="card-select-number">xxxx xxxx xxxx 6698</p>
+                                                    <input class="form-control card-select-cvc" type="text" placeholder="CVC" />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="gap gap-small"></div>
+                                        <h4></h4>
+                                        <form class="cc-form">
+                                            <div class="clearfix">
+                                                <div class="form-group form-group-cc-number">
+                                                    <label>Card Number</label>
+                                                    <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text" /><span class="cc-card-icon"></span>
+                                                </div>
+                                                <div class="form-group form-group-cc-cvc">
+                                                    <label>CVC</label>
+                                                    <input class="form-control" placeholder="xxxx" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="clearfix">
+                                                <div class="form-group form-group-cc-name">
+                                                    <label>Cardholder Name</label>
+                                                    <input class="form-control" type="text" />
+                                                </div>
+                                                <div class="form-group form-group-cc-date">
+                                                    <label>Valid Thru</label>
+                                                    <input class="form-control" placeholder="mm/yy" type="text" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="checkbox checkbox-small">
+                                            <label>
+                                                <input class="i-check" type="checkbox" checked/>Add to My Cards</label>
+                                            </div>
+                                            <form id="payCredit">
+                                                <input class="btn btn-primary" type="submit" value="Proceed Payment" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-3" >Pay via Cash</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-3">
+                                        <div class="panel-body"><img class="pp-img" src="https://dl.dropboxusercontent.com/u/62595112/cash_on_delivery.png" alt="Cash on delivery" title="Cash on delivery" />
+                                            <p>Important: You will be redirected to Cash on delivery website to securely complete your payment.</p>
+                                            <form id="cash">
+                                             <button class="btn btn-primary" type="submit">Checkout via cash on delivery</a>   
+                                             </form></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                             </div>
+                             
 
-                       <div class="col-md-4">
-                        <h4>Pay via Credit/Debit Card</h4>
-                        <ul class="card-select">
-                            <li>
-                                <img class="card-select-img" src="img/payment/visa-curved-64px.png" alt="Image Alternative text" title="Image Title" />
-                                <div class="card-select-data">
-                                    <p class="card-select-number">xxxx xxxx xxxx 1456</p>
-                                    <input class="form-control card-select-cvc" type="text" placeholder="CVC" />
+                             <div class="col-md-4">
+                                
+                                 <h4>Shopping Cart:</h4>
+                                 <div class="booking-item-payment">
+                                    <header class="clearfix" id= "productosCarritos">
+                                     
+                                    </header>
+                                    
+                                    <p class="booking-item-payment-total" id="totalCarrito">Total: <span>$1,155</span>
+                                    </p>
                                 </div>
-                            </li>
-                            <li>
-                                <img class="card-select-img" src="img/payment/maestro-curved-64px.png" alt="Image Alternative text" title="Image Title" />
-                                <div class="card-select-data">
-                                    <p class="card-select-number">xxxx xxxx xxxx 6698</p>
-                                    <input class="form-control card-select-cvc" type="text" placeholder="CVC" />
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="gap gap-small"></div>
-                        <h4>Pay with new Card</h4>
-                        <form class="cc-form">
-                            <div class="clearfix">
-                                <div class="form-group form-group-cc-number">
-                                    <label>Card Number</label>
-                                    <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text" /><span class="cc-card-icon"></span>
-                                </div>
-                                <div class="form-group form-group-cc-cvc">
-                                    <label>CVC</label>
-                                    <input class="form-control" placeholder="xxxx" type="text" />
-                                </div>
+                                
+                                
                             </div>
-                            <div class="clearfix">
-                                <div class="form-group form-group-cc-name">
-                                    <label>Cardholder Name</label>
-                                    <input class="form-control" type="text" />
-                                </div>
-                                <div class="form-group form-group-cc-date">
-                                    <label>Valid Thru</label>
-                                    <input class="form-control" placeholder="mm/yy" type="text" />
-                                </div>
-                            </div>
-                            </form>
-                            <div class="checkbox checkbox-small">
-                                <label>
-                                    <input class="i-check" type="checkbox" checked/>Add to My Cards</label>
-                                </div>
-                                <form id="payCredit">
-                                <input class="btn btn-primary" type="submit" value="Proceed Payment" />
-                                </form>
+
+                            
                             
                         </div>
 
-						<h4>Pay with cash</h4>
-						<img class="pp-img" src="https://dl.dropboxusercontent.com/u/62595112/cash_on_delivery.png" alt="Cash on delivery" title="Cash on delivery" />
-                        <p>Important: You will be redirected to Cash on delivery website to securely complete your payment.</p>
-                        <form id="cash">
-                           <button class="btn btn-primary" type="submit">Checkout via cash on delivery</a>   
-                           </form>
-                       </div>
-
-                        <div class="col-md-4" >
-                            <h4>Shopping Cart:</h4>
-                            <div class="booking-item-payment">
-                                <header class="clearfix" id= "productosCarritos">
-                                   
-                                </header>
-                                
-                                <p class="booking-item-payment-total" id="totalCarrito">Total: <span>$1,155</span>
-                                </p>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>  
                 <div class="gap"></div>
