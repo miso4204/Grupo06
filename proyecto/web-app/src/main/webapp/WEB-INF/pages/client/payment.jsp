@@ -159,7 +159,19 @@ $("#payCredit").submit(function(e) {
        
 
 <script type="text/javascript">
+var tipoMo='${usuarioSesion.tipoMoneda}';
+        var signoPrecio;
+        if(tipoMo=='DOLAR'){
+            signoPrecio= 'EU';
+        }
+        else if (tipoMo=='EURO'){
+            signoPrecio='EUR';
+        }
+        else{
+            signoPrecio='COP';
+        }
     $(document).ready(function() {
+       
        
               
             $.ajax({
@@ -202,7 +214,7 @@ $("#payCredit").submit(function(e) {
                                    '<form id="removeProduct">'+
                                    '<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr[i].id+'">'+ 
                                         '<p class="booking-item-address" id="lugarPro"><i class="fa fa-map-marker"></i> Lugat</p>'+
-                                        '<small class="booking-item-last-booked" id="precioPro">Price:'+arr[i].precio+' </small><br>'+
+                                        '<small class="booking-item-last-booked" id="precioPro">Price: $'+arr[i].precio+' '+signoPrecio+' </small><br>'+
                                         '<small class="booking-item-last-booked" id="ciudadPro">'+arr[i].ciudad+'</small>'+
                                      '<div><button class="btn btn-primary btn-small" type="submit onclick="remover()">Remove</button></div>'+
                                     '</form>'
@@ -237,7 +249,7 @@ $("#payCredit").submit(function(e) {
 
                     
                     var totalCarrito=JSON.stringify(data);
-                    var out="Total: " +'<span>$ '+totalCarrito+'</span>' ;
+                    var out="Total: " +'<span>$ '+totalCarrito+' '+signoPrecio+'</span>' ;
                     
                    document.getElementById("totalCarrito").innerHTML =out;
                                      

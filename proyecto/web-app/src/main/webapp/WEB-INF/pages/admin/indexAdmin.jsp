@@ -65,6 +65,17 @@
         </script>
 
         <script type="text/javascript">
+        var tipoMo='${usuarioSesion.tipoMoneda}';
+        var signoPrecio;
+        if(tipoMo=='DOLAR'){
+            signoPrecio= 'EU';
+        }
+        else if (tipoMo=='EURO'){
+            signoPrecio='EUR';
+        }
+        else{
+            signoPrecio='COP';
+        }
     $(document).ready(function() {
 $("#buscarPorCiudad").submit(function(e) {
                
@@ -108,8 +119,8 @@ $("#buscarPorCiudad").submit(function(e) {
                                 '<td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>'+
                                 '</td>'+
                                 '<td class="booking-history-title">'+ciudad+'</td>'+
-                                '<td>'+totalVentas+'</td>'+
-                                '<td>'+totalDineroEnVentas+'</td>'+
+                                '<td>'+'$'+totalVentas+' '+signoPrecio+'</td>'+
+                                '<td>'+'$'+totalDineroEnVentas+' '+signoPrecio+'</td>'+
                             '</tr>'+
                         '</tbody>'
                         document.getElementById("tablaReporte").innerHTML = out;
@@ -163,8 +174,8 @@ $("#buscarPorFecha").submit(function(e) {
                             '<tr>'+
                                 '<td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>'+
                                 '</td>'+
-                                '<td>'+totalVentas+'</td>'+
-                                '<td>'+totalDineroEnVentas+'</td>'+
+                                '<td>'+'$'+totalVentas+' '+signoPrecio+'</td>'+
+                                '<td>'+'$'+totalDineroEnVentas+' '+signoPrecio+'</td>'+
                             '</tr>'+
                         '</tbody>'
                         document.getElementById("tablaReporte").innerHTML = out;

@@ -32,7 +32,17 @@
         var primeraFecha= GetParameterValues('primeraFecha'); 
         var segundaFecha= GetParameterValues('segundaFecha'); 
         var lugar= GetParameterValues('lugar'); 
-
+        var tipoMo='${usuarioSesion.tipoMoneda}';
+        var signoPrecio;
+        if(tipoMo=='DOLAR'){
+            signoPrecio= 'EU';
+        }
+        else if (tipoMo=='EURO'){
+            signoPrecio='EUR';
+        }
+        else{
+            signoPrecio='COP';
+        }
         function GetParameterValues(param) {  
             var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
             for (var i = 0; i < url.length; i++) {  
@@ -65,7 +75,6 @@
 
 
 
-
                        for(i = 0; i < arr.length; i++) {
         //-------------------
         //Si el url es cualquier texto, se pone un default
@@ -82,6 +91,7 @@
                 var puntuacionGeneral = roadMapData[0].puntuacion; 
                 var cantidadReviews = roadMapData[0].cantidadVotantes; 
                 
+               
 
     out+=' <li>'+
                             '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
@@ -100,7 +110,7 @@
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                         '<small class="booking-item-last-booked">'+arr[i].actividades+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
@@ -135,7 +145,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                 {
             	 if (data.codigoRespuesta == 'OK') {
                 	 var out = "";
-                  //  alert("respuesta servidor: " + JSON.stringify(data)); 
+                  
                     var arr=JSON.parse(JSON.stringify(data.respuesta));
                     for(i = 0; i < arr.length; i++) {
 					     var urlIma="";
@@ -165,7 +175,7 @@ document.getElementById("ListaProductos").innerHTML = out;
 					                                     '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
 					                                     '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
 					                                 '</div>'+
-					                                 '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+					                                 '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
 					                                 '</div>'+
 					                             '</div>'+
 					                         '</a>'+
@@ -236,7 +246,7 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$'+arr[i].precio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price"style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+

@@ -29,8 +29,19 @@
 
 <script>  
 $(document).ready(function () {  
-    var userId = GetParameterValues('id');    
+     var userId = GetParameterValues('id');    
      var currentUrl=   window.location.href ;
+     var tipoMo='${usuarioSesion.tipoMoneda}';
+        var signoPrecio;
+        if(tipoMo=='DOLAR'){
+            signoPrecio= 'EU';
+        }
+        else if (tipoMo=='EURO'){
+            signoPrecio='EUR';
+        }
+        else{
+            signoPrecio='COP';
+        }
 
     function GetParameterValues(param) {  
         var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
@@ -88,7 +99,7 @@ $(document).ready(function () {
 
                     document.getElementById("nombreProducto").innerHTML = arr.nombre +"<h5>"+arr.lugar+"</h5>";
                     document.getElementById("ciudadProducto").innerHTML = " "+arr.ciudad
-                    document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
+                    document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+signoPrecio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
                      
