@@ -41,4 +41,9 @@ public class ReporteVentasService implements IReporteVentasService{
 		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda);
 	}
 
+	@Override
+	public ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto) {
+		return reportesVentasDAO.getReporteRatingPorProducto(idProducto);
+	}
+
 }
