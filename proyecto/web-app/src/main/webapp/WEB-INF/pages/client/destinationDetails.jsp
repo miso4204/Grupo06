@@ -102,7 +102,7 @@ $(document).ready(function () {
                     document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+signoPrecio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
-                     
+                    document.getElementById("destemail").innerHTML = '<a href="mailto:' + arr.proveedor.email + '?subject=Contactar%20proveedor" target="_top"><i class="fa fa-envelope"></i> Destination E-mail</a>';
                  
                    document.getElementById("fbreference").innerHTML = '<div class="fb-share-button" data-href="' + currentUrl + '" data-layout="button_count"></div>'
                     document.getElementById("twreference").innerHTML = '<a class="twitter-share-button" href="' + currentUrl + '">Tweet</a>'
@@ -283,11 +283,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                             <h2 class="lh1em" id="nombreProducto">Universidad de los Andes (?)</h2>
                             <p class="lh1em text-small" ><i class="fa fa-map-marker"id="ciudadProducto"></i></p>
                             <ul class="list list-inline text-small">
-                                <li><a href="mailto:${usuarioSesion.email}?Subject=Hello%20again" target="_top" ><i class="fa fa-envelope"></i> Destination E-mail</a>
-                                </li>
-                                <li><a href="${usuarioSesion.website}"><i class="fa fa-home"></i> Destionation Website</a>
-                                </li>
-                                <li><i class="fa fa-phone"></i> ${usuarioSesion.telefono}</li>
+                                <li id="destemail"></li>
                             </ul>
                         </div>
                         <div class="col-md-3">
