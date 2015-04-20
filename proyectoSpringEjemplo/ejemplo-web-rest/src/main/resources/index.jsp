@@ -90,20 +90,28 @@
 
 <body>
 	<h2>${pageContext.request.contextPath}</h2>
-	<h2>true</h2>
-			<form id="formularioCrear" action="" method="post">
+	<h2>$moduloBusquedas</h2>
+	#if($moduloOfertas == "true" && $moduloOfertas_crearOferta == "true") 
+		<form id="formularioCrear" action="" method="post">
 			Ciudad: <input type="text" name="ciudad" id="ciudad" > <br>
 			Descripción: <input type="text" name="descripcion" id="descripcion"> <br>
 			<input class="styled-button-1" type="submit" name="crear" value="Crear">
 		</form>
 		 <br> <br>
-	 	 	 			<form id="formularioListar" action="" method="post">		
+	 #end
+	 #if($moduloBusquedas == "true") 
+	 	#if($moduloBusquedas_buscarOfertasTodas == "true") 
+		<form id="formularioListar" action="" method="post">		
 			<input class="styled-button-1" type="submit" name="listar" value="Listar todas">
 		</form>
 		 <br> <br>
-						<form id="formularioBuscar" action="" method="post">		
+		#end
+		#if($moduloBusquedas_buscarOfertaPorCiudad == "true") 
+		<form id="formularioBuscar" action="" method="post">		
 			Ciudad: <input type="text" name="ciudadBuscar" id="ciudadBuscar" > <br>		
 			<input class="styled-button-1" type="submit" name="crear" value="Buscar por ciudad">
 		</form>
-			 </body>
+		#end
+	 #end
+</body>
 </html>

@@ -20,14 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller // indica a Spring que es un bean de tipo controlador web
 @RequestMapping("/services/ofertas") // indica a Spring que el controlador intercepta url *services/ofertas/*
-public class OfertaRestController {
-	
+public class OfertasRestController {
+
+#if($moduloOfertas == "true") 
 	/** El servicio de ofertas. **/
 	@Autowired // asigna a este atributo el bean de tipo IOfertaService y que
 			   // se llama 'ofertaService' en el contexto de Spring. 
 	private IOfertaService ofertaService;
 	
 	
+#if($moduloOfertas_crearOferta == "true") 	
 	/**
 	 * Servicio REST para crear una oferta.
 	 * El servicio est� mapeado a la URL services/ofertas/crear de tipo POST.
@@ -45,5 +47,8 @@ public class OfertaRestController {
 		return ofertaService.crearOferta(oferta);
  
 	}
+#end
 
+
+#end
 }

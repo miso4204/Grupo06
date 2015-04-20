@@ -20,28 +20,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller // indica a Spring que es un bean de tipo controlador web
 @RequestMapping("/services/busquedas") // indica a Spring que el controlador intercepta url *services/busquedas/*
-public class BusquedaRestController {
+public class BusquedasRestController {
+	
+#if($moduloBusquedas == "true") 	
 	
 	/** El servicio de b�squedas. **/
 	@Autowired // asigna a este atributo el bean de tipo IBusquedasService y que
 			   // se llama 'busquedasService' en el contexto de Spring. 
 	private IBusquedasService busquedasService;
 	
-	
+#if($moduloBusquedas_buscarOfertasTodas == "true") 	
 	/**
 	 * Servicio REST para listar todas las ofertas.
 	 * El servicio est� mapeado a la URL /services/busquedas/listas_todas de tipo GET.
 	 * 
 	 * @return ls lista de todas las ofertas.
 	 */
+	
 	@RequestMapping(value = "/listas_todas", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Oferta> buscarOfertasTodas() {
 		
 		return busquedasService.buscarOfertasTodas(); 
 	}
+#end
+
 	
-	
+#if($moduloBusquedas_buscarOfertaPorCiudad == "true") 	
 	/**
 	 * Servicio REST para buscar ofertas por ciudad.
 	 * El servicio est� mapeado a la URL /services/busquedas/buscar_por_ciudad/{string} de tipo GET.
@@ -51,10 +56,11 @@ public class BusquedaRestController {
 	 */
 	@RequestMapping(value = "/buscar_por_ciudad/{ciudad}", method = RequestMethod.GET, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Oferta> crOferta(@PathVariable("ciudad") String ciudad) {
+	public @ResponseBody List<Oferta> buscarOfertaPorCiudad(@PathVariable("ciudad") String ciudad) {
 		
 		return busquedasService.buscarOfertasPorCiudad(ciudad); 
 	}
+#end
 
-
+#end
 }
