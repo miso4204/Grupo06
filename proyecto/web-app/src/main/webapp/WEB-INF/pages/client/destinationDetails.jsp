@@ -107,8 +107,8 @@ $(document).ready(function () {
                    document.getElementById("fbreference").innerHTML = '<div class="fb-share-button" data-href="' + currentUrl + '" data-layout="button_count"></div>'
                     document.getElementById("twreference").innerHTML = '<a class="twitter-share-button" href="' + currentUrl + '">Tweet</a>'
 		
-                    document.getElementById("descriptionPackage").innerHTML =  '<h4 class="lh1em">Description: ' + arr.descripcion + '</h4>';
-                    document.getElementById("activitiesPackage").innerHTML =  '<h4 class="lh1em">Activities: ' + arr.actividades + '</h4>';
+                    document.getElementById("descriptionPackage").innerHTML =  '<h4 >Description: <small>' + arr.descripcion + '</small></h4>';
+                    document.getElementById("activitiesPackage").innerHTML =  '<h4 >Activities:<small> ' + arr.actividades + '.</small></h4>';
                        
                     if(votado==true){
                     document.getElementById("rateProduct").style.visibility = "hidden";
@@ -204,7 +204,7 @@ function calificar() {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1405235139756704";
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=476675579110595";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
   <!-- /FACEBOOK WIDGET -->
