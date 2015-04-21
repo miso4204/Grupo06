@@ -113,9 +113,7 @@ public class ProductoRestController extends BaseRestController {
 			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		
 		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
-		List<Producto> productos =  productoService.buscarProductos(
-						ETipoBusqueda.POR_PRECIO, 
-						precioInicial, precioFinal);
+		List<Producto> productos =  productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, precioInicial, precioFinal,tipoMoneda);
 		for (Producto producto: productos) {
 			productosDTO.add(crearProductoResponseDTO(producto, null));
 		}

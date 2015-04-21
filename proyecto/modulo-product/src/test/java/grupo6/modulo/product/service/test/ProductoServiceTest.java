@@ -1,5 +1,6 @@
 package grupo6.modulo.product.service.test;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.impl.ProductoService;
 import grupo6.modulo.product.service.view.IProductoService;
@@ -108,22 +109,24 @@ public class ProductoServiceTest {
 		p.setLugar("Hotel");
 		p.setNombre("Paquete semana santa");
 		p.setPrecio(1000000D);
+		p.setTipoMoneda(TipoMoneda.DOLAR);
 		Producto p2 = new Producto();
 		p2.setCiudad("Bogota");
 		p2.setFechaInicio(new Date());
 		p2.setLugar("Hotel");
 		p2.setNombre("Paquete semana santa");
 		p2.setPrecio(2000000D);
+		p2.setTipoMoneda(TipoMoneda.DOLAR);
 		
 		productoService.crearProducto(p);
 		productoService.crearProducto(p2);		
 		
 		List<Producto> pencontrado = 
-				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000000D, 2000000D);
+				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000000D, 2000000D,TipoMoneda.DOLAR);
 		Assert.assertFalse(pencontrado.isEmpty());
 		Assert.assertEquals(2, pencontrado.size());
 		pencontrado = 
-				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000001D, 2000000D);
+				productoService.buscarProductos(ETipoBusqueda.POR_PRECIO, 1000001D, 2000000D,TipoMoneda.DOLAR);
 		Assert.assertEquals(1, pencontrado.size());
 			
 	}

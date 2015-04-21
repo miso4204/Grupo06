@@ -1,8 +1,11 @@
 package grupo6.modulo.product.factory;
 
+import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.Producto;
+import grupo6.utilidades.Currency;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -28,11 +31,26 @@ public class BusquedaProductoPrecio  extends BaseDAO implements IBusquedaProduct
 	@Override
 	public List<Producto> buscar(Object... parametros) {
 
-		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
-		criteria.add(Restrictions.ge("precio", (Double)parametros[0])); 
-		criteria.add(Restrictions.le("precio", (Double)parametros[1]));
+		double precioInicial = (Double)parametros[0];
+		double precioFinal = (Double)parametros[1];
+		TipoMoneda tipoMonedaUsuario = (TipoMoneda) parametros[2];
 		
-		return (List<Producto>)criteria.list();
+		if(tipoMonedaUsuario == null){
+			tipoMonedaUsuario = TipoMoneda.DOLAR;
+		}
+		
+		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
+		
+		List<Producto> productos = (List<Producto>)criteria.list();
+		List<Producto> productosEncontrados = new ArrayList<Producto>();
+		
+		for(Producto p : productos){
+			double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+			if( valor >= precioInicial && valor <= precioFinal ){
+				productosEncontrados.add(p);
+			}
+		}
+		return productosEncontrados;
 	}
 
 }
