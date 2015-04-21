@@ -3,6 +3,7 @@ package grupo6.modulo.reports.dao.view;
 import java.util.Date;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 
@@ -35,6 +36,6 @@ public interface IReportesVentasDAO {
 	 * @param ciudad
 	 * @return un reporte de rating por producto
 	 */
-	ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto);
+	ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto);
 	
 }

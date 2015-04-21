@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
@@ -42,7 +43,7 @@ public class ReporteVentasService implements IReporteVentasService{
 	}
 
 	@Override
-	public ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto) {
+	public ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto) {
 		return reportesVentasDAO.getReporteRatingPorProducto(idProducto);
 	}
 

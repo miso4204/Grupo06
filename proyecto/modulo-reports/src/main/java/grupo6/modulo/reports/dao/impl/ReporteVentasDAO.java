@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.FacturaCompra;
 import grupo6.persistencia.entidades.Producto;
+import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.utilidades.Currency;
 
 import org.hibernate.Criteria;
@@ -98,9 +100,32 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 	}
 
 	@Override
-	public ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto) {
+		Criteria criteria = getCurrentSession().createCriteria(
+				RatingProducto.class);
+		
+		long totalVentas = 0;
+		double totalDineroEnVentas = 0;
+
+		if (criteria.list() != null) {
+			List<RatingProducto> facturas = criteria.list();
+			for (RatingProducto f : facturas) {
+				if (f.getProductoId() != null) {
+//					for (Producto p : f.getProductosComprados()) {
+//						if (p.getCiudad().equalsIgnoreCase(ciudad) 
+//								|| p.getLugar().equalsIgnoreCase(ciudad)) {
+//							
+//							double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
+//							totalDineroEnVentas += valor;
+//							totalVentas++;
+//						}
+//					}
+				}
+
+			}
+		}
+
+		return new ReporteRatingProductoDTO(idProducto, totalVentas);
 	}
 
 }

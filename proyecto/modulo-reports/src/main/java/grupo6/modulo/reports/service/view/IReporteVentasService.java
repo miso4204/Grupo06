@@ -1,6 +1,7 @@
 package grupo6.modulo.reports.service.view;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 
@@ -37,5 +38,5 @@ public interface IReporteVentasService {
 	 * @param idProducto
 	 * @return un reporte de rating por producto
 	 */
-	ReporteVentasCiudadDTO getReporteRatingPorProducto(int idProducto);
+	ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto);
 }
