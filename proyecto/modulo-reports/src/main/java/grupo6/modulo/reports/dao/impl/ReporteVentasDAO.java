@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.product.dao.impl.RatingProductoDAO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
@@ -16,6 +17,7 @@ import grupo6.utilidades.Currency;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "reporteVentasDAO")
 public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 
+	@Autowired
+	RatingProductoDAO ratingProductoDAO;
 	private static final String FECHA_PAGO = "fechaPago";
 
 	/**
@@ -104,13 +108,14 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 		Criteria criteria = getCurrentSession().createCriteria(
 				RatingProducto.class);
 		
-		long totalVentas = 0;
-		double totalDineroEnVentas = 0;
-
+		long rating = 0;
+		
 		if (criteria.list() != null) {
-			List<RatingProducto> facturas = criteria.list();
-			for (RatingProducto f : facturas) {
+			List<RatingProducto> producto = criteria.list();
+			for (RatingProducto f : producto) {
 				if (f.getProductoId() != null) {
+					ratingProductoDAO.buscarCalificacionesDeServicio(f.getProductoId());
+					
 //					for (Producto p : f.getProductosComprados()) {
 //						if (p.getCiudad().equalsIgnoreCase(ciudad) 
 //								|| p.getLugar().equalsIgnoreCase(ciudad)) {
@@ -125,7 +130,7 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 			}
 		}
 
-		return new ReporteRatingProductoDTO(idProducto, totalVentas);
+		return new ReporteRatingProductoDTO(idProducto, rating);
 	}
 
 }
