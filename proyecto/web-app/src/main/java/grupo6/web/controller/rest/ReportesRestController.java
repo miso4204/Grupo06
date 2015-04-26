@@ -3,6 +3,7 @@ package grupo6.web.controller.rest;
 import java.util.Date;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.web.dto.reportes.ReporteRatingProductoDTO;
 import grupo6.modulo.reports.service.view.IReporteVentasService;
 import grupo6.web.dto.reportes.ReporteVentasCiudadDTO;
 import grupo6.web.dto.reportes.ReporteVentasFechasDTO;
@@ -60,4 +61,15 @@ public class ReportesRestController extends BaseRestController {
 		return ReporteVentasFechasDTO.getReporteVentas(reporteVentasService.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda));
 	}
 	
+	/**
+	 * Servicio REST para ver el reporte de ventas entre fechas.
+	 * 
+	 * @return reporte de ratings de productos.
+	 */
+	@RequestMapping(value = "/ventas/{idProducto}", method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ReporteRatingProductoDTO getReporteRatingPorProducto(@PathVariable("idProducto")  int idProducto)
+          {
+		return ReporteRatingProductoDTO.getReporteRating(reporteVentasService.getReporteRatingPorProducto(idProducto));
+	}
 }
