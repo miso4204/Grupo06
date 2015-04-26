@@ -111,7 +111,7 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 				RatingProducto.class);
 		
 		long rating = 0;
-		
+		 
 		if (criteria.list() != null) {
 			List<RatingProducto> producto = criteria.list();
 			for (RatingProducto f : producto) {
