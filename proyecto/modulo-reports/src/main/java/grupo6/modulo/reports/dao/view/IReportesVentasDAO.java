@@ -4,7 +4,7 @@ import java.util.Date;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoFechasDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoPaqueteDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 

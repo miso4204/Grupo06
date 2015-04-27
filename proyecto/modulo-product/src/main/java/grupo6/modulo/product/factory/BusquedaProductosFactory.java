@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class BusquedaProductosFactory {
 
-	/** Referencias de los buscadores disponibles. **/	
+	/** Referencias de los buscadores disponibles. **/
 	private static Map<String, IBusquedaProducto> buscadores;
 
 	/**
@@ -22,7 +22,7 @@ public class BusquedaProductosFactory {
 	 * @return buscador asociado al tipo. Excepcion si no se encuentra alguno.
 	 */
 	public static IBusquedaProducto crearBuscador(ETipoBusqueda tipo) {
-		
+
 		IBusquedaProducto buscador = null;
 		if (tipo == ETipoBusqueda.POR_FECHA) {
 			buscador = buscadores.get("busquedaProductoFecha");
@@ -30,6 +30,8 @@ public class BusquedaProductosFactory {
 			buscador = buscadores.get("busquedaProductoPrecio");
 		} else if (tipo == ETipoBusqueda.POR_UBICACION) {
 			buscador = buscadores.get("busquedaProductoUbicacion");
+		} else if (tipo == ETipoBusqueda.POR_NOMBRE) {
+			buscador = buscadores.get("busquedaProductoPaquete");
 		}
 
 		if (buscador == null) {
@@ -39,14 +41,14 @@ public class BusquedaProductosFactory {
 		return buscador;
 	}
 
-	
 	/**
-	 * Establece el mapa de buscadores. 
-	 * @param buscadores el mapa de buscadores. 
+	 * Establece el mapa de buscadores.
+	 * 
+	 * @param buscadores
+	 *            el mapa de buscadores.
 	 */
 	public static void setBuscadores(Map<String, IBusquedaProducto> buscadores) {
 		BusquedaProductosFactory.buscadores = buscadores;
 	}
-	
-	
+
 }

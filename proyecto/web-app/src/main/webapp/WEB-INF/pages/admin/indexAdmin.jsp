@@ -250,6 +250,65 @@ $("#buscarPorRatingCiudad").submit(function(e) {
             
 
         });
+$("#buscarPorRatingPaquete").submit(function(e) {
+               
+            e.preventDefault();                
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/reportes/ratingPaquete/" + $('#packageSearch').val(), 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                    
+                       
+                     var out = "";
+                     var urlIma="";
+                     var calificaciones="";
+
+                     var arr=JSON.parse(JSON.stringify(data));
+                    
+                       out+='<thead>'+
+                            '<tr>'+
+                                '<th> Type</th>'+
+                                '<th> Package Name</th>'+
+                                '<th> Average Rate</th>'+
+                                '<th> Reviews</th>'+
+                            '</tr>'+
+                        '</thead>'
+                for(i = 0; i < arr.length; i++) {
+
+                
+                var nombrePaquete = arr[i].nombreProducto; 
+                var calificacionPromedio = arr[i].calificacionPromedio; 
+                var votantes = arr[i].votantes;
+  
+                   out+='<tbody>'+
+                            '<tr>'+
+                                '<td class="booking-history-type"><i class="fa fa-star-o"></i><small>activity</small>'+
+                                '</td>'+
+                                '<td class="booking-history-title">'+nombrePaquete+'</td>'+
+                                '<td>'+calificacionPromedio+'</td>'+
+                                '<td>'+votantes+'</td>'+
+                            '</tr>'+
+                        '</tbody>'
+                        document.getElementById("tablaReporteRating").innerHTML = out;
+
+                      }
+    
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+            
+
+        });
     });
 </script>
 </head>
@@ -431,7 +490,7 @@ $("#buscarPorRatingCiudad").submit(function(e) {
                                                                     </div>
                                                                     <div class="col-md-4"> 
                                                                             <label>Search</label>
-                                                                            <form id="buscarPorPaquete" action=""  method="post">
+                                                                            <form id="buscarPorRatingPaquete" action=""  method="post">
                                                                                  <button class="btn btn-primary btn-lg" type="submit">Search</button>
                                                                             </form>
                                                                     </div>

@@ -9,7 +9,7 @@ import grupo6.web.dto.ProductoResponseDTO;
 import grupo6.web.dto.reportes.ReporteRatingPorCiudadProductoDTO;
 import grupo6.modulo.reports.service.view.IReporteVentasService;
 import grupo6.persistencia.entidades.Producto;
-import grupo6.web.dto.reportes.ReporteRatingProductoFechasDTO;
+import grupo6.web.dto.reportes.ReporteRatingProductoPaqueteDTO;
 import grupo6.web.dto.reportes.ReporteVentasCiudadDTO;
 import grupo6.web.dto.reportes.ReporteVentasFechasDTO;
 
@@ -77,13 +77,18 @@ public class ReportesRestController extends BaseRestController {
 			List<grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO> productos = reporteVentasService.getReporteRatingPorCiudad(ciudadProducto);
 			return productos;
 	}
+	
+	/**
+	 * Servicio REST para ver el reporte de ventas entre fechas.
+	 * 
+	 * @return reporte de ratings de productos.
+	 */
+	@RequestMapping(value = "/ratingPaquete/{nombrePaquete}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody List<grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoPaqueteDTO> getReporteRatingPorNombrePaquete(@PathVariable("nombrePaquete") String nombrePaquete) {	
+			List<grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoPaqueteDTO> productos = reporteVentasService.getReporteRatingPorNombrePaquete(nombrePaquete);
+			return productos;
+	}
 
-//	@RequestMapping(value = "/rating/{fechaInicial}/{fechaFinal}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody ReporteRatingProductoFechasDTO getReporteRatingEntreFechas(
-//			@PathVariable("fechaInicial") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicial,
-//			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("fechaFinal") Date fechaFinal)
-//			 {
-//		return ReporteRatingProductoFechasDTO.getReporteRatingEntreFechas(reporteVentasService
-//				.getReporteRatingEntreFechas(fechaInicial, fechaFinal));
-//	}
+
+
 }

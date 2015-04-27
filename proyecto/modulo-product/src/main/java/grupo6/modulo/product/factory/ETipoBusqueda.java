@@ -9,5 +9,6 @@ public enum ETipoBusqueda {
 
 	POR_UBICACION,
 	POR_FECHA,
-	POR_PRECIO
+	POR_PRECIO,
+	POR_NOMBRE
 }

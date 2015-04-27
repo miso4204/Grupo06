@@ -2,7 +2,7 @@ package grupo6.modulo.reports.service.view;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoFechasDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoPaqueteDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 
@@ -40,7 +40,7 @@ public interface IReporteVentasService {
 	 * @param idProducto
 	 * @return un reporte de rating por producto
 	 */
-	ReporteRatingProductoFechasDTO getReporteRatingPorNombrePaquete(String nombrePaquete);
+	List<ReporteRatingProductoPaqueteDTO> getReporteRatingPorNombrePaquete(String nombrePaquete);
 	
 	/**
 	 * Retorna un reporte de ventas por ciudad
