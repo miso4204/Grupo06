@@ -11,7 +11,7 @@ public class ReporteRatingPorCiudadProductoDTO {
 	private String ciudadProducto;
 	private String nombreProducto;
 	private double calificacionPromedio;
-	private int votantes;
+	private int votantes; 
 
 	public ReporteRatingPorCiudadProductoDTO(String ciudadProducto,String nombreProducto,
 			double calificacionPromedio,int votantes) {
