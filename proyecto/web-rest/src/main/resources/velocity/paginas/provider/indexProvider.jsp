@@ -185,14 +185,23 @@
                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
                                                     </div>
                                                     
-												 	                                                  <label>Select your prefered kind money</label>  
+												 #if($AdminMoneda == "true")
+	                                                  <label>Select your prefered kind money</label>  
 	                                                  <div class="radio-inline radio-small">
 	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
 	                                                  </div>
-	                                                   	                                                   	                                                  <div class="radio-inline radio-small">
+	                                                   #if($Colombian == "true")
+	                                                  <div class="radio-inline radio-small">
+	                                                  	 <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+	                                                  </div>
+	                                                   #end  
+	                                                   #if($Euro == "true")
+	                                                  <div class="radio-inline radio-small">
 	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
 	                                                  </div>
-	                                                                                                                                                      
+	                                                  #end  
+                                                 #end  
+                                                   
                                                
                                             </div>
                                 

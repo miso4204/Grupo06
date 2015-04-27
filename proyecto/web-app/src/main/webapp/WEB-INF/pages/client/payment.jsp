@@ -162,7 +162,7 @@ $("#payCredit").submit(function(e) {
 var tipoMo='${usuarioSesion.tipoMoneda}';
         var signoPrecio;
         if(tipoMo=='DOLAR'){
-            signoPrecio= 'EU';
+            signoPrecio= 'USD';
         }
         else if (tipoMo=='EURO'){
             signoPrecio='EUR';

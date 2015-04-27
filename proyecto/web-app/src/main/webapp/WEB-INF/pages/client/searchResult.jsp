@@ -35,7 +35,7 @@
         var tipoMo='${usuarioSesion.tipoMoneda}';
         var signoPrecio;
         if(tipoMo=='DOLAR'){
-            signoPrecio= 'EU';
+            signoPrecio= 'USD';
         }
         else if (tipoMo=='EURO'){
             signoPrecio='EUR';
@@ -108,7 +108,7 @@
                                         '</div>'+
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
-                                        '<small class="booking-item-last-booked">'+arr[i].actividades+'</small>'+
+                                        '<br><small class="booking-item-last-booked">'+arr[i].actividades+'</small>'+
                                     '</div>'+
                                     '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
