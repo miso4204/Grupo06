@@ -15,7 +15,8 @@
 		<module>../modulo-reports</module>
 		<module>../modulo-shoppingcart</module>
 		<module>../modulo-socialnetwork</module>
-		<module>../web-app</module>		
+		<module>../web-rest</module>	
+		<module>../web-app</module>				
 	</modules>
 
 	<dependencyManagement>

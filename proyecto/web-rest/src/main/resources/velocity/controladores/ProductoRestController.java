@@ -147,6 +147,28 @@ public class ProductoRestController extends BaseRestController {
 		return productosDTO;
 	}
 	
+#if($ByLocation == "true") 	
+	/**
+	 * Servicio REST para buscar productos por ubicación (lugar o ciudad).
+	 * 
+	 * @return los productos del sistema filtrados por lugar en formato JSON.
+	 */
+	@RequestMapping(value = "/buscar_por_lugar/{lugar}",
+			method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<ResponseDTO> listarPorLugar(
+			@PathVariable("lugar") String lugar,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		
+		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+		List<Producto> productos = 
+				productoService.buscarProductos(ETipoBusqueda.POR_UBICACION, lugar);
+		for (Producto producto: productos) {
+			productosDTO.add(crearProductoResponseDTO(producto, null));
+		}
+		return devolverRespuestaExitosa("", productosDTO);
+	}
+#end	
 	
 	/**
 	 * Servicio REST para buscar un producto por id.
