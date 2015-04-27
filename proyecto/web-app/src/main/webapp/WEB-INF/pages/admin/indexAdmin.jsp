@@ -159,7 +159,7 @@ $("#buscarPorFecha").submit(function(e) {
 
                      var arr=JSON.parse(JSON.stringify(data));
 
-
+               
 
                 var totalVentas = arr.totalVentas; 
                 var totalDineroEnVentas = arr.totalDineroEnVentas; 
@@ -179,6 +179,68 @@ $("#buscarPorFecha").submit(function(e) {
                             '</tr>'+
                         '</tbody>'
                         document.getElementById("tablaReporte").innerHTML = out;
+    
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                       alert("Error: " + errorMessage);
+                }
+            });
+            
+
+        });
+
+$("#buscarPorRatingCiudad").submit(function(e) {
+               
+            e.preventDefault();                
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                datatype:"json",
+                type: "GET",
+                url: "services/reportes/rating/" + $('#ciudadRatingSearch').val(), 
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                    
+                       
+                     var out = "";
+                     var urlIma="";
+                     var calificaciones="";
+
+                     var arr=JSON.parse(JSON.stringify(data));
+                    
+                       out+='<thead>'+
+                            '<tr>'+
+                                '<th> Type</th>'+
+                                '<th> Location</th>'+
+                                '<th> Product Name</th>'+
+                                '<th> Average Rate</th>'+
+                                '<th> Reviews</th>'+
+                            '</tr>'+
+                        '</thead>'
+                for(i = 0; i < arr.length; i++) {
+
+                var ciudad = arr[i].ciudadProducto;
+                var nombreProducto = arr[i].nombreProducto; 
+                var calificacionPromedio = arr[i].calificacionPromedio; 
+                var votantes = arr[i].votantes;
+  
+                   out+='<tbody>'+
+                            '<tr>'+
+                                '<td class="booking-history-type"><i class="fa fa-star-o"></i><small>activity</small>'+
+                                '</td>'+
+                                '<td class="booking-history-title">'+ciudad+'</td>'+
+                                '<td class="booking-history-title">'+nombreProducto+'</td>'+
+                                '<td>'+calificacionPromedio+'</td>'+
+                                '<td>'+votantes+'</td>'+
+                            '</tr>'+
+                        '</tbody>'
+                        document.getElementById("tablaReporteRating").innerHTML = out;
+
+                      }
     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
@@ -269,59 +331,10 @@ $("#buscarPorFecha").submit(function(e) {
 <!--                                     </li> -->
                                     <li class="active"><a href="#tab-2" data-toggle="tab">Sales reports</a>
                                     </li>
-                                    <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
+                                    <li><a href="#tab-3" data-toggle="tab">Rating reports</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-<!--                                     <div class="tab-pane fade in active" id="tab-1"> -->
-<!--                                         <div class="col-md-8"> -->
-<!--                                             <div class="row"> -->
-<!--                                                 <div class="col-md-6"> -->
-<!--                                                     <form id="formularioCrear" action="" method="post"> -->
-<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>Name</label> -->
-<!--                                                         <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name"  /> -->
-<!--                                                     </div> -->
-<!--                                                      <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>Destination name</label> -->
-<!--                                                         <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" /> -->
-<!--                                                     </div> -->
-<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>Destination Location</label> -->
-<!--                                                         <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" /> -->
-<!--                                                     </div> -->
-<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>Price</label> -->
-<!--                                                         <input class="form-control" placeholder="2000" type="text" name="price" id="price" /> -->
-<!--                                                     </div> -->
-<!--                                                     <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>Date</label> -->
-<!--                                                         <input class="form-control" placeholder="2000" type="date" name="date" id="date" /> -->
-<!--                                                     </div> -->
-<!--                                                      <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i> -->
-<!--                                                         <label>URL Image</label> -->
-<!--                                                         <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage"/> -->
-<!--                                                     </div> -->
-<!--                                                     <div class="form-group form-group-icon-left"> -->
-<!--                                                         <button class="btn btn-primary btn-lg" type="submit" >Register</button> -->
-<!--                                                     </div> -->
-                                                   
-<!--                                                 </form> -->
-<!--                                             </div> -->
-                                
-<!--                                 <div class="col-md-6"> -->
-<!--                                     <br> -->
-<!--                                     <br> -->
-<!--                                      <div class="form-group form-group-icon-left"> -->
-<!--                                          <div id="errormessage"></div> -->
-<!--                                     </div> -->
-                                  
-
-<!--                                 </div> -->
-                           
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                       </div> -->
                       <!-- REPOORTES ----------------------------------- -->
                       <!-- REPOORTES ----------------------------------- -->
 
@@ -395,7 +408,64 @@ $("#buscarPorFecha").submit(function(e) {
                     </table>
                                             </div>
                         <div class="tab-pane fade" id="tab-3">
-                            <p class="mt10">PROXIMAMENTE...</p>
+                            <h2>Search for Reports</h2>
+                                        
+                                            <div class="tabbable">
+                                                <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
+                                                    <li class="active"><a href="#search-1" data-toggle="tab">By package</a>
+                                                    </li>
+                                                    <li><a href="#search-2" data-toggle="tab">By location</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade in active" id="search-1">
+                                                         <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                                            <label>From</label>
+                                                                            <input class="typeahead form-control" id="packageSearch"placeholder="Package name" type="text" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-4"> 
+                                                                            <label>Search</label>
+                                                                            <form id="buscarPorPaquete" action=""  method="post">
+                                                                                 <button class="btn btn-primary btn-lg" type="submit">Search</button>
+                                                                            </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="search-2">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                                            <label>From</label>
+                                                                            <input class="typeahead form-control" id="ciudadRatingSearch"placeholder="City, country" type="text" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-4"> 
+                                                                            <label>Search</label>
+                                                                            <form id="buscarPorRatingCiudad" action=""  method="post">
+                                                                                 <button class="btn btn-primary btn-lg" type="submit">Search</button>
+                                                                            </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                        <table class="table table-bordered table-striped table-booking-history" id="tablaReporteRating">
+                       
+                    </table>
                         </div>
                     </div>
                 </div>
