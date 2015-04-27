@@ -64,7 +64,7 @@ public class ReportesRestController extends BaseRestController {
 			@RequestHeader(value = "tipoMoneda", required = false) TipoMoneda tipoMoneda) {
 		return ReporteVentasFechasDTO.getReporteVentas(reporteVentasService
 				.getReporteVentasEntreFechas(fechaInicial, fechaFinal,
-						tipoMoneda));
+						tipoMoneda)); 
 	}
 
 	/**
