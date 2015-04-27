@@ -4,17 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
-import grupo6.modulo.product.dao.impl.RatingProductoDAO;
 import grupo6.modulo.product.dao.view.IRatingProductoDAO;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
+import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.FacturaCompra;
 import grupo6.persistencia.entidades.Producto;
-import grupo6.persistencia.entidades.RatingProducto;
-import grupo6.persistencia.entidades.RatingProductoCalificacion;
 import grupo6.utilidades.Currency;
 
 import org.hibernate.Criteria;
@@ -35,6 +32,9 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 
 	@Autowired
 	IRatingProductoDAO ratingProductoDAO;
+	
+	@Autowired 
+	private IProductoService productoService;
 	private static final String FECHA_PAGO = "fechaPago";
 
 	/**
@@ -105,36 +105,8 @@ public class ReporteVentasDAO extends BaseDAO implements IReportesVentasDAO {
 
 	}
 
-	@Override
-	public ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto) {
-		Criteria criteria = getCurrentSession().createCriteria(
-				RatingProducto.class);
-		
-		long rating = 0;
-		 
-		if (criteria.list() != null) {
-			List<RatingProducto> producto = criteria.list();
-			for (RatingProducto f : producto) {
-				if (f.getProductoId() != null) {
-					List<RatingProductoCalificacion> calificaciones = 
-							ratingProductoDAO.buscarCalificacionesDeServicio(f.getProductoId()); 
-					int sumatoriaCalificaciones = 0;
-					String nombreProducto ="";
-					double promedioCalificacion = 0;
-					if (!calificaciones.isEmpty()) {
-						for (RatingProductoCalificacion calificacion: calificaciones) {
-							sumatoriaCalificaciones =
-									sumatoriaCalificaciones + calificacion.getCalificacion().getPuntaje();
-							
-						}
-						promedioCalificacion = sumatoriaCalificaciones / calificaciones.size();
-					}
-				}
-
-			}
-		}
-
-		return new ReporteRatingProductoDTO(idProducto, rating);
-	}
-
+	
+	
+	
 }
+

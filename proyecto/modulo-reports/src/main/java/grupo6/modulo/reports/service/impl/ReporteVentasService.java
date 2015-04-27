@@ -1,17 +1,28 @@
 package grupo6.modulo.reports.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
+import grupo6.modulo.product.factory.IBusquedaProducto;
+import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoFechasDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.modulo.reports.service.view.IReporteVentasService;
+import grupo6.persistencia.entidades.ETipoRating;
+import grupo6.persistencia.entidades.Producto;
+import grupo6.persistencia.entidades.RatingProducto;
+import grupo6.persistencia.entidades.RatingProductoCalificacion;
 
 /**
  * Implementación de {@link IReporteVentasService}.
@@ -23,6 +34,11 @@ public class ReporteVentasService implements IReporteVentasService{
 	@Autowired 
 	private IReportesVentasDAO reportesVentasDAO;
 	
+	@Autowired 
+	private IProductoService productoService;
+	
+	@Autowired
+	private IBusquedaProducto busquedaProductoUbicacion;
 	/**
 	 * @see ReporteVentasService#getReporteVentasPorCiudad(String)
 	 */
@@ -42,9 +58,41 @@ public class ReporteVentasService implements IReporteVentasService{
 		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda);
 	}
 
+
 	@Override
-	public ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto) {
-		return reportesVentasDAO.getReporteRatingPorProducto(idProducto);
+	public List<ReporteRatingPorCiudadProductoDTO> getReporteRatingPorCiudad(
+			String ciudad) {
+		List<ReporteRatingPorCiudadProductoDTO> productosPorCiudad = new ArrayList<>(); 
+		List<Producto> productos = busquedaProductoUbicacion.buscar(ciudad);
+		String nombreProducto = "";
+		double calificacionProducto = 0;
+		int votantes =0;
+		if (productos != null) {
+			for (Producto p : productos) {
+				nombreProducto = p.getNombre();
+				List<RatingProducto> ratings = productoService
+						.buscarRatingPorProductoId(p.getId());
+				for (RatingProducto rating : ratings) {
+					if (rating.getTipoServicio() == ETipoRating.GENERAL) {
+						calificacionProducto = productoService
+								.obtenerCalificacionDeServicio(rating.getId());
+						votantes = 
+							     productoService.obtenerNumeroVotantesDeServicio(rating.getId());
+						productosPorCiudad.add(new ReporteRatingPorCiudadProductoDTO(ciudad, nombreProducto,
+								calificacionProducto,votantes));
+					}
+
+				}
+			}
+		}
+		return productosPorCiudad;
 	}
+
+	@Override
+	public ReporteRatingProductoFechasDTO getReporteRatingPorNombrePaquete(String nombrePaquete) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

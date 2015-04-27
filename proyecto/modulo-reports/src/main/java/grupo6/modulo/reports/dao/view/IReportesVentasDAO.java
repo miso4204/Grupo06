@@ -3,7 +3,8 @@ package grupo6.modulo.reports.dao.view;
 import java.util.Date;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoFechasDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 
@@ -31,11 +32,6 @@ public interface IReportesVentasDAO {
 	 */
 	ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial,Date fechaFinal,TipoMoneda tipoMoneda);
 	
-	/**
-	 * Retorna un reporte de rating por producto
-	 * @param ciudad
-	 * @return un reporte de rating por producto
-	 */
-	ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto);
+	
 	
 }

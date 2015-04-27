@@ -1,11 +1,13 @@
 package grupo6.modulo.reports.service.view;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
-import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
+import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoFechasDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Servcios expuestos por el módulo de reporte ventasS
@@ -38,5 +40,15 @@ public interface IReporteVentasService {
 	 * @param idProducto
 	 * @return un reporte de rating por producto
 	 */
-	ReporteRatingProductoDTO getReporteRatingPorProducto(int idProducto);
+	ReporteRatingProductoFechasDTO getReporteRatingPorNombrePaquete(String nombrePaquete);
+	
+	/**
+	 * Retorna un reporte de ventas por ciudad
+	 * 
+	 * @param ciudad
+	 * @return un reporte de ventas por ciudad
+	 */
+	List<ReporteRatingPorCiudadProductoDTO> getReporteRatingPorCiudad(String ciudad);
+	
+	
 }
