@@ -253,7 +253,9 @@ $("#buscarPorFecha").submit(function(e) {
                                                 </li>
                                                 <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a> 
                                                  <li>
-                                                                                             </ul>
+                                                                                                 <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
+                                                </li> 
+                                                                                            </ul>
                                                     <div class="tab-content">                                                       
                                                         <div class="tab-pane fade  in active" id="tab-1">
                                                             <h2>Search and Save by price</h2>
@@ -305,7 +307,18 @@ $("#buscarPorFecha").submit(function(e) {
                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
                                                             </form>
                                                         </div>
-                                                                                                            </div>
+                                                        														 <div class="tab-pane fade" id="tab-3">
+                                                            <h2>Search and Save by location</h2>
+                                                            <form id="buscarPorCiudad" action="" method="post" >
+                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                                    <label>Where are you going?</label>
+                                                                    <input class="typeahead form-control" placeholder="City, Airport or Point of Interest" type="text" id="ciudad" required/>
+                                                                </div>
+                                                                
+                                                                <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
+                                                            </form>
+                                                        </div>
+														                                                     </div>
                                                 </div>
                             </div>
                         </div>

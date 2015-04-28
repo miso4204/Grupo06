@@ -147,7 +147,7 @@
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a>
                                     </li>
-                                    <li><a href="#tab-2" data-toggle="tab">Functionality XYZ</a>
+                                    <li><a href="#tab-2" data-toggle="tab">Aplicar descuentos</a>
                                     </li>
                                     <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>
@@ -189,7 +189,7 @@
 	                                                  <div class="radio-inline radio-small">
 	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
 	                                                  </div>
-	                                                   	                                                   	                                                  <div class="radio-inline radio-small">
+	                                                  <div class="radio-inline radio-small">
 	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
 	                                                  </div>
 	                                                                                                                                                      
@@ -270,9 +270,75 @@
                          </form>
                     </div>
                       </div>
-                    <div class="tab-pane fade" id="tab-2">
-                        <p class="mt10">PROXIMAMENTE....</p>
+                      <div class="tab-pane fade" id="tab-2">
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form action="#" role="form">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-labeled btn-success">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>PSE</button>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
+                                                <span class="input-group-btn">
+                                                  <button class="btn btn-danger btn-circle" type="submit">Disapply discount</button>
+                                              </span>                        
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form action="#" role="form">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-labeled btn-danger">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Card</button>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
+                                                <span class="input-group-btn">
+                                                  <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
+                                              </span>                        
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form action="#" role="form">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-labeled btn-danger">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Cash</button>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
+                                                <span class="input-group-btn">
+                                                  <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
+                                              </span>                        
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+
+
+
+                          </div>
+
+                          <div class="col-md-6">
+                            <label>Discounts.</label>
+                            
+
+
+
                         </div>
+
+                    </div>
+
+                </div>
                         <div class="tab-pane fade" id="tab-3">
                             <p class="mt10">PROXIMAMENTE...</p>
                         </div>
