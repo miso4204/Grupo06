@@ -155,21 +155,21 @@
 					<path>/web-app</path>
 				</configuration>
 			</plugin>
-			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>exec-maven-plugin</artifactId>
-			    <executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>						
-					</execution>
-				</executions>
-			    <configuration>			    	
-			      <mainClass>grupo6.procesador.ProcesadorCodigo</mainClass>
-			    </configuration>
-			 </plugin>
+<!-- 			<plugin> -->
+<!-- 			    <groupId>org.codehaus.mojo</groupId> -->
+<!-- 			    <artifactId>exec-maven-plugin</artifactId> -->
+<!-- 			    <executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>generate-sources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>java</goal> -->
+<!-- 						</goals>						 -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			    <configuration>			    	 -->
+<!-- 			      <mainClass>grupo6.procesador.ProcesadorCodigo</mainClass> -->
+<!-- 			    </configuration> -->
+<!-- 			 </plugin> -->
 		</plugins>
 		<resources>
 			<resource>
