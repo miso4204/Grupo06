@@ -1,7 +1,10 @@
 package grupo6.modulo.utilidades;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Clase que se encarga de leer el archivo .config de feature IDE 
@@ -11,29 +14,36 @@ import java.io.FileReader;
  */
 public class Variability {
 
-	private static final String PRODUCT_CONFIG = "src/main/resources/product.config";
+	private static final String PRODUCT_CONFIG = "product.config";
+	
+	private static Set<String> featuresSet;
+
+	static {
+		featuresSet = new HashSet<String>();
+	}
 	
 	public static boolean isEnable(String feature){
-		BufferedReader bufferedReader = null;
-		boolean isEnable = false;
-		try {
-			String currentFeature;
- 
-			bufferedReader = new BufferedReader(new FileReader(PRODUCT_CONFIG));
- 
-			while ((currentFeature = bufferedReader.readLine()) != null) {
-				if(feature.equalsIgnoreCase(currentFeature)){
-					isEnable = true;
+		if(featuresSet.isEmpty()){
+			BufferedReader bufferedReader = null;
+			
+			try {
+				String currentFeature;
+				InputStream inputStream = Variability.class.getClassLoader().getResourceAsStream(PRODUCT_CONFIG);
+				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+	 
+				while ((currentFeature = bufferedReader.readLine()) != null) {
+					featuresSet.add(currentFeature);
 					break;
 				}
-			}
- 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeBufferReader(bufferedReader);
+	 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeBufferReader(bufferedReader);
+			}	
 		}
-		return isEnable;
+		
+		return featuresSet.contains(feature);
 	}
 
 	private static void closeBufferReader(BufferedReader bufferedReader) {
