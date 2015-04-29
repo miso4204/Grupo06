@@ -33,7 +33,6 @@ public class Variability {
 	 
 				while ((currentFeature = bufferedReader.readLine()) != null) {
 					featuresSet.add(currentFeature);
-					break;
 				}
 	 
 			} catch (Exception e) {
