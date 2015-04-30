@@ -16,6 +16,11 @@
 			<groupId>grupo6</groupId>
 			<artifactId>persistencia</artifactId>
 			<version>${project.version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>grupo6</groupId>
+			<artifactId>modulo-utilidades</artifactId>
+			<version>${project.version}</version>
 		</dependency>		
 		<!-- spring -->
 		<dependency>

@@ -5,7 +5,7 @@ package grupo6.modulo.utilidades;
  * @author alejo
  *
  */
-public class Feature {
+public class FeaturesNames {
 	
 	public static final String ECOTURISMO = "Ecoturismo";
     public static final String SESSION = "Session";

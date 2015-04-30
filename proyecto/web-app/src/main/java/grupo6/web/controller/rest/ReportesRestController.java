@@ -14,6 +14,7 @@ import grupo6.web.dto.reportes.ReporteVentasCiudadDTO;
 import grupo6.web.dto.reportes.ReporteVentasFechasDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,7 @@ public class ReportesRestController extends BaseRestController {
 
 	/** Servicios de reportes de ventas. */
 	@Autowired
+	@Qualifier("reporteVentasServiceProxy")
 	private IReporteVentasService reporteVentasService;
 	
 	

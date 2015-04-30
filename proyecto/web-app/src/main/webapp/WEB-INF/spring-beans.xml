@@ -20,6 +20,20 @@
 	<!-- Escanea clases con anotaciones de Spring de frontend. Ej: @Controller -->
 	<mvc:annotation-driven />
 	
+	<!-- Activa el interceptor de metodos anotados con Feature para el servicio reporteVentasService -->
+    <bean id="reporteVentasServiceProxy" 
+                class="org.springframework.aop.framework.ProxyFactoryBean">
+ 
+		<property name="target" ref="reporteVentasService" />
+ 
+		<property name="interceptorNames">
+			<list>
+				<value>interceptorFeatureJob</value>
+			</list>
+		</property>
+	</bean>
+    
+    
 	<!-- Fabrica de buscadores de productos  -->
 	<bean id="busquedaProductosFactory" class="grupo6.modulo.product.factory.BusquedaProductosFactory">
 		<property name="buscadores">
