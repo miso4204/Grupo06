@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>../modulo-utilidades</module>
 		<module>../persistencia</module>
 		<module>../modulo-user</module>
 		<module>../modulo-product</module>
@@ -16,8 +17,7 @@
 		<module>../modulo-shoppingcart</module>
 		<module>../modulo-socialnetwork</module>
 		<module>../web-rest</module>	
-		<module>../web-app</module>
-		<module>../modulo-utilidades</module>
+		<module>../web-app</module>		
 	</modules>
 
 	<dependencyManagement>
