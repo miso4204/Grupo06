@@ -105,7 +105,7 @@ $("#buscarPorCiudad").submit(function(e) {
                 var ciudad = arr.ciudad;
                 var totalVentas = arr.totalVentas; 
                 var totalDineroEnVentas = arr.totalDineroEnVentas; 
-                alert(ciudad+"-"+totalVentas+"-"+totalDineroEnVentas);
+               
    out+='<thead>'+
                             '<tr>'+
                                 '<th>Type</th>'+
@@ -129,7 +129,7 @@ $("#buscarPorCiudad").submit(function(e) {
     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                       alert("Error: " + errorMessage + " Message: " + jqXHR.responseText);
                 }
             });
             
@@ -182,7 +182,7 @@ $("#buscarPorFecha").submit(function(e) {
     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                	 alert("Error: " + errorMessage + " Message: " + jqXHR.responseText);
                 }
             });
             
@@ -244,7 +244,7 @@ $("#buscarPorRatingCiudad").submit(function(e) {
     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                	 alert("Error: " + errorMessage + " Message: " + jqXHR.responseText);
                 }
             });
             
@@ -303,7 +303,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
     
                    },
                 error: function(jqXHR, textStatus, errorMessage) {
-                       alert("Error: " + errorMessage);
+                	 alert("Error: " + errorMessage + " Message: " + jqXHR.responseText);
                 }
             });
             
@@ -445,7 +445,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                                                             <label>From</label>
-                                                                            <input class="typeahead form-control" id="ciudadSearch"placeholder="City, country" type="text" />
+                                                                            <input class="typeahead form-control" id="ciudadSearch"placeholder="City, country" type="text" required />
                                                                         </div>
 
                                                                     </div>
@@ -484,7 +484,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                                                             <label>From</label>
-                                                                            <input class="typeahead form-control" id="packageSearch"placeholder="Package name" type="text" />
+                                                                            <input class="typeahead form-control" id="packageSearch"placeholder="Package name" type="text" required/>
                                                                         </div>
 
                                                                     </div>
@@ -505,7 +505,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                                                             <label>From</label>
-                                                                            <input class="typeahead form-control" id="ciudadRatingSearch"placeholder="City, country" type="text" />
+                                                                            <input class="typeahead form-control" id="ciudadRatingSearch"placeholder="City, country" type="text" required />
                                                                         </div>
 
                                                                     </div>

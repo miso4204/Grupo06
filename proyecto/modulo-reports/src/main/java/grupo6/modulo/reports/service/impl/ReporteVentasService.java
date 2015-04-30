@@ -9,7 +9,6 @@ import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
 import grupo6.modulo.reports.dao.view.IReportesVentasDAO;
 import grupo6.modulo.reports.service.view.IReporteVentasService;
-import grupo6.modulo.utilidades.anotaciones.Feature;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
@@ -44,8 +43,7 @@ public class ReporteVentasService implements IReporteVentasService{
 	 * @see ReporteVentasService#getReporteVentasPorCiudad(String)
 	 */
 	@Transactional(readOnly = true)
-	@Override
-	@Feature(nombreNodo = "ReportByLocation")
+	@Override	
 	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad,TipoMoneda tipoMoneda) {
 		return reportesVentasDAO.getReporteVentasPorCiudad(ciudad,tipoMoneda);
 	}
@@ -54,14 +52,14 @@ public class ReporteVentasService implements IReporteVentasService{
 	 * @see ReporteVentasService#getReporteVentasEntreFechas(Date, Date)
 	 */
 	
-	@Feature(nombreNodo = "ReportByPeriod")
+	
 	@Transactional(readOnly = true)
 	@Override
 	public ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial, Date fechaFinal,TipoMoneda tipoMoneda) {
 		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda);
 	}
 
-	@Feature(nombreNodo = "Location")
+	
 	@Override
 	public List<ReporteRatingPorCiudadProductoDTO> getReporteRatingPorCiudad(
 			String ciudad) {
@@ -92,7 +90,6 @@ public class ReporteVentasService implements IReporteVentasService{
 	}
 
 	@Override
-	@Feature(nombreNodo = "Package")
 	public List<ReporteRatingProductoPaqueteDTO> getReporteRatingPorNombrePaquete(String nombrePaquete) {
 		List<ReporteRatingProductoPaqueteDTO> productosPorPaquete = new ArrayList<>(); 
 		List<Producto> productos = busquedaProductoPaquete.buscar(nombrePaquete);
@@ -120,8 +117,5 @@ public class ReporteVentasService implements IReporteVentasService{
 		return productosPorPaquete;
 	}
 	
-public static void main(String...strings ) {
-	ReporteVentasService s = new ReporteVentasService();
-	System.out.print("a"); 
-}
+
 }
