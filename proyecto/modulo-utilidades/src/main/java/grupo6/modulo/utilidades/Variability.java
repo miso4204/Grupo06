@@ -32,7 +32,7 @@ public class Variability {
 				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 	 
 				while ((currentFeature = bufferedReader.readLine()) != null) {
-					featuresSet.add(currentFeature);
+					featuresSet.add(currentFeature.trim());
 				}
 	 
 			} catch (Exception e) {
