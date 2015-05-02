@@ -54,5 +54,9 @@ public class Variability {
 			ex.printStackTrace();
 		}
 	}
+	
+	public static void setFeaturesSet(Set<String> features) {
+		featuresSet = features;
+	}
 
 }

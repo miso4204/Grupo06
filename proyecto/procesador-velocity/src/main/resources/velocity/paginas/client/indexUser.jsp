@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
-    <script src="js/estructuraCalificacion.js"></script>
 
 <script src="js/jquery.js"></script>
 <script>
@@ -43,27 +42,32 @@ function myFunction(arr) {
     var i;
     for(i = 0; i < arr.length; i++) {
    
-
-        if( arr[i].urlImagen.indexOf("http") > -1){
-            urlIma=arr[i].urlImagen;
-        }
-        else{
-           urlIma="img/Bariloche1.jpg";
-        }
+       
 
                     out+='<div class="col-md-4">'+
                                     '<div class="thumb">'+
-                                        '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
-                                        '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr[i].lugar+'" />'+
+                                        '<a class="hover-img" href="destinationDetails.jsp">'+
+                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
                                             '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
                                                 '<div class="text-small">'+
-                                                   
-                                                '<div class="booking-item-rating">'+estructuraCalificacionBasica(arr[i].calificaciones[0].puntuacion)+''+
-                                                
-                                            	'</div>'+
+                                                    <!--....................-->
+                                                    <!-- ESTRELLAS  -->
+                                                    <!--....................-->
+                                                    '<ul class="icon-group text-tiny text-color">'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star"></i>'+
+                                                        '</li>'+
+                                                        '<li><i class="fa fa-star-half-empty"></i>'+
+                                                        '</li>'+
+                                                    '</ul>'+
                                                     '<h5>'+arr[i].nombre+'</h5>'+
                                                     '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
-                                                    '<p class="mb0">from $'+arr[i].precio+'</p>'+
+                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</a>'+
@@ -249,9 +253,11 @@ $("#buscarPorFecha").submit(function(e) {
                                                 </li>
                                                 <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a> 
                                                  <li>
-                                                                                                 <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
+                                                 #if($ByLocation == "true") 	
+                                                <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
                                                 </li> 
-                                                                                            </ul>
+                                                #end	
+                                            </ul>
                                                     <div class="tab-content">                                                       
                                                         <div class="tab-pane fade  in active" id="tab-1">
                                                             <h2>Search and Save by price</h2>
@@ -303,7 +309,8 @@ $("#buscarPorFecha").submit(function(e) {
                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
                                                             </form>
                                                         </div>
-                                                        														 <div class="tab-pane fade" id="tab-3">
+                                                        #if($ByLocation == "true") 
+														 <div class="tab-pane fade" id="tab-3">
                                                             <h2>Search and Save by location</h2>
                                                             <form id="buscarPorCiudad" action="" method="post" >
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
@@ -314,7 +321,8 @@ $("#buscarPorFecha").submit(function(e) {
                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for location</button>
                                                             </form>
                                                         </div>
-														                                                     </div>
+														 #end	
+                                                    </div>
                                                 </div>
                             </div>
                         </div>

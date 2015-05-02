@@ -16,8 +16,9 @@
 		<module>../modulo-reports</module>
 		<module>../modulo-shoppingcart</module>
 		<module>../modulo-socialnetwork</module>
-		<module>../web-rest</module>	
-		<module>../web-app</module>		
+		<module>../procesador-velocity</module>
+		<module>../generador-variabilidad</module>	
+		<module>../web-app</module>			
 	</modules>
 
 	<dependencyManagement>

@@ -31,6 +31,7 @@ public class BusquedaProductoPaquete  extends BaseDAO implements IBusquedaProduc
 
 		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
 		criteria.add(Restrictions.ge("nombre",  (String)parametros[0])); 
+		criteria.setCacheable(true);
 		
 		return (List<Producto>)criteria.list();
 	}

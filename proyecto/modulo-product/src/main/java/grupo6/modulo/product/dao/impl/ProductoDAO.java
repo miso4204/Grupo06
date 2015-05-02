@@ -7,6 +7,7 @@ import grupo6.persistencia.entidades.Producto;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +44,10 @@ public class ProductoDAO extends BaseDAO implements IProductoDAO {
 	@Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<Producto> listarTodos() {
-		return (List<Producto>)getCurrentSession()
-				.createQuery("from Producto").list();
+		Query query = getCurrentSession()
+				.createQuery("from Producto");
+		query.setCacheable(true);
+		return query.list();
 	}
 
 }

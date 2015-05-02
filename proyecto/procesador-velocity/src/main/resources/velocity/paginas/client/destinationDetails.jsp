@@ -104,12 +104,17 @@ $(document).ready(function () {
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
                     document.getElementById("destemail").innerHTML = '<a href="mailto:' + arr.proveedor.email + '?subject=Contactar%20proveedor" target="_top"><i class="fa fa-envelope"></i> Destination E-mail</a>';
                  
-                   document.getElementById("fbreference").innerHTML = '<div class="fb-share-button" data-href="' + currentUrl + '" data-layout="button_count"></div>'
+                  #if($SocialNetwork == "true") 
+                   #if($Facebook == "true")
+                    document.getElementById("fbreference").innerHTML = '<div class="fb-share-button" data-href="' + currentUrl + '" data-layout="button_count"></div>'
+                   #end
+                   #if($Twitter == "true")
                     document.getElementById("twreference").innerHTML = '<a class="twitter-share-button" href="' + currentUrl + '">Tweet</a>'
-		
+                   #end
+                  #end
                     document.getElementById("descriptionPackage").innerHTML =  '<h4 >Description: <small>' + arr.descripcion + '</small></h4>';
                     document.getElementById("activitiesPackage").innerHTML =  '<h4 >Activities:<small> ' + arr.actividades + '.</small></h4>';
-                    
+                       
                     if(votado==true){
                     document.getElementById("rateProduct").style.visibility = "hidden";
                 }
@@ -338,15 +343,12 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                                <div id="descriptionPackage"  class="lh1em"></div>
-                                <div id="activitiesPackage"  class="lh1em"></div>                                
-                        </div>
                         <!--RATING-->
                         <div id ="rateProduct" class="row">
                             <form id="calificar" action="" method="post" >
                             <div class="col-md-8">
-                               
+                                <div id="descriptionPackage"  class="lh1em"></div>
+                                <div id="activitiesPackage"  class="lh1em"></div>
                                 <ul   class="list booking-item-raiting-summary-list stats-list-select">
                                             <li onclick="calificar()">
                                                 <div class="booking-item-raiting-list-title">Your rating:</div>
@@ -419,9 +421,15 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                         <form id="addCart">
                          <button class="btn btn-primary btn-lg" type="submit"  >Add to cart</button>
                          </form>
-                          <div id="fbreference" > </div>
-                         <div id="twreference" > </div>                                                                       <div id="twreference" > </div>
-                                                                     </div>
+                        #if($SocialNetwork == "true") 	
+                         #if($Facebook == "true")
+                         <div id="fbreference" > </div>
+                         #end
+                         #if($Twitter == "true")
+                         <div id="twreference" > </div>
+                         #end
+                        #end	 
+                    </div>
 
                 </div>
                 <div class="gap"></div>

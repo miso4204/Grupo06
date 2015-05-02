@@ -5,7 +5,6 @@ import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.modulo.user.service.impl.IUsuarioService;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
-import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
@@ -148,6 +147,7 @@ public class ProductoRestController extends BaseRestController {
 		return productosDTO;
 	}
 	
+#if($ByLocation == "true") 	
 	/**
 	 * Servicio REST para buscar productos por ubicación (lugar o ciudad).
 	 * 
@@ -168,6 +168,7 @@ public class ProductoRestController extends BaseRestController {
 		}
 		return devolverRespuestaExitosa("", productosDTO);
 	}
+#end	
 	
 	/**
 	 * Servicio REST para buscar un producto por id.
@@ -205,17 +206,9 @@ public class ProductoRestController extends BaseRestController {
 		
 		ETipoCalificacionRating calificacion =
 					ETipoCalificacionRating.getTipoCalificacion(request.getPuntaje());
-			
 		if (calificacion != null) {
-			List<RatingProducto> ratings = 
-					productoService.buscarRatingPorProductoId(request.getServicioId());					 
-			for (RatingProducto rating : ratings) {
-				if (rating.getTipoServicio() == ETipoRating.GENERAL) {
-					productoService.calificarProducto(request.getClienteId(), 
-							rating.getId(), calificacion);
-					return;
-				}
-			}			
+			productoService.calificarProducto(request.getClienteId(), 
+					request.getServicioId(), calificacion);
 		}		
 	}
 

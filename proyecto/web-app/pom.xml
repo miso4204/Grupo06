@@ -51,7 +51,7 @@
 		</dependency>
 		<dependency>
 			<groupId>grupo6</groupId>
-			<artifactId>web-rest</artifactId>
+			<artifactId>procesador-velocity</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -125,8 +125,7 @@
 		<!-- Spring AOP + AspectJ -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-aop</artifactId>			
 		</dependency>
  
 		<dependency>
@@ -167,7 +166,7 @@
 <!-- 					</execution> -->
 <!-- 				</executions> -->
 <!-- 			    <configuration>			    	 -->
-<!-- 			      <mainClass>grupo6.procesador.ProcesadorCodigo</mainClass> -->
+<!-- 			      <mainClass>grupo6.procesador.ProcesadorVelocity</mainClass> -->
 <!-- 			    </configuration> -->
 <!-- 			 </plugin> -->
 		</plugins>
@@ -183,11 +182,7 @@
 		<profile>
 			<id>desarrollo</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-				<property>
-					<name>ambiente</name>
-					<value>desarrollo</value>
-				</property>
+				<activeByDefault>true</activeByDefault>				
 			</activation>
 			<properties>
 				<rest.host>http://localhost:8081/web-app/</rest.host>
@@ -195,15 +190,21 @@
 		</profile>
 		<!--  mvn clean install -Dambiente=produccion -->
 		<profile>
-			<id>produccion</id>
-			<activation>
-				<property>
-					<name>ambiente</name>
-					<value>produccion</value>
-				</property>
-			</activation>
+			<id>produccion</id>			
 			<properties>
 				<rest.host>http://dessoft.herokuapp.com/</rest.host>
+			</properties>
+		</profile>
+		<profile>
+			<id>con_cache</id>			
+			<properties>
+				<activar.cache>true</activar.cache>
+			</properties>
+		</profile>
+		<profile>
+			<id>sin_cache</id>			
+			<properties>
+				<activar.cache>false</activar.cache>
 			</properties>
 		</profile>
 	</profiles>

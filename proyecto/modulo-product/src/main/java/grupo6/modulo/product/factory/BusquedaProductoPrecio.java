@@ -39,7 +39,8 @@ public class BusquedaProductoPrecio  extends BaseDAO implements IBusquedaProduct
 			tipoMonedaUsuario = TipoMoneda.DOLAR;
 		}
 		
-		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
+		Criteria criteria = getCurrentSession().createCriteria(Producto.class);
+		criteria.setCacheable(true);
 		
 		List<Producto> productos = (List<Producto>)criteria.list();
 		List<Producto> productosEncontrados = new ArrayList<Producto>();

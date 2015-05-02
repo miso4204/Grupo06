@@ -32,6 +32,7 @@ public class BusquedaProductoFecha  extends BaseDAO implements IBusquedaProducto
 		Criteria criteria = getCurrentSession().createCriteria(Producto.class);		
 		criteria.add(Restrictions.ge("fechaInicio",  (Date)parametros[0])); 
 		criteria.add(Restrictions.le("fechaInicio",  (Date)parametros[1]));
+		criteria.setCacheable(true);
 		
 		return (List<Producto>)criteria.list();
 	}
