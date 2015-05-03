@@ -55,7 +55,7 @@
 					<feature mandatory="true" name="Functionality"/>
 					<feature name="Performance_5"/>
 				</and>
-				<alt name="GUI">
+				<alt mandatory="true" name="GUI">
 					<feature mandatory="true" name="Base">
 						<description>
 							
@@ -186,64 +186,31 @@
 					<var>Intermediate</var>
 					<not>
 						<disj>
-							<var>SpecialOffers</var>
-							<var>Scalability</var>
+							<var>CreatePromo</var>
+							<disj>
+								<var>UpdatePromo</var>
+								<var>Scalability</var>
+							</disj>
 						</disj>
 					</not>
 				</imp>
 			</rule>
 			<rule>
 				<imp>
-					<var>Advance</var>
-					<conj>
+					<var>SpecialOffers</var>
+					<disj>
+						<var>CreatePromo</var>
 						<var>UpdatePromo</var>
-						<conj>
-							<var>CreatePromo</var>
-							<conj>
-								<var>SocialNetwork</var>
-								<conj>
-									<var>Euro</var>
-									<conj>
-										<var>Colombian</var>
-										<conj>
-											<var>Package</var>
-											<conj>
-												<var>ByLocation</var>
-												<conj>
-													<var>Sales</var>
-													<conj>
-														<var>ReportByLocation</var>
-														<conj>
-															<var>ReportByPeriod</var>
-															<conj>
-																<var>CashOnDelivery</var>
-																<conj>
-																	<var>ChangePassword</var>
-																	<conj>
-																		<disj>
-																			<var>Twitter</var>
-																			<var>Facebook</var>
-																		</disj>
-																		<conj>
-																			<var>Performance_5</var>
-																			<conj>
-																				<var>Scalability</var>
-																				<var>ChangeAdress</var>
-																			</conj>
-																		</conj>
-																	</conj>
-																</conj>
-															</conj>
-														</conj>
-													</conj>
-												</conj>
-											</conj>
-										</conj>
-									</conj>
-								</conj>
-							</conj>
-						</conj>
-					</conj>
+					</disj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Sales</var>
+					<disj>
+						<var>ReportByLocation</var>
+						<var>ReportByPeriod</var>
+					</disj>
 				</imp>
 			</rule>
 		</constraints>
