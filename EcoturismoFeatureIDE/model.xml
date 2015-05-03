@@ -29,7 +29,7 @@
 						<feature name="ReportByPeriod"/>
 					</and>
 				</and>
-				<and name="SpecialOffers_5">
+				<and name="SpecialOffers">
 					<feature name="CreatePromo"/>
 					<feature name="UpdatePromo"/>
 				</and>
@@ -55,10 +55,244 @@
 					<feature mandatory="true" name="Functionality"/>
 					<feature name="Performance_5"/>
 				</and>
+				<alt name="GUI">
+					<feature mandatory="true" name="Base">
+						<description>
+							
+						</description>
+					</feature>
+					<feature mandatory="true" name="Intermediate">
+						<description>
+							
+						</description>
+					</feature>
+					<feature mandatory="true" name="Advance"/>
+				</alt>
 			</and>
 		</struct>
-		<constraints/>
+		<constraints>
+			<rule>
+				<imp>
+					<var>Base</var>
+					<not>
+						<disj>
+							<var>UpdatePromo</var>
+							<disj>
+								<var>CreatePromo</var>
+								<disj>
+									<var>SocialNetwork</var>
+									<disj>
+										<var>Euro</var>
+										<disj>
+											<var>Colombian</var>
+											<disj>
+												<var>Package</var>
+												<disj>
+													<var>ByLocation</var>
+													<disj>
+														<var>Sales</var>
+														<disj>
+															<var>ReportByLocation</var>
+															<disj>
+																<var>ReportByPeriod</var>
+																<disj>
+																	<var>CashOnDelivery</var>
+																	<disj>
+																		<var>ChangePassword</var>
+																		<disj>
+																			<var>SocialNetwork</var>
+																			<disj>
+																				<var>Performance_5</var>
+																				<disj>
+																					<var>Scalability</var>
+																					<var>ChangeAdress</var>
+																				</disj>
+																			</disj>
+																		</disj>
+																	</disj>
+																</disj>
+															</disj>
+														</disj>
+													</disj>
+												</disj>
+											</disj>
+										</disj>
+									</disj>
+								</disj>
+							</disj>
+						</disj>
+					</not>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Advance</var>
+					<disj>
+						<conj>
+							<var>UpdatePromo</var>
+							<conj>
+								<var>CreatePromo</var>
+								<var>SocialNetwork</var>
+							</conj>
+						</conj>
+						<conj>
+							<var>Euro</var>
+							<conj>
+								<var>Colombian</var>
+								<conj>
+									<var>Package</var>
+									<conj>
+										<var>ByLocation</var>
+										<conj>
+											<var>Sales</var>
+											<conj>
+												<var>ReportByLocation</var>
+												<conj>
+													<var>ReportByPeriod</var>
+													<conj>
+														<var>CashOnDelivery</var>
+														<conj>
+															<var>ChangePassword</var>
+															<conj>
+																<disj>
+																	<var>Twitter</var>
+																	<var>Facebook</var>
+																</disj>
+																<conj>
+																	<var>Performance_5</var>
+																	<conj>
+																		<var>Scalability</var>
+																		<conj>
+																			<var>ChangeAdress</var>
+																			<var>AdminMoneda</var>
+																		</conj>
+																	</conj>
+																</conj>
+															</conj>
+														</conj>
+													</conj>
+												</conj>
+											</conj>
+										</conj>
+									</conj>
+								</conj>
+							</conj>
+						</conj>
+					</disj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Intermediate</var>
+					<not>
+						<disj>
+							<var>SpecialOffers</var>
+							<var>Scalability</var>
+						</disj>
+					</not>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Advance</var>
+					<conj>
+						<var>UpdatePromo</var>
+						<conj>
+							<var>CreatePromo</var>
+							<conj>
+								<var>SocialNetwork</var>
+								<conj>
+									<var>Euro</var>
+									<conj>
+										<var>Colombian</var>
+										<conj>
+											<var>Package</var>
+											<conj>
+												<var>ByLocation</var>
+												<conj>
+													<var>Sales</var>
+													<conj>
+														<var>ReportByLocation</var>
+														<conj>
+															<var>ReportByPeriod</var>
+															<conj>
+																<var>CashOnDelivery</var>
+																<conj>
+																	<var>ChangePassword</var>
+																	<conj>
+																		<disj>
+																			<var>Twitter</var>
+																			<var>Facebook</var>
+																		</disj>
+																		<conj>
+																			<var>Performance_5</var>
+																			<conj>
+																				<var>Scalability</var>
+																				<var>ChangeAdress</var>
+																			</conj>
+																		</conj>
+																	</conj>
+																</conj>
+															</conj>
+														</conj>
+													</conj>
+												</conj>
+											</conj>
+										</conj>
+									</conj>
+								</conj>
+							</conj>
+						</conj>
+					</conj>
+				</imp>
+			</rule>
+		</constraints>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
-		<featureOrder userDefined="false"/>
+		<featureOrder userDefined="true">
+			<feature name="Ecoturismo"/>
+			<feature name="Session"/>
+			<feature name="LogIn"/>
+			<feature name="LogOut"/>
+			<feature name="UpdateProfile"/>
+			<feature name="ChangePassword"/>
+			<feature name="ChangeAdress"/>
+			<feature name="CreateAccount"/>
+			<feature name="ShoppingCart"/>
+			<feature name="Pay"/>
+			<feature name="CreditCard"/>
+			<feature name="PSE"/>
+			<feature name="CashOnDelivery"/>
+			<feature name="Reports"/>
+			<feature name="Rating"/>
+			<feature name="Location"/>
+			<feature name="Package"/>
+			<feature name="Sales"/>
+			<feature name="ReportByLocation"/>
+			<feature name="ReportByPeriod"/>
+			<feature name="SpecialOffers"/>
+			<feature name="CreatePromo"/>
+			<feature name="UpdatePromo"/>
+			<feature name="SocialNetwork"/>
+			<feature name="Facebook"/>
+			<feature name="Twitter"/>
+			<feature name="AdminMoneda"/>
+			<feature name="Dolar"/>
+			<feature name="Euro"/>
+			<feature name="Colombian"/>
+			<feature name="Product"/>
+			<feature name="Search"/>
+			<feature name="ByLocation"/>
+			<feature name="ByPrice"/>
+			<feature name="ByDate"/>
+			<feature name="QualityAtributes"/>
+			<feature name="Configurability"/>
+			<feature name="Scalability"/>
+			<feature name="Functionality"/>
+			<feature name="Performance_5"/>
+			<feature name="GUI"/>
+			<feature name="Base"/>
+			<feature name="Intermediate"/>
+			<feature name="Advance"/>
+		</featureOrder>
 	</featureModel>
