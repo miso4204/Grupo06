@@ -1,15 +1,5 @@
 package grupo6.modulo.reports.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.product.factory.IBusquedaProducto;
 import grupo6.modulo.product.service.view.IProductoService;
@@ -22,7 +12,14 @@ import grupo6.modulo.reports.service.view.IReporteVentasService;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
-import grupo6.persistencia.entidades.RatingProductoCalificacion;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementación de {@link IReporteVentasService}.
@@ -46,7 +43,7 @@ public class ReporteVentasService implements IReporteVentasService{
 	 * @see ReporteVentasService#getReporteVentasPorCiudad(String)
 	 */
 	@Transactional(readOnly = true)
-	@Override
+	@Override	
 	public ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad,TipoMoneda tipoMoneda) {
 		return reportesVentasDAO.getReporteVentasPorCiudad(ciudad,tipoMoneda);
 	}
@@ -55,13 +52,14 @@ public class ReporteVentasService implements IReporteVentasService{
 	 * @see ReporteVentasService#getReporteVentasEntreFechas(Date, Date)
 	 */
 	
+	
 	@Transactional(readOnly = true)
 	@Override
 	public ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial, Date fechaFinal,TipoMoneda tipoMoneda) {
 		return reportesVentasDAO.getReporteVentasEntreFechas(fechaInicial, fechaFinal,tipoMoneda);
 	}
 
-
+	
 	@Override
 	public List<ReporteRatingPorCiudadProductoDTO> getReporteRatingPorCiudad(
 			String ciudad) {

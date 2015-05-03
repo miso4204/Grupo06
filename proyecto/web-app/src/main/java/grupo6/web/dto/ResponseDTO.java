@@ -12,6 +12,7 @@ public class ResponseDTO {
 	public static final String CODIGO_RESPUESTA_OK = "OK";
 	public static final String CODIGO_RESPUESTA_PARAMETRO_ILEGAL = "ILLEGAL_ARGUMENT";
 	public static final String CODIGO_RESPUESTA_ERROR_GENERICO = "ERROR_UNKNOWN";
+	public static final String CODIGO_RESPUESTA_NOT_ACTIVE = "NOT_ACTIVE";
 
 	/** Codigo de respuesta: OK, ERROR*, etc */
 	private String codigoRespuesta;

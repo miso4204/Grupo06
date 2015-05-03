@@ -6,8 +6,7 @@
 		<artifactId>parent-build</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../parent-build/pom.xml</relativePath>
-	</parent>
-
+	</parent>   
 	<artifactId>modulo-user</artifactId>
 
 	<dependencies>

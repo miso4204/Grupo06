@@ -31,6 +31,23 @@ public class BaseRestController {
 		
 		return new ResponseEntity<ResponseDTO>(r, HttpStatus.OK); 
 	}
+	
+	/**
+	 * Error al intentar acceder a una caracteristica no activa.
+	 * Devuelve error controlado en el backend.
+	 * @param ex la excepción.
+	 * @return la respuesta de error
+	 */
+	@ExceptionHandler
+	@ResponseBody
+	public ResponseEntity<ResponseDTO> handleUnsupportedOperationException(
+			UnsupportedOperationException ex) {
+				
+		ResponseDTO r = new ResponseDTO();
+		r.setCodigoRespuesta(ResponseDTO.CODIGO_RESPUESTA_NOT_ACTIVE);
+		r.setMensaje(ex.getMessage());	
+		return new ResponseEntity<ResponseDTO>(r, HttpStatus.BAD_REQUEST); 
+	}
 
 	/**
 	 * Manejador de cualquier excepción general.

@@ -33,6 +33,7 @@ public class BusquedaProductoUbicacion  extends BaseDAO implements IBusquedaProd
 					Restrictions.ilike("lugar", (String)parametros[0]),
 					Restrictions.ilike("ciudad", (String)parametros[0]))				
 				); 
+		criteria.setCacheable(true);
 				
 		return (List<Producto>)criteria.list();
 	}

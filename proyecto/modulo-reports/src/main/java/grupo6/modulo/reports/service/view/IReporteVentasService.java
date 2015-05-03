@@ -5,6 +5,7 @@ import grupo6.modulo.reports.dao.impl.dto.ReporteRatingPorCiudadProductoDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteRatingProductoPaqueteDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasCiudadDTO;
 import grupo6.modulo.reports.dao.impl.dto.ReporteVentasFechasDTO;
+import grupo6.modulo.utilidades.anotaciones.Feature;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ public interface IReporteVentasService {
 	 * @param ciudad
 	 * @return un reporte de ventas por ciudad
 	 */
+	@Feature(nombreNodo = "ReportByLocation")
 	ReporteVentasCiudadDTO getReporteVentasPorCiudad(String ciudad,TipoMoneda tipoMoneda);
 
 	/**
@@ -32,6 +34,7 @@ public interface IReporteVentasService {
 	 * @param fechaFinal
 	 * @return reporte de ventas entre fechas
 	 */
+	@Feature(nombreNodo = "ReportByPeriod")
 	ReporteVentasFechasDTO getReporteVentasEntreFechas(Date fechaInicial,Date fechaFinal,TipoMoneda tipoMoneda);
 
 	/**
@@ -40,6 +43,7 @@ public interface IReporteVentasService {
 	 * @param idProducto
 	 * @return un reporte de rating por producto
 	 */
+	@Feature(nombreNodo = "Package")
 	List<ReporteRatingProductoPaqueteDTO> getReporteRatingPorNombrePaquete(String nombrePaquete);
 	
 	/**
@@ -48,6 +52,7 @@ public interface IReporteVentasService {
 	 * @param ciudad
 	 * @return un reporte de ventas por ciudad
 	 */
+	@Feature(nombreNodo = "Location")
 	List<ReporteRatingPorCiudadProductoDTO> getReporteRatingPorCiudad(String ciudad);
 	
 	

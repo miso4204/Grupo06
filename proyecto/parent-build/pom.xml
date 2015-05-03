@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>../modulo-utilidades</module>
 		<module>../persistencia</module>
 		<module>../modulo-user</module>
 		<module>../modulo-product</module>
@@ -15,8 +16,9 @@
 		<module>../modulo-reports</module>
 		<module>../modulo-shoppingcart</module>
 		<module>../modulo-socialnetwork</module>
-		<module>../web-rest</module>	
-		<module>../web-app</module>				
+		<module>../procesador-velocity</module>
+		<module>../generador-variabilidad</module>	
+		<module>../web-app</module>			
 	</modules>
 
 	<dependencyManagement>
@@ -52,6 +54,17 @@
 	           <artifactId>spring-test</artifactId>
 	          <version>${spring.version}</version>
 	           <scope>test</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-aop</artifactId>
+	            <version>${spring.version}</version>
+	            <exclusions>
+	                <exclusion>
+	                    <artifactId>commons-logging</artifactId>
+	                    <groupId>commons-logging</groupId>
+	                </exclusion>
+	            </exclusions>
 	        </dependency>
 			
 

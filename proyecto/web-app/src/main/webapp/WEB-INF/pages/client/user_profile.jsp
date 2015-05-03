@@ -213,10 +213,12 @@ $("#cambiarPass").submit(function(e) {
                                     <input id="direccion" name="direccion" class="form-control" value="${usuarioSesion.direccion}" type="text" required/>
                                 </div>
                                 
-                                                                <label>Select your prefered kind money</label>                      
+                                                              
+                                <label>Select your prefered kind money</label>                      
 								<label class="radio-inline radio-small"> <input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
-								 								 								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
-							   	 							    
+								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
+								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
+								
                                 <hr>
                                 <input type="submit" class="btn btn-primary" id="save" value="Save Changes">
                                 <h3>${mensaje}</h3>

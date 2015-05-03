@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
+    <script src="js/estructuraCalificacion.js"></script>
 
 <script src="js/jquery.js"></script>
 <script>
@@ -42,32 +43,27 @@ function myFunction(arr) {
     var i;
     for(i = 0; i < arr.length; i++) {
    
-       
+
+        if( arr[i].urlImagen.indexOf("http") > -1){
+            urlIma=arr[i].urlImagen;
+        }
+        else{
+           urlIma="img/Bariloche1.jpg";
+        }
 
                     out+='<div class="col-md-4">'+
                                     '<div class="thumb">'+
-                                        '<a class="hover-img" href="destinationDetails.jsp">'+
-                                            '<img src="http://www.pnncocuy.com/images/picgallery/park_del_cocuy_l.jpg" alt="Image Alternative text" title="Viva Las Vegas" />'+
+                                        '<a class="booking-item" href="pages/client/destinationDetails.jsp?id='+arr[i].id+'">'+
+                                        '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr[i].lugar+'" />'+
                                             '<div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">'+
                                                 '<div class="text-small">'+
-                                                    <!--....................-->
-                                                    <!-- ESTRELLAS  -->
-                                                    <!--....................-->
-                                                    '<ul class="icon-group text-tiny text-color">'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star"></i>'+
-                                                        '</li>'+
-                                                        '<li><i class="fa fa-star-half-empty"></i>'+
-                                                        '</li>'+
-                                                    '</ul>'+
+                                                   
+                                                '<div class="booking-item-rating">'+estructuraCalificacionBasica(arr[i].calificaciones[0].puntuacion)+''+
+                                                
+                                            	'</div>'+
                                                     '<h5>'+arr[i].nombre+'</h5>'+
                                                     '<p>'+arr[i].lugar+'-'+arr[i].ciudad+'</p>'+
-                                                    '<p class="mb0"> offers from $'+arr[i].precio+'</p>'+
+                                                    '<p class="mb0">from $'+arr[i].precio+'</p>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</a>'+
