@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -64,11 +65,37 @@ public class Producto implements Serializable {
     private Long proveedorId;
     /** Texto descriptivo del paquete.*/
     private String descripcionPaquete;
+    
+    
     /** Las actividades asociadas al paquete turistico.*/
-    private List<String> actividades = new ArrayList<String>();
+    private List<Actividad> actividades = new ArrayList<Actividad>();
+    
+    
     /** Tipo de moneda**/
     private TipoMoneda tipoMoneda;
     
+    private long idVuelo; // Id del vuelo asociado (opcional)
+    private long idAlojamiento; //Id del alojamiento asociado (opcional) 
+
+    
+    @Column(name="VUELO", nullable=true)
+	public long getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(long idVuelo) {
+		this.idVuelo = idVuelo;
+	}
+	
+	@Column(name="ALOJAMIENTO", nullable=true)
+	public long getIdAlojamiento() {
+		return idAlojamiento;
+	}
+
+	public void setIdAlojamiento(long idAlojamiento) {
+		this.idAlojamiento = idAlojamiento;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq_producto")
 	@Column(name="ID")
@@ -136,8 +163,8 @@ public class Producto implements Serializable {
 		return descripcionPaquete;
 	}
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	public List<String> getActividades() {
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	public List<Actividad> getActividades() {
 		return actividades;
 	}
 
@@ -206,7 +233,7 @@ public class Producto implements Serializable {
 		this.descripcionPaquete = descripcionPaquete;
 	}
 	
-	public void setActividades(List<String> actividades) {
+	public void setActividades(List<Actividad> actividades) {
 		this.actividades = actividades;
 	}
 	
