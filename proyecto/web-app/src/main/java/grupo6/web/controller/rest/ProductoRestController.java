@@ -4,21 +4,27 @@ import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.modulo.user.service.impl.IUsuarioService;
+import grupo6.persistencia.entidades.Actividad;
+import grupo6.persistencia.entidades.Alojamiento;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.persistencia.entidades.Vuelo;
+import grupo6.web.dto.ActividadDTO;
+import grupo6.web.dto.AlojamientoDTO;
 import grupo6.web.dto.CalificacionResponseDTO;
 import grupo6.web.dto.CalificarRequestDTO;
 import grupo6.web.dto.ProductoRequestDTO;
 import grupo6.web.dto.ProductoResponseDTO;
 import grupo6.web.dto.ResponseDTO;
 import grupo6.web.dto.UsuarioDTO;
+import grupo6.web.dto.VueloDTO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +59,52 @@ public class ProductoRestController extends BaseRestController {
 	@Autowired 
 	private IUsuarioService usuarioService;	
 	
+	
+	/**
+	 * Servicio REST para consultar un alojamiento mediante su id.
+	 * @param id del alojamiento 
+
+	 */
+	@RequestMapping(value = "/alojamiento/{id}", method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody AlojamientoDTO buscarAlojamiento(@PathVariable("id") Long id) {
+		
+		return convertirAlojamientoToDTO(productoService.buscarAlojamientoPorId(id));
+	}
+	
+	/**
+	 * Servicio REST para consultar un vuelo mediante su id.
+	 * @param id del vuelo 
+
+	 */
+	@RequestMapping(value = "/vuelo/{id}", method = RequestMethod.GET,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody VueloDTO buscarVuelo(@PathVariable("id") Long id) {
+
+		Vuelo vuelo = productoService.buscarVueloPorId(id);
+		
+		if (vuelo != null) {
+			
+			return convertirVuelotoToDTO(productoService.buscarVueloPorId(id));
+		} else {
+			return null;
+		}
+		
+	}
+	
+	/**
+	 * Servicio REST para consultar una actividad mediante su id.
+	 * @param id de la actividad 
+
+	 */
+	@RequestMapping(value = "/actividad/{id}", method = RequestMethod.GET, 
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ActividadDTO buscarActividad(@PathVariable("id") Long id) {
+		
+		return convertirActividadtoToDTO(productoService.buscarActividadPorId(id));
+	}
+	
+	
 	/**
 	 * Servicio REST que crea un producto.
 	 * @param en producto a crear. Creado a partir de un JSON.
@@ -75,12 +127,167 @@ public class ProductoRestController extends BaseRestController {
 		producto.setProveedorId(productoDTO.getProveedorId());
 		producto.setTipoMoneda(productoDTO.getTipoMoneda());
 		producto.setDescripcionPaquete(productoDTO.getDescripcion());
-		if (StringUtils.isNotBlank(productoDTO.getActividades())) {
-			producto.setActividades(Arrays.asList(productoDTO.getActividades()));
+		if (productoDTO.getActividades() != null) {
+			producto.setActividades(productoDTO.getActividades());
 		}
 		
 		return productoService.crearProducto(producto); 
 	}
+	
+	
+	/**
+	 * Servicio REST para cerar un alojamiento.
+	 * @param alojamiento a crear en formato JSON
+	 * 
+	 * @return el id del nuevo alojamiento.
+	 */
+	@RequestMapping(value = "/alojamiento", method = RequestMethod.POST, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Long crearAlojamiento(@RequestBody AlojamientoDTO alojamientoDTO) {
+		
+		Alojamiento alojamiento = new Alojamiento();
+		
+		alojamiento.setAireAcondicionado(alojamientoDTO.isAireAcondicionado());
+		alojamiento.setNumeroNoches(alojamientoDTO.getNumeroNoches());
+		alojamiento.setNumMaxPersonas(alojamientoDTO.getNumMaxPersonas());
+		alojamiento.setPiscina(alojamientoDTO.isPiscina());
+		alojamiento.setPrecioPorDia(alojamientoDTO.getPrecioPorDia());
+		alojamiento.setPrecioTotal(alojamientoDTO.getPrecioTotal());
+		alojamiento.setTipo(alojamientoDTO.getTipo());
+		alojamiento.setVigilancia(alojamientoDTO.isVigilancia());
+		alojamiento.setZonasVerdes(alojamientoDTO.isZonasVerdes());
+		
+		return productoService.crearAlojamiento(alojamiento);
+	}
+	
+	
+	/**
+	 * Servicio REST para obtener los alojamientoq ue existen 
+	 * en la base de datos
+	 * 
+	 * @return Listado de alojamiento que existen en la base de datos.
+	 */
+	@RequestMapping(value = "/alojamientos", method = RequestMethod.GET,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<AlojamientoDTO> obtenerAlojamientos() {
+		
+		List<AlojamientoDTO> alojamientosDTO = new ArrayList<AlojamientoDTO>();
+		List<Alojamiento> alojamientosObtenidos = productoService.obtenerAlojamientos();
+		
+		for (Alojamiento alojamiento : alojamientosObtenidos) {
+			alojamientosDTO.add(convertirAlojamientoToDTO(alojamiento));
+		}
+		
+		return alojamientosDTO;
+	}	
+
+	
+	/**
+	 * Servicio REST para actualizar una actividad .
+	 * @param actividad a actualizar en formato JSON
+	 */
+	@RequestMapping(value = "/actividad", method = RequestMethod.PUT, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean actualizarActividad(@RequestBody ActividadDTO actividadDTO) {
+		
+		Actividad actividad = new Actividad();
+		actividad.setId(actividadDTO.getId());
+		actividad.setCostoActividad(actividadDTO.getCostoActividad());
+		actividad.setCostoTotal(actividadDTO.getCostoTotal());
+		actividad.setDescripcion(actividadDTO.getDescripcion());
+		actividad.setFechaActividad(actividadDTO.getFechaActividad());
+		actividad.setNombreActividad(actividadDTO.getNombreActividad());
+		actividad.setNumPersonas(actividadDTO.getNumPersonas());
+		
+		return productoService.actualizarActividad(actividad);
+	}
+	
+	/**
+	 * Servicio REST para actualizar un alojamiento.
+	 * @param alojamiento a actualizar en formato JSON
+
+	 */
+	@RequestMapping(value = "/alojamiento", method = RequestMethod.PUT, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean actualizarAlojamiento(@RequestBody AlojamientoDTO alojamientoDTO) {
+		
+		Alojamiento alojamiento = new Alojamiento();
+		alojamiento.setId(alojamientoDTO.getId());
+		alojamiento.setAireAcondicionado(alojamientoDTO.isAireAcondicionado());
+		alojamiento.setNumeroNoches(alojamientoDTO.getNumeroNoches());
+		alojamiento.setNumMaxPersonas(alojamientoDTO.getNumMaxPersonas());
+		alojamiento.setPiscina(alojamientoDTO.isPiscina());
+		alojamiento.setPrecioPorDia(alojamientoDTO.getPrecioPorDia());
+		alojamiento.setPrecioTotal(alojamientoDTO.getPrecioTotal());
+		alojamiento.setTipo(alojamientoDTO.getTipo());
+		alojamiento.setVigilancia(alojamientoDTO.isVigilancia());
+		alojamiento.setZonasVerdes(alojamientoDTO.isZonasVerdes());
+		
+		return productoService.actualizarAlojamiento(alojamiento);
+	}
+	
+	/**
+	 * Servicio REST para cerar un vuelo.
+	 * @param vuelo a crear en formato JSON
+	 * 
+	 * @return el id del nuevo vuelo.
+	 */
+	@RequestMapping(value = "/vuelo", method = RequestMethod.POST, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Long crearVuelo(@RequestBody VueloDTO vueloDTO) {
+		
+		try {
+			
+			Vuelo vuelo = new Vuelo();
+			vuelo.setAerolinea(vueloDTO.getAerolinea());
+			vuelo.setDestino(vueloDTO.getDestino());
+			vuelo.setFechaLlegada(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaLlegada()));
+			vuelo.setFechaSalida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaSalida()));
+			vuelo.setNumPersonas(vueloDTO.getNumPersonas());
+			vuelo.setOrigen(vueloDTO.getOrigen());
+			vuelo.setPrecioTotal(vueloDTO.getPrecioTotal());
+			vuelo.setPrecioVuelo(vueloDTO.getPrecioVuelo());
+			return productoService.crearVuelo(vuelo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Servicio REST para actualizar un vuelo.
+	 * @param vuelo a actualizar en formato JSON
+	 */
+	@RequestMapping(value = "/vuelo", method = RequestMethod.PUT, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean actualizarVuelo(@RequestBody VueloDTO vueloDTO) {
+		
+		try {
+			
+			Vuelo vuelo = new Vuelo();
+			vuelo.setId(vueloDTO.getId());
+			vuelo.setAerolinea(vueloDTO.getAerolinea());
+			vuelo.setDestino(vueloDTO.getDestino());
+			vuelo.setFechaLlegada(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaLlegada()));
+			vuelo.setFechaSalida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaSalida()));
+			vuelo.setNumPersonas(vueloDTO.getNumPersonas());
+			vuelo.setOrigen(vueloDTO.getOrigen());
+			vuelo.setPrecioTotal(vueloDTO.getPrecioTotal());
+			vuelo.setPrecioVuelo(vueloDTO.getPrecioVuelo());
+			return productoService.actualizarVuelo(vuelo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	
 	/**
 	 * Servicio REST para listar todos los productos del sistema.
@@ -300,5 +507,70 @@ public class ProductoRestController extends BaseRestController {
 		usuarioDTO.setTelefono(usuario.getTelefono());
 		usuarioDTO.setWebsite(usuario.getWebsite());
 		return usuarioDTO;
+	}
+	
+	/**
+	 *Metodo complementario que permite transformar una entidad alojamiento 
+	 *a un alojamientoDTO que viaja por red
+	 * @param alojamiento
+	 * @return alojamientoDTO
+	 */
+	public AlojamientoDTO convertirAlojamientoToDTO(Alojamiento alojamiento) {
+			
+		AlojamientoDTO aloDTO = new AlojamientoDTO();
+		aloDTO.setAireAcondicionado(alojamiento.isAireAcondicionado());
+		aloDTO.setId(alojamiento.getId());
+		aloDTO.setNumeroNoches(alojamiento.getNumeroNoches());
+		aloDTO.setNumMaxPersonas(alojamiento.getNumMaxPersonas());
+		aloDTO.setPiscina(alojamiento.isPiscina());
+		aloDTO.setPrecioPorDia(alojamiento.getPrecioPorDia());
+		aloDTO.setPrecioTotal(alojamiento.getPrecioTotal());
+		aloDTO.setTipo(alojamiento.getTipo());
+		aloDTO.setVigilancia(alojamiento.isVigilancia());
+		aloDTO.setZonasVerdes(alojamiento.isZonasVerdes());
+		
+		return aloDTO;
+	}
+	
+	/**
+	 * Metodo que permite convertir una entidad vuelo en un
+	 * vuelo DTO para que viaje
+	 * @param vuelo
+	 * @return vueloDTO
+	 */
+	public VueloDTO convertirVuelotoToDTO(Vuelo vuelo) {
+		
+		VueloDTO vueDTO = new VueloDTO();
+		vueDTO.setAerolinea(vuelo.getAerolinea());
+		vueDTO.setDestino(vuelo.getDestino());
+		vueDTO.setFechaLlegada(vuelo.getFechaLlegada().toString());
+		vueDTO.setFechaSalida(vuelo.getFechaSalida().toString());
+		vueDTO.setId(vuelo.getId());
+		vueDTO.setNumPersonas(vuelo.getNumPersonas());
+		vueDTO.setOrigen(vuelo.getOrigen());
+		vueDTO.setPrecioTotal(vuelo.getPrecioTotal());
+		vueDTO.setPrecioVuelo(vuelo.getPrecioVuelo());
+		return vueDTO;
+	}
+	
+	
+	/**
+	 * Metodo que permite convertir una entidad actividad en su version DTO
+	 * para que viaje por la red
+	 * @param actividad
+	 * @return actividad DTO
+	 */
+	public ActividadDTO convertirActividadtoToDTO(Actividad actividad) {
+		
+		ActividadDTO actiDTO = new ActividadDTO();
+		actiDTO.setCostoActividad(actividad.getCostoActividad());
+		actiDTO.setCostoTotal(actividad.getCostoTotal());
+		actiDTO.setDescripcion(actividad.getDescripcion());
+		actiDTO.setFechaActividad(actividad.getFechaActividad());
+		actiDTO.setId(actividad.getId());
+		actiDTO.setNombreActividad(actividad.getNombreActividad());
+		actiDTO.setNumPersonas(actividad.getNumPersonas());
+		
+		return actiDTO;
 	}
 }

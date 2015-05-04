@@ -6,11 +6,14 @@ import grupo6.modulo.product.factory.BusquedaProductosFactory;
 import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.factory.IBusquedaProducto;
 import grupo6.modulo.product.service.view.IProductoService;
+import grupo6.persistencia.entidades.Actividad;
+import grupo6.persistencia.entidades.Alojamiento;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.ETipoRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
+import grupo6.persistencia.entidades.Vuelo;
 
 import java.util.List;
 
@@ -31,13 +34,120 @@ public class ProductoService implements IProductoService {
 	@Autowired 
 	private IRatingProductoDAO ratingProductoDAO;
 	
+	
+	
+	/**
+	 * Metodo que permite buscar un alojamiento por ID returna null si no lo encuentra
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Alojamiento buscarAlojamientoPorId(Long Id) {
+		return productoDAO.buscarAlojamientoPorId(Id);
+	}
+
+	/**
+	 * Metodo que permite buscar vuelo por id
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Vuelo buscarVueloPorId(Long Id) {
+
+		return productoDAO.buscarVueloPorId(Id);
+	}
+
+	/**
+	 * Buscar actividad pro id devuelve null si hay error
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Actividad buscarActividadPorId(Long Id) {
+
+		return productoDAO.buscarActividadPorId(Id);
+	}
+	
+	/**
+	 * Metodo que no permite actualizar un alojamiento en la BD
+	 * @param alojamiento
+	 */
+	@Override
+	@Transactional
+	public boolean actualizarAlojamiento(Alojamiento alojamiento) {
+		return productoDAO.actualizarAlojamiento(alojamiento);
+		
+	}
+	
+	/**
+	 * Metodo que retorna todos los alojamientos
+	 * @return todos los alojamientos de que esten en la BD
+	 */
+	@Override
+	@Transactional
+	public List<Alojamiento> obtenerAlojamientos(){
+		return productoDAO.obtenerAlojamientos();
+	}
+
+	/**
+	 * Metodo que permite crear un vuelo 
+	 * @param vuelo
+	 */
+	@Override
+	@Transactional
+	public boolean actualizarVuelo(Vuelo vuelo) {
+		return productoDAO.actualizarVuelo(vuelo);
+	}
+
+	/**
+	 * Metodo que permite crear una actividad 
+	 * @param actividad
+	 */
+	@Transactional
+	public boolean actualizarActividad(Actividad actividad){
+		
+		return productoDAO.actualizarActividad(actividad);
+	}
+	
+	/**
+	 * Metodo que no permite crear un alohjamiento en la BD
+	 * @param alojamiento
+	 * @return id del alojamiento creado
+	 */
+	@Transactional
+	public Long crearAlojamiento(Alojamiento alojamiento) {
+		
+		Long idAlojamiento = 0l;
+		
+		if (alojamiento != null) {
+			
+			idAlojamiento = productoDAO.crearAlojamiento(alojamiento);
+		}
+		
+		return idAlojamiento;
+	}
+	
+	/**
+	 * Metodo que permite crear un vuelo 
+	 * @param vuelo
+	 * @return id del vuelo creado
+	 */
+	@Transactional
+	public Long crearVuelo(Vuelo vuelo) {
+		
+		Long idVuelo = 0l;
+		
+		if (vuelo != null) {
+			idVuelo = productoDAO.crearVuelo(vuelo);
+		}
+		
+		return idVuelo;
+	}
+	
 	/**
 	 * (non-Javadoc)
 	 * @see grupo6.modulo.product.service.view.IProductoService#crearProducto(grupo6.persistencia.entidades.Producto)
 	 */
 	@Transactional
 	public Long crearProducto(Producto producto) {
-		
+	
 		Long productoId = productoDAO.crear(producto);
 		asignarRatingsDefault(productoId);
 		return productoId;
@@ -174,7 +284,5 @@ public class ProductoService implements IProductoService {
 		ratingProductoDAO.crearRating(productoId, ETipoRating.COMODIDAD);
 	}
 
-	
-	
 	
 }

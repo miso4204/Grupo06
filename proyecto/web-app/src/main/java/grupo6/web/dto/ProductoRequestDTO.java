@@ -1,10 +1,12 @@
 package grupo6.web.dto;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.persistencia.entidades.Actividad;
 import grupo6.web.json.serializer.JsonDateSerializer;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
@@ -40,7 +42,10 @@ public class ProductoRequestDTO implements Serializable {
 	/** Texto descriptivo del producto.*/
 	private String descripcion;
 	/** Texto descriptivo del producto.*/	
-	private String actividades;
+	private List<Actividad> actividades;
+	
+    private long idVuelo; // Id del vuelo asociado (opcional)
+    private long idAlojamiento; //Id del alojamiento asociado (opcional) 
 
 	public String getNombre() {
 		return nombre;
@@ -71,11 +76,6 @@ public class ProductoRequestDTO implements Serializable {
 		return descripcion;
 	}
 	
-
-	public String getActividades() {
-		return actividades;
-	}
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -121,10 +121,30 @@ public class ProductoRequestDTO implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public void setActividades(String actividades) {
+	public List<Actividad> getActividades() {
+		return actividades;
+	}
+
+	public void setActividades(List<Actividad> actividades) {
 		this.actividades = actividades;
+	}
+
+	public long getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(long idVuelo) {
+		this.idVuelo = idVuelo;
+	}
+
+	public long getIdAlojamiento() {
+		return idAlojamiento;
+	}
+
+	public void setIdAlojamiento(long idAlojamiento) {
+		this.idAlojamiento = idAlojamiento;
 	}
 	
 	
-			
+	
 }

@@ -2,7 +2,7 @@ package grupo6.persistencia.entidades;
 
 import grupo6.modulo.payment.dao.enums.Aerolineas;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,8 +32,8 @@ public class Vuelo {
 	private double precioTotal; // Resultado de multiplicar el precioVuelo por el numPersonas
 	private String origen;
 	private String destino;
-	private Calendar fechaSalida;
-	private Calendar fechaLlegada;
+	private Date fechaSalida;
+	private Date fechaLlegada;
 	
 	/**
 	 * Constructor por defecto de la clase 
@@ -65,7 +65,7 @@ public class Vuelo {
 		this.aerolinea = aerolinea;
 	}
 
-	@Column(name="NUM_PERSONAS",nullable = false)
+	@Column(name="NUM_PERSONAS",nullable = true)
 	public int getNumPersonas() {
 		return numPersonas;
 	}
@@ -83,7 +83,7 @@ public class Vuelo {
 		this.precioVuelo = precioVuelo;
 	}
 
-	@Column(name="PRECIO_TOTAL",nullable = false)
+	@Column(name="PRECIO_TOTAL",nullable = true)
 	public double getPrecioTotal() {
 		return precioTotal;
 	}
@@ -112,21 +112,21 @@ public class Vuelo {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="FECHA_SALIDA",nullable = false)
-	public Calendar getFechaSalida() {
+	public Date getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="FECHA_LLEGADA",nullable = false)
-	public Calendar getFechaLlegada() {
+	public Date getFechaLlegada() {
 		return fechaLlegada;
 	}
 
-	public void setFechaLlegada(Calendar fechaLlegada) {
+	public void setFechaLlegada(Date fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
 	}
 	

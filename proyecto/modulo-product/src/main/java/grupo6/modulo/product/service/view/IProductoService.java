@@ -1,10 +1,13 @@
 package grupo6.modulo.product.service.view;
 
 import grupo6.modulo.product.factory.ETipoBusqueda;
+import grupo6.persistencia.entidades.Actividad;
+import grupo6.persistencia.entidades.Alojamiento;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.RatingProducto;
 import grupo6.persistencia.entidades.RatingProductoCalificacion;
+import grupo6.persistencia.entidades.Vuelo;
 
 import java.util.List;
 
@@ -14,8 +17,69 @@ import java.util.List;
 public interface IProductoService {
 	
 	/**
+	 * Metodo que permite realizar la busqueda de un alojamiento por  id
+	 * @param Id
+	 * @return alojamiento encontrado mediante el id o null si no lo encuentra
+	 */
+	Alojamiento buscarAlojamientoPorId(Long Id);
+	
+	/**
+	 * Metodo que permite realizar la busqueda de un vuelo por  id
+	 * @param Id
+	 * @return alojamiento encontrado mediante el id o null si no lo encuentra
+	 */
+	Vuelo buscarVueloPorId(Long Id);
+	
+	/**
+	 * Metodo que permite realizar la busqueda de una actividad por  id
+	 * @param Id
+	 * @return actividad encontrada mediante el id o null si no lo encuentra
+	 */
+	Actividad buscarActividadPorId(Long Id);
+	
+	/**
+	 * Metodo que retorna todos los alojamientos
+	 * @return todos los alojamientos de que esten en la BD
+	 */
+	List<Alojamiento> obtenerAlojamientos();
+	
+	/**
+	 * Metodo que no permite crear un alohjamiento en la BD
+	 * @param alojamiento
+	 * @return id del alojamiento creado
+	 */
+	Long crearAlojamiento(Alojamiento alojamiento);
+
+	/**
+	 * Metodo que no permite actualizar un alojamiento en la BD
+	 * @param alojamiento
+	 */
+	boolean actualizarAlojamiento(Alojamiento alojamiento);
+	
+	
+	/**
+	 * Metodo que permite crear una actividad 
+	 * @param actividad
+	 */
+	boolean actualizarActividad(Actividad actividad);
+	
+	/**
+	 * Metodo que permite crear un vuelo 
+	 * @param vuelo
+	 */
+	boolean actualizarVuelo(Vuelo vuelo);
+	
+	/**
+	 * Metodo que permite crear un vuelo 
+	 * @param vuelo
+	 * @return id del vuelo creado
+	 */
+	Long crearVuelo(Vuelo vuelo);
+	
+	
+	/**
 	 * Crear un producto.
-	 * @param producto el producto a crear.
+	 * @param producto el producto a crear
 	 * @return el id del producto creado.
 	 */
 	Long crearProducto(Producto producto);
