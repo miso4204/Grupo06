@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -116,6 +115,37 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Long crearProducto(@RequestBody ProductoRequestDTO productoDTO) {
 		
+		Long idVuelo = 0L;
+		Long idAloja = 0L;
+		
+		try {
+			if (productoDTO.getVuelo() != null) {
+				VueloDTO vueloProd = productoDTO.getVuelo();
+				Vuelo vueloEnti =  convertVueloDTOTOVueloEntity(vueloProd);
+				idVuelo = productoService.crearVuelo(vueloEnti);
+			}else {
+				System.out.println("El vuelo se encuentra null");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("No se envió un vuelo para crear o se presentaron problemas al hacerlo");
+		}
+		
+		
+		try {
+			if (productoDTO.getAlojamiento() != null) {
+				AlojamientoDTO alojamientoProd = productoDTO.getAlojamiento();
+				Alojamiento alojaEntity = convertirALojamientoDTOToAlojamientoEntity(alojamientoProd);
+				idAloja = productoService.crearAlojamiento(alojaEntity);
+			} else {
+				System.out.println("El alojamiento se encuentra null");
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("No se envió un alojamiento para crear o se presentaron problemas al crearlo");
+		}
+		
+		
 		Producto producto = new Producto();
 		producto.setCiudad(productoDTO.getCiudad());
 		producto.setLugar(productoDTO.getLugar());
@@ -127,6 +157,15 @@ public class ProductoRestController extends BaseRestController {
 		producto.setProveedorId(productoDTO.getProveedorId());
 		producto.setTipoMoneda(productoDTO.getTipoMoneda());
 		producto.setDescripcionPaquete(productoDTO.getDescripcion());
+		
+		if (idAloja != 0){
+			producto.setIdAlojamiento(idAloja);
+		}
+		
+		if (idVuelo  != 0){
+			producto.setIdVuelo(idVuelo);
+		}
+		
 		if (productoDTO.getActividades() != null) {
 			producto.setActividades(productoDTO.getActividades());
 		}
@@ -146,18 +185,7 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Long crearAlojamiento(@RequestBody AlojamientoDTO alojamientoDTO) {
 		
-		Alojamiento alojamiento = new Alojamiento();
-		
-		alojamiento.setAireAcondicionado(alojamientoDTO.isAireAcondicionado());
-		alojamiento.setNumeroNoches(alojamientoDTO.getNumeroNoches());
-		alojamiento.setNumMaxPersonas(alojamientoDTO.getNumMaxPersonas());
-		alojamiento.setPiscina(alojamientoDTO.isPiscina());
-		alojamiento.setPrecioPorDia(alojamientoDTO.getPrecioPorDia());
-		alojamiento.setPrecioTotal(alojamientoDTO.getPrecioTotal());
-		alojamiento.setTipo(alojamientoDTO.getTipo());
-		alojamiento.setVigilancia(alojamientoDTO.isVigilancia());
-		alojamiento.setZonasVerdes(alojamientoDTO.isZonasVerdes());
-		
+		Alojamiento alojamiento = convertirALojamientoDTOToAlojamientoEntity(alojamientoDTO);
 		return productoService.crearAlojamiento(alojamiento);
 	}
 	
@@ -192,15 +220,7 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean actualizarActividad(@RequestBody ActividadDTO actividadDTO) {
 		
-		Actividad actividad = new Actividad();
-		actividad.setId(actividadDTO.getId());
-		actividad.setCostoActividad(actividadDTO.getCostoActividad());
-		actividad.setCostoTotal(actividadDTO.getCostoTotal());
-		actividad.setDescripcion(actividadDTO.getDescripcion());
-		actividad.setFechaActividad(actividadDTO.getFechaActividad());
-		actividad.setNombreActividad(actividadDTO.getNombreActividad());
-		actividad.setNumPersonas(actividadDTO.getNumPersonas());
-		
+		Actividad actividad = converActivDTOTOActividadENtity(actividadDTO);
 		return productoService.actualizarActividad(actividad);
 	}
 	
@@ -214,18 +234,7 @@ public class ProductoRestController extends BaseRestController {
 						produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean actualizarAlojamiento(@RequestBody AlojamientoDTO alojamientoDTO) {
 		
-		Alojamiento alojamiento = new Alojamiento();
-		alojamiento.setId(alojamientoDTO.getId());
-		alojamiento.setAireAcondicionado(alojamientoDTO.isAireAcondicionado());
-		alojamiento.setNumeroNoches(alojamientoDTO.getNumeroNoches());
-		alojamiento.setNumMaxPersonas(alojamientoDTO.getNumMaxPersonas());
-		alojamiento.setPiscina(alojamientoDTO.isPiscina());
-		alojamiento.setPrecioPorDia(alojamientoDTO.getPrecioPorDia());
-		alojamiento.setPrecioTotal(alojamientoDTO.getPrecioTotal());
-		alojamiento.setTipo(alojamientoDTO.getTipo());
-		alojamiento.setVigilancia(alojamientoDTO.isVigilancia());
-		alojamiento.setZonasVerdes(alojamientoDTO.isZonasVerdes());
-		
+		Alojamiento alojamiento = convertirALojamientoDTOToAlojamientoEntity(alojamientoDTO);
 		return productoService.actualizarAlojamiento(alojamiento);
 	}
 	
@@ -242,15 +251,7 @@ public class ProductoRestController extends BaseRestController {
 		
 		try {
 			
-			Vuelo vuelo = new Vuelo();
-			vuelo.setAerolinea(vueloDTO.getAerolinea());
-			vuelo.setDestino(vueloDTO.getDestino());
-			vuelo.setFechaLlegada(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaLlegada()));
-			vuelo.setFechaSalida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaSalida()));
-			vuelo.setNumPersonas(vueloDTO.getNumPersonas());
-			vuelo.setOrigen(vueloDTO.getOrigen());
-			vuelo.setPrecioTotal(vueloDTO.getPrecioTotal());
-			vuelo.setPrecioVuelo(vueloDTO.getPrecioVuelo());
+			Vuelo vuelo = convertVueloDTOTOVueloEntity(vueloDTO);
 			return productoService.crearVuelo(vuelo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -269,16 +270,7 @@ public class ProductoRestController extends BaseRestController {
 		
 		try {
 			
-			Vuelo vuelo = new Vuelo();
-			vuelo.setId(vueloDTO.getId());
-			vuelo.setAerolinea(vueloDTO.getAerolinea());
-			vuelo.setDestino(vueloDTO.getDestino());
-			vuelo.setFechaLlegada(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaLlegada()));
-			vuelo.setFechaSalida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaSalida()));
-			vuelo.setNumPersonas(vueloDTO.getNumPersonas());
-			vuelo.setOrigen(vueloDTO.getOrigen());
-			vuelo.setPrecioTotal(vueloDTO.getPrecioTotal());
-			vuelo.setPrecioVuelo(vueloDTO.getPrecioVuelo());
+			Vuelo vuelo = convertVueloDTOTOVueloEntity(vueloDTO);
 			return productoService.actualizarVuelo(vuelo);
 			
 		} catch (Exception e) {
@@ -446,9 +438,28 @@ public class ProductoRestController extends BaseRestController {
 		productoDTO.setPrecio(producto.getPrecio());
 		productoDTO.setTipoMoneda(producto.getTipoMoneda());
 		productoDTO.setDescripcion(producto.getDescripcionPaquete());
-		if (!producto.getActividades().isEmpty()) {
-			productoDTO.setActividades(
-					StringUtils.join(producto.getActividades(), ", "));
+		
+		if (producto.getActividades() != null) {
+			productoDTO.setActividades((producto.getActividades()));
+		}
+		
+		Long idVuelo = producto.getIdVuelo();	
+		if (idVuelo!= 0){
+			Vuelo vuelo = productoService.buscarVueloPorId(idVuelo);
+			VueloDTO vueloDTO = convertirVuelotoToDTO(vuelo);
+			productoDTO.setVuelo(vueloDTO);
+		} else {
+			System.out.println("El id del vuelo esta vácio");
+		}
+		
+		
+		Long idAlojamiento = producto.getIdAlojamiento();	
+		if (idAlojamiento!= 0){
+			Alojamiento alojamiento = productoService.buscarAlojamientoPorId(idAlojamiento);
+			AlojamientoDTO alojamientoDTO = convertirAlojamientoToDTO(alojamiento);
+			productoDTO.setAlojamiento(alojamientoDTO);
+		} else {
+			System.out.println("El id del alojamiento esta vácio");
 		}
 		
 		//TODO //productoDTO.setUltimaCompra(ultimaCompra);
@@ -532,6 +543,31 @@ public class ProductoRestController extends BaseRestController {
 		return aloDTO;
 	}
 	
+	
+	/**
+	 * Metodo que nos permite convertir un DTO que representa el objeto JSON
+	 * de entrada a un metotodo en la entidad que nos permiterira 
+	 * persistirla en BD
+	 * @param alojamientoDTO
+	 * @return alojamiento de tipo entidad
+	 */
+	public Alojamiento convertirALojamientoDTOToAlojamientoEntity (AlojamientoDTO alojamientoDTO){
+		
+		Alojamiento alojamiento = new Alojamiento();
+		
+		alojamiento.setAireAcondicionado(alojamientoDTO.isAireAcondicionado());
+		alojamiento.setNumeroNoches(alojamientoDTO.getNumeroNoches());
+		alojamiento.setNumMaxPersonas(alojamientoDTO.getNumMaxPersonas());
+		alojamiento.setPiscina(alojamientoDTO.isPiscina());
+		alojamiento.setPrecioPorDia(alojamientoDTO.getPrecioPorDia());
+		alojamiento.setPrecioTotal(alojamientoDTO.getPrecioTotal());
+		alojamiento.setTipo(alojamientoDTO.getTipo());
+		alojamiento.setVigilancia(alojamientoDTO.isVigilancia());
+		alojamiento.setZonasVerdes(alojamientoDTO.isZonasVerdes());
+		
+		return alojamiento;
+	}
+	
 	/**
 	 * Metodo que permite convertir una entidad vuelo en un
 	 * vuelo DTO para que viaje
@@ -555,6 +591,38 @@ public class ProductoRestController extends BaseRestController {
 	
 	
 	/**
+	 * Metodos que nos permite convertir un vueloDTO que nos llega
+	 * en formato JSON a un vueo que es una entidad y nos permite almacenarlo
+	 * en la BD
+	 * @param vueloDTO
+	 * @return vuelo de entidad 
+	 */
+	public Vuelo convertVueloDTOTOVueloEntity(VueloDTO vueloDTO) {
+		
+		
+		Vuelo vuelo = new Vuelo();
+		
+		try {
+			
+			vuelo.setAerolinea(vueloDTO.getAerolinea());
+			vuelo.setDestino(vueloDTO.getDestino());
+			vuelo.setFechaLlegada(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaLlegada()));
+			vuelo.setFechaSalida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(vueloDTO.getFechaSalida()));
+			vuelo.setNumPersonas(vueloDTO.getNumPersonas());
+			vuelo.setOrigen(vueloDTO.getOrigen());
+			vuelo.setPrecioTotal(vueloDTO.getPrecioTotal());
+			vuelo.setPrecioVuelo(vueloDTO.getPrecioVuelo());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Se presento un error al intentar convertir el vuelo dto a un vuelo de entidad posiblemente en el casteo de fechas ");
+		}
+
+		return vuelo;
+	}
+	
+	
+	/**
 	 * Metodo que permite convertir una entidad actividad en su version DTO
 	 * para que viaje por la red
 	 * @param actividad
@@ -572,5 +640,25 @@ public class ProductoRestController extends BaseRestController {
 		actiDTO.setNumPersonas(actividad.getNumPersonas());
 		
 		return actiDTO;
+	}
+	
+	/**
+	 * Metodo que nos permite convertir un objeto de entrada como actividadDTO
+	 * a un objeto de entidad de la actividad
+	 * @param actividadDTO
+	 * @return actividad DTO que contiene los datos reopresentados por el DTO
+	 */
+	public Actividad converActivDTOTOActividadENtity(ActividadDTO actividadDTO) {
+		
+		Actividad actividad = new Actividad();
+		actividad.setId(actividadDTO.getId());
+		actividad.setCostoActividad(actividadDTO.getCostoActividad());
+		actividad.setCostoTotal(actividadDTO.getCostoTotal());
+		actividad.setDescripcion(actividadDTO.getDescripcion());
+		actividad.setFechaActividad(actividadDTO.getFechaActividad());
+		actividad.setNombreActividad(actividadDTO.getNombreActividad());
+		actividad.setNumPersonas(actividadDTO.getNumPersonas());
+		
+		return actividad;
 	}
 }

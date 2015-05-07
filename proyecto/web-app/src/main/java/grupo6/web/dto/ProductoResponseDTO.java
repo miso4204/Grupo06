@@ -1,6 +1,7 @@
 package grupo6.web.dto;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.persistencia.entidades.Actividad;
 import grupo6.web.json.serializer.JsonDateDeserializer;
 
 import java.io.Serializable;
@@ -10,18 +11,19 @@ import java.util.List;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 /**
- * DTO que representa un Producto JSON a devolver a la capa web. 
+ * DTO que representa un Producto JSON a devolver a la capa web.
+ * 
  * @author caespinosam
  * 
  */
-public class ProductoResponseDTO implements Serializable  {
-	
+public class ProductoResponseDTO implements Serializable {
+
 	/**
 	 * UID generado.
 	 */
 	private static final long serialVersionUID = -8658863654377821942L;
 
-	/** Id del producto en el sistema*/
+	/** Id del producto en el sistema */
 	private Long id;
 	/** Nombre del paquete producto. Ej: paquete semana santa. **/
 	private String nombre;
@@ -36,21 +38,23 @@ public class ProductoResponseDTO implements Serializable  {
 	/** Las fotos del producto. **/
 	private String urlImagen;
 	private Date ultimaCompra;
-	/** Calificaciones asociadas al producto.**/
+	/** Calificaciones asociadas al producto. **/
 	private List<CalificacionResponseDTO> calificaciones;
-	/** Proveedor dle producto.*/
+	/** Proveedor dle producto. */
 	private UsuarioDTO proveedor;
-	/** Tipo de Moneda.*/
+	/** Tipo de Moneda. */
 	private TipoMoneda tipoMoneda;
-	/** La descripcion del paquete.*/
+	/** La descripcion del paquete. */
 	private String descripcion;
-	/** Texto descriptivo del producto.*/	
-	private String actividades;
-	
+
+	private List<Actividad> actividades;
+	private VueloDTO vuelo; // Id del vuelo asociado (opcional)
+	private AlojamientoDTO alojamiento; // Id del alojamiento asociado
+										// (opcional)
+
 	public Long getId() {
 		return id;
 	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -72,31 +76,23 @@ public class ProductoResponseDTO implements Serializable  {
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
-	
+
 	@JsonDeserialize(using = JsonDateDeserializer.class)
 	public Date getUltimaCompra() {
 		return ultimaCompra;
 	}
 
-
 	public String getUrlImagen() {
 		return urlImagen;
 	}
-	
+
 	public List<CalificacionResponseDTO> getCalificaciones() {
 		return calificaciones;
 	}
-	
 
 	public String getDescripcion() {
 		return descripcion;
 	}
-
-
-	public String getActividades() {
-		return actividades;
-	}
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -130,22 +126,19 @@ public class ProductoResponseDTO implements Serializable  {
 		this.calificaciones = calificaciones;
 	}
 
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public UsuarioDTO getProveedor() {
-		
+
 		return proveedor;
 	}
-
 
 	public void setProveedor(UsuarioDTO proveedor) {
 		this.proveedor = proveedor;
 	}
-	
+
 	public TipoMoneda getTipoMoneda() {
 		return tipoMoneda;
 	}
@@ -153,15 +146,34 @@ public class ProductoResponseDTO implements Serializable  {
 	public void setTipoMoneda(TipoMoneda tipoMoneda) {
 		this.tipoMoneda = tipoMoneda;
 	}
-	
-	public void setActividades(String actividades) {
-		this.actividades = actividades;
+
+	public VueloDTO getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(VueloDTO vuelo) {
+		this.vuelo = vuelo;
+	}
+
+	public AlojamientoDTO getAlojamiento() {
+		return alojamiento;
+	}
+
+	public void setAlojamiento(AlojamientoDTO alojamiento) {
+		this.alojamiento = alojamiento;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
 
+	public void setActividades(List<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+
+	public List<Actividad> getActividades() {
+		return actividades;
+	}
+
+	
 }
