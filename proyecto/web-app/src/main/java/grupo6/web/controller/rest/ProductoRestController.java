@@ -440,6 +440,7 @@ public class ProductoRestController extends BaseRestController {
 		productoDTO.setDescripcion(producto.getDescripcionPaquete());
 		
 		if (producto.getActividades() != null) {
+			System.out.println("__________ fecha llegada" + producto.getActividades().get(0).getFechaActividad());
 			productoDTO.setActividades((producto.getActividades()));
 		}
 		
@@ -634,7 +635,8 @@ public class ProductoRestController extends BaseRestController {
 		actiDTO.setCostoActividad(actividad.getCostoActividad());
 		actiDTO.setCostoTotal(actividad.getCostoTotal());
 		actiDTO.setDescripcion(actividad.getDescripcion());
-		actiDTO.setFechaActividad(actividad.getFechaActividad());
+		System.out.println("___________ FECHA EN CONVERTIR " + actividad.getFechaActividad().toString());
+		actiDTO.setFechaActividad(actividad.getFechaActividad().toString());
 		actiDTO.setId(actividad.getId());
 		actiDTO.setNombreActividad(actividad.getNombreActividad());
 		actiDTO.setNumPersonas(actividad.getNumPersonas());
@@ -651,14 +653,20 @@ public class ProductoRestController extends BaseRestController {
 	public Actividad converActivDTOTOActividadENtity(ActividadDTO actividadDTO) {
 		
 		Actividad actividad = new Actividad();
-		actividad.setId(actividadDTO.getId());
-		actividad.setCostoActividad(actividadDTO.getCostoActividad());
-		actividad.setCostoTotal(actividadDTO.getCostoTotal());
-		actividad.setDescripcion(actividadDTO.getDescripcion());
-		actividad.setFechaActividad(actividadDTO.getFechaActividad());
-		actividad.setNombreActividad(actividadDTO.getNombreActividad());
-		actividad.setNumPersonas(actividadDTO.getNumPersonas());
 		
+		try {
+			actividad.setId(actividadDTO.getId());
+			actividad.setCostoActividad(actividadDTO.getCostoActividad());
+			actividad.setCostoTotal(actividadDTO.getCostoTotal());
+			actividad.setDescripcion(actividadDTO.getDescripcion());
+			actividad.setFechaActividad(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(actividadDTO.getFechaActividad()));
+			actividad.setNombreActividad(actividadDTO.getNombreActividad());
+			actividad.setNumPersonas(actividadDTO.getNumPersonas());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Se presento un error mientras se convertia la actividad DTO a la actividad entidad");
+		}
+
 		return actividad;
 	}
 }

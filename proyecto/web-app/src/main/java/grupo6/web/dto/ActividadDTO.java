@@ -1,7 +1,6 @@
 package grupo6.web.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Clase que nos permite realizar el transporte de datos en los 
@@ -19,7 +18,7 @@ public class ActividadDTO implements Serializable {
 	private long id;
 	private String nombreActividad;
 	private String descripcion;
-	private Date fechaActividad;
+	private String fechaActividad;
 	private double costoActividad;
 	private int numPersonas;
 	private double costoTotal;
@@ -56,14 +55,6 @@ public class ActividadDTO implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFechaActividad() {
-		return fechaActividad;
-	}
-
-	public void setFechaActividad(Date fechaActividad) {
-		this.fechaActividad = fechaActividad;
-	}
-
 	public double getCostoActividad() {
 		return costoActividad;
 	}
@@ -86,6 +77,16 @@ public class ActividadDTO implements Serializable {
 
 	public void setCostoTotal(double costoTotal) {
 		this.costoTotal = costoTotal;
+	}
+
+
+	public String getFechaActividad() {
+		return fechaActividad;
+	}
+
+
+	public void setFechaActividad(String fechaActividad) {
+		this.fechaActividad = fechaActividad;
 	}
 
 }
