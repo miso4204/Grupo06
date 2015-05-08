@@ -22,6 +22,29 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="js/modernizr.js"></script>
  <script src="js/jquery.js"></script>
+
+
+ <script type="text/javascript">
+
+$(document).ready(function() {
+    var template = $('#template'),
+        id = 0;
+    
+    $("#add-line").click(function() {
+        var row = template.clone();
+        template.find("input:text").val("");
+        row.attr('id', 'row_' + (++id));
+        row.find('.remove').show();
+        template.before(row);
+    });
+    
+    $('.form-fields').on('click', '.remove', function(){
+        $(this).closest('tr').remove();
+    });
+});
+
+
+ </script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#formularioCrear").submit(function(e) {
@@ -154,52 +177,53 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab-1">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <form id="formularioCrear" action="" method="post">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
-                                                        <label>Name</label>
-                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
-                                                    </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
-                                                        <label>Destination name</label>
-                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" required/>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
-                                                        <label>Destination Location</label>
-                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
-                                                        <label>Price</label>
-                                                        <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
-                                                    </div>
-                                                    
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
-                                                        <label>Date</label>
-                                                        <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
-                                                    </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
-                                                        <label>URL Image</label>
-                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
-                                                    </div>
-                                                    
-												 	                                                  <label>Select your prefered kind money</label>  
-	                                                  <div class="radio-inline radio-small">
-	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
-	                                                  </div>
-	                                                   <div class="radio-inline radio-small">
-                                                      <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
+                                                            <label>Name</label>
+                                                            <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
+                                                            <label>Destination name</label>
+                                                            <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" required/>
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
+                                                            <label>Destination Location</label>
+                                                            <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
+                                                            <label>Price</label>
+                                                            <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
+                                                        </div>
+
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
+                                                            <label>Date</label>
+                                                            <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
+                                                            <label>URL Image</label>
+                                                            <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
+                                                        </div>
+
+                                                        <label>Select your prefered kind money</label>  
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
+                                                      </div>
+
+
                                                   </div>
-	                                                  <div class="radio-inline radio-small">
-	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
-	                                                  </div>
-	                                                                                                                                                      
-                                               
-                                            </div>
-                                
-                                            <div class="col-md-6">
+
+                                                  <div class="col-md-6">
+                                                <!--
                                                 <label>Activities</label>
                                                 <div class="checkbox-inline checkbox-small">
                                                     <input class="i-check" type="checkbox" name="activities" value="Accommodation">Accommodation<br>
@@ -265,14 +289,114 @@
                                                 <div class="form-group form-group-icon-left">
                                                    <div id="errormessage"></div>
                                                </div>
+                                           -->
+                                           <div class="tabbable">
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="active">
+                                                        <a href="#flight" data-toggle="tab">
+                                                             <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Flights<br>
+                                                             </div>
+                                                         </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#lodging" data-toggle="tab">
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Lodging<br>
+                                                             </div>
+                                                         </a>
+                                                    </li>
+                                                    <li><a href="#activities" data-toggle="tab">
+                                                         <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Activities<br>
+                                                             </div>
 
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                             <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="flight">
+                                                    <div class="col-md-12">
+                                                    <div class="row">
+                                                    <form id="buscarPorFecha" action=""  method="post">
+                                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <label>Select a flight</label>
+                                                                </div>
+                                                                <div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Check-in</label>
+                                                                                <input class="form-control" name="start" type="text" id="dateOne"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Check-out</label>
+                                                                                <input class="form-control" name="end" type="text" id="dateTwo"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
+                                                            <label>Aerolinea</label>
+                                                            <input class="form-control" placeholder="Avianca" type="text" name="airline" id="airline" required />
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
+                                                        </i>
+                                                            <label>Price</label>
+                                                            <input class="form-control" placeholder="2000" type="number" name="flightPrice" id="flightPrice"  min="0" required />
+                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                         </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="lodging">
+                                                    <ul>
+                                                        <li>home1</li>
+                                                        <li>home1</li>
+                                                        <li>home1</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="activities">
+                                                    <div>
+                                                      <div class="form-fields">
+                                                        <table class="table table-bordered table-striped table-booking-history">
+                                                            <thead>
+                                                          <tr>
+                                                            <th>Activity Name</th>
+                                                            <th>Description</th>
+                                                            <th>Price</th>
+                                                            <th></th>
+                                                        </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                        <tr id="template">
+                                                            <td><input type="text" class="form_id" style="width:100px" size="5px"/required></td>
+                                                            <td><input type="text" class="form_name" style="width:100px" size="5px"/></td>
+                                                            <td><input type="number" class="form_col3" style="width:100px" value="0" size="5px"required/></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                <input class="btn btn-ghost btn-default" type="button" id="add-line" value="Add Activity" >
+                                            
+                                                </div>
+                                            </div>
 
                                            </div>
-                           
+                                 
+
+                            </div>
+
                         </div>
-                         </form>
-                    </div>
-                      </div>
+                    </form>
+                </div>
+            </div>
                       <div class="tab-pane fade" id="tab-2">
                         
                         <div class="row">
