@@ -298,7 +298,7 @@ $(document).ready(function() {
                                                                 <input class="i-check" type="checkbox" name="activities" value="flight">Flights<br>
                                                              </div>
                                                          </a>
-                                                    </li>
+                                                    </li> 
                                                     <li>
                                                         <a href="#lodging" data-toggle="tab">
                                                             <div class="checkbox-inline checkbox-small">
