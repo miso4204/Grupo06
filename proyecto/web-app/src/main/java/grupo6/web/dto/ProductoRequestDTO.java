@@ -41,11 +41,11 @@ public class ProductoRequestDTO implements Serializable {
 	private TipoMoneda tipoMoneda;
 	/** Texto descriptivo del producto.*/
 	private String descripcion;
-	/** Texto descriptivo del producto.*/	
-	private List<Actividad> actividades;
+
 	
-    private long idVuelo; // Id del vuelo asociado (opcional)
-    private long idAlojamiento; //Id del alojamiento asociado (opcional) 
+	private List<Actividad> actividades;
+    private VueloDTO vuelo; // Id del vuelo asociado (opcional)
+    private AlojamientoDTO alojamiento; //Id del alojamiento asociado (opcional) 
 
 	public String getNombre() {
 		return nombre;
@@ -129,22 +129,20 @@ public class ProductoRequestDTO implements Serializable {
 		this.actividades = actividades;
 	}
 
-	public long getIdVuelo() {
-		return idVuelo;
+	public VueloDTO getVuelo() {
+		return vuelo;
 	}
 
-	public void setIdVuelo(long idVuelo) {
-		this.idVuelo = idVuelo;
+	public void setVuelo(VueloDTO vuelo) {
+		this.vuelo = vuelo;
 	}
 
-	public long getIdAlojamiento() {
-		return idAlojamiento;
+	public AlojamientoDTO getAlojamiento() {
+		return alojamiento;
 	}
 
-	public void setIdAlojamiento(long idAlojamiento) {
-		this.idAlojamiento = idAlojamiento;
+	public void setAlojamiento(AlojamientoDTO alojamiento) {
+		this.alojamiento = alojamiento;
 	}
-	
-	
-	
+
 }

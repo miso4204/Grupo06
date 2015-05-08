@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Clase que nos permite almacenar las actividades 
@@ -70,6 +72,7 @@ public class Actividad {
 		this.descripcion = descripcion;
 	}
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_ACTIVIDAD",nullable = false)
 	public Date getFechaActividad() {
 		return fechaActividad;
