@@ -277,7 +277,7 @@ $("#formDescuentos").submit(function(e) {
                 },
                 datatype:"json",
                 type: "POST",
-                url: "services/usuario/update_promos/" + $("#pse").val() + "/" + $("#tc").val() + "/" + $("#cash").val() + "/" + ${usuarioSesion.id} 
+                url: "services/usuario/update_promos/" + $("#pse").val() + "/" + $("#tc").val() + "/" + $("#cash").val() + "/" + ${usuarioSesion.id},
                 contentType: false,
                 processData: false,
                 success: function(data)
