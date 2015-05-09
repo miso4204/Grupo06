@@ -169,7 +169,7 @@ $(document).ready(function () {
                     		var numPersonas = arr.actividades[i].numPersonas;
                     		var costoTotal = arr.actividades[i].costoTotal;
                     		
-	                    	out+=' <li>'+
+	                    	out+=' <li>'+ 
 	                                '<div class="row">'+
 	                                    '<div>' +
 	                                        '<h5 class="booking-item-title">' + nombreActividad + '</h5>'+
