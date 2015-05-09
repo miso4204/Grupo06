@@ -1,5 +1,8 @@
 package grupo6.procesador;
 
+import grupo6.modulo.utilidades.Variability;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -34,26 +37,29 @@ public class ProcesadorVelocity {
 
 	static {
 		controladores = new HashSet<String>();
-		controladores.add("velocity/controladores/ProductoRestController.java");		
+		//controladores.add("velocity/controladores/ProductoRestController.java");		
 		
 		plantillasWebClient = new HashSet<String>();
-		plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");		
-		plantillasWebClient.add("velocity/paginas/client/indexUser.jsp");		
-		plantillasWebClient.add("velocity/paginas/client/user_profile.jsp");	
+		plantillasWebClient.add("velocity/paginas/client/indexUser.jsp");
+		plantillasWebClient.add("velocity/paginas/client/payment.jsp");
+//	    plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");						
+//		plantillasWebClient.add("velocity/paginas/client/user_profile.jsp");	
 		
 		plantillasWebProvider = new HashSet<String>();
-		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");		
+//		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");		
 	}
 
 	public static void main(String... s) throws Exception {
 		System.out.println("Generando codigo, Ejecutando desde: " + (new File(".")).getAbsolutePath() );
-	
+		cargarFeatures();
 		try {
 
 			Properties propiedades = new Properties();
-			InputStream inputProperties = ProcesadorVelocity.class.getClassLoader()
-					.getResourceAsStream("velocity/variabilidad.properties");			
-			propiedades.load(inputProperties);
+			
+			for(String feature: Variability.getProperties()){
+				propiedades.put(feature, true);
+			}
+
 			VelocityEngine velocityEngine = new VelocityEngine();
 			velocityEngine.init();
 			VelocityContext context = new VelocityContext(propiedades);
@@ -127,4 +133,34 @@ public class ProcesadorVelocity {
 		}
 	}
 
+	/**
+	 * Carga en memoria el archivo de configuracion de variabilidad del proyecto.
+	 */
+	public static void cargarFeatures() throws Exception {
+
+		Set<String> featuresSet = new HashSet<String>();
+
+		BufferedReader bufferedReader = null;
+		try {
+			String currentFeature;
+			Path p = Paths.get("../web-app/src/main/resources/product.config");
+			bufferedReader = Files.newBufferedReader(p,
+					Charset.defaultCharset());
+			while ((currentFeature = bufferedReader.readLine()) != null) {
+				featuresSet.add(currentFeature.trim());
+			}
+
+		} finally {
+			try {
+				if (bufferedReader != null) {
+					bufferedReader.close();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		Variability.setFeaturesSet(featuresSet);
+	}
+	
 }
