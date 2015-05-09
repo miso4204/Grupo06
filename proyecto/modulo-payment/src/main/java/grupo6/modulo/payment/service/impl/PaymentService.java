@@ -6,10 +6,17 @@ import grupo6.modulo.payment.strategy.IPaymentStrategy;
 import grupo6.persistencia.entidades.FacturaCompra;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service(value = "Payment")
+/**
+ * Servicio de pagos sincrono.
+ * @author caespinosam
+ *
+ */
+@Profile("pago_sincrono")
+@Service(value = "paymentService")
 public class PaymentService implements IPaymentService {
 
 	/** Las estregias de pago. */
@@ -27,6 +34,7 @@ public class PaymentService implements IPaymentService {
 	@Override
 	@Transactional
 	public FacturaCompra pagoPSE(String userName,TipoMoneda tipoMoneda) {
+		System.out.println("Pagando PSE sincrono: " + userName);
 		return paymentPSEStrategy.pagar(userName,tipoMoneda);
 	}
 
@@ -37,6 +45,7 @@ public class PaymentService implements IPaymentService {
 	@Override
 	@Transactional
 	public FacturaCompra pagoCreditCard(String userName,TipoMoneda tipoMoneda) {
+		System.out.println("Pagando TC sincrono: " + userName);
 		return paymentCreditCardStrategy.pagar(userName,tipoMoneda);
 	}
 
@@ -47,6 +56,7 @@ public class PaymentService implements IPaymentService {
 	@Override
 	@Transactional
 	public FacturaCompra cashOnDelivery(String userName,TipoMoneda tipoMoneda) {
+		System.out.println("Pagando CASH sincrono: " + userName);
 		return paymentCashOnDeliveryStrategy.pagar(userName,tipoMoneda);
 	}
 
