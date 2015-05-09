@@ -43,5 +43,5 @@ public class FeaturesNames {
     public static final String SCALABILITY = "Scalability";
     public static final String FUNCTIONALITY = "Functionality";
     public static final String PERFORMANCE = "Performance";
-    
+    public static final String SPECIAL_OFFERS = "SpecialOffers";
 }

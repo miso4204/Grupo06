@@ -6,6 +6,7 @@ import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 import grupo6.modulo.shoppingcart.dao.view.ICarritoComprasDAO;
 import grupo6.modulo.shoppingcart.service.view.ICarritoComprasService;
+import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,7 @@ public class CarritoComprasService implements ICarritoComprasService {
 	 * @see grupo6.modulo.shoppingcart.service.view.ICarritoComprasService#getTotalCarritoCompras(String)
 	 */
 	@Override
-	public Double getTotalCarritoCompras(String userName,TipoMoneda tipoMoneda) {
+	public  List<TotalCarritoDTO> getTotalCarritoCompras(String userName,TipoMoneda tipoMoneda) {
 		return carritoComprasDAO.getTotalCarritoCompras(userName,tipoMoneda);
 	}
 

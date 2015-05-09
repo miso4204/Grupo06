@@ -265,6 +265,40 @@ $(document).ready(function() {
                 }
             });
         });
+        
+$("#formDescuentos").submit(function(e) {
+            
+            e.preventDefault();     
+           
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/usuario/update_promos/" + $("#pse").val() + "/" + $("#tc").val() + "/" + $("#cash").val() + "/" + ${usuarioSesion.id},
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                	
+                	 var out = "";
+                  	if (data.codigoRespuesta == 'OK') {
+                  		                       
+                  	  alert('Descuentos asignados correctamente');
+                  	}
+                  	else {
+                  		alert('Error al asignar descuentos: ' +  data.mensaje);
+                  		
+                  	}                   
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                 alet("Error inesperado: " + errorMessage);
+                }
+            });
+        });
 });
         </script>
 </head>
@@ -578,57 +612,52 @@ $(document).ready(function() {
                         
                         <div class="row">
                             <div class="col-md-6">
-
+								<form  id="formDescuentos" role="form">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form id ="asd"action="#" role="form">
-                                            <div class="input-group">
+                                        
+                                           <div class="input-group">
                                                 <span class="input-group-btn">
                                                      <button type="button" class="btn btn-labeled btn-success">
                                                      <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>PSE</button>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
-                                                <span class="input-group-btn">
-                                                  <button class="btn btn-danger btn-circle" type="submit">Disapply discount</button>
-                                              </span>                        
+                                                <input id="pse" name="pse" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoPse}">
+                                                                      
                                           </div>
-                                      </form>
+                                      
                                   </div>
                               </div>
                               <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <form id ="asd2" action="#" role="form">
-                                            <div class="input-group">
+                                    <div class="panel-body">                                        
+                                          <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <button type="button" class="btn btn-labeled btn-danger">
                                                      <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Card</button>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
-                                                <span class="input-group-btn">
-                                                  <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
-                                              </span>                        
+                                                <input id="tc" name="tc" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoTc}">
+                                                                     
                                           </div>
-                                      </form>
+                                     
                                   </div>
                               </div>
                               <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="#" role="form">
+                                       
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                      <button type="button" class="btn btn-labeled btn-danger">
                                                      <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Cash</button>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="(%) Discount " required="">
-                                                <span class="input-group-btn">
-                                                  <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
-                                              </span>                        
+                                                <input id="cash" name="cash" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoCash}">
+                                                                     
                                           </div>
-                                      </form>
+                                      
                                   </div>
                               </div>
-
-
+								<span class="input-group-btn">
+                                                <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
+                                </span>
+							 </form>
 
                           </div>
 

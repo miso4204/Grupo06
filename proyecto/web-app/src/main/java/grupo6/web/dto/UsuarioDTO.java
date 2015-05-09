@@ -21,6 +21,9 @@ public class UsuarioDTO {
 	private String email;
 	private String website;
 	private TipoMoneda tipoMoneda;
+	private Double descuentoPse;
+	private Double descuentoTc;
+	private Double descuentoCash;
 	
 	
 	public long getId() {
@@ -82,6 +85,26 @@ public class UsuarioDTO {
 	}
 	public void setTipoMoneda(TipoMoneda tipoMoneda) {
 		this.tipoMoneda = tipoMoneda;
+	}
+	public Double getDescuentoPse() {
+		return descuentoPse;
+	}
+	public void setDescuentoPse(Double descuentoPse) {
+		this.descuentoPse = descuentoPse;
+	}
+	public Double getDescuentoTc() {
+		return descuentoTc;
+	}
+	public void setDescuentoTc(Double descuentoTc) {
+		this.descuentoTc = descuentoTc;
+	}
+	public Double getDescuentoCash() {
+		return descuentoCash;
+	}
+	public void setDescuentoCash(Double descuentoCash) {
+		this.descuentoCash = descuentoCash;
 	}	
+	
+	
 	
 }

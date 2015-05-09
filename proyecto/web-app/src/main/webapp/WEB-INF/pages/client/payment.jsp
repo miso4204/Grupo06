@@ -92,37 +92,6 @@
                 }
             });
         });
-        
-$("#cash").submit(function(e) {
-            
-            e.preventDefault();     
-            $.ajax({
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' ,
-                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
-                },
-                datatype:"json",
-                type: "POST",
-                url: "services/payment/pay_cash/"+'${usuarioSesion.usuario}', 
-                data: false,
-                contentType: false,
-                processData: false,
-                success: function(data)
-                   {
-                  
-                   var form = $('<form action="pages/client/successPayment.jsp" method="post">' +
-                    '<input type="hidden" name="respuestajson" value="" />' +
-                    '</form>');
-                    $('body').append(form);
-                    form.submit(); /*var o href="pages/client/indexUser.jsp"*/
-                     
-                   },
-                error: function(jqXHR, textStatus, errorMessage) {
-                     alert("Error al agregar al carrito");
-                }
-            });
-        });
 $("#payCredit").submit(function(e) {
         
             e.preventDefault();     
@@ -413,19 +382,8 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-3" >Pay via Cash</a></h4>
-                                    </div>
-                                    <div class="panel-collapse collapse" id="collapse-3">
-                                        <div class="panel-body"><img class="pp-img" src="https://dl.dropboxusercontent.com/u/62595112/cash_on_delivery.png" alt="Cash on delivery" title="Cash on delivery" />
-                                            <p>Important: You will be redirected to Cash on delivery website to securely complete your payment.</p>
-                                            <form id="cash">
-                                             <button class="btn btn-primary" type="submit">Checkout via cash on delivery</a>   
-                                             </form></div>
-                                         </div>
-                                     </div>
-                                 </div>
+								                                 </div>
+								 
                                  
                              </div>
                              

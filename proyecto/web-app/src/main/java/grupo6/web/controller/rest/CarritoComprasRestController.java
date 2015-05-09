@@ -1,11 +1,12 @@
 package grupo6.web.controller.rest;
 
-import java.util.List;
-
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 import grupo6.modulo.shoppingcart.service.view.ICarritoComprasService;
+import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
 import grupo6.web.dto.shoppingcart.CarritoProductoRequestDTO;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -80,10 +81,12 @@ public class CarritoComprasRestController extends BaseRestController {
 	 * @return total del carrito de compras de un usuario
 	 */
 	@RequestMapping(value = "/total/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Double totalCarritoCompras(
+	public @ResponseBody List<TotalCarritoDTO> totalCarritoCompras(
 			@PathVariable("userName") String userName
 			,@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
-		return carritoComprasService.getTotalCarritoCompras(userName,tipoMoneda);
+		
+		return  carritoComprasService.getTotalCarritoCompras(userName,tipoMoneda);
+		
 	}
 	
 }

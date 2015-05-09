@@ -13,6 +13,7 @@ import grupo6.modulo.shoppingcart.dao.view.ICarritoComprasDAO;
 import grupo6.persistencia.dao.BaseDAO;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.Usuario;
+import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
 import grupo6.utilidades.Currency;
 
 /**
@@ -26,6 +27,18 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 
 	private static final String USER_NAME = "usuario";
 
+	/**
+	 * Busca un Usuario por userName
+	 * 
+	 * @param userName
+	 * @return el usuario encontrado o null si no se encontro
+	 */
+	private Usuario buscarUsuarioPorId(Long id) {
+		Criteria criteria = getCurrentSession().createCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("id", id));
+		return (Usuario) criteria.uniqueResult();
+	}
+	
 	/**
 	 * Busca un Usuario por userName
 	 * 
@@ -115,18 +128,38 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Double getTotalCarritoCompras(String userName,TipoMoneda tipoMonedaUsuario) {
+	public List<TotalCarritoDTO> getTotalCarritoCompras(String userName,TipoMoneda tipoMonedaUsuario) {
 		Usuario usuario = buscarUsuarioPorUserName(userName);
 
 		if (usuario != null) {
 			double total = 0;
+			double totalPse = 0;
+			double totalTc = 0;
+			double totalCash = 0;
 			for (Producto p : usuario.getCarritoCompras()) {
 				double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
 				total += valor;
+				Usuario proveedor = buscarUsuarioPorId(p.getProveedorId());
+				double valorPse = proveedor.getDescuentoPse() != null ? 
+						valor * (1 - proveedor.getDescuentoPse()) : valor;
+				totalPse += valorPse;
+				double valorTc = proveedor.getDescuentoTc() != null ? 
+						valor * (1 - proveedor.getDescuentoTc()) : valor;
+				totalTc += valorTc;
+				double valorCash = proveedor.getDescuentoCash()!= null ? 
+						valor * (1 - proveedor.getDescuentoCash()) : valor;
+				totalCash += valorCash;
+				
 			}
-			return total;
+			
+			List<TotalCarritoDTO> totales = new ArrayList<TotalCarritoDTO>();
+			totales.add(new TotalCarritoDTO("pse", totalPse));
+			totales.add(new TotalCarritoDTO("tc", totalTc));
+			totales.add(new TotalCarritoDTO("cash", totalCash));
+			totales.add(new TotalCarritoDTO("general", total));
+			return totales;
 		} else {
-			return 0d;
+			return new ArrayList<TotalCarritoDTO>();
 		}
 	}
 

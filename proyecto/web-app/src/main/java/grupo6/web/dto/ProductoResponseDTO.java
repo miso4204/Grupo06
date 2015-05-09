@@ -46,6 +46,10 @@ public class ProductoResponseDTO implements Serializable {
 	private TipoMoneda tipoMoneda;
 	/** La descripcion del paquete. */
 	private String descripcion;
+	private Double descuentoPse;
+	private Double descuentoTc;
+	private Double descuentoCash;
+	private boolean posibleDescuento;
 
 	private List<Actividad> actividades;
 	private VueloDTO vuelo; // Id del vuelo asociado (opcional)
@@ -175,5 +179,38 @@ public class ProductoResponseDTO implements Serializable {
 		return actividades;
 	}
 
+	public Double getDescuentoPse() {
+		return descuentoPse;
+	}
+
+	public void setDescuentoPse(Double descuentoPse) {
+		this.descuentoPse = descuentoPse;
+	}
+
+	public Double getDescuentoTc() {
+		return descuentoTc;
+	}
+
+	public void setDescuentoTc(Double descuentoTc) {
+		this.descuentoTc = descuentoTc;
+	}
+
+	public Double getDescuentoCash() {
+		return descuentoCash;
+	}
+
+	public void setDescuentoCash(Double descuentoCash) {
+		this.descuentoCash = descuentoCash;
+	}
+
+	public boolean isPosibleDescuento() {
+		return posibleDescuento;
+	}
+
+	public void setPosibleDescuento(boolean posibleDescuento) {
+		this.posibleDescuento = posibleDescuento;
+	}
+
+	
 	
 }
