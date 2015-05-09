@@ -20,9 +20,11 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
+
+
     <script src="js/modernizr.js"></script>
  <script src="js/jquery.js"></script>
-
+ <script src="js/bootstrap-datetimepicker.js"></script>
 
  <script type="text/javascript">
 
@@ -45,14 +47,181 @@ $(document).ready(function() {
 
 
  </script>
+
+
 <script type="text/javascript">
+
+
     $(document).ready(function() {
+         var aireAcondicionado=false;
+         var piscina = false;
+         var zonasVerdes=false;
+         var vigilancia=false;
+         var actividadesAgregadas="[";
+         var checkVueloSeleccionado=false;
+         var obj;
+     $("#flightChecked").on('ifChecked', function(event){
+         $("#airline").prop('required',true);
+         $("#flightPrice").prop('required',true);
+         $("#origenFlight").prop('required',true);
+         checkVueloSeleccionado=true;
+         
+         
+            
+    });
+     
+     $("#flightChecked").on('ifUnchecked', function(event){
+        $("#airline").prop('required',false);
+        $("#flightPrice").prop('required',false);
+        $("#origenFlight").prop('required',false);
+
+     });
+
+     $("#lodgingChecked").on('ifChecked', function(event){
+         $("#occupancy").prop('required',true);
+         $("#lodgingrice").prop('required',true);
+         
+            
+    });
+     
+     $("#lodgingChecked").on('ifUnchecked', function(event){
+        $("#occupancy").prop('required',false);
+        $("#lodgingrice").prop('required',false);
+        
+        
+     });
+
+     $("#activityChecked").on('ifChecked', function(event){
+         $("#airline").prop('required',true);
+         $("#flightPrice").prop('required',true);
+         
+            
+    });
+     
+     $("#activityChecked").on('ifUnchecked', function(event){
+        $("#airline").prop('required',false);
+        $("#flightPrice").prop('required',false);
+
+     });
+
+     $("#swPool").on('ifChecked', function(event){
+        piscina= true;      
+    });
+     
+      $("#security").on('ifChecked', function(event){
+        vigilancia= true;      
+    });
+
+      $("#greenArea").on('ifChecked', function(event){
+        zonasVerdes= true;      
+    });
+       $("#airCond").on('ifChecked', function(event){
+        aireAcondicionado= true;      
+    });
+     
+     $("#tablaAct").each(function (index3) {
+        alert("tabla");
+        var rowCount = $("#tablaAct tbody tr").length;
+        alert(rowCount);
+        var i=0;
+        $("#tablaAct tbody tr").each(function (index) 
+        {
+               alert("fila"+index);
+
+            var campo1, campo2, campo3, campo4;
+            i++;
+
+            $(this).children("td").each(function (index2) 
+            {
+                
+                switch (index2) 
+                {
+                    case 0: campo1 = $("#activityName").val();
+                            break;
+                    case 1: campo2 = $("#activityDescription").val();
+                            break;
+                    case 2: campo3 = $("#activityPrice").val();
+                            break;
+                    case 3: campo4 = $("#dateActivity").val();
+                            break;
+                }
+                  
+            })
+            actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ campo1 +
+            '","descripcion":"' + campo2 + '","fechaActividad":"' + campo4 + '","costoActividad":"' + campo3 + '"}';
+            if(i==rowCount){
+                actividadesAgregadas=actividadesAgregadas+"]";
+            }
+            else{
+                actividadesAgregadas=actividadesAgregadas+",";
+            }
+            
+             })
+            alert(actividadesAgregadas);
+             obj = jQuery.parseJSON(actividadesAgregadas);
+
+            //var obj = JSON.parse(actividadesAgregadas);
+            alert(JSON.stringify(obj));
+        });
+   
+
+
+
         $("#formularioCrear").submit(function(e) {
            
-            e.preventDefault();     
+           e.preventDefault();   
+            //datos actividad
+            /*var nombreAct=$('#activityName').val();
+            var fechaActividad = $('#dateActivity').val();
+            var descripcion= $('#activityDescription').val();
+            var costoActividad= $('#activityPrice').val();
+            */
+
+            //datos vuelos
+            var vuelo="";
+            var precioVuelo = "";
+            var origen= "";
+            var destino= "";
+            var fechaSalida= "";
+            var fechaLlegada="";
+
+            //datos Alojamiento
+            var tipo ="";
+            var numMaxPersonas = 0;
+            var precioPorDia ="";
+            if(checkVueloSeleccionado){
+            //datos vuelos
+             //vuelo=$('#airline').val();
+             precioVuelo = $('#flightPrice').val();
+             origen= $('#origenFlight').val();
+             destino= $('#destinationLocation').val();
+             fechaSalida= $('#dateOneFlight').val();
+             fechaLlegada= $('#dateTwoFlight').val();
+            }
+            else{
+             vuelo="";
+             precioVuelo = "";
+             origen= "";
+             destino= "";
+             fechaSalida= "";
+             fechaLlegada="";
+
+            }
+
+            //datos Alojamiento
+             //tipo =
+             numMaxPersonas = 0;
+             //precioPorDia =('#lodgingPrice').val();
+
+
+
+            
+
+              
             var activities = $('input[name=activities]:checked').map(function() { 
                 return this.value; 
             }).get().join(',');
+
             var jsonPeticion = JSON.stringify({
                     "nombre": $('#name').val(), 
                     "lugar": $('#destinationName').val(),
@@ -63,7 +232,12 @@ $(document).ready(function() {
                     "tipoMoneda": $('#tipoMoneda:checked').val(),
                     "proveedorId": '${usuarioSesion.id}',
                     "descripcion":  $('#description').val(),
-                    "actividades":  activities
+                    "actividades" : obj,
+                  "vuelo" :{"aerolinea":$('#airline:checked').val(), "precioVuelo":precioVuelo, "origen":origen, "destino":destino,"fechaSalida":fechaSalida, "fechaLlegada":fechaLlegada},
+                  "alojamiento":{"tipo":$('#tipoAlojamiento:checked').val(),"numMaxPersonas":"9","precioPorDia":$('#lodgingPrice').val(),"aireAcondicionado":aireAcondicionado,"piscina":piscina,
+                  "zonasVerdes":zonasVerdes, "vigilancia":vigilancia}
+                    
+                   
                      });
             $.ajax({
                 headers: { 
@@ -178,7 +352,7 @@ $(document).ready(function() {
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab-1">
                                         <div class="col-md-12">
-                                            <form id="formularioCrear" action="" method="post">
+                                            <form id="formularioCrear" action="" method="post" novalidate>
                                                 <div class="row">
                                                     <div class="col-md-6">
 
@@ -223,92 +397,25 @@ $(document).ready(function() {
                                                   </div>
 
                                                   <div class="col-md-6">
-                                                <!--
-                                                <label>Activities</label>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Accommodation">Accommodation<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Trekking" >Trekking<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Caves" >Caves<br>
-
-                                                </div>
-                                                <div class="gap gap-mini"></div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Ethnic Villages">Ethnic Villages<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Wildlife" >Wildlife<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Cycling" >Cycling<br>
-                                                </div>
-                                                
-                                                <div class="gap gap-mini"></div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Air conditioning">Air conditioning<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Climbing">Climbing<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Rivers">Rivers<br>
-                                                </div>
-                                                
-
-                                                <div class="gap gap-mini"></div>
-                                                
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Waterfalls">Waterfalls<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Swimming pool">Swimming pool<br>
-                                                </div>
-                                               
-                                                
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Kitchen">Kitchen<br>
-                                                </div>
-                                                <div class="gap gap-mini"></div>
-                                                 <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Camping">Camping<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Beach">Beach<br>
-                                                </div>
-                                                <div class="gap gap-mini"></div>
-                                                <div class="form-group form-group-icon-left"><i class="fa fa-comment-o input-icon input-icon-bounce"></i>
-                                                    <label>Description</label>
-                                                    <textarea  rows="4" cols="50" class="form-control" placeholder="http://imagen.png"  name="description" id="description" required> </textarea>
-                                                </div>
-                                                <div class="form-group form-group-icon-left">
-                                                    <button class="btn btn-primary btn-lg" type="submit" >Register</button>
-                                                </div>
-                                                <div class="form-group form-group-icon-left">
-                                                   <div id="errormessage"></div>
-                                               </div>
-                                           -->
                                            <div class="tabbable">
                                                 <ul class="nav nav-tabs" id="myTab">
                                                     <li class="active">
                                                         <a href="#flight" data-toggle="tab">
                                                              <div class="checkbox-inline checkbox-small">
-                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Flights<br>
+                                                                <input class="i-check" type="checkbox"  id="flightChecked" name="flightChecked" value="flight">Flights<br>
                                                              </div>
                                                          </a>
                                                     </li> 
                                                     <li>
                                                         <a href="#lodging" data-toggle="tab">
                                                             <div class="checkbox-inline checkbox-small">
-                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Lodging<br>
+                                                                <input class="i-check" type="checkbox" id="lodgingChecked" name="lodgingChecked" value="flight">Lodging<br>
                                                              </div>
                                                          </a>
                                                     </li>
                                                     <li><a href="#activities" data-toggle="tab">
                                                          <div class="checkbox-inline checkbox-small">
-                                                                <input class="i-check" type="checkbox" name="activities" value="flight">Activities<br>
+                                                                <input class="i-check" type="checkbox" id="activityChecked"  name="activityChecked" value="flight">Activities<br>
                                                              </div>
 
                                                     </a>
@@ -317,65 +424,126 @@ $(document).ready(function() {
                                              <div class="tab-content">
                                                 <div class="tab-pane fade in active" id="flight">
                                                     <div class="col-md-12">
-                                                    <div class="row">
-                                                    <form id="buscarPorFecha" action=""  method="post">
+                                                        <div class="row">
+                                                            
                                                                 <div class="form-group form-group-lg form-group-icon-left">
                                                                     <label>Select a flight</label>
                                                                 </div>
                                                                 <div class="input-daterange" data-date-format="yyyy-m-d">
                                                                     <div class="row">
                                                                         <div class="col-md-6">
-                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                            
                                                                                 <label>Check-in</label>
-                                                                                <input class="form-control" name="start" type="text" id="dateOne"/>
-                                                                            </div>
+                                                                                <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime"id="dateOneFlight">
+
+
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                            
                                                                                 <label>Check-out</label>
-                                                                                <input class="form-control" name="end" type="text" id="dateTwo"/>
-                                                                            </div>
+                                                                                 <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime" id="dateTwoFlight">
+                                                                            
                                                                         </div>
+                                                                        
                                                                     </div>
                                                                 </div>
-                                                        <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
-                                                            <label>Aerolinea</label>
-                                                            <input class="form-control" placeholder="Avianca" type="text" name="airline" id="airline" required />
-                                                        </div>
-                                                        <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
-                                                        </i>
-                                                            <label>Price</label>
-                                                            <input class="form-control" placeholder="2000" type="number" name="flightPrice" id="flightPrice"  min="0" required />
-                                                        </div>
-                                                            </form>
-                                                        </div>
-                                                         </div>
+                                                                <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
+                                                                    <label>Origen flight</label>
+                                                                    <input class="form-control" placeholder="Cali" type="text" name="origenFlight" id="origenFlight" />
+                                                                </div>
+                                                                <div class="form-group form-group-icon-left">
+                                                                    <label>Select the airline</label> 
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="LAN">Lan</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="AVIANCA">Avianca</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="VIVA_COLOMBIA">Viva Colombia</label>
+                                                      </div>
+                                                                </div>
+                                                                <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
+                                                                </i>
+                                                                <label>Price per person</label>
+                                                                <input class="form-control" placeholder="2000" type="number" name="flightPrice" id="flightPrice"  min="0"  />
+                                                            </div>
+                                                        
+                                                    </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="lodging">
-                                                    <ul>
-                                                        <li>home1</li>
-                                                        <li>home1</li>
-                                                        <li>home1</li>
-                                                    </ul>
+                                            </div>
+                                            <div class="tab-pane fade" id="lodging">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <label>Select facilities</label>
+                                                                </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" id ="airCond" name="airCond" value="airCond">Air conditioner<br>
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="swPool"  name="swPool" value="swPool" >Swimming pool<br>
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="security" name="security" value="security" >Security<br>
+
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="greenArea" name="greenArea" value="greenArea" >Green areas<br>
+
+                                                            </div>
+                                                            <div class="gap gap-mini"></div>
+                                                            <label>Select the type of</label>  
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="HOTEL">Hotel</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="FINCA">Finca</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="HOSTAL">Hostal</label>
+                                                      </div>
+                                                            
+                                                            <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
+                                                            </i>
+                                                            <label>Price per person</label>
+
+                                                            <input class="form-control" placeholder="price per person" type="number" name="lodgingPrice" id="lodgingPrice"  min="0" />
+                                                        </div>
+                                                    
                                                 </div>
+                                            </div>
+                                        </div>
 
                                                 <div class="tab-pane fade" id="activities">
                                                     <div>
                                                       <div class="form-fields">
-                                                        <table class="table table-bordered table-striped table-booking-history">
+                                                        <table id="tablaAct"class="table table-bordered table-striped table-booking-history">
                                                             <thead>
                                                           <tr>
                                                             <th>Activity Name</th>
                                                             <th>Description</th>
-                                                            <th>Price</th>
-                                                            <th></th>
+                                                            <th>Price per person</th>
+                                                            <th>Date</th>
+                                                            <th></th> 
                                                         </tr>
                                                          </thead>
                                                          <tbody>
                                                         <tr id="template">
-                                                            <td><input type="text" class="form_id" style="width:100px" size="5px"/required></td>
-                                                            <td><input type="text" class="form_name" style="width:100px" size="5px"/></td>
-                                                            <td><input type="number" class="form_col3" style="width:100px" value="0" size="5px"required/></td>
+                                                            <td><input id ="activityName"type="text" class="form_id" style="width:100px" size="5px"value=""/></td>
+                                                            <td><input id = "activityDescription"type="text" class="form_name" style="width:100px" size="5px"value=""/></td>
+                                                            <td><input id = "activityPrice" type="number" class="form_col3" style="width:100px" value="0" size="5px" value="3"/></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
                                                             <td><input type="button" class="remove" value="remove" style="display:none" /></td>
                                                         </tr>
                                                     </tbody>
@@ -386,6 +554,7 @@ $(document).ready(function() {
                                                 <input class="btn btn-ghost btn-default" type="button" id="add-line" value="Add Activity" >
                                             
                                                 </div>
+
                                             </div>
 
                                            </div>
@@ -394,6 +563,14 @@ $(document).ready(function() {
                             </div>
 
                         </div>
+
+                                            <div class="form-group form-group-icon-left">
+                                                    <button class="btn btn-primary btn-lg" type="submit" >Register</button>
+                                                </div>
+                                                <div class="form-group form-group-icon-left">
+                                                   <div id="errormessage"></div>
+                                               </div>
+                                           
                     </form>
                 </div>
             </div>
@@ -404,7 +581,7 @@ $(document).ready(function() {
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="#" role="form">
+                                        <form id ="asd"action="#" role="form">
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                      <button type="button" class="btn btn-labeled btn-success">
@@ -420,7 +597,7 @@ $(document).ready(function() {
                               </div>
                               <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="#" role="form">
+                                        <form id ="asd2" action="#" role="form">
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <button type="button" class="btn btn-labeled btn-danger">
@@ -551,7 +728,9 @@ $(document).ready(function() {
         </div>
     </footer>
 
-   
+   <script type="text/javascript">
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+</script> 
     <script src="js/bootstrap.js"></script>
     <script src="js/slimmenu.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>

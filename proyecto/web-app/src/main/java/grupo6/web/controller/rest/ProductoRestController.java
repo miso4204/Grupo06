@@ -4,6 +4,8 @@ import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.product.factory.ETipoBusqueda;
 import grupo6.modulo.product.service.view.IProductoService;
 import grupo6.modulo.user.service.impl.IUsuarioService;
+import grupo6.modulo.utilidades.FeaturesNames;
+import grupo6.modulo.utilidades.Variability;
 import grupo6.persistencia.entidades.Actividad;
 import grupo6.persistencia.entidades.Alojamiento;
 import grupo6.persistencia.entidades.ETipoCalificacionRating;
@@ -358,14 +360,18 @@ public class ProductoRestController extends BaseRestController {
 	public @ResponseBody ResponseEntity<ResponseDTO> listarPorLugar(
 			@PathVariable("lugar") String lugar,
 			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
-		
-		List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
-		List<Producto> productos = 
-				productoService.buscarProductos(ETipoBusqueda.POR_UBICACION, lugar);
-		for (Producto producto: productos) {
-			productosDTO.add(crearProductoResponseDTO(producto, null));
+		boolean isSearchByLocation = Variability.isEnable(FeaturesNames.SEARCH_BY_LOCATION);
+		if(isSearchByLocation){
+			List<ProductoResponseDTO> productosDTO = new ArrayList<ProductoResponseDTO>();
+			List<Producto> productos = 
+					productoService.buscarProductos(ETipoBusqueda.POR_UBICACION, lugar);
+			for (Producto producto: productos) {
+				productosDTO.add(crearProductoResponseDTO(producto, null));
+			}
+			return devolverRespuestaExitosa("", productosDTO);	
+		}else{
+			throw new UnsupportedOperationException("Busqueda no soportada");
 		}
-		return devolverRespuestaExitosa("", productosDTO);
 	}
 	
 	/**
