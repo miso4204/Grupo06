@@ -176,6 +176,7 @@ $(document).ready(function () {
 	                                        '<h5 class="booking-item-title">' + descripcion + '</h5>'+
 	                                        '<h5 class="booking-item-title">' + fechaActividad + '</h5>'+
 	                                        '<h5 class="booking-item-title">' + costoActividad + '</h5>'+
+
 	                                        '<h5 class="booking-item-title">' + numPersonas + '</h5>'+
 	                                        '<h5 class="booking-item-title">' + costoTotal + '</h5>'+
 	                                    '</div>'+
