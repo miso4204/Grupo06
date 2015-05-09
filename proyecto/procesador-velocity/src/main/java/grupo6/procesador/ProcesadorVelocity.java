@@ -34,6 +34,8 @@ public class ProcesadorVelocity {
 	private static Set<String> plantillasWebClient;
 	/** Plantillas html del cliente a procesar del proveedor. */
 	private static Set<String> plantillasWebProvider;
+	/** Plantillas html del cliente a procesar del proveedor. */
+	private static Set<String> plantillasWebAdmin;
 
 	static {
 		controladores = new HashSet<String>();
@@ -47,7 +49,10 @@ public class ProcesadorVelocity {
 //	    plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");						
 		
 		plantillasWebProvider = new HashSet<String>();
-//		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");		
+//		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");
+		
+		plantillasWebAdmin = new HashSet<String>();
+		plantillasWebAdmin.add("velocity/paginas/admin/indexAdmin.jsp");
 	}
 
 	public static void main(String... s) throws Exception {
@@ -90,6 +95,7 @@ public class ProcesadorVelocity {
 			
 			procesarPlantillasWeb("client", context, velocityEngine, plantillasWebClient);
 			procesarPlantillasWeb("provider", context, velocityEngine, plantillasWebProvider);
+			procesarPlantillasWeb("admin", context, velocityEngine, plantillasWebAdmin);
 
 		} catch (Exception e) {
 			System.out.println("--------> ERROR CONTROLADO, PERO NO SE EJECUTA VELOCITY: ");
