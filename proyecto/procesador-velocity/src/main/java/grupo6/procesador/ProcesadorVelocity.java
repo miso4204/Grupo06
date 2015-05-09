@@ -38,12 +38,13 @@ public class ProcesadorVelocity {
 	static {
 		controladores = new HashSet<String>();
 		//controladores.add("velocity/controladores/ProductoRestController.java");		
+		controladores.add("velocity/controladores/UsuarioRestController.java");
 		
 		plantillasWebClient = new HashSet<String>();
 		plantillasWebClient.add("velocity/paginas/client/indexUser.jsp");
 		plantillasWebClient.add("velocity/paginas/client/payment.jsp");
+		plantillasWebClient.add("velocity/paginas/client/user_profile.jsp");
 //	    plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");						
-//		plantillasWebClient.add("velocity/paginas/client/user_profile.jsp");	
 		
 		plantillasWebProvider = new HashSet<String>();
 //		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");		
