@@ -45,6 +45,10 @@ public class Variability {
 		return featuresSet.contains(feature);
 	}
 
+	public static Set<String> getProperties(){
+		return featuresSet;
+	}
+	
 	private static void closeBufferReader(BufferedReader bufferedReader) {
 		try {
 			if (bufferedReader != null){

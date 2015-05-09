@@ -68,6 +68,10 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+		</dependency>
 		
 		<!-- Sevlet necesario para le manejo de session http -->
 		<dependency>
@@ -140,6 +144,14 @@
 			<version>1.6.11</version>
 		</dependency>
 		
+		
+		<!--JMS -->		
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>5.2.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -154,21 +166,26 @@
 					<path>/web-app</path>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 			    <groupId>org.codehaus.mojo</groupId> -->
-<!-- 			    <artifactId>exec-maven-plugin</artifactId> -->
-<!-- 			    <executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>generate-sources</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>java</goal> -->
-<!-- 						</goals>						 -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			    <configuration>			    	 -->
-<!-- 			      <mainClass>grupo6.procesador.ProcesadorVelocity</mainClass> -->
-<!-- 			    </configuration> -->
-<!-- 			 </plugin> -->
+			<plugin>
+				<groupId>org.apache.activemq.tooling</groupId>
+				<artifactId>maven-activemq-plugin</artifactId>
+				<version>5.2.0</version>
+			</plugin>
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>exec-maven-plugin</artifactId>
+			    <executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>						
+					</execution>
+				</executions>
+			    <configuration>			    	
+			      <mainClass>grupo6.procesador.ProcesadorVelocity</mainClass>
+			    </configuration>
+			 </plugin>
 		</plugins>
 		<resources>
 			<resource>

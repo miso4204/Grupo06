@@ -190,6 +190,7 @@ $("#cambiarPass").submit(function(e) {
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-5">
+						#if($UpdateProfile == "true")
                             <form action="pages/update_profile" id="changeProfile" method="post">
                                 <h4>Personal Infomation</h4>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
@@ -228,8 +229,10 @@ $("#cambiarPass").submit(function(e) {
                                 <input type="submit" class="btn btn-primary" id="save" value="Save Changes">
                                 <h3>${mensaje}</h3>
                             </form>
+							#end
                         </div>
-                        <div class="col-md-4 col-md-offset-1">
+                        #if($ChangePassword == "true")
+						<div class="col-md-4 col-md-offset-1">
                             <h4>Change Password</h4>
                             <form id="cambiarPass" action=""  method="post">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
@@ -249,6 +252,7 @@ $("#cambiarPass").submit(function(e) {
                             	<div id="errormessage"></div>
                             </form>
                         </div>
+						#end
                     </div>
 
                 </div>

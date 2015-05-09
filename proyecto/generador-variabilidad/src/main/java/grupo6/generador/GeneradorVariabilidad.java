@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 
@@ -21,6 +23,8 @@ import java.util.Set;
  *
  */
 public class GeneradorVariabilidad {
+	
+	private static final ExecutorService executor = Executors.newFixedThreadPool(2);
 
 	/**
 	 * Construye el comando de sistema operativo
@@ -32,7 +36,8 @@ public class GeneradorVariabilidad {
 
 		System.out.println("----> Iniciando generador....");
 		cargarFeatures();
-		StringBuilder comandoMvn = new StringBuilder(
+		
+		StringBuilder comandoMvnTomcat = new StringBuilder(
 				"mvn clean install tomcat7:run ");
 		StringBuilder perfilesMvn = new StringBuilder("-Pdesarrollo");
 
@@ -43,14 +48,55 @@ public class GeneradorVariabilidad {
 		} else {
 			perfilesMvn.append(",sin_cache");
 		}
-		comandoMvn.append(perfilesMvn);
-
+		
+		boolean conEscalabilidad = Variability.isEnable(FeaturesNames.SCALABILITY);
+		System.out.println("con escalabilidad: " + conEscalabilidad);
+		if (conEscalabilidad) {
+			perfilesMvn.append(" -Dspring.profiles.active=pago_asincrono");
+		} else {
+			perfilesMvn.append(" -Dspring.profiles.active=pago_sincrono");
+		}
+		comandoMvnTomcat.append(perfilesMvn);
+		
 		// abre una nueva ventana de consola (Windows)
-		String comandoSO = "cmd.exe /c start cmd.exe /K \"cd..  && cd web-app && "
-				+ comandoMvn.toString() + "\"";				
-		System.out.println("comando a ejecutar: " + comandoMvn);
-		Process p = Runtime.getRuntime().exec(comandoSO);		
-		p.waitFor();
+		final String comandoSO = "cmd.exe /c start cmd.exe /K \"cd..  && cd web-app && "
+				+ comandoMvnTomcat.toString() + "\"";				
+		System.out.println("comando a ejecutar: " + comandoMvnTomcat);
+		
+		
+		// lanza ActiveMQ para JMS
+		if (conEscalabilidad) {
+			executor.execute(new Runnable() {
+			    public void run() {
+			    	Process p;
+					try {
+						p = Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /K \"cd..  && cd web-app && "
+								+ " mvn clean activemq:run " + "\"");
+						p.waitFor();
+					} catch (Exception e) {					
+						e.printStackTrace();
+					}		
+					
+			    }
+			});
+			Thread.sleep(10000); // da tiempo de espera hasta que suba la cola jms antes de subir Tomcat
+		}
+		
+		// lanza Tomcat
+		executor.execute(new Runnable() {
+		    public void run() {
+		    	Process p;
+				try {
+					p = Runtime.getRuntime().exec(comandoSO);
+					p.waitFor();
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}		
+				
+		    }
+		});
+		
+		
 		System.out.println("----> Fin generador.");
 	}
 
