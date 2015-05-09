@@ -41,6 +41,9 @@ public class Usuario implements Serializable {
 	private String website; // util para el proveedor
 	private List<Producto> carritoCompras = new ArrayList<Producto>();
 	private TipoMoneda tipoMoneda =  TipoMoneda.DOLAR;
+	private Double descuentoPse = 0.0;
+	private Double descuentoTc = 0.0;
+	private Double descuentoCash = 0.0;
 	
 //---------------------- GUETTERS AND SETTERS ------------------	
 	
@@ -149,7 +152,29 @@ public class Usuario implements Serializable {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+	
+	
+	public Double getDescuentoPse() {
+		return descuentoPse;
+	}
+	public void setDescuentoPse(Double descuentoPse) {
+		this.descuentoPse = descuentoPse;
+	}
+	public Double getDescuentoTc() {
+		return descuentoTc;
+	}
+	public void setDescuentoTc(Double descuentoTc) {
+		this.descuentoTc = descuentoTc;
+	}
+	public Double getDescuentoCash() {
+		return descuentoCash;
+	}
+	public void setDescuentoCash(Double descuentoCash) {
+		this.descuentoCash = descuentoCash;
 	}	
+	
+	
 	
 	
 }

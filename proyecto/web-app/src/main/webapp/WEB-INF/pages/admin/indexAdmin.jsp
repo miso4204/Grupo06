@@ -388,10 +388,9 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                 <ul class="nav nav-tabs" id="myTab">
 <!--                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a> -->
 <!--                                     </li> -->
-                                    <li class="active"><a href="#tab-2" data-toggle="tab">Sales reports</a>
+									                                    <li class="active"><a href="#tab-2" data-toggle="tab">Sales reports</a>
                                     </li>
-                                    <li><a href="#tab-3" data-toggle="tab">Rating reports</a>
-                                    </li>
+									                                    									
                                 </ul>
                                 <div class="tab-content">
                       <!-- REPOORTES ----------------------------------- -->
@@ -403,13 +402,13 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                         
                                             <div class="tabbable">
                                                 <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
-                                                    <li class="active"><a href="#flight-search-1" data-toggle="tab">By date</a>
+                                                    													<li class="active"><a href="#flight-search-1" data-toggle="tab">By date</a>
                                                     </li>
-                                                    <li><a href="#flight-search-2" data-toggle="tab">By location</a>
+																										                                                    <li><a href="#flight-search-2" data-toggle="tab">By location</a>
                                                     </li>
-                                                </ul>
+													                                                </ul>
                                                 <div class="tab-content">
-                                                    <div class="tab-pane fade in active" id="flight-search-1">
+													                                                    <div class="tab-pane fade in active" id="flight-search-1">
                                                         <div class="row">
                                                             
                                                             <div class="col-md-6">
@@ -438,7 +437,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade" id="flight-search-2">
+																										                                                    <div class="tab-pane fade" id="flight-search-2">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="row">
@@ -459,7 +458,7 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+													                                                </div>
                                             </div>
                                     
                         <table class="table table-bordered table-striped table-booking-history" id="tablaReporte">
@@ -471,9 +470,9 @@ $("#buscarPorRatingPaquete").submit(function(e) {
                                         
                                             <div class="tabbable">
                                                 <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
-                                                    <li class="active"><a href="#search-1" data-toggle="tab">By package</a>
+                                                    													<li class="active"><a href="#search-1" data-toggle="tab">By package</a>
                                                     </li>
-                                                    <li><a href="#search-2" data-toggle="tab">By location</a>
+													                                                    <li><a href="#search-2" data-toggle="tab">By location</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">

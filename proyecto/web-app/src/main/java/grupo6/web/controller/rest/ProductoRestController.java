@@ -498,6 +498,22 @@ public class ProductoRestController extends BaseRestController {
 				Usuario proveedor = 
 						usuarioService.buscarPorId(producto.getProveedorId());
 				productoDTO.setProveedor(crearUsuarioDTO(proveedor));
+								
+				if (proveedor.getDescuentoCash() != null
+						&& proveedor.getDescuentoCash() > 0) {
+					productoDTO.setDescuentoCash(proveedor.getDescuentoCash());
+					productoDTO.setPosibleDescuento(true);
+				}
+				if (proveedor.getDescuentoPse() != null
+						&& proveedor.getDescuentoPse() > 0) {
+					productoDTO.setDescuentoPse(proveedor.getDescuentoPse());
+					productoDTO.setPosibleDescuento(true);
+				}
+				if (proveedor.getDescuentoTc()!= null
+						&& proveedor.getDescuentoTc() > 0) {
+					productoDTO.setDescuentoTc(proveedor.getDescuentoTc());
+					productoDTO.setPosibleDescuento(true);
+				}
 			}
 			
 					

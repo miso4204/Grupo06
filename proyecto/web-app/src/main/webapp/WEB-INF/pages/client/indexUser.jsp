@@ -249,9 +249,9 @@ $("#buscarPorFecha").submit(function(e) {
                                                 </li>
                                                 <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-calendar"></i> <span >Date</span></a> 
                                                  <li>
-                                                                                                 <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
+																								<li><a href="#tab-3" data-toggle="tab"><i class="fa fa-map-marker"></i> <span >Location</span></a>
                                                 </li> 
-                                                                                            </ul>
+												                                                                                            </ul>
                                                     <div class="tab-content">                                                       
                                                         <div class="tab-pane fade  in active" id="tab-1">
                                                             <h2>Search and Save by price</h2>

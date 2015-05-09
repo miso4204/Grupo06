@@ -72,6 +72,9 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioDAO {
 			usuarioEncontrado.setNombre(user.getNombre());
 			usuarioEncontrado.setTelefono(user.getTelefono());
 			usuarioEncontrado.setTipoMoneda(user.getTipoMoneda());
+			usuarioEncontrado.setDescuentoCash(user.getDescuentoCash());
+			usuarioEncontrado.setDescuentoPse(user.getDescuentoPse());
+			usuarioEncontrado.setDescuentoTc(user.getDescuentoTc());
 			getCurrentSession().update(usuarioEncontrado);
 			
 			return true;

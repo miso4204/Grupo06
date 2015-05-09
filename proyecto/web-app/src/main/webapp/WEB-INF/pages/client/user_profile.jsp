@@ -190,7 +190,7 @@ $("#cambiarPass").submit(function(e) {
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-5">
-                            <form action="pages/update_profile" id="changeProfile" method="post">
+						                            <form action="pages/update_profile" id="changeProfile" method="post">
                                 <h4>Personal Infomation</h4>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
                                     <label>User Name</label>
@@ -213,18 +213,15 @@ $("#cambiarPass").submit(function(e) {
                                     <input id="direccion" name="direccion" class="form-control" value="${usuarioSesion.direccion}" type="text" required/>
                                 </div>
                                 
-                                                              
-                                <label>Select your prefered kind money</label>                      
+                                                                <label>Select your prefered kind money</label>                      
 								<label class="radio-inline radio-small"> <input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="DOLAR"> Dollar </label>
-								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos </label>
-								<label class="radio-inline radio-small"><input class="i-radio" type="radio" name="tipoMoneda" id="tipoMoneda" value="EURO">Euro </label>
-								
+								 								 							    
                                 <hr>
                                 <input type="submit" class="btn btn-primary" id="save" value="Save Changes">
                                 <h3>${mensaje}</h3>
                             </form>
-                        </div>
-                        <div class="col-md-4 col-md-offset-1">
+							                        </div>
+                        						<div class="col-md-4 col-md-offset-1">
                             <h4>Change Password</h4>
                             <form id="cambiarPass" action=""  method="post">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
@@ -244,7 +241,7 @@ $("#cambiarPass").submit(function(e) {
                             	<div id="errormessage"></div>
                             </form>
                         </div>
-                    </div>
+						                    </div>
 
                 </div>
             </div>        

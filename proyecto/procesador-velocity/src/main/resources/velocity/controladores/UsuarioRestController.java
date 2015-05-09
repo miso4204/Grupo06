@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,6 +62,9 @@ public class UsuarioRestController extends BaseRestController {
 			usuarioDTO.setEmail(user.getEmail());
 			usuarioDTO.setWebsite(user.getWebsite());
 			usuarioDTO.setTipoMoneda(user.getTipoMoneda());
+			usuarioDTO.setDescuentoCash(user.getDescuentoCash());
+			usuarioDTO.setDescuentoPse(user.getDescuentoPse());
+			usuarioDTO.setDescuentoTc(user.getDescuentoTc());
 		}
 
 		return usuarioDTO;
@@ -136,6 +140,34 @@ public class UsuarioRestController extends BaseRestController {
 		boolean b = usuarioService.cambiarPassword(changePass.getUserName(),
 					changePass.getPassActual(), changePass.getPassNuevo(), changePass.getPassNuevoValidate());
 		return devolverRespuestaExitosa("Clave cambiada exitosamente", b);	
+	}
+	#end
+	
+	
+	#if($SpecialOffers == "true")
+	/**
+	 * Servicio REST que apermite asignar los descuentos que quiere ofrecer un proveedor 
+	 * sobre sus productos.
+	 * @param Pasword anterior a actualizar. actualizado a partir de un JSON.
+	 * 
+	 * @return true si actualiza exitosamente y false si no
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/update_promos/{pse}/{tc}/{cash}/{idprov}", method = RequestMethod.POST, 
+						consumes = MediaType.APPLICATION_JSON_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<ResponseDTO> asignarDescuentos(
+			@PathVariable("pse") Double pse,
+			@PathVariable("tc") Double tc,
+			@PathVariable("cash") Double cash,
+			@PathVariable("idprov") Long idprov) throws Exception {
+		
+		Usuario proveedor = usuarioService.buscarPorId(idprov);
+		proveedor.setDescuentoCash(cash);
+		proveedor.setDescuentoPse(pse);
+		proveedor.setDescuentoTc(tc);
+		usuarioService.actualizarUsuario(proveedor);
+		return devolverRespuestaExitosa("Descuentos asignados exitosamente", true);	
 	}
 	#end
 }
