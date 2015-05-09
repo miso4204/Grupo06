@@ -526,7 +526,7 @@ $(document).ready(function() {
                                                             <th>Description</th>
                                                             <th>Price per person</th>
                                                             <th>Date</th>
-                                                            <th></th>
+                                                            <th></th> 
                                                         </tr>
                                                          </thead>
                                                          <tbody>
