@@ -2,6 +2,8 @@ package grupo6.web.controller.rest;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.payment.service.view.IPaymentService;
+import grupo6.modulo.utilidades.FeaturesNames;
+import grupo6.modulo.utilidades.Variability;
 import grupo6.persistencia.entidades.FacturaCompra;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +61,12 @@ public class PaymentRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = "/pay_cash/{userName}", method = RequestMethod.POST, 
 						produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody FacturaCompra pagoManual(@PathVariable("userName") String userName,@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
-		return paymentService.cashOnDelivery(userName,tipoMoneda);
+	public @ResponseBody FacturaCompra pagoManual(@PathVariable("userName") String userName,@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda){
+		boolean isCashOnDelivery = Variability.isEnable(FeaturesNames.CASH_ON_DELIVERY);
+		if(isCashOnDelivery){
+			return paymentService.cashOnDelivery(userName,tipoMoneda);	
+		}else{
+			throw new UnsupportedOperationException("Tipo de pago no soportado");
+		}
 	}
 }
