@@ -1,6 +1,8 @@
 package grupo6.web.aspectos;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
+import grupo6.modulo.utilidades.FeaturesNames;
+import grupo6.modulo.utilidades.Variability;
 import grupo6.utilidades.Currency;
 import grupo6.web.dto.ProductoResponseDTO;
 import grupo6.web.dto.ResponseDTO;
@@ -21,8 +23,14 @@ public class TasaCambioAspect{
 		returning= "productos")  
     public List<ProductoResponseDTO> adviceTasaCambioTodos(JoinPoint joinPoint, TipoMoneda tipoMonedaUsuario, 
     							List<ProductoResponseDTO> productos) throws Throwable   
-    {  
-		return aplicarConversion(productos, tipoMonedaUsuario);  
+    {
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		if(isTasaCambio){
+			return aplicarConversion(productos, tipoMonedaUsuario);	
+		}else{
+			return productos;
+		}
+		  
     }
 	
 	@AfterReturning(
@@ -31,7 +39,13 @@ public class TasaCambioAspect{
     public List<ProductoResponseDTO> adviceTasaCambioPrecio(JoinPoint joinPoint, Double precioInicial, Double  precioFinal, TipoMoneda tipoMonedaUsuario, 
     							List<ProductoResponseDTO> productos) throws Throwable   
     {  
-		return aplicarConversion(productos, tipoMonedaUsuario);   
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		if(isTasaCambio){
+			return aplicarConversion(productos, tipoMonedaUsuario);	
+		}else{
+			return productos;
+		}
+		   
     }
 	
 	@AfterReturning(
@@ -40,8 +54,14 @@ public class TasaCambioAspect{
     public List<ProductoResponseDTO> adviceTasaCambioFecha(JoinPoint joinPoint, Date fechaInicial,
     							Date fechaFinal, TipoMoneda tipoMonedaUsuario, 
     							List<ProductoResponseDTO> productos) throws Throwable   
-    {  
-		return aplicarConversion(productos, tipoMonedaUsuario);  
+    {
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		if(isTasaCambio){
+			return aplicarConversion(productos, tipoMonedaUsuario);	
+		}else{
+			return productos;
+		}
+		  
     }
 	
 	@SuppressWarnings("unchecked")
@@ -51,7 +71,12 @@ public class TasaCambioAspect{
     public ResponseEntity<ResponseDTO> adviceTasaCambioLugar(JoinPoint joinPoint, String lugar, TipoMoneda tipoMonedaUsuario, 
     		ResponseEntity<ResponseDTO> productos) throws Throwable   
     {  
-		productos.getBody().setRespuesta(aplicarConversion((List<ProductoResponseDTO>)productos.getBody().getRespuesta(), tipoMonedaUsuario));
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		
+		if(isTasaCambio){
+			productos.getBody().setRespuesta(aplicarConversion((List<ProductoResponseDTO>)productos.getBody().getRespuesta(), tipoMonedaUsuario));		
+		}
+		
         return productos;  
     }
 	
@@ -62,12 +87,16 @@ public class TasaCambioAspect{
     							Long id, Long clientId,  TipoMoneda tipoMonedaUsuario, 
     							ProductoResponseDTO producto) throws Throwable   
     {  
-		if (producto != null) {
-			TipoMoneda tipoMonedaProducto = producto.getTipoMoneda();
-		
-			double valorFinal = Currency.getConversion(tipoMonedaProducto,tipoMonedaUsuario,producto.getPrecio());
-			producto.setPrecio(valorFinal);
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		if(isTasaCambio){
+			if (producto != null) {
+				TipoMoneda tipoMonedaProducto = producto.getTipoMoneda();
+			
+				double valorFinal = Currency.getConversion(tipoMonedaProducto,tipoMonedaUsuario,producto.getPrecio());
+				producto.setPrecio(valorFinal);
+			}	
 		}
+		
     	    	
         return producto;  
     }
@@ -75,16 +104,17 @@ public class TasaCambioAspect{
     
 	private List<ProductoResponseDTO> aplicarConversion(List<ProductoResponseDTO> productos, 
 			TipoMoneda tipoMonedaUsuario) {
-		
-		if (tipoMonedaUsuario != null) {       
-	    	for(int i = 0;i<productos.size();i++){
-	    		TipoMoneda tipoMonedaProducto = productos.get(i).getTipoMoneda();
-	    		
-	    		double valorFinal = Currency.getConversion(tipoMonedaProducto,tipoMonedaUsuario,productos.get(i).getPrecio());
-	    		productos.get(i).setPrecio(valorFinal);
-	    	}
-    	}
-    	
+		boolean isTasaCambio = Variability.isEnable(FeaturesNames.ADMIN_MONEDA) && Variability.isEnable(FeaturesNames.DOLAR) && (Variability.isEnable(FeaturesNames.COLOMBIAN_PESOS) || Variability.isEnable(FeaturesNames.EURO));
+		if(isTasaCambio){
+			if (tipoMonedaUsuario != null) {       
+		    	for(int i = 0;i<productos.size();i++){
+		    		TipoMoneda tipoMonedaProducto = productos.get(i).getTipoMoneda();
+		    		
+		    		double valorFinal = Currency.getConversion(tipoMonedaProducto,tipoMonedaUsuario,productos.get(i).getPrecio());
+		    		productos.get(i).setPrecio(valorFinal);
+		    	}
+	    	}	
+		}
         return productos;  
 	}
 }
