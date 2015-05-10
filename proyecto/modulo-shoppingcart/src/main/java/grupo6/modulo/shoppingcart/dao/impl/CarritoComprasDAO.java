@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.view.ICarritoComprasDAO;
 import grupo6.persistencia.dao.BaseDAO;
+import grupo6.persistencia.entidades.FacturaCompra;
 import grupo6.persistencia.entidades.Producto;
 import grupo6.persistencia.entidades.Usuario;
 import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
@@ -140,13 +141,13 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 				double valor = Currency.getConversion(p.getTipoMoneda(), tipoMonedaUsuario, p.getPrecio());
 				total += valor;
 				Usuario proveedor = buscarUsuarioPorId(p.getProveedorId());
-				double valorPse = proveedor.getDescuentoPse() != null ? 
+				double valorPse = proveedor != null && proveedor.getDescuentoPse() != null ? 
 						valor * (1 - proveedor.getDescuentoPse()) : valor;
 				totalPse += valorPse;
-				double valorTc = proveedor.getDescuentoTc() != null ? 
+				double valorTc = proveedor != null && proveedor.getDescuentoTc() != null ? 
 						valor * (1 - proveedor.getDescuentoTc()) : valor;
 				totalTc += valorTc;
-				double valorCash = proveedor.getDescuentoCash()!= null ? 
+				double valorCash = proveedor != null && proveedor.getDescuentoCash()!= null ? 
 						valor * (1 - proveedor.getDescuentoCash()) : valor;
 				totalCash += valorCash;
 				
@@ -163,4 +164,16 @@ public class CarritoComprasDAO extends BaseDAO implements ICarritoComprasDAO {
 		}
 	}
 
+	@Transactional
+	public List<FacturaCompra> getFacturas(String userName, TipoMoneda tipoMoneda) {
+		
+		Usuario user = buscarUsuarioPorUserName(userName);
+		if(user != null){
+			return user.getFacturas();	
+		}else{
+			return new ArrayList<FacturaCompra>();
+		}
+		
+	}
+	
 }

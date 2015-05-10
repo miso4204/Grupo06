@@ -4,6 +4,8 @@ import java.util.List;
 
 import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
+import grupo6.persistencia.entidades.FacturaCompra;
+import grupo6.persistencia.entidades.Usuario;
 import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
 
 /**
@@ -44,4 +46,6 @@ public interface ICarritoComprasService {
 	 * @return el valor total del carrito de compras.
 	 */
 	 List<TotalCarritoDTO> getTotalCarritoCompras(String userName,TipoMoneda tipoMoneda);
+	 
+	 List<FacturaCompra> getFacturas(String userName,TipoMoneda tipoMoneda);
 }

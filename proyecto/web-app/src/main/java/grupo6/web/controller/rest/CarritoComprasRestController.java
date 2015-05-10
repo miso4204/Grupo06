@@ -4,6 +4,7 @@ import grupo6.modulo.payment.dao.enums.TipoMoneda;
 import grupo6.modulo.shoppingcart.dao.impl.CarritoProductoResponseDTO;
 import grupo6.modulo.shoppingcart.service.view.ICarritoComprasService;
 import grupo6.persistencia.entidades.dto.TotalCarritoDTO;
+import grupo6.web.dto.FacturaCompraDTO;
 import grupo6.web.dto.shoppingcart.CarritoProductoRequestDTO;
 
 import java.util.List;
@@ -87,6 +88,13 @@ public class CarritoComprasRestController extends BaseRestController {
 		
 		return  carritoComprasService.getTotalCarritoCompras(userName,tipoMoneda);
 		
+	}
+	
+	@RequestMapping(value = "/historial/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<FacturaCompraDTO> getFacturaCompras(
+			@PathVariable("userName") String userName,
+			@RequestHeader(value="tipoMoneda", required = false) TipoMoneda tipoMoneda) {
+		return FacturaCompraDTO.facturasToJson(carritoComprasService.getFacturas(userName, tipoMoneda));
 	}
 	
 }

@@ -49,11 +49,18 @@ public class PaymentCreditCardStrategy extends PaymentBaseStrategy implements IP
 				for (Producto producto : usuario.getCarritoCompras()) {
 					double valor = Currency.getConversion(producto.getTipoMoneda(), tipoMonedaUsuario, producto.getPrecio());
 					Usuario proveedor = buscarUsuarioPorId(producto.getProveedorId());
-					precioTota += proveedor.getDescuentoTc() > 0 ? valor * (1 - proveedor.getDescuentoTc()) : valor;
+					if(proveedor != null && proveedor.getDescuentoTc() != null){
+						precioTota += proveedor.getDescuentoTc() > 0 ? valor * (1 - proveedor.getDescuentoTc()) : valor;	
+					}else{
+						precioTota += valor;
+					}
 				}
 
 				factura.setTotalPagado(precioTota);
-				getCurrentSession().save(factura);
+
+				List<FacturaCompra> facturasUruario = usuario.getFacturas();
+				facturasUruario.add(factura);
+				usuario.setFacturas(facturasUruario);
 
 				limpiarCarritoCompras(usuario);
 

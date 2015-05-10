@@ -50,11 +50,18 @@ public class PaymentPSEStrategy extends PaymentBaseStrategy implements IPaymentS
 				for (Producto producto : usuario.getCarritoCompras()) {
 					double valor = Currency.getConversion(producto.getTipoMoneda(), tipoMonedaUsuario, producto.getPrecio());
 					Usuario proveedor = buscarUsuarioPorId(producto.getProveedorId());
-					precioTota += proveedor.getDescuentoPse() > 0 ? valor * (1 - proveedor.getDescuentoPse()) : valor;
+					if(proveedor != null && proveedor.getDescuentoPse() != null){
+						precioTota += proveedor.getDescuentoPse() > 0 ? valor * (1 - proveedor.getDescuentoPse()) : valor;	
+					}else{
+						precioTota += valor;
+					}
 				}
 
 				factura.setTotalPagado(precioTota);
-				getCurrentSession().save(factura);
+				
+				List<FacturaCompra> facturasUruario = usuario.getFacturas();
+				facturasUruario.add(factura);
+				usuario.setFacturas(facturasUruario);
 
 				limpiarCarritoCompras(usuario);
 

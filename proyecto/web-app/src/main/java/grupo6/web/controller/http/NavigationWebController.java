@@ -87,6 +87,15 @@ public class NavigationWebController {
 
 		return new ModelAndView("/client/searchResult");
 	}
+
+	@RequestMapping("/client/shopping_history.jsp")
+	protected ModelAndView showShoppingHistory(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return new ModelAndView("/client/shopping_history");
+	}
+	
+	
 	
 	@RequestMapping("/provider/home_provider.jsp")
 	protected ModelAndView showProviderHome(HttpServletRequest request,
