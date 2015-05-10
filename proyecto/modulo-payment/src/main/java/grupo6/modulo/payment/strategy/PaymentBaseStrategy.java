@@ -28,6 +28,19 @@ public class PaymentBaseStrategy extends BaseDAO {
 	}
 	
 	/**
+	 * Busca un Usuario por id
+	 * 
+	 * @param id
+	 * @return el usuario encontrado o null si no se encontro
+	 */
+	@Transactional(readOnly = true)
+	protected Usuario buscarUsuarioPorId(Long id) {
+		Criteria criteria = getCurrentSession().createCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("id", id));
+		return (Usuario) criteria.uniqueResult();
+	}
+	
+	/**
 	 * Limpia el carrito de compras al pagar exitosamente
 	 * 
 	 * @param userCompra

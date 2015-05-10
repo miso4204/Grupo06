@@ -49,7 +49,8 @@ public class PaymentPSEStrategy extends PaymentBaseStrategy implements IPaymentS
 				double precioTota = 0;
 				for (Producto producto : usuario.getCarritoCompras()) {
 					double valor = Currency.getConversion(producto.getTipoMoneda(), tipoMonedaUsuario, producto.getPrecio());
-					precioTota += valor;
+					Usuario proveedor = buscarUsuarioPorId(producto.getProveedorId());
+					precioTota += proveedor.getDescuentoPse() > 0 ? valor * (1 - proveedor.getDescuentoPse()) : valor;
 				}
 
 				factura.setTotalPagado(precioTota);

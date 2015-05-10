@@ -48,7 +48,8 @@ public class PaymentCashOnDeliveryStrategy extends PaymentBaseStrategy implement
 				double precioTota = 0;
 				for (Producto producto : usuario.getCarritoCompras()) {
 					double valor = Currency.getConversion(producto.getTipoMoneda(), tipoMonedaUsuario, producto.getPrecio());
-					precioTota += valor;
+					Usuario proveedor = buscarUsuarioPorId(producto.getProveedorId());
+					precioTota += proveedor.getDescuentoCash() > 0 ? valor * (1 - proveedor.getDescuentoCash()) : valor;
 				}
 
 				factura.setTotalPagado(precioTota);

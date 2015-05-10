@@ -215,12 +215,18 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                 success: function(data)
                    {
 
-
+                	var arr=JSON.parse(JSON.stringify(data));
+                	var out = 'Total<span> $ '+ arr[arr.length-1].valor.toString() + ' ' + signoPrecio +'</span><br>';
                     
-                    var totalCarrito=JSON.stringify(data);
-                    var out="Total: " +'<span>$ '+totalCarrito+' '+signoPrecio+'</span>' ;
+                    for(i = 0; i < arr.length-1; i++)
+                    {
+                        if(arr[i].valor < arr[arr.length-1].valor)
+                        {
+                            out += 'Total<span> $ '+ arr[i].valor.toString() + ' ' + signoPrecio +'</span>' + ' si pagas con '+ arr[i].medioPago + '<br>';
+                        }
+                    }
                     
-                   document.getElementById("totalCarrito").innerHTML =out;
+                   document.getElementById("totalCarrito").innerHTML = out;
                                      
 
                 },

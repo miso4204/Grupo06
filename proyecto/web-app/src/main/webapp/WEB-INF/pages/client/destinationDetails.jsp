@@ -191,7 +191,27 @@ $(document).ready(function () {
 
                     document.getElementById("nombreProducto").innerHTML = arr.nombre +"<h5>"+arr.lugar+"</h5>";
                     document.getElementById("ciudadProducto").innerHTML = " "+arr.ciudad
-                    document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+signoPrecio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">'; 
+                    document.getElementById("precioProducto").innerHTML = "<h2>$ "+arr.precio+signoPrecio+"</h2>"+'<input type="hidden" id="idProductoParaCarrito" name="idProductoParaCarrito" value="'+arr.id+'">';
+
+                    out = "";
+                    if(arr.posibleDescuento)
+                    {
+						out = '<b style="font-size:20px;">Discounts</b><br>';
+	                    if(arr.descuentoPse > 0)
+	                    {
+	                    	out += '<br>Si pagas con PSE: <b style="font-size:20px;">-' + (arr.descuentoPse * 100).toString() + '%</b>';
+	                    }
+	                    if(arr.descuentoCash > 0)
+	                    {
+	                    	out += '<br>Si pagas con cash: <b style="font-size:20px;">-' + (arr.descuentoCash * 100).toString() + '%</b>';
+	                    }
+	                    if(arr.descuentoTc > 0)
+	                    {
+	                    	out += '<br>Si pagas con tarjeta: <b style="font-size:20px;">-' + (arr.descuentoTc * 100).toString() + '%</b>';
+	                    }
+                    }
+                    document.getElementById("descuentos").innerHTML = out;
+                     
                     document.getElementById("imagenURL").innerHTML = '<img src="'+urlIma+'" alt="Image Alternative text" title="'+arr.lugar+'" />';
                     document.getElementById("estructuraCalificacion").innerHTML = estructuraCalificacion(puntuacionGeneral,cantidadReviews);  
                     document.getElementById("destemail").innerHTML = '<a href="mailto:' + arr.proveedor.email + '?subject=Contactar%20proveedor" target="_top"><i class="fa fa-envelope"></i> Destination E-mail</a>';
@@ -380,7 +400,8 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 						<div class="col-md-3">
 							<p class="booking-item-header-price">
 								<small>price from</small> <span class="text-lg"
-									id="precioProducto">$350</span>/night
+									id="precioProducto">$350</span>/night<br><br>
+								<small id='descuentos'><b>Si pagas con PSE tienes 30% de descuento</b></small>
 							</p>
 						</div>
 					</div>

@@ -110,11 +110,13 @@
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                         '<br><small class="booking-item-last-booked">'+arr[i].actividades+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br>';
+                              out+= (arr[i].posibleDescuento) ? '<h5 class="booking-item-title"><strong>Discounts apply</strong></h5>' : '';
+                              out+= '<button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
-                        '</li>'
+                        '</li>';
        
 
                 
@@ -175,11 +177,13 @@ document.getElementById("ListaProductos").innerHTML = out;
 					                                     '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
 					                                     '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
 					                                 '</div>'+
-					                                 '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+					                                 '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br>';
+					                           out+= (arr[i].posibleDescuento) ? '<h5 class="booking-item-title"><strong>Discounts apply</strong></h5>' : '';
+								               out+= '<button class="btn btn-primary" id="addCart">View</button>'+
 					                                 '</div>'+
 					                             '</div>'+
 					                         '</a>'+
-					                     '</li>'
+					                     '</li>';
 					    
 					
 					             
@@ -246,11 +250,13 @@ document.getElementById("ListaProductos").innerHTML = out;
                                         '<h5 class="booking-item-title">'+arr[i].nombre+'</h5>'+
                                         '<p class="booking-item-address"><i class="fa fa-map-marker"></i> '+arr[i].ciudad+'</p><small class="booking-item-last-booked">'+arr[i].lugar+'</small>'+
                                     '</div>'+
-                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price"style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br><button class="btn btn-primary" id="addCart">View</button>'+
+                                    '<div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price"style="font-size: 27px">$'+arr[i].precio+' '+signoPrecio+'</span><span>/night</span><br>';
+                                    out+= (arr[i].posibleDescuento) ? '<h5 class="booking-item-title"><strong>Discounts apply</strong></h5>' : '';
+                                    out+='<button class="btn btn-primary" id="addCart">View</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</a>'+
-                        '</li>'
+                        '</li>';
        
 
                 
