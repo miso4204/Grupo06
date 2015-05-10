@@ -92,6 +92,36 @@
                 }
             });
         });
+$("#cash").submit(function(e) {
+            
+            e.preventDefault();     
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' ,
+                    'tipoMoneda':  '${usuarioSesion.tipoMoneda}'
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/payment/pay_cash/"+'${usuarioSesion.usuario}', 
+                data: false,
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                  
+                   var form = $('<form action="pages/client/successPayment.jsp" method="post">' +
+                    '<input type="hidden" name="respuestajson" value="" />' +
+                    '</form>');
+                    $('body').append(form);
+                    form.submit(); /*var o href="pages/client/indexUser.jsp"*/
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                     alert("Error al agregar al carrito");
+                }
+            });
+        });
 $("#payCredit").submit(function(e) {
         
             e.preventDefault();     
@@ -214,15 +244,12 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                 processData: false,
                 success: function(data)
                    {
-                	var arr=JSON.parse(JSON.stringify(data));
-                	var out = 'Total<span> $ '+ arr[arr.length-1].valor.toString() + ' ' + signoPrecio +'</span><br>';
-                	for(i = 0; i < arr.length-1; i++)
-                    {
-                        if(arr[i].valor < arr[arr.length-1].valor)
-                        {
-                            out += 'Total<span> $ '+ arr[i].valor.toString() + ' ' + signoPrecio +'</span>' + ' si pagas con '+ arr[i].medioPago + '<br>';
-                        }
-                    }
+
+
+                    
+                    var totalCarrito=JSON.stringify(data);
+                    var out="Total: " +'<span>$ '+totalCarrito+' '+signoPrecio+'</span>' ;
+                    
                    document.getElementById("totalCarrito").innerHTML =out;
                                      
 
@@ -306,6 +333,9 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                             <li>
                                 <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
+							<li>
+                                <a href="pages/client/shopping_history.jsp">Shopping History</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -383,6 +413,19 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                                                 <input class="btn btn-primary" type="submit" value="Proceed Payment" />
                                             </form>
                                         </div>
+                                    </div>
+                                </div>
+								                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-3" >Pay via Cash</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-3">
+                                        <div class="panel-body"><img class="pp-img" src="https://dl.dropboxusercontent.com/u/62595112/cash_on_delivery.png" alt="Cash on delivery" title="Cash on delivery" />
+                                            <p>Important: You will be redirected to Cash on delivery website to securely complete your payment.</p>
+                                            <form id="cash">
+                                             <button class="btn btn-primary" type="submit">Checkout via cash on delivery</a>   
+                                             </form>
+									    </div>
                                     </div>
                                 </div>
 								                                 </div>

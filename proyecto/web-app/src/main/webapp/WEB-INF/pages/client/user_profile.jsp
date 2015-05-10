@@ -160,6 +160,9 @@ $("#cambiarPass").submit(function(e) {
                             <li>
                                 <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
+                            <li>
+                                <a href="pages/client/shopping_history.jsp">Shopping History</a>
+                            </li>
                             
                             
 
