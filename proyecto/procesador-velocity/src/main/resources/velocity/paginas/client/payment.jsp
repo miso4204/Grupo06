@@ -335,6 +335,9 @@ var tipoMo='${usuarioSesion.tipoMoneda}';
                             <li>
                                 <a href="pages/client/payment.jsp">My shopping cart</a>
                             </li>
+							<li>
+                                <a href="pages/client/shopping_history.jsp">Shopping History</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
