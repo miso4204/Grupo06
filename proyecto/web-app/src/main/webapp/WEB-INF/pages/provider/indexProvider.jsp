@@ -208,7 +208,7 @@ $(document).ready(function() {
              //precioPorDia =('#lodgingPrice').val();
               var precioTotal=0;
 
-              precioTotal=precioVuelo+parseInt($('#lodgingPrice').val())+precioActividades;
+              precioTotal=precioVuelo+$('#lodgingPrice').val()+precioActividades;
             
 
               
