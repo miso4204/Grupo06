@@ -150,7 +150,7 @@ $(document).ready(function() {
             })
             actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ campo1 +
             '","descripcion":"' + campo2 + '","fechaActividad":"' + campo4 + '","costoActividad":"' + campo3 + '"}';
-            precioActividades=precioActividades+campo3;
+            precioActividades=precioActividades+parseFloat(campo3);
             if(i==rowCount){
                 actividadesAgregadas=actividadesAgregadas+"]";
             }
@@ -161,6 +161,7 @@ $(document).ready(function() {
              })
           
              obj = jQuery.parseJSON(actividadesAgregadas);
+            // alert(actividadesAgregadas);
 
         });
    
@@ -194,7 +195,7 @@ $(document).ready(function() {
             }
             else{
              vuelo="";
-             precioVuelo = "";
+             precioVuelo = "0";
              origen= "";
              destino= "";
              fechaSalida= "";
@@ -206,11 +207,19 @@ $(document).ready(function() {
              //tipo =
              numMaxPersonas = 0;
              //precioPorDia =('#lodgingPrice').val();
-              var precioTotal=0;
-
-              precioTotal=precioVuelo+$('#lodgingPrice').val()+precioActividades;
+             var precioTotal=0;
             
-
+            var lodginpricio=0;
+            lodginpricio=$('#lodgingPrice').val();
+            if (lodginpricio==""){
+              lodginpricio=0
+            }
+            alert(precioVuelo);
+            alert(lodginpricio);
+            alert(precioActividades);
+              precioTotal=parseFloat(precioVuelo)+parseFloat(lodginpricio)+parseFloat(precioActividades);
+            
+        alert(actividadesAgregadas);
               
             var activities = $('input[name=activities]:checked').map(function() { 
                 return this.value; 
