@@ -119,7 +119,7 @@ $(document).ready(function() {
        $("#airCond").on('ifChecked', function(event){
         aireAcondicionado= true;      
     });
-     
+     /*
      $("#tablaAct").each(function (index3) {
        
         var rowCount = $("#tablaAct tbody tr").length;
@@ -128,13 +128,12 @@ $(document).ready(function() {
         $("#tablaAct tbody tr").each(function (index) 
         {
               
-
+          alert(rowCount);
             var campo1, campo2, campo3, campo4;
             i++;
-
             $(this).children("td").each(function (index2) 
             {
-                
+                alert()
                 switch (index2) 
                 {
                     case 0: campo1 = $("#activityName").val();
@@ -148,6 +147,7 @@ $(document).ready(function() {
                 }
                   
             })
+            
             actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ campo1 +
             '","descripcion":"' + campo2 + '","fechaActividad":"' + campo4 + '","costoActividad":"' + campo3 + '"}';
             precioActividades=precioActividades+parseFloat(campo3);
@@ -165,13 +165,35 @@ $(document).ready(function() {
 
         });
    
-
+*/
 
 
         $("#formularioCrear").submit(function(e) {
            
            e.preventDefault();   
 
+
+            //datos actividades
+              actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName").val() +
+            '","descripcion":"' + $("#activityDescription").val() + '","fechaActividad":"' +  $("#dateActivity").val() + '","costoActividad":"' + $("#activityPrice").val() + '"},';
+               actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName2").val() +
+            '","descripcion":"' + $("#activityDescription2").val() + '","fechaActividad":"' +  $("#dateActivity2").val() + '","costoActividad":"' + $("#activityPrice2").val() + '"},';
+               actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName").val() +
+            '","descripcion":"' + $("#activityDescription3").val() + '","fechaActividad":"' +  $("#dateActivity3").val() + '","costoActividad":"' + $("#activityPrice3").val() + '"}]';
+            precioActividades=precioActividades+parseFloat($("#activityPrice").val())+parseFloat($("#activityPrice2").val())+parseFloat($("#activityPrice3").val());
+            
+            /*if(i==rowCount){
+                actividadesAgregadas=actividadesAgregadas+"]";
+            }
+            else{
+                actividadesAgregadas=actividadesAgregadas+",";
+            }
+            
+             })*/
+alert(actividadesAgregadas);
+         
+             obj = jQuery.parseJSON(actividadesAgregadas);
+            // alert(actividadesAgregadas);
             //datos vuelos
             var vuelo="";
             var precioVuelo = "";
@@ -214,12 +236,9 @@ $(document).ready(function() {
             if (lodginpricio==""){
               lodginpricio=0
             }
-            alert(precioVuelo);
-            alert(lodginpricio);
-            alert(precioActividades);
+                        alert(precioActividades);
               precioTotal=parseFloat(precioVuelo)+parseFloat(lodginpricio)+parseFloat(precioActividades);
             
-        alert(actividadesAgregadas);
               
             var activities = $('input[name=activities]:checked').map(function() { 
                 return this.value; 
@@ -564,21 +583,54 @@ $("#formDescuentos").submit(function(e) {
                                                         </tr>
                                                          </thead>
                                                          <tbody>
-                                                        <tr id="template">
-                                                            <td><input id ="activityName"type="text" class="form_id" style="width:100px" size="5px"value=""/></td>
-                                                            <td><input id = "activityDescription"type="text" class="form_name" style="width:100px" size="5px"value=""/></td>
-                                                            <td><input id = "activityPrice" type="number" class="form_col3" style="width:100px" value="0" size="5px" value="3"/></td>
+                                                        <tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName"type="text" class="form_name" style="width:100px" size="5px"value="Escalar la montanha."/></td>
+                                                            <td><input id = "activityDescription"type="text" class="form_descrip" style="width:100px" size="5px"value="Escalar con un guía"/></td>
+                                                            <td><input id = "activityPrice" type="number" class="form_Price" style="width:100px" value="50" size="5px" value="300"/></td>
                                                             <td><div class="input-daterange" data-date-format="yyyy-m-d">
                                                                     <div class="row">
                                                                     
                                                                         <div class="col-md-6">
                                                                             <div class="form-group form-group-lg form-group-icon-left">
-                                                                                <input class="form-control" name="end" type="text" id="dateActivity"/>
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity"value="2015-02-12"style="width:100px"  size="10px"/>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div></td>
                                                             <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+                                                        </tr>
+                                                          <tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName2"type="text" class="form_name" style="width:100px" size="5px"value="Montar bicicleta."/></td>
+                                                            <td><input id = "activityDescription2"type="text" class="form_descrip" style="width:100px" size="5px"value="Actividad realizada en la tarde."/></td>
+                                                            <td><input id = "activityPrice2" type="number" class="form_Price" style="width:100px" value="10" size="5px" /></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity2"value="2015-02-12"style="width:100px" size="10px"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+</tr>
+<tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName3"type="text" class="form_name" style="width:100px" size="5px"value="Paseo a la isla"/></td>
+                                                            <td><input id = "activityDescription3"type="text" class="form_descrip" style="width:100px" size="5px"value="Incluye almuerzo"/></td>
+                                                            <td><input id = "activityPrice3" type="number" class="form_Price" style="width:100px" value="300" size="5px"/></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity3" value="2015-02-12"style="width:100px" size="10px"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+
                                                         </tr>
                                                     </tbody>
                                                     </table>
