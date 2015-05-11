@@ -20,27 +20,245 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mystyles.css">
+
+
     <script src="js/modernizr.js"></script>
  <script src="js/jquery.js"></script>
+ <script src="js/bootstrap-datetimepicker.js"></script>
+
+ <script type="text/javascript">
+
+$(document).ready(function() {
+    var template = $('#template'),
+        id = 0;
+    
+    $("#add-line").click(function() {
+        var row = template.clone();
+        template.find("input:text").val("");
+        row.attr('id', 'row_' + (++id));
+        row.find('.remove').show();
+        template.before(row);
+    });
+    
+    $('.form-fields').on('click', '.remove', function(){
+        $(this).closest('tr').remove();
+    });
+});
+
+
+ </script>
+
+
 <script type="text/javascript">
+
+
     $(document).ready(function() {
+         var aireAcondicionado=false;
+         var piscina = false;
+         var zonasVerdes=false;
+         var vigilancia=false;
+         var actividadesAgregadas="[";
+         var checkVueloSeleccionado=false;
+         var precioActividades=0;
+         var obj;
+     $("#flightChecked").on('ifChecked', function(event){
+         $("#airline").prop('required',true);
+         $("#flightPrice").prop('required',true);
+         $("#origenFlight").prop('required',true);
+         checkVueloSeleccionado=true;
+         
+         
+            
+    });
+     
+     $("#flightChecked").on('ifUnchecked', function(event){
+        $("#airline").prop('required',false);
+        $("#flightPrice").prop('required',false);
+        $("#origenFlight").prop('required',false);
+
+     });
+
+     $("#lodgingChecked").on('ifChecked', function(event){
+         $("#occupancy").prop('required',true);
+         $("#lodgingrice").prop('required',true);
+         
+            
+    });
+     
+     $("#lodgingChecked").on('ifUnchecked', function(event){
+        $("#occupancy").prop('required',false);
+        $("#lodgingrice").prop('required',false);
+        
+        
+     });
+
+     $("#activityChecked").on('ifChecked', function(event){
+         $("#airline").prop('required',true);
+         $("#flightPrice").prop('required',true);
+         
+            
+    });
+     
+     $("#activityChecked").on('ifUnchecked', function(event){
+        $("#airline").prop('required',false);
+        $("#flightPrice").prop('required',false);
+
+     });
+
+     $("#swPool").on('ifChecked', function(event){
+        piscina= true;      
+    });
+     
+      $("#security").on('ifChecked', function(event){
+        vigilancia= true;      
+    });
+
+      $("#greenArea").on('ifChecked', function(event){
+        zonasVerdes= true;      
+    });
+       $("#airCond").on('ifChecked', function(event){
+        aireAcondicionado= true;      
+    });
+     /*
+     $("#tablaAct").each(function (index3) {
+       
+        var rowCount = $("#tablaAct tbody tr").length;
+      
+        var i=0;
+        $("#tablaAct tbody tr").each(function (index) 
+        {
+              
+          alert(rowCount);
+            var campo1, campo2, campo3, campo4;
+            i++;
+            $(this).children("td").each(function (index2) 
+            {
+                alert()
+                switch (index2) 
+                {
+                    case 0: campo1 = $("#activityName").val();
+                            break;
+                    case 1: campo2 = $("#activityDescription").val();
+                            break;
+                    case 2: campo3 = $("#activityPrice").val();
+                            break;
+                    case 3: campo4 = $("#dateActivity").val();
+                            break;
+                }
+                  
+            })
+            
+            actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ campo1 +
+            '","descripcion":"' + campo2 + '","fechaActividad":"' + campo4 + '","costoActividad":"' + campo3 + '"}';
+            precioActividades=precioActividades+parseFloat(campo3);
+            if(i==rowCount){
+                actividadesAgregadas=actividadesAgregadas+"]";
+            }
+            else{
+                actividadesAgregadas=actividadesAgregadas+",";
+            }
+            
+             })
+          alert(rowCount);
+             obj = jQuery.parseJSON(actividadesAgregadas);
+            // alert(actividadesAgregadas);
+
+        });
+   
+*/
+
+
         $("#formularioCrear").submit(function(e) {
            
-            e.preventDefault();     
+           e.preventDefault();   
+
+
+            //datos actividades
+              actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName").val() +
+            '","descripcion":"' + $("#activityDescription").val() + '","fechaActividad":"' +  $("#dateActivity").val() + '","costoActividad":"' + $("#activityPrice").val() + '"},';
+               actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName2").val() +
+            '","descripcion":"' + $("#activityDescription2").val() + '","fechaActividad":"' +  $("#dateActivity2").val() + '","costoActividad":"' + $("#activityPrice2").val() + '"},';
+               actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ $("#activityName").val() +
+            '","descripcion":"' + $("#activityDescription3").val() + '","fechaActividad":"' +  $("#dateActivity3").val() + '","costoActividad":"' + $("#activityPrice3").val() + '"}]';
+            precioActividades=precioActividades+parseFloat($("#activityPrice").val())+parseFloat($("#activityPrice2").val())+parseFloat($("#activityPrice3").val());
+            
+            /*if(i==rowCount){
+                actividadesAgregadas=actividadesAgregadas+"]";
+            }
+            else{
+                actividadesAgregadas=actividadesAgregadas+",";
+            }
+            
+             })*/
+         
+             obj = jQuery.parseJSON(actividadesAgregadas);
+            // alert(actividadesAgregadas);
+            //datos vuelos
+            var vuelo="";
+            var precioVuelo = "";
+            var origen= "";
+            var destino= "";
+            var fechaSalida= "";
+            var fechaLlegada="";
+
+            //datos Alojamiento
+            var tipo ="";
+            var numMaxPersonas = 0;
+            var precioPorDia ="";
+            if(checkVueloSeleccionado){
+            //datos vuelos
+             //vuelo=$('#airline').val();
+             precioVuelo = $('#flightPrice').val();
+             origen= $('#origenFlight').val();
+             destino= $('#destinationLocation').val();
+             fechaSalida= $('#dateOneFlight').val();
+             fechaLlegada= $('#dateTwoFlight').val();
+            }
+            else{
+             vuelo="";
+             precioVuelo = "0";
+             origen= "";
+             destino= "";
+             fechaSalida= "";
+             fechaLlegada="";
+
+            }
+
+            //datos Alojamiento
+             //tipo =
+             numMaxPersonas = 0;
+             //precioPorDia =('#lodgingPrice').val();
+             var precioTotal=0;
+            
+            var lodginpricio=0;
+            lodginpricio=$('#lodgingPrice').val();
+            if (lodginpricio==""){
+              lodginpricio=0
+            }
+                       // alert(precioActividades);
+              precioTotal=parseFloat(precioVuelo)+parseFloat(lodginpricio)+parseFloat(precioActividades);
+            
+              
             var activities = $('input[name=activities]:checked').map(function() { 
                 return this.value; 
             }).get().join(',');
+
             var jsonPeticion = JSON.stringify({
                     "nombre": $('#name').val(), 
                     "lugar": $('#destinationName').val(),
                     "ciudad": $('#destinationLocation').val(),
-                    "precio": $('#price').val(),
+                    "precio": precioTotal,
                     "urlImagen": $('#urlImage').val(),
                     "fechaInicio": $('#date').val(),
                     "tipoMoneda": $('#tipoMoneda:checked').val(),
                     "proveedorId": '${usuarioSesion.id}',
                     "descripcion":  $('#description').val(),
-                    "actividades":  activities
+                    "actividades" : obj,
+                  "vuelo" :{"aerolinea":$('#airline:checked').val(), "precioVuelo":precioVuelo, "origen":origen, "destino":destino,"fechaSalida":fechaSalida, "fechaLlegada":fechaLlegada},
+                  "alojamiento":{"tipo":$('#tipoAlojamiento:checked').val(),"numMaxPersonas":"9","precioPorDia":$('#lodgingPrice').val(),"aireAcondicionado":aireAcondicionado,"piscina":piscina,
+                  "zonasVerdes":zonasVerdes, "vigilancia":vigilancia}
+                    
+                   
                      });
             $.ajax({
                 headers: { 
@@ -65,6 +283,40 @@
                     
                        out+='<div class="alert alert-error"><strong>Error!</strong> A problem has been occurred while submitting your data.</div>'
                        document.getElementById("errormessage").innerHTML = out;
+                }
+            });
+        });
+        
+$("#formDescuentos").submit(function(e) {
+            
+            e.preventDefault();     
+           
+            $.ajax({
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                datatype:"json",
+                type: "POST",
+                url: "services/usuario/update_promos/" + $("#pse").val() + "/" + $("#tc").val() + "/" + $("#cash").val() + "/" + ${usuarioSesion.id},
+                contentType: false,
+                processData: false,
+                success: function(data)
+                   {
+                	
+                	 var out = "";
+                  	if (data.codigoRespuesta == 'OK') {
+                  		                       
+                  	  alert('Descuentos asignados correctamente');
+                  	}
+                  	else {
+                  		alert('Error al asignar descuentos: ' +  data.mensaje);
+                  		
+                  	}                   
+                     
+                   },
+                error: function(jqXHR, textStatus, errorMessage) {
+                 alet("Error inesperado: " + errorMessage);
                 }
             });
         });
@@ -147,141 +399,338 @@
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a>
                                     </li>
-                                    <li><a href="#tab-2" data-toggle="tab">Functionality XYZ</a>
+                                    #if($SpecialOffers == "true")
+                                    <li><a href="#tab-2" data-toggle="tab">Aplicar descuentos</a>
                                     </li>
+                                    #end
                                     <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab-1">
-                                        <div class="col-md-8">
-                                            <form id="formularioCrear" action="" method="post">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
-                                                        <label>Name</label>
-                                                        <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
+                                        <div class="col-md-12">
+                                            <form id="formularioCrear" action="" method="post" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-pencil input-icon input-icon-bounce"></i>
+                                                            <label>Name</label>
+                                                            <input class="form-control" placeholder="Paquete Semana Santa" type="text" name="name" id="name" required />
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
+                                                            <label>Destination name</label>
+                                                            <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" required/>
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
+                                                            <label>Destination Location</label>
+                                                            <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
+                                                        </div>
+                                                        
+
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
+                                                            <label>Date</label>
+                                                            <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
+                                                        </div>
+                                                        <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
+                                                            <label>URL Image</label>
+                                                            <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
+                                                        </div>
+														#if($AdminMoneda == "true")
+                                                        <label>Select your prefered kind money</label>  
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
+                                                      </div>
+                                                       #if($Colombian == "true")
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
+                                                      </div>
+                                                      #end
+								 					 #if($Euro == "true")
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
+                                                      </div>
+                                                      	 #end	
+							   						 #end	
+
+
+                                                  </div>
+
+                                                  <div class="col-md-6">
+                                           <div class="tabbable">
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="active">
+                                                        <a href="#flight" data-toggle="tab">
+                                                             <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id="flightChecked" name="flightChecked" value="flight">Flights<br>
+                                                             </div>
+                                                         </a>
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#lodging" data-toggle="tab">
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" id="lodgingChecked" name="lodgingChecked" value="flight">Lodging<br>
+                                                             </div>
+                                                         </a>
+                                                    </li>
+                                                    <li><a href="#activities" data-toggle="tab">
+                                                         <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" id="activityChecked"  name="activityChecked" value="flight">Activities<br>
+                                                             </div>
+
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                             <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="flight">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            
+                                                                <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <label>Select a flight</label>
+                                                                </div>
+                                                                <div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            
+                                                                                <label>Check-in</label>
+                                                                                <input size="16" type="text" value="2012-06-15 14:45:00" readonly class="form_datetime"id="dateOneFlight">
+
+
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            
+                                                                                <label>Check-out</label>
+                                                                                 <input size="16" type="text" value="2012-06-15 14:45:00" readonly class="form_datetime" id="dateTwoFlight">
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
+                                                                    <label>Origen flight</label>
+                                                                    <input class="form-control" placeholder="Cali" type="text" name="origenFlight" id="origenFlight" />
+                                                                </div>
+                                                                <div class="form-group form-group-icon-left">
+                                                                    <label>Select the airline</label> 
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="LAN">Lan</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="AVIANCA">Avianca</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="airline" name="airline" value="VIVA_COLOMBIA">Viva Colombia</label>
+                                                      </div>
+                                                                </div>
+                                                                <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
+                                                                </i>
+                                                                <label>Price per person</label>
+                                                                <input class="form-control" placeholder="2000" type="number" name="flightPrice" id="flightPrice"  min="0"  />
+                                                            </div>
+                                                        
                                                     </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-plane input-icon input-icon-bounce"></i>
-                                                        <label>Destination name</label>
-                                                        <input class="form-control" placeholder="Nevado de Santa Marta" type="text" name="destinationName" id="destinationName" required/>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-bounce"></i>
-                                                        <label>Destination Location</label>
-                                                        <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
-                                                    </div>
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
-                                                        <label>Price</label>
-                                                        <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
-                                                    </div>
-                                                    
-                                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
-                                                        <label>Date</label>
-                                                        <input class="form-control" placeholder="01-12-2015" type="date" name="date" id="date" required/>
-                                                    </div>
-                                                     <div class="form-group form-group-icon-left"><i class="fa fa-picture-o input-icon input-icon-bounce"></i>
-                                                        <label>URL Image</label>
-                                                        <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
-                                                    </div>
-                                                    
-												 #if($AdminMoneda == "true")
-	                                                  <label>Select your prefered kind money</label>  
-	                                                  <div class="radio-inline radio-small">
-	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
-	                                                  </div>
-	                                                   #if($Colombian == "true")
-	                                                  <div class="radio-inline radio-small">
-	                                                  	 <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
-	                                                  </div>
-	                                                   #end  
-	                                                   #if($Euro == "true")
-	                                                  <div class="radio-inline radio-small">
-	                                                     <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
-	                                                  </div>
-	                                                  #end  
-                                                 #end  
-                                                   
-                                               
+                                                </div>
                                             </div>
-                                
-                                            <div class="col-md-6">
-                                                <label>Activities</label>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Accommodation">Accommodation<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Trekking" >Trekking<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Caves" >Caves<br>
+                                            <div class="tab-pane fade" id="lodging">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        
+                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                    <label>Select facilities</label>
+                                                                </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox" id ="airCond" name="airCond" value="airCond">Air conditioner<br>
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="swPool"  name="swPool" value="swPool" >Swimming pool<br>
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="security" name="security" value="security" >Security<br>
 
-                                                </div>
-                                                <div class="gap gap-mini"></div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Ethnic Villages">Ethnic Villages<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Wildlife" >Wildlife<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Cycling" >Cycling<br>
-                                                </div>
-                                                
-                                                <div class="gap gap-mini"></div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Air conditioning">Air conditioning<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Climbing">Climbing<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Rivers">Rivers<br>
-                                                </div>
-                                                
+                                                            </div>
+                                                            <div class="checkbox-inline checkbox-small">
+                                                                <input class="i-check" type="checkbox"  id ="greenArea" name="greenArea" value="greenArea" >Green areas<br>
 
-                                                <div class="gap gap-mini"></div>
-                                                
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Waterfalls">Waterfalls<br>
+                                                            </div>
+                                                            <div class="gap gap-mini"></div>
+                                                            <label>Select the type of</label>  
+                                                        <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="HOTEL">Hotel</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="FINCA">Finca</label>
+                                                      </div>
+                                                      <div class="radio-inline radio-small">
+                                                          <label><input class="i-radio"  type="radio" id="tipoAlojamiento" name="tipoAlojamiento" value="HOSTAL">Hostal</label>
+                                                      </div>
+                                                            
+                                                            <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce">
+                                                            </i>
+                                                            <label>Price per person</label>
+
+                                                            <input class="form-control" placeholder="price per person" type="number" name="lodgingPrice" id="lodgingPrice"  min="0" />
+                                                        </div>
+                                                    
                                                 </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Swimming pool">Swimming pool<br>
+                                            </div>
+                                        </div>
+
+                                                <div class="tab-pane fade" id="activities">
+                                                    <div>
+                                                      <div class="form-fields">
+                                                        <table id="tablaAct"class="table table-bordered table-striped table-booking-history">
+                                                            <thead>
+                                                          <tr>
+                                                            <th>Activity Name</th>
+                                                            <th>Description</th>
+                                                            <th>Price per person</th>
+                                                            <th>Date</th>
+                                                            <th></th> 
+                                                        </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                        <tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName"type="text" class="form_name" style="width:100px" size="5px"value="Escalar la montanha."/></td>
+                                                            <td><input id = "activityDescription"type="text" class="form_descrip" style="width:100px" size="5px"value="Escalar con un guía"/></td>
+                                                            <td><input id = "activityPrice" type="number" class="form_Price" style="width:100px" value="50" size="5px" value="300"/></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity"value="2015-02-12"style="width:100px"  size="10px"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+                                                        </tr>
+                                                          <tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName2"type="text" class="form_name" style="width:100px" size="5px"value="Montar bicicleta."/></td>
+                                                            <td><input id = "activityDescription2"type="text" class="form_descrip" style="width:100px" size="5px"value="Actividad realizada en la tarde."/></td>
+                                                            <td><input id = "activityPrice2" type="number" class="form_Price" style="width:100px" value="10" size="5px" /></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity2"value="2015-02-12"style="width:100px" size="10px"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+</tr>
+<tr id="template" class="tablaActivi">
+                                                            <td><input id ="activityName3"type="text" class="form_name" style="width:100px" size="5px"value="Paseo a la isla"/></td>
+                                                            <td><input id = "activityDescription3"type="text" class="form_descrip" style="width:100px" size="5px"value="Incluye almuerzo"/></td>
+                                                            <td><input id = "activityPrice3" type="number" class="form_Price" style="width:100px" value="300" size="5px"/></td>
+                                                            <td><div class="input-daterange" data-date-format="yyyy-m-d">
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-group-lg form-group-icon-left">
+                                                                                <input class="form-control" name="end" type="text" id="dateActivity3" value="2015-02-12"style="width:100px" size="10px"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></td>
+                                                            <td><input type="button" class="remove" value="remove" style="display:none" /></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                    </table>
                                                 </div>
-                                               
-                                                
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Kitchen">Kitchen<br>
+                                            </div>
+                                            <br>
+                                                <input class="btn btn-ghost btn-default" type="button" id="add-line" value="Add Activity" >
+                                            
                                                 </div>
-                                                <div class="gap gap-mini"></div>
-                                                 <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Camping">Camping<br>
-                                                </div>
-                                                <div class="checkbox-inline checkbox-small">
-                                                    <input class="i-check" type="checkbox" name="activities" value="Beach">Beach<br>
-                                                </div>
-                                                <div class="gap gap-mini"></div>
-                                                <div class="form-group form-group-icon-left"><i class="fa fa-comment-o input-icon input-icon-bounce"></i>
-                                                    <label>Description</label>
-                                                    <textarea  rows="4" cols="50" class="form-control" placeholder="http://imagen.png"  name="description" id="description" required> </textarea>
-                                                </div>
-                                                <div class="form-group form-group-icon-left">
+
+                                            </div>
+
+                                           </div>
+                                 
+
+                            </div>
+
+                        </div>
+
+                                            <div class="form-group form-group-icon-left">
                                                     <button class="btn btn-primary btn-lg" type="submit" >Register</button>
                                                 </div>
                                                 <div class="form-group form-group-icon-left">
                                                    <div id="errormessage"></div>
                                                </div>
+                                           
+                    </form>
+                </div>
+            </div>	#if($SpecialOffers == "true")
+                      <div class="tab-pane fade" id="tab-2">
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+								<form  id="formDescuentos" role="form">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        
+                                           <div class="input-group">
+                                                <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-labeled btn-success">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>PSE</button>
+                                                </span>
+                                                <input id="pse" name="pse" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoPse}">
+                                                                      
+                                          </div>
+                                      
+                                  </div>
+                              </div>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">                                        
+                                          <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-labeled btn-danger">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>Card</button>
+                                                </span>
+                                                <input id="tc" name="tc" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoTc}">
+                                                                     
+                                          </div>
+                                     
+                                  </div>
+                              </div>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">
+                                       
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                     <button type="button" class="btn btn-labeled btn-danger">
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>Cash</button>
+                                                </span>
+                                                <input id="cash" name="cash" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoCash}">
+                                                                     
+                                          </div>
+                                      
+                                  </div>
+                              </div>
+								<span class="input-group-btn">
+                                                <button class="btn btn-success btn-circle" type="submit">Apply discount</button>
+                                </span>
+							 </form>
+
+                          </div>
+
+                          <div class="col-md-6">
+                            <label>Discounts.</label>
+                            
 
 
-                                           </div>
-                           
+
                         </div>
-                         </form>
+
                     </div>
-                      </div>
-                    <div class="tab-pane fade" id="tab-2">
-                        <p class="mt10">PROXIMAMENTE....</p>
-                        </div>
+
+                </div>
+                #end
                         <div class="tab-pane fade" id="tab-3">
                             <p class="mt10">PROXIMAMENTE...</p>
                         </div>
@@ -367,7 +816,9 @@
         </div>
     </footer>
 
-   
+   <script type="text/javascript">
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+</script> 
     <script src="js/bootstrap.js"></script>
     <script src="js/slimmenu.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>

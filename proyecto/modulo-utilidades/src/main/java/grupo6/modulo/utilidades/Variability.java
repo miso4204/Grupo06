@@ -1,8 +1,10 @@
 package grupo6.modulo.utilidades;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +16,7 @@ import java.util.Set;
  */
 public class Variability {
 
-	private static final String PRODUCT_CONFIG = "product.config";
+	
 	
 	private static Set<String> featuresSet;
 
@@ -24,40 +26,48 @@ public class Variability {
 	
 	public static boolean isEnable(String feature){
 		if(featuresSet.isEmpty()){
-			BufferedReader bufferedReader = null;
-			
 			try {
-				String currentFeature;
-				InputStream inputStream = Variability.class.getClassLoader().getResourceAsStream(PRODUCT_CONFIG);
-				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-	 
-				while ((currentFeature = bufferedReader.readLine()) != null) {
-					featuresSet.add(currentFeature.trim());
-				}
-	 
-			} catch (Exception e) {
+				cargarFeatures();
+			} catch (Exception e) {				
 				e.printStackTrace();
-			} finally {
-				closeBufferReader(bufferedReader);
-			}	
+			}
 		}
 		
 		return featuresSet.contains(feature);
+	}
+	
+	public static void cargarFeatures() throws Exception {
+
+		Set<String> featuresSet = new HashSet<String>();
+
+		BufferedReader bufferedReader = null;
+		try {
+			String currentFeature;
+			Path p = Paths.get("../../EcoturismoFeatureIDE/configs/Ecoturismo.config");
+			bufferedReader = Files.newBufferedReader(p,
+					Charset.defaultCharset());
+			while ((currentFeature = bufferedReader.readLine()) != null) {
+				featuresSet.add(currentFeature.trim());
+			}
+
+		} finally {
+			try {
+				if (bufferedReader != null) {
+					bufferedReader.close();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		setFeaturesSet(featuresSet);
 	}
 
 	public static Set<String> getProperties(){
 		return featuresSet;
 	}
 	
-	private static void closeBufferReader(BufferedReader bufferedReader) {
-		try {
-			if (bufferedReader != null){
-				bufferedReader.close();
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+	
 	
 	public static void setFeaturesSet(Set<String> features) {
 		featuresSet = features;

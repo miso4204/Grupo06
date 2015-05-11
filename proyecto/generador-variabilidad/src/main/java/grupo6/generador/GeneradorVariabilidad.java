@@ -36,6 +36,16 @@ public class GeneradorVariabilidad {
 
 		System.out.println("----> Iniciando generador....");
 		cargarFeatures();
+
+		if (Variability.isEnable(FeaturesNames.BASE)) {
+			System.out.println("Desplegando versión Base....");
+		}
+		else if  (Variability.isEnable(FeaturesNames.INTERMEDIATE))  {
+			System.out.println("Desplegando versión Intermedia....");
+		}
+		else if  (Variability.isEnable(FeaturesNames.ADVANCE))  {
+			System.out.println("Desplegando versión Avanzada....");
+		}
 		
 		StringBuilder comandoMvnTomcat = new StringBuilder(
 				"mvn clean install tomcat7:run ");
@@ -110,7 +120,7 @@ public class GeneradorVariabilidad {
 		BufferedReader bufferedReader = null;
 		try {
 			String currentFeature;
-			Path p = Paths.get("../web-app/src/main/resources/product.config");
+			Path p = Paths.get("../../EcoturismoFeatureIDE/configs/Ecoturismo.config");
 			bufferedReader = Files.newBufferedReader(p,
 					Charset.defaultCharset());
 			while ((currentFeature = bufferedReader.readLine()) != null) {

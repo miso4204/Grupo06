@@ -349,7 +349,7 @@ public class ProductoRestController extends BaseRestController {
 		return productosDTO;
 	}
 	
-	/**
+		/**
 	 * Servicio REST para buscar productos por ubicación (lugar o ciudad).
 	 * 
 	 * @return los productos del sistema filtrados por lugar en formato JSON.
@@ -373,7 +373,7 @@ public class ProductoRestController extends BaseRestController {
 			throw new UnsupportedOperationException("Busqueda no soportada");
 		}
 	}
-	
+		
 	/**
 	 * Servicio REST para buscar un producto por id.
 	 * 

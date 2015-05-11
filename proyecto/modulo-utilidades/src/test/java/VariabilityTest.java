@@ -13,7 +13,7 @@ public class VariabilityTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
+	//@Test
 	public void testIsEnable() {
 		assertTrue("Feature no encontrado",Variability.isEnable(FeaturesNames.ECOTURISMO));
 		assertTrue("Feature no encontrado",Variability.isEnable(FeaturesNames.SESSION));

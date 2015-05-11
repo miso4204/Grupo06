@@ -39,17 +39,17 @@ public class ProcesadorVelocity {
 
 	static {
 		controladores = new HashSet<String>();
-		//controladores.add("velocity/controladores/ProductoRestController.java");		
+		controladores.add("velocity/controladores/ProductoRestController.java");		
 		controladores.add("velocity/controladores/UsuarioRestController.java");
 		
 		plantillasWebClient = new HashSet<String>();
 		plantillasWebClient.add("velocity/paginas/client/indexUser.jsp");
 		plantillasWebClient.add("velocity/paginas/client/payment.jsp");
 		plantillasWebClient.add("velocity/paginas/client/user_profile.jsp");
-//	    plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");						
+	    plantillasWebClient.add("velocity/paginas/client/destinationDetails.jsp");						
 		
 		plantillasWebProvider = new HashSet<String>();
-//		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");
+		plantillasWebProvider.add("velocity/paginas/provider/indexProvider.jsp");
 		
 		plantillasWebAdmin = new HashSet<String>();
 		plantillasWebAdmin.add("velocity/paginas/admin/indexAdmin.jsp");
@@ -150,7 +150,7 @@ public class ProcesadorVelocity {
 		BufferedReader bufferedReader = null;
 		try {
 			String currentFeature;
-			Path p = Paths.get("../web-app/src/main/resources/product.config");
+			Path p = Paths.get("../../EcoturismoFeatureIDE/configs/Ecoturismo.config");
 			bufferedReader = Files.newBufferedReader(p,
 					Charset.defaultCharset());
 			while ((currentFeature = bufferedReader.readLine()) != null) {

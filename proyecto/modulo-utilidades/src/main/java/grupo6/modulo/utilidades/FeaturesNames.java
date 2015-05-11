@@ -29,6 +29,7 @@ public class FeaturesNames {
     public static final String REPORT_BY_PERIOD = "ReportByPeriod";
     public static final String SOCIAL_NETWORK = "SocialNetwork";
     public static final String FACEBOOK = "Facebook";
+    public static final String TWITTER = "Twitter";
     public static final String ADMIN_MONEDA = "AdminMoneda";
     public static final String DOLAR = "Dolar";
     public static final String EURO = "Euro";
@@ -44,4 +45,9 @@ public class FeaturesNames {
     public static final String FUNCTIONALITY = "Functionality";
     public static final String PERFORMANCE = "Performance";
     public static final String SPECIAL_OFFERS = "SpecialOffers";
+    public static final String CREATE_PROMO = "CreatePromo";
+    public static final String UPDATE_PROMO = "UpdatePromo";
+    public static final String BASE = "Base";
+    public static final String INTERMEDIATE = "Intermediate";
+    public static final String ADVANCE = "Advance";
 }

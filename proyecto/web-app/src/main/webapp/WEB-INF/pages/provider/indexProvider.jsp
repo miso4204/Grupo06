@@ -399,9 +399,9 @@ $("#formDescuentos").submit(function(e) {
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class="active"><a href="#tab-1" data-toggle="tab">Product Registration</a>
                                     </li>
-                                    <li><a href="#tab-2" data-toggle="tab">Aplicar descuentos</a>
+                                                                        <li><a href="#tab-2" data-toggle="tab">Aplicar descuentos</a>
                                     </li>
-                                    <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
+                                                                        <li><a href="#tab-3" data-toggle="tab">Functionality ZYX</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -433,18 +433,17 @@ $("#formDescuentos").submit(function(e) {
                                                             <label>URL Image</label>
                                                             <input class="form-control" placeholder="http://imagen.png" type="text" name="urlImage" id="urlImage" required/>
                                                         </div>
-
-                                                        <label>Select your prefered kind money</label>  
+														                                                        <label>Select your prefered kind money</label>  
                                                         <div class="radio-inline radio-small">
                                                           <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="DOLAR">Dollar</label>
                                                       </div>
-                                                      <div class="radio-inline radio-small">
+                                                                                                             <div class="radio-inline radio-small">
                                                           <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="COLOMBIAN_PESOS">Pesos Colombianos</label>
                                                       </div>
-                                                      <div class="radio-inline radio-small">
+                                                      								 					                                                       <div class="radio-inline radio-small">
                                                           <label><input class="i-radio"  type="radio" id="tipoMoneda" name="tipoMoneda" value="EURO">Euro</label>
                                                       </div>
-
+                                                      	 							   						 
 
                                                   </div>
 
@@ -658,8 +657,7 @@ $("#formDescuentos").submit(function(e) {
                                            
                     </form>
                 </div>
-            </div>
-                      <div class="tab-pane fade" id="tab-2">
+            </div>	                      <div class="tab-pane fade" id="tab-2">
                         
                         <div class="row">
                             <div class="col-md-6">
@@ -683,7 +681,7 @@ $("#formDescuentos").submit(function(e) {
                                           <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <button type="button" class="btn btn-labeled btn-danger">
-                                                     <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Card</button>
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>Card</button>
                                                 </span>
                                                 <input id="tc" name="tc" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoTc}">
                                                                      
@@ -697,7 +695,7 @@ $("#formDescuentos").submit(function(e) {
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                      <button type="button" class="btn btn-labeled btn-danger">
-                                                     <span class="btn-label"><i class="fa fa-thumbs-down"></i></span>Cash</button>
+                                                     <span class="btn-label"><i class="fa fa-thumbs-up"></i></span>Cash</button>
                                                 </span>
                                                 <input id="cash" name="cash" type="number" step="0.1" min="0" max="1" class="form-control" placeholder="(%) Discount " required="" value="${usuarioSesion.descuentoCash}">
                                                                      
@@ -723,7 +721,7 @@ $("#formDescuentos").submit(function(e) {
                     </div>
 
                 </div>
-                        <div class="tab-pane fade" id="tab-3">
+                                        <div class="tab-pane fade" id="tab-3">
                             <p class="mt10">PROXIMAMENTE...</p>
                         </div>
                     </div>
