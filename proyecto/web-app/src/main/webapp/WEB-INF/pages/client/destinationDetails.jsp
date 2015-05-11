@@ -124,8 +124,8 @@ $(document).ready(function () {
                         document.getElementById("fechaSalida").innerHTML = "<h5> Check out : " + fechaSalida + "</h5>";
                         document.getElementById("fechaLlegada").innerHTML = "<h5> Arrival date : " + fechaLlegada + "</h5>";
                         
-                        document.getElementById("numPersonas").innerHTML =  numPersonas;
-                        document.getElementById("precioTotal").innerHTML =  precioTotal;
+                      //  document.getElementById("numPersonas").innerHTML =  numPersonas;
+                      //  document.getElementById("precioTotal").innerHTML =  precioTotal;
                     }        
                     
                     
@@ -145,8 +145,8 @@ $(document).ready(function () {
                             document.getElementById("tipo").innerHTML = "<h5> Lodging type: " + tipo + "</h5>";
                             document.getElementById("numMaxPersonas").innerHTML = "<h5> # Max. Persons : " + numMaxPersonas + "</h5>";
                             document.getElementById("precioPorDia").innerHTML = "<h5> Price for nigth : " + precioPorDia + "</h5>";
-                            document.getElementById("numeroNoches").innerHTML =  numeroNoches;
-                            document.getElementById("precioTotal").innerHTML =  precioTotalAlojamiento;
+                           // document.getElementById("numeroNoches").innerHTML =  numeroNoches;
+                           // document.getElementById("precioTotal").innerHTML =  precioTotalAlojamiento;
                         }
                         if(aireAcondicionado!=false)
                             document.getElementById("aireAcondicionado").innerHTML = '<i class="im im-air"></i><span class="booking-item-feature-title"><label  class="control-class">Air conditioning</label></span>';
@@ -445,7 +445,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                                         <div  id="fechaSalida"></div>
                                         <div  id="fechaLlegada"></div>
                                         <div  id="precioVuelo"></div>
-
+  <!--
                                         <div>
                                             <label for="numPersonas" class="control-label"># Person</label>
                                             <input type="text"  class="form-control" id="numPersonas" name="numPersonas">
@@ -456,6 +456,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                                             <label for="precioTotal" class="control-label">Total Price</label>
                                             <input type="text"  class="form-control" id="precioTotal" name="precioTotal">
                                         </div>
+                                    -->
                                     </div>
                                     
                                 </div>
@@ -477,6 +478,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                                                 <div  id="tipo"></div>
                                                 <div  id="numMaxPersonas"></div>
                                                 <div  id="precioPorDia"></div>
+                                                <!--
                                                 <div>
                                                     <label for="numeroNoches" class="control-label"># Nigth</label>
                                                     <input type="text"  class="form-control" id="numeroNoches" name="numeroNoches">
@@ -485,6 +487,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                                                     <label for="precioTotalAlojamiento" class="control-label">Total Price</label>
                                                     <input type="text"  class="form-control" id="precioTotalAlojamiento" name="precioTotalAlojamiento">
                                                 </div>
+                                            -->
                                             </div>
                                         </div>
 
