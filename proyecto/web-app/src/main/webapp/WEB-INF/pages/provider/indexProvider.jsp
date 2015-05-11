@@ -59,6 +59,7 @@ $(document).ready(function() {
          var vigilancia=false;
          var actividadesAgregadas="[";
          var checkVueloSeleccionado=false;
+         var precioActividades=0;
          var obj;
      $("#flightChecked").on('ifChecked', function(event){
          $("#airline").prop('required',true);
@@ -120,13 +121,13 @@ $(document).ready(function() {
     });
      
      $("#tablaAct").each(function (index3) {
-        alert("tabla");
+       
         var rowCount = $("#tablaAct tbody tr").length;
-        alert(rowCount);
+      
         var i=0;
         $("#tablaAct tbody tr").each(function (index) 
         {
-               alert("fila"+index);
+              
 
             var campo1, campo2, campo3, campo4;
             i++;
@@ -149,6 +150,7 @@ $(document).ready(function() {
             })
             actividadesAgregadas=actividadesAgregadas+'{"nombreActividad":"'+ campo1 +
             '","descripcion":"' + campo2 + '","fechaActividad":"' + campo4 + '","costoActividad":"' + campo3 + '"}';
+            precioActividades=precioActividades+campo3;
             if(i==rowCount){
                 actividadesAgregadas=actividadesAgregadas+"]";
             }
@@ -157,11 +159,9 @@ $(document).ready(function() {
             }
             
              })
-            alert(actividadesAgregadas);
+          
              obj = jQuery.parseJSON(actividadesAgregadas);
 
-            //var obj = JSON.parse(actividadesAgregadas);
-            alert(JSON.stringify(obj));
         });
    
 
@@ -170,12 +170,6 @@ $(document).ready(function() {
         $("#formularioCrear").submit(function(e) {
            
            e.preventDefault();   
-            //datos actividad
-            /*var nombreAct=$('#activityName').val();
-            var fechaActividad = $('#dateActivity').val();
-            var descripcion= $('#activityDescription').val();
-            var costoActividad= $('#activityPrice').val();
-            */
 
             //datos vuelos
             var vuelo="";
@@ -212,9 +206,9 @@ $(document).ready(function() {
              //tipo =
              numMaxPersonas = 0;
              //precioPorDia =('#lodgingPrice').val();
+              var precioTotal=0;
 
-
-
+             // precioTotal=precioVuelo+parseInt($('#lodgingPrice').val())+precioActividades;
             
 
               
@@ -226,7 +220,7 @@ $(document).ready(function() {
                     "nombre": $('#name').val(), 
                     "lugar": $('#destinationName').val(),
                     "ciudad": $('#destinationLocation').val(),
-                    "precio": $('#price').val(),
+                    "precio": precioTotal,
                     "urlImagen": $('#urlImage').val(),
                     "fechaInicio": $('#date').val(),
                     "tipoMoneda": $('#tipoMoneda:checked').val(),
@@ -402,10 +396,7 @@ $("#formDescuentos").submit(function(e) {
                                                             <label>Destination Location</label>
                                                             <input class="form-control" placeholder="Santa Marta - Colombia" type="text" name="destinationLocation" id="destinationLocation" required/>
                                                         </div>
-                                                        <div class="form-group form-group-icon-left"><i class="fa fa-money input-icon input-icon-bounce"></i>
-                                                            <label>Price</label>
-                                                            <input class="form-control" placeholder="2000" type="number" name="price" id="price"  min="0" required />
-                                                        </div>
+                                                        
 
                                                         <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-bounce"></i>
                                                             <label>Date</label>
