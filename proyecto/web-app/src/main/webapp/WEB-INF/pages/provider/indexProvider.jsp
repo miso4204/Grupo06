@@ -159,7 +159,7 @@ $(document).ready(function() {
             }
             
              })
-          
+          alert(rowCount);
              obj = jQuery.parseJSON(actividadesAgregadas);
             // alert(actividadesAgregadas);
 
@@ -468,14 +468,14 @@ $("#formDescuentos").submit(function(e) {
                                                                         <div class="col-md-6">
                                                                             
                                                                                 <label>Check-in</label>
-                                                                                <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime"id="dateOneFlight">
+                                                                                <input size="16" type="text" value="2012-06-15 14:45:00" readonly class="form_datetime"id="dateOneFlight">
 
 
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             
                                                                                 <label>Check-out</label>
-                                                                                 <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime" id="dateTwoFlight">
+                                                                                 <input size="16" type="text" value="2012-06-15 14:45:00" readonly class="form_datetime" id="dateTwoFlight">
                                                                             
                                                                         </div>
                                                                         
@@ -758,7 +758,7 @@ $("#formDescuentos").submit(function(e) {
     </footer>
 
    <script type="text/javascript">
-    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
 </script> 
     <script src="js/bootstrap.js"></script>
     <script src="js/slimmenu.js"></script>
