@@ -190,7 +190,6 @@ $(document).ready(function() {
             }
             
              })*/
-alert(actividadesAgregadas);
          
              obj = jQuery.parseJSON(actividadesAgregadas);
             // alert(actividadesAgregadas);
@@ -236,7 +235,7 @@ alert(actividadesAgregadas);
             if (lodginpricio==""){
               lodginpricio=0
             }
-                        alert(precioActividades);
+                       // alert(precioActividades);
               precioTotal=parseFloat(precioVuelo)+parseFloat(lodginpricio)+parseFloat(precioActividades);
             
               
