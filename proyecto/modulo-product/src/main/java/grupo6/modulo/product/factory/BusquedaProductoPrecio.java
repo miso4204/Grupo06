@@ -6,6 +6,7 @@ import grupo6.persistencia.entidades.Producto;
 import grupo6.utilidades.Currency;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -43,6 +44,7 @@ public class BusquedaProductoPrecio  extends BaseDAO implements IBusquedaProduct
 		criteria.setCacheable(true);
 		
 		List<Producto> productos = (List<Producto>)criteria.list();
+		productos = new ArrayList<Producto>(new HashSet(productos));
 		List<Producto> productosEncontrados = new ArrayList<Producto>();
 		
 		for(Producto p : productos){
